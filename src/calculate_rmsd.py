@@ -36,7 +36,7 @@ def calculateRMSDs(dcd, structure, skip):
         locations[i - skip] = calcCenter(site_positions)
 
     center = mean(locations, axis = 0)
-    rmsd_all_sites[site] = mean(sqrt(sum((locations - center)**2, axis=1)))
+    rmsd_all_sites[site] = sqrt(mean(sum((locations - center)**2, axis=1)))
    
   return rmsd_all_sites
 
@@ -61,7 +61,7 @@ def calculateRMSDsCA(dcd, structure, skip):
         locations[i - skip] = site_positions.getCoords()
 
     center = mean(locations, axis = 0)
-    rmsd_all_sites[site] = mean(sqrt(sum((locations - center)**2, axis=1)))
+    rmsd_all_sites[site] = sqrt(mean(sum((locations - center)**2, axis=1)))
    
   return rmsd_all_sites
   
