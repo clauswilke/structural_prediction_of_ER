@@ -1,36 +1,44 @@
 #!/usr/bin/python
 
-import sys, numpy
+import sys
 
 from prody import *
+from numpy import *
 
 def loadFiles(pdb_name, dcd_name):
-  ensemble = parseDCD(dcd_name)
+  dcd = Trajectory(dcd_name)
   structure = parsePDB(pdb_name)
 
-  ensemble.setCoords(structure)
-  ensemble.setAtoms(structure.calpha)
-  ensemble.iterpose()
+  dcd.setCoords(structure)
 
-  return (ensemble, structure)
+  dcd.link(structure)
 
-def calculateRMSDs(ensemble, structure):
+  return (dcd, structure)
 
-  rmsd_all_sites = []
+def calculateRMSDs(dcd, structure, skip):
 
-  for i in range(0, len(structure.calpha)):
-    print(i)
-    ensemble.setAtoms(structure.select('ca resnum ' + str(i)))
+  rmsd_all_sites = zeros(len(structure.calpha))
 
-    rmsd = ensemble.getRMSDs()
-    rmsd_all_sites.append(numpy.mean(rmsd))
+  for site in range(1, len(rmsd_all_sites) + 1):
+    print(site)
+    
+    site_positions = structure.select('resnum ' + str(site))
+    
+    locations = zeros(3 * (len(dcd) - skip)).reshape(len(dcd) - skip, 3)
+    
+    dcd.reset()
+    for i in range(skip, len(dcd)):
+      locations[i - skip] = calcCenter(site_positions)
 
+    center = mean(locations, axis = 0)
+    rmsd_all_sites[site - 1] = sqrt(sum((locations - center)**2))
+   
   return rmsd_all_sites
 
-def generateRMSDFile(pdb_file, dcd_file, out_file):
-  (ensemble, structure) = loadFiles(pdb_file, dcd_file)
+def generateRMSDFile(pdb_file, dcd_file, out_file, skip):
+  (dcd, structure) = loadFiles(pdb_file, dcd_file)
 
-  all_rmsds = calculateRMSDs(ensemble, structure)
+  all_rmsds = calculateRMSDs(dcd, structure, skip)
 
   output_handle = open(out_file, 'w')
 
@@ -44,20 +52,21 @@ def generateRMSDFile(pdb_file, dcd_file, out_file):
   return 0
 
 def main():
-  if len( sys.argv ) != 4:
+  if len( sys.argv ) != 5:
     print '''
 
     You screwed up choosing input files.
 
     '''
-    print "     ", sys.argv[0], "<pdb file> <dcd file> <output file>"
+    print "     ", sys.argv[0], "<pdb file> <dcd file> <skip> <output file>"
     
   else:
     pdb_file = sys.argv[1]
     dcd_file = sys.argv[2]
-    out_file = sys.argv[3]
+    skip     = int(sys.argv[3])
+    out_file = sys.argv[4]
 
-    generateRMSDFile( pdb_file, dcd_file, out_file )
+    generateRMSDFile( pdb_file, dcd_file, out_file, skip )
 
 if __name__ == "__main__":
   main()
