@@ -9,6 +9,8 @@ def loadFiles(pdb_name, dcd_name):
   structure = parsePDB(pdb_name)
 
   ensemble.setCoords(structure)
+  ensemble.setAtoms(structure.calpha)
+  ensemble.iterpose()
 
   return (ensemble, structure)
 
@@ -19,12 +21,11 @@ def calculateRMSDs(ensemble, structure):
   for i in range(0, len(structure.calpha)):
     print(i)
     ensemble.setAtoms(structure.select('ca resnum ' + str(i)))
-    ensemble.superpose()
 
     rmsd = ensemble.getRMSDs()
     rmsd_all_sites.append(numpy.mean(rmsd))
 
-  return rmsf_all_sites
+  return rmsd_all_sites
 
 def generateRMSDFile(pdb_file, dcd_file, out_file):
   (ensemble, structure) = loadFiles(pdb_file, dcd_file)

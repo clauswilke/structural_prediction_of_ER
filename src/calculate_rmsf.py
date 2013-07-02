@@ -9,6 +9,8 @@ def loadFiles(pdb_name, dcd_name):
   structure = parsePDB(pdb_name)
 
   ensemble.setCoords(structure)
+  ensemble.setAtoms(structure.calpha)
+  ensemble.iterpose()
 
   return (ensemble, structure)
 
@@ -19,7 +21,6 @@ def calculateRMSFs(ensemble, structure):
   for i in range(0, len(structure.calpha)):
     print(i)
     ensemble.setAtoms(structure.select('ca resnum ' + str(i)))
-    ensemble.superpose()
 
     rmsf = ensemble.getRMSFs()
     rmsf_all_sites.append(numpy.mean(rmsf))
