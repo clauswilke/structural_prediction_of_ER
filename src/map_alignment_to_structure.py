@@ -236,6 +236,8 @@ def main():
         align_fname = sys.argv[1]
         pdb_fname = sys.argv[2]
         pdb_chain = sys.argv[3]
+        if pdb_chain == '-': # use hyphen to indicate missing chain id
+		pdb_chain = ' '
         map_out_fname = sys.argv[4]
         mapAlignmentToPDB( align_fname, pdb_fname, map_out_fname, pdb_chain )
 
