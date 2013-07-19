@@ -1,0 +1,35 @@
+Things to do:
+
+- Describe file naming convention in top-level README.txt (Amir)
+
+- Deposit master table listing viruses and structures to analyze (Dariya)
+
+- Verify/fix/reobtain sequence alignments for HIV RT,
+  West Nile protease, Rift Valley fever (Stephanie)
+
+- Curate PDB structures and choose reference structures, update Dariya's table
+  accordingly (Austin, in consultation with Dariya and Amir)
+
+- Calculate omega using REL model, 5 categories (Stephanie)
+
+- Calculate site entropy and site entropy of filtered alignments (removing
+  pairwise similar sequences) (Amir)
+
+
+Structural properties to consider
+
+- From PDB structures
+    * RSA (Dariya, Amir)
+    * RMSF (Dariya)
+    * RSA variability (Dariya)
+    * b factors (Dariya)
+
+- From MD
+    * RMSF (Amir)
+    * mean RSA (Amir)
+    * potentially other measures of RMSF (Amir)
+    * RSA variability (Amir)
+
+- From Rosetta design
+    * site variability, entropy (Eleisha)
+    * RSA variability (Eleisha)
