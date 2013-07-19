@@ -21,7 +21,7 @@ def calculateRMSDs(dcd, structure, skip):
 
   residue_number_in_pdb = (structure.calpha).getResnums()
 
-  for site in range(len(residue_number_in_pdb)):
+  for site in range(10):
     print(residue_number_in_pdb[site])
     
     site_positions = structure.select('resnum ' + str(residue_number_in_pdb[site]))
@@ -46,7 +46,7 @@ def calculateRMSDsCA(dcd, structure, skip):
 
   residue_number_in_pdb = (structure.calpha).getResnums()
 
-  for site in range(len(residue_number_in_pdb)):
+  for site in range(10):
     print(residue_number_in_pdb[site])
     
     site_positions = structure.select('ca resnum ' + str(residue_number_in_pdb[site]))
