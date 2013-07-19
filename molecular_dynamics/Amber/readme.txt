@@ -1,4 +1,4 @@
-V.1: Amir Shahmoradi, Wilke Lab., University of Texas Austin, 11:47 Friday July 19, 2013.
+Amir Shahmoradi, Wilke Lab., University of Texas Austin, 11:47 Friday July 19, 2013.
 
 This folder contains all input structures, input parameter files and some of the important (but small size) output data from "Amber" explicit solvent MD simulations.
 
@@ -20,3 +20,4 @@ As of today, each structure has the following steps for its MS simulations by Am
 - 100ps weakly-constrained density equilibration at temp~300K.
 - 5ns unconstrained NPT equilibration.
 - 15ns of MD trajectories.
+
