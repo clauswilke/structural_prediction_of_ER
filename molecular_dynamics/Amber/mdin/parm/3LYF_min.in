@@ -1,0 +1,32 @@
+minimise 3LYF
+&cntrl					! Amber parameter setup by Amir Shahmoradi, Wilke Lab., ICMB, University of Texas Austin. Email: amir@physics.utexas.edu
+	ig = -1,			! The seed for the pseudo-random number generator (default=71277):
+						! -1 --> The random seed will be based on the current date and time, and hence will be different for every run.
+						! It is recommended that, unless you specifically desire reproducibility, that you set ig=-1 for all runs involving ntt=2 or 3.
+	imin=1,				! Flag to run energy minimization:
+						! 0 --> (default) no minimization performed.
+						! 1 --> Perform energy minimization.
+						! 5 Read in a trajectory for analysis (c.f., Amber12 Manual, Sec. 2.5.1, Page 18).
+	maxcyc = 2000,		! Run energy minimization for maxcyc number of steps.
+	ncyc = 1000,		! If ntmin=1 (default), then for NCYC cycles the steepest descent method is used then conjugate gradient is switched on (default).
+	ntpr = 100,			! Every ntpr steps, energy information will be printed in human-readable form to files "mdout" and "mdinfo".
+	cut = 10.0,			! The nonbonded cutoff, in Angstroms. For PME, the cutoff is used to limit direct space sum, and >9.0 is usually a good value.
+	ntc = 2,			! Flag for SHAKE to perform bond length constraints. Typically NTF=NTC.
+						! 1 --> (default) SHAKE is not performed.
+						! 2 --> bonds involving hydrogen are constrained. Note: to employ TIP3P set NTF=NTC=2 (c.f., page 26 Amber Manual).
+						! 3 --> all bonds are constrained (not available for parallel or qmmm runs in sander)
+	ntf = 2,			! Force evaluation. If SHAKE is used (see NTC), it is not necessary to calculate forces for the constrained bonds:
+						! 1 --> (default) complete interaction is calculated.
+						! 2 --> bond interactions involving H-atoms omitted (use with NTC=2).
+						! 3 --> all the bond interactions are omitted (use with NTC=3).
+						! Note: If SHAKE is used (see NTC), it is not necessary to calculate forces for the constrained bonds.
+	ntb = 1,			! Flag for periodic boundary conditions:
+						! 0 --> no PBC (default when igb & ntp are both 0),
+						! 1 --> constant volume,
+						! 2 --> constant pressure (default when ntp>0).
+						! Note: There is no longer any need to set this variable, since it can be determined from igb and ntp parameters. The “proper” default for ntb is chosen (ntb=0 when igb > 0, ntb=2 when ntp > 0, and ntb=1 otherwise).
+	ntr = 1,					! Flag for restraining specified atoms in Cartesian space using a harmonic potential, if ntr > 0. The restrained atoms are determined by the restraintmask string. The force constant is given by restraint_wt. The coordinates are read in "restrt" format from the "refc" file (see NTRX, above). Default = 0. C.f., Amber12 Manual Sec. 2.5.4.
+	restraintmask = '!@H=',		! String that specifies the restrained atoms when ntr=1. '!@H=' means all heavy atoms (i.e. except hydrogens) (c.f., Amber8 User Manual, Sec. 11.5)
+	restraint_wt = 2.0			! The weight (in kcal/mol.Å^2) for the positional restraints. The restraint is of the form k(Dx)2, where k is the value given by this variable, and Dx is the difference between one of the Cartesian coordinates of a restrained atom and its reference position.
+/
+

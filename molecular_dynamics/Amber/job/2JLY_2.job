@@ -1,0 +1,38 @@
+#!/bin/bash
+
+#$ -V
+#$ -cwd
+#$ -N MD_2JLY_2
+#$ -j y
+#$ -o 2JLY_outputer_2.o
+#$ -q gpu
+#$ -pe 2way 12
+#$ -l h_rt=12:00:00
+
+START=$(date +%s)
+STARTDATE=`date`
+echo ""
+echo "Amir: Amber MD Simulation setup by Amir Shahmoradi, Wilke Lab., ICMB, UT Austin"
+echo "Amir: Email -- amir@physics.utexas.edu"
+echo "Amir: Starting test simulation on" $STARTDATE
+
+ibrun pmemd.cuda.MPI -O -i $WORK/setup/2JLY_equil_test.in -p $WORK/setup/2JLY_IS.prmtop -c $WORK/results/2JLY_equil_1.rst -o $WORK/results/2JLY_equil_2.out -r $WORK/results/2JLY_equil_2.rst -x $WORK/results/2JLY_equil_2.mdcrd -inf 2JLY_equil_2.mdinfo -l 2JLY_equil_2.logfile
+
+END=$(date +%s)
+DIFF=$(( $END - $START ))
+ENDDATE=`date`
+echo "Amir: Simulation ended on" $ENDDATE
+echo "Amir: Test simulation runtime: $DIFF seconds for 1000 MD time steps"
+
+START=$(date +%s)
+STARTDATE=`date`
+echo ""
+echo "Amir: Starting MD simulation on" $STARTDATE
+
+ibrun pmemd.cuda.MPI -O -i $WORK/setup/2JLY_equil.in -p $WORK/setup/2JLY_IS.prmtop -c $WORK/results/2JLY_equil_1.rst -o $WORK/results/2JLY_equil_2.out -r $WORK/results/2JLY_equil_2.rst -x $WORK/results/2JLY_equil_2.mdcrd -inf 2JLY_equil_2.mdinfo -l 2JLY_equil_2.logfile
+
+END=$(date +%s)
+DIFF=$(( $END - $START ))
+ENDDATE=`date`
+echo "Amir: Simulation ended on" $ENDDATE
+echo "Amir: Simulation runtime: $DIFF seconds"

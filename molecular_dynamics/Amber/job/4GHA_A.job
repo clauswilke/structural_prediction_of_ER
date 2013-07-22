@@ -1,0 +1,80 @@
+#!/bin/bash
+
+#$ -V
+#$ -cwd
+#$ -N MD_4GHA_A_ini
+#$ -j y
+#$ -o 4GHA_A_outputer.o
+#$ -q gpu
+#$ -pe 2way 12
+#$ -l h_rt=24:00:00
+
+START=$(date +%s)
+STARTDATE=`date`
+echo ""
+echo "Amber MD Simulation setup by Amir Shahmoradi, Wilke Lab., ICMB, UT Austin"
+echo "Email: amir@physics.utexas.edu"
+echo "Simulation started on" $STARTDATE
+
+ibrun pmemd.MPI -O -i $WORK/setup/4GHA_A_min.in -o $WORK/results/out/4GHA_A_min.out -p $WORK/setup/4GHA_A_IS.prmtop -c $WORK/setup/4GHA_A_IS.inpcrd -r $WORK/results/rst/4GHA_A_min.rst -ref $WORK/setup/4GHA_A_IS.inpcrd -inf $WORK/job/mdinfo/4GHA_A_min.mdinfo -l $WORK/job/logfile/4GHA_A_min.logfile
+
+END=$(date +%s)
+DIFF=$(( $END - $START ))
+ENDDATE=`date`
+echo "Simulation ended on" $ENDDATE
+echo "Simulation runtime: $DIFF seconds"
+
+START=$(date +%s)
+STARTDATE=`date`
+echo ""
+echo "Amber MD Simulation setup by Amir Shahmoradi, Wilke Lab., ICMB, UT Austin"
+echo "Simulation started on" $STARTDATE
+
+ibrun pmemd.cuda.MPI -O -i $WORK/setup/4GHA_A_heat.in -o $WORK/results/out/4GHA_A_heat.out -p $WORK/setup/4GHA_A_IS.prmtop -c $WORK/results/rst/4GHA_A_min.rst -r $WORK/results/rst/4GHA_A_heat.rst -x $WORK/results/4GHA_A_heat.mdcrd -ref $WORK/results/rst/4GHA_A_min.rst -inf $WORK/job/mdinfo/4GHA_A_heat.mdinfo -l $WORK/job/logfile/4GHA_A_heat.logfile
+
+END=$(date +%s)
+DIFF=$(( $END - $START ))
+ENDDATE=`date`
+echo "Simulation ended on" $ENDDATE
+echo "Simulation runtime: $DIFF seconds"
+
+START=$(date +%s)
+STARTDATE=`date`
+echo ""
+echo "Amber MD Simulation setup by Amir Shahmoradi, Wilke Lab., ICMB, UT Austin"
+echo "Simulation started on" $STARTDATE
+
+ibrun pmemd.cuda.MPI -O -i $WORK/setup/4GHA_A_density.in -o $WORK/results/out/4GHA_A_density.out -p $WORK/setup/4GHA_A_IS.prmtop -c $WORK/results/rst/4GHA_A_heat.rst -r $WORK/results/rst/4GHA_A_density.rst -x $WORK/results/4GHA_A_density.mdcrd -ref $WORK/results/rst/4GHA_A_heat.rst -inf $WORK/job/mdinfo/4GHA_A_density.mdinfo -l $WORK/job/logfile/4GHA_A_density.logfile
+
+END=$(date +%s)
+DIFF=$(( $END - $START ))
+ENDDATE=`date`
+echo "Simulation ended on" $ENDDATE
+echo "Simulation runtime: $DIFF seconds"
+
+START=$(date +%s)
+STARTDATE=`date`
+echo ""
+echo "Amber MD Simulation setup by Amir Shahmoradi, Wilke Lab., ICMB, UT Austin"
+echo "Simulation started on" $STARTDATE
+
+ibrun pmemd.cuda.MPI -O -i $WORK/setup/4GHA_A_equil_test.in -o $WORK/results/out/4GHA_A_equil.out -p $WORK/setup/4GHA_A_IS.prmtop -c $WORK/results/rst/4GHA_A_density.rst -r $WORK/results/rst/4GHA_A_equil.rst -x $WORK/results/4GHA_A_equil.mdcrd -inf $WORK/job/mdinfo/4GHA_A_equil.mdinfo -l $WORK/job/logfile/4GHA_A_equil.logfile
+
+END=$(date +%s)
+DIFF=$(( $END - $START ))
+ENDDATE=`date`
+echo "Amir: Simulation ended on" $ENDDATE
+echo "Amir: Test simulation runtime: $DIFF seconds for 1000 MD time steps"
+
+START=$(date +%s)
+STARTDATE=`date`
+echo ""
+echo "Amir: Starting MD simulation on" $STARTDATE
+
+ibrun pmemd.cuda.MPI -O -i $WORK/setup/4GHA_A_equil.in -o $WORK/results/out/4GHA_A_equil.out -p $WORK/setup/4GHA_A_IS.prmtop -c $WORK/results/rst/4GHA_A_density.rst -r $WORK/results/rst/4GHA_A_equil.rst -x $WORK/results/4GHA_A_equil.mdcrd -inf $WORK/job/mdinfo/4GHA_A_equil.mdinfo -l $WORK/job/logfile/4GHA_A_equil.logfile
+
+END=$(date +%s)
+DIFF=$(( $END - $START ))
+ENDDATE=`date`
+echo "Amir: Simulation ended on" $ENDDATE
+echo "Amir: Simulation runtime: $DIFF seconds"

@@ -1,0 +1,50 @@
+#!/bin/bash
+
+#$ -V
+#$ -cwd
+#$ -N MD_3GOL_ini
+#$ -j y
+#$ -o 3GOL_outputer.o
+#$ -q gpu
+#$ -pe 2way 12
+#$ -l h_rt=24:00:00
+
+START=$(date +%s)
+
+ibrun pmemd.MPI -O -i $WORK/setup/3GOL_min.in -o $WORK/results/3GOL_min.out -p $WORK/setup/3GOL_IS.prmtop -c $WORK/setup/3GOL_IS.inpcrd -r $WORK/results/3GOL_min.rst -ref $WORK/setup/3GOL_IS.inpcrd -inf 3GOL_min.mdinfo -l 3GOL_min.logfile
+
+END=$(date +%s)
+DIFF=$(( $END - $START ))
+echo "Start Time: $START"
+echo "End Time: $END"
+echo "It took $DIFF seconds"
+
+START=$(date +%s)
+
+ibrun pmemd.cuda.MPI -O -i $WORK/setup/3GOL_heat.in -o $WORK/results/3GOL_heat.out -p $WORK/setup/3GOL_IS.prmtop -c $WORK/results/3GOL_min.rst -r $WORK/results/3GOL_heat.rst -x $WORK/results/3GOL_heat.mdcrd -ref $WORK/results/3GOL_min.rst -inf 3GOL_heat.mdinfo -l 3GOL_heat.logfile
+
+END=$(date +%s)
+DIFF=$(( $END - $START ))
+echo "Start Time: $START"
+echo "End Time: $END"
+echo "It took $DIFF seconds"
+
+START=$(date +%s)
+
+ibrun pmemd.cuda.MPI -O -i $WORK/setup/3GOL_density.in -o $WORK/results/3GOL_density.out -p $WORK/setup/3GOL_IS.prmtop -c $WORK/results/3GOL_heat.rst -r $WORK/results/3GOL_density.rst -x $WORK/results/3GOL_density.mdcrd -ref $WORK/results/3GOL_heat.rst -inf 3GOL_density.mdinfo -l 3GOL_density.logfile
+
+END=$(date +%s)
+DIFF=$(( $END - $START ))
+echo "Start Time: $START"
+echo "End Time: $END"
+echo "It took $DIFF seconds"
+
+START=$(date +%s)
+
+ibrun pmemd.cuda.MPI -O -i $WORK/setup/3GOL_equil.in -o $WORK/results/3GOL_equil.out -p $WORK/setup/3GOL_IS.prmtop -c $WORK/results/3GOL_density.rst -r $WORK/results/3GOL_equil.rst -x $WORK/results/3GOL_equil.mdcrd -inf 3GOL_equil.mdinfo -l 3GOL_equil.logfile
+
+END=$(date +%s)
+DIFF=$(( $END - $START ))
+echo "Start Time: $START"
+echo "End Time: $END"
+echo "It took $DIFF seconds"

@@ -1,0 +1,37 @@
+#!/bin/bash
+
+#$ -V
+#$ -cwd
+#$ -N MD_4GHA_A_2
+#$ -j y
+#$ -o 4GHA_A_outputer_2.o
+#$ -q gpu
+#$ -pe 2way 12
+#$ -l h_rt=06:00:00
+
+START=$(date +%s)
+STARTDATE=`date`
+echo ""
+echo "Amir: Amber MD Simulation setup by Amir Shahmoradi, Wilke Lab., ICMB, UT Austin"
+echo "Amir: Email -- amir@physics.utexas.edu"
+echo "Amir: Starting test simulation on" $STARTDATE
+
+ibrun pmemd.cuda.MPI -O -i $WORK/setup/4GHA_A_equil_test.in -p $WORK/setup/4GHA_A_IS.prmtop -c $WORK/results/rst/4GHA_A_equil_1.rst -o $WORK/results/out/4GHA_A_equil_2.out -r $WORK/results/rst/4GHA_A_equil_2.rst -x $WORK/results/4GHA_A_equil_2.mdcrd -inf $WORK/job/mdinfo/4GHA_A_equil_2.mdinfo -l $WORK/job/logfile/4GHA_A_equil_2.logfile
+
+END=$(date +%s)
+DIFF=$(( $END - $START ))
+ENDDATE=`date`
+echo "Amir: Simulation ended on" $ENDDATE
+echo "Amir: Test simulation runtime: $DIFF seconds for 1000 MD time steps"
+
+START=$(date +%s)
+STARTDATE=`date`
+echo ""
+echo "Amir: Starting MD simulation on" $STARTDATE
+
+ibrun pmemd.cuda.MPI -O -i $WORK/setup/4GHA_A_equil.in -p $WORK/setup/4GHA_A_IS.prmtop -c $WORK/results/rst/4GHA_A_equil_1.rst -o $WORK/results/out/4GHA_A_equil_2.out -r $WORK/results/rst/4GHA_A_equil_2.rst -x $WORK/results/4GHA_A_equil_2.mdcrd -inf $WORK/job/mdinfo/4GHA_A_equil_2.mdinfo -l $WORK/job/logfile/4GHA_A_equil_2.logfile
+END=$(date +%s)
+DIFF=$(( $END - $START ))
+ENDDATE=`date`
+echo "Amir: Simulation ended on" $ENDDATE
+echo "Amir: Simulation runtime: $DIFF seconds"

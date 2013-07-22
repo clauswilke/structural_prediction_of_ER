@@ -1,0 +1,66 @@
+#!/bin/bash
+
+#$ -V
+#$ -cwd
+#$ -N MD_4IRY_ini
+#$ -j y
+#$ -o 4IRY_outputer.o
+#$ -q gpu
+#$ -pe 2way 12
+#$ -l h_rt=15:00:00
+
+START=$(date +%s)
+STARTDATE=`date`
+echo "Amber MD Simulation setup by Amir Shahmoradi, Wilke Lab., ICMB, UT Austin"
+echo "Email: amir@physics.utexas.edu"
+echo "Simulation started on" $STARTDATE
+
+ibrun pmemd.MPI -O -i $WORK/setup/4IRY_min.in -o $WORK/results/4IRY_min.out -p $WORK/setup/4IRY_IS.prmtop -c $WORK/setup/4IRY_IS.inpcrd -r $WORK/results/4IRY_min.rst -ref $WORK/setup/4IRY_IS.inpcrd -inf 4IRY_min.mdinfo -l 4IRY_min.logfile
+
+END=$(date +%s)
+DIFF=$(( $END - $START ))
+ENDDATE=`date`
+echo "Simulation ended on" $ENDDATE
+echo "Simulation runtime: $DIFF seconds"
+
+START=$(date +%s)
+STARTDATE=`date`
+echo "Amber MD Simulation setup by Amir Shahmoradi, Wilke Lab., ICMB, UT Austin"
+echo "Email: amir@physics.utexas.edu"
+echo "Simulation started on" $STARTDATE
+
+ibrun pmemd.cuda.MPI -O -i $WORK/setup/4IRY_heat.in -o $WORK/results/4IRY_heat.out -p $WORK/setup/4IRY_IS.prmtop -c $WORK/results/4IRY_min.rst -r $WORK/results/4IRY_heat.rst -x $WORK/results/4IRY_heat.mdcrd -ref $WORK/results/4IRY_min.rst -inf 4IRY_heat.mdinfo -l 4IRY_heat.logfile
+
+END=$(date +%s)
+DIFF=$(( $END - $START ))
+ENDDATE=`date`
+echo "Simulation ended on" $ENDDATE
+echo "Simulation runtime: $DIFF seconds"
+
+START=$(date +%s)
+STARTDATE=`date`
+echo "Amber MD Simulation setup by Amir Shahmoradi, Wilke Lab., ICMB, UT Austin"
+echo "Email: amir@physics.utexas.edu"
+echo "Simulation started on" $STARTDATE
+
+ibrun pmemd.cuda.MPI -O -i $WORK/setup/4IRY_density.in -o $WORK/results/4IRY_density.out -p $WORK/setup/4IRY_IS.prmtop -c $WORK/results/4IRY_heat.rst -r $WORK/results/4IRY_density.rst -x $WORK/results/4IRY_density.mdcrd -ref $WORK/results/4IRY_heat.rst -inf 4IRY_density.mdinfo -l 4IRY_density.logfile
+
+END=$(date +%s)
+DIFF=$(( $END - $START ))
+ENDDATE=`date`
+echo "Simulation ended on" $ENDDATE
+echo "Simulation runtime: $DIFF seconds"
+
+START=$(date +%s)
+STARTDATE=`date`
+echo "Amber MD Simulation setup by Amir Shahmoradi, Wilke Lab., ICMB, UT Austin"
+echo "Email: amir@physics.utexas.edu"
+echo "Simulation started on" $STARTDATE
+
+ibrun pmemd.cuda.MPI -O -i $WORK/setup/4IRY_equil.in -o $WORK/results/4IRY_equil.out -p $WORK/setup/4IRY_IS.prmtop -c $WORK/results/4IRY_density.rst -r $WORK/results/4IRY_equil.rst -x $WORK/results/4IRY_equil.mdcrd -inf 4IRY_equil.mdinfo -l 4IRY_equil.logfile
+
+END=$(date +%s)
+DIFF=$(( $END - $START ))
+ENDDATE=`date`
+echo "Simulation ended on" $ENDDATE
+echo "Simulation runtime: $DIFF seconds"

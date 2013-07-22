@@ -1,0 +1,124 @@
+TACC: Setting memory limits for job 1291140 to unlimited KB
+TACC: Dumping job script:
+--------------------------------------------------------------------------------
+#!/bin/bash
+
+#$ -V
+#$ -cwd
+#$ -N MD_2JLY_ini
+#$ -j y
+#$ -o 2JLY_outputer.o
+#$ -q gpu
+#$ -pe 2way 12
+#$ -l h_rt=15:00:00
+
+START=$(date +%s)
+STARTDATE=`date`
+echo ""
+echo "Amber MD Simulation setup by Amir Shahmoradi, Wilke Lab., ICMB, UT Austin"
+echo "Email: amir@physics.utexas.edu"
+echo "Simulation started on" $STARTDATE
+
+ibrun pmemd.MPI -O -i $WORK/setup/2JLY_min.in -p $WORK/setup/2JLY_IS.prmtop -c $WORK/setup/2JLY_IS.inpcrd -ref $WORK/setup/2JLY_IS.inpcrd -o $WORK/results/2JLY_min.out -r $WORK/results/2JLY_min.rst -inf 2JLY_min.mdinfo -l 2JLY_min.logfile
+
+END=$(date +%s)
+DIFF=$(( $END - $START ))
+ENDDATE=`date`
+echo "Simulation ended on" $ENDDATE
+echo "Simulation runtime: $DIFF seconds"
+
+START=$(date +%s)
+STARTDATE=`date`
+echo ""
+echo "Amber MD Simulation setup by Amir Shahmoradi, Wilke Lab., ICMB, UT Austin"
+echo "Email: amir@physics.utexas.edu"
+echo "Simulation started on" $STARTDATE
+
+ibrun pmemd.cuda.MPI -O -i $WORK/setup/2JLY_heat.in -p $WORK/setup/2JLY_IS.prmtop -c $WORK/results/2JLY_min.rst -ref $WORK/results/2JLY_min.rst -o $WORK/results/2JLY_heat.out -r $WORK/results/2JLY_heat.rst -x $WORK/results/2JLY_heat.mdcrd -inf 2JLY_heat.mdinfo -l 2JLY_heat.logfile
+
+END=$(date +%s)
+DIFF=$(( $END - $START ))
+ENDDATE=`date`
+echo "Simulation ended on" $ENDDATE
+echo "Simulation runtime: $DIFF seconds"
+
+START=$(date +%s)
+STARTDATE=`date`
+echo ""
+echo "Amber MD Simulation setup by Amir Shahmoradi, Wilke Lab., ICMB, UT Austin"
+echo "Email: amir@physics.utexas.edu"
+echo "Simulation started on" $STARTDATE
+
+ibrun pmemd.cuda.MPI -O -i $WORK/setup/2JLY_density.in -p $WORK/setup/2JLY_IS.prmtop -c $WORK/results/2JLY_heat.rst -ref $WORK/results/2JLY_heat.rst -o $WORK/results/2JLY_density.out -r $WORK/results/2JLY_density.rst -x $WORK/results/2JLY_density.mdcrd -inf 2JLY_density.mdinfo -l 2JLY_density.logfile
+
+END=$(date +%s)
+DIFF=$(( $END - $START ))
+ENDDATE=`date`
+echo "Simulation ended on" $ENDDATE
+echo "Simulation runtime: $DIFF seconds"
+
+START=$(date +%s)
+STARTDATE=`date`
+echo ""
+echo "Amber MD Simulation setup by Amir Shahmoradi, Wilke Lab., ICMB, UT Austin"
+echo "Email: amir@physics.utexas.edu"
+echo "Simulation started on" $STARTDATE
+
+ibrun pmemd.cuda.MPI -O -i $WORK/setup/2JLY_equil.in -p $WORK/setup/2JLY_IS.prmtop -c $WORK/results/2JLY_density.rst -o $WORK/results/2JLY_equil.out -r $WORK/results/2JLY_equil.rst -x $WORK/results/2JLY_equil.mdcrd -inf 2JLY_equil.mdinfo -l 2JLY_equil.logfile
+
+END=$(date +%s)
+DIFF=$(( $END - $START ))
+ENDDATE=`date`
+echo "Simulation ended on" $ENDDATE
+echo "Simulation runtime: $DIFF seconds"--------------------------------------------------------------------------------
+TACC: Done.
+
+Amber MD Simulation setup by Amir Shahmoradi, Wilke Lab., ICMB, UT Austin
+Email: amir@physics.utexas.edu
+Simulation started on Thu Jul 4 05:28:55 CDT 2013
+TACC: Starting up job 1291140
+TACC: Setting up parallel environment for MVAPICH ssh-based mpirun.
+TACC: Setup complete. Running job script.
+TACC: starting parallel tasks...
+TACC: Shutting down parallel environment.
+TACC: Shutdown complete. Exiting.
+Simulation ended on Thu Jul 4 05:33:35 CDT 2013
+Simulation runtime: 280 seconds
+
+Amber MD Simulation setup by Amir Shahmoradi, Wilke Lab., ICMB, UT Austin
+Email: amir@physics.utexas.edu
+Simulation started on Thu Jul 4 05:33:35 CDT 2013
+TACC: Starting up job 1291140
+TACC: Setting up parallel environment for MVAPICH ssh-based mpirun.
+TACC: Setup complete. Running job script.
+TACC: starting parallel tasks...
+TACC: Shutting down parallel environment.
+TACC: Shutdown complete. Exiting.
+Simulation ended on Thu Jul 4 05:41:16 CDT 2013
+Simulation runtime: 461 seconds
+
+Amber MD Simulation setup by Amir Shahmoradi, Wilke Lab., ICMB, UT Austin
+Email: amir@physics.utexas.edu
+Simulation started on Thu Jul 4 05:41:16 CDT 2013
+TACC: Starting up job 1291140
+TACC: Setting up parallel environment for MVAPICH ssh-based mpirun.
+TACC: Setup complete. Running job script.
+TACC: starting parallel tasks...
+TACC: Shutting down parallel environment.
+TACC: Shutdown complete. Exiting.
+Simulation ended on Thu Jul 4 05:49:48 CDT 2013
+Simulation runtime: 512 seconds
+
+Amber MD Simulation setup by Amir Shahmoradi, Wilke Lab., ICMB, UT Austin
+Email: amir@physics.utexas.edu
+Simulation started on Thu Jul 4 05:49:48 CDT 2013
+TACC: Starting up job 1291140
+TACC: Setting up parallel environment for MVAPICH ssh-based mpirun.
+TACC: Setup complete. Running job script.
+TACC: starting parallel tasks...
+TACC: Shutting down parallel environment.
+TACC: Shutdown complete. Exiting.
+Simulation ended on Thu Jul 4 13:06:47 CDT 2013
+Simulation runtime: 26219 seconds
+TACC: Cleaning up after job: 1291140
+TACC: Done.

@@ -1,0 +1,50 @@
+#!/bin/bash
+
+#$ -V
+#$ -cwd
+#$ -N MD_3I5K_ini
+#$ -j y
+#$ -o 3I5K_outputer.o
+#$ -q gpu
+#$ -pe 2way 12
+#$ -l h_rt=24:00:00
+
+START=$(date +%s)
+
+ibrun pmemd.MPI -O -i $WORK/setup/3I5K_min.in -o $WORK/results/3I5K_min.out -p $WORK/setup/3I5K_IS.prmtop -c $WORK/setup/3I5K_IS.inpcrd -r $WORK/results/3I5K_min.rst -ref $WORK/setup/3I5K_IS.inpcrd -inf 3I5K_min.mdinfo -l 3I5K_min.logfile
+
+END=$(date +%s)
+DIFF=$(( $END - $START ))
+echo "Start Time: $START"
+echo "End Time: $END"
+echo "It took $DIFF seconds"
+
+START=$(date +%s)
+
+ibrun pmemd.cuda.MPI -O -i $WORK/setup/3I5K_heat.in -o $WORK/results/3I5K_heat.out -p $WORK/setup/3I5K_IS.prmtop -c $WORK/results/3I5K_min.rst -r $WORK/results/3I5K_heat.rst -x $WORK/results/3I5K_heat.mdcrd -ref $WORK/results/3I5K_min.rst -inf 3I5K_heat.mdinfo -l 3I5K_heat.logfile
+
+END=$(date +%s)
+DIFF=$(( $END - $START ))
+echo "Start Time: $START"
+echo "End Time: $END"
+echo "It took $DIFF seconds"
+
+START=$(date +%s)
+
+ibrun pmemd.cuda.MPI -O -i $WORK/setup/3I5K_density.in -o $WORK/results/3I5K_density.out -p $WORK/setup/3I5K_IS.prmtop -c $WORK/results/3I5K_heat.rst -r $WORK/results/3I5K_density.rst -x $WORK/results/3I5K_density.mdcrd -ref $WORK/results/3I5K_heat.rst -inf 3I5K_density.mdinfo -l 3I5K_density.logfile
+
+END=$(date +%s)
+DIFF=$(( $END - $START ))
+echo "Start Time: $START"
+echo "End Time: $END"
+echo "It took $DIFF seconds"
+
+START=$(date +%s)
+
+ibrun pmemd.cuda.MPI -O -i $WORK/setup/3I5K_equil.in -o $WORK/results/3I5K_equil.out -p $WORK/setup/3I5K_IS.prmtop -c $WORK/results/3I5K_density.rst -r $WORK/results/3I5K_equil.rst -x $WORK/results/3I5K_equil.mdcrd -inf 3I5K_equil.mdinfo -l 3I5K_equil.logfile
+
+END=$(date +%s)
+DIFF=$(( $END - $START ))
+echo "Start Time: $START"
+echo "End Time: $END"
+echo "It took $DIFF seconds"

@@ -1,0 +1,93 @@
+TACC: Setting memory limits for job 1289018 to unlimited KB
+TACC: Dumping job script:
+--------------------------------------------------------------------------------
+#!/bin/bash
+
+#$ -V
+#$ -cwd
+#$ -N MD_3GSZ_ini
+#$ -j y
+#$ -o 3GSZ_outputer.o
+#$ -q gpu
+#$ -pe 2way 12
+#$ -l h_rt=20:00:00
+
+START=$(date +%s)
+
+ibrun pmemd.MPI -O -i $WORK/setup/3GSZ_min.in -o $WORK/results/3GSZ_min.out -p $WORK/setup/3GSZ_IS.prmtop -c $WORK/setup/3GSZ_IS.inpcrd -r $WORK/results/3GSZ_min.rst -ref $WORK/setup/3GSZ_IS.inpcrd -inf 3GSZ_min.mdinfo -l 3GSZ_min.logfile
+
+END=$(date +%s)
+DIFF=$(( $END - $START ))
+echo "Start Time: $START"
+echo "End Time: $END"
+echo "It took $DIFF seconds"
+
+START=$(date +%s)
+
+ibrun pmemd.cuda.MPI -O -i $WORK/setup/3GSZ_heat.in -o $WORK/results/3GSZ_heat.out -p $WORK/setup/3GSZ_IS.prmtop -c $WORK/results/3GSZ_min.rst -r $WORK/results/3GSZ_heat.rst -x $WORK/results/3GSZ_heat.mdcrd -ref $WORK/results/3GSZ_min.rst -inf 3GSZ_heat.mdinfo -l 3GSZ_heat.logfile
+
+END=$(date +%s)
+DIFF=$(( $END - $START ))
+echo "Start Time: $START"
+echo "End Time: $END"
+echo "It took $DIFF seconds"
+
+START=$(date +%s)
+
+ibrun pmemd.cuda.MPI -O -i $WORK/setup/3GSZ_density.in -o $WORK/results/3GSZ_density.out -p $WORK/setup/3GSZ_IS.prmtop -c $WORK/results/3GSZ_heat.rst -r $WORK/results/3GSZ_density.rst -x $WORK/results/3GSZ_density.mdcrd -ref $WORK/results/3GSZ_heat.rst -inf 3GSZ_density.mdinfo -l 3GSZ_density.logfile
+
+END=$(date +%s)
+DIFF=$(( $END - $START ))
+echo "Start Time: $START"
+echo "End Time: $END"
+echo "It took $DIFF seconds"
+
+START=$(date +%s)
+
+ibrun pmemd.cuda.MPI -O -i $WORK/setup/3GSZ_equil.in -o $WORK/results/3GSZ_equil.out -p $WORK/setup/3GSZ_IS.prmtop -c $WORK/results/3GSZ_density.rst -r $WORK/results/3GSZ_equil.rst -x $WORK/results/3GSZ_equil.mdcrd -inf 3GSZ_equil.mdinfo -l 3GSZ_equil.logfile
+
+END=$(date +%s)
+DIFF=$(( $END - $START ))
+echo "Start Time: $START"
+echo "End Time: $END"
+echo "It took $DIFF seconds"
+--------------------------------------------------------------------------------
+TACC: Done.
+TACC: Starting up job 1289018
+TACC: Setting up parallel environment for MVAPICH ssh-based mpirun.
+TACC: Setup complete. Running job script.
+TACC: starting parallel tasks...
+TACC: Shutting down parallel environment.
+TACC: Shutdown complete. Exiting.
+Start Time: 1372839529
+End Time: 1372839816
+It took 287 seconds
+TACC: Starting up job 1289018
+TACC: Setting up parallel environment for MVAPICH ssh-based mpirun.
+TACC: Setup complete. Running job script.
+TACC: starting parallel tasks...
+TACC: Shutting down parallel environment.
+TACC: Shutdown complete. Exiting.
+Start Time: 1372839816
+End Time: 1372840280
+It took 464 seconds
+TACC: Starting up job 1289018
+TACC: Setting up parallel environment for MVAPICH ssh-based mpirun.
+TACC: Setup complete. Running job script.
+TACC: starting parallel tasks...
+TACC: Shutting down parallel environment.
+TACC: Shutdown complete. Exiting.
+Start Time: 1372840280
+End Time: 1372840793
+It took 513 seconds
+TACC: Starting up job 1289018
+TACC: Setting up parallel environment for MVAPICH ssh-based mpirun.
+TACC: Setup complete. Running job script.
+TACC: starting parallel tasks...
+TACC: Shutting down parallel environment.
+TACC: Shutdown complete. Exiting.
+Start Time: 1372840793
+End Time: 1372867203
+It took 26410 seconds
+TACC: Cleaning up after job: 1289018
+TACC: Done.

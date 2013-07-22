@@ -1,0 +1,68 @@
+#!/bin/bash
+
+#$ -V							# Inherit the submission environment
+#$ -cwd							# Start job in submission directory
+#$ -N MD_1RD8_ini				# Job Name
+#$ -j y							# Combine stderr and stdout
+#$ -o 1RD8_outputer.o			# Name of the output file
+#$ -q gpu						# Queue name: gpu
+#$ -pe 2way 12					# Requests 2 tasks/node, 12 cores total
+#$ -l h_rt=24:00:00				# Run time (hh:mm:ss) - 1.5 hours
+#$ -M amir@physics.utexas.edu	# Address for email notification
+#$ -m be						# Email at Begin and End of job
+
+START=$(date +%s)
+STARTDATE=`date`
+echo "Amber MD Simulation setup by Amir Shahmoradi, Wilke Lab., ICMB, UT Austin"
+echo "Email: amir@physics.utexas.edu"
+echo "Simulation started on" $STARTDATE
+
+ibrun pmemd.MPI -O -i $WORK/setup/1RD8_min.in -o $WORK/results/1RD8_min.out -p $WORK/setup/1RD8_IS.prmtop -c $WORK/setup/1RD8_IS.inpcrd -r $WORK/results/1RD8_min.rst -ref $WORK/setup/1RD8_IS.inpcrd -inf $WORK/job/mdinfo/1RD8_min.mdinfo -l $WORK/job/logfile/1RD8_min.logfile
+
+END=$(date +%s)
+DIFF=$(( $END - $START ))
+ENDDATE=`date`
+echo "Simulation ended on" $ENDDATE
+echo "Simulation runtime: $DIFF seconds"
+
+START=$(date +%s)
+STARTDATE=`date`
+echo "Amber MD Simulation setup by Amir Shahmoradi, Wilke Lab., ICMB, UT Austin"
+echo "Email: amir@physics.utexas.edu"
+echo "Simulation started on" $STARTDATE
+
+ibrun pmemd.cuda.MPI -O -i $WORK/setup/1RD8_heat.in -o $WORK/results/1RD8_heat.out -p $WORK/setup/1RD8_IS.prmtop -c $WORK/results/1RD8_min.rst -r $WORK/results/1RD8_heat.rst -x $WORK/results/1RD8_heat.mdcrd -ref $WORK/results/1RD8_min.rst -inf $WORK/job/mdinfo/1RD8_heat.mdinfo -l $WORK/job/logfile/1RD8_heat.logfile
+
+END=$(date +%s)
+DIFF=$(( $END - $START ))
+ENDDATE=`date`
+echo "Simulation ended on" $ENDDATE
+echo "Simulation runtime: $DIFF seconds"
+
+START=$(date +%s)
+STARTDATE=`date`
+echo "Amber MD Simulation setup by Amir Shahmoradi, Wilke Lab., ICMB, UT Austin"
+echo "Email: amir@physics.utexas.edu"
+echo "Simulation started on" $STARTDATE
+
+ibrun pmemd.cuda.MPI -O -i $WORK/setup/1RD8_density.in -o $WORK/results/1RD8_density.out -p $WORK/setup/1RD8_IS.prmtop -c $WORK/results/1RD8_heat.rst -r $WORK/results/1RD8_density.rst -x $WORK/results/1RD8_density.mdcrd -ref $WORK/results/1RD8_heat.rst -inf $WORK/job/mdinfo/1RD8_density.mdinfo -l $WORK/job/logfile/1RD8_density.logfile
+
+END=$(date +%s)
+DIFF=$(( $END - $START ))
+ENDDATE=`date`
+echo "Simulation ended on" $ENDDATE
+echo "Simulation runtime: $DIFF seconds"
+
+START=$(date +%s)
+STARTDATE=`date`
+echo "Amber MD Simulation setup by Amir Shahmoradi, Wilke Lab., ICMB, UT Austin"
+echo "Email: amir@physics.utexas.edu"
+echo "Simulation started on" $STARTDATE
+
+ibrun pmemd.cuda.MPI -O -i $WORK/setup/1RD8_equil.in -o $WORK/results/1RD8_equil.out -p $WORK/setup/1RD8_IS.prmtop -c $WORK/results/1RD8_density.rst -r $WORK/results/1RD8_equil.rst -x $WORK/results/1RD8_equil.mdcrd -inf $WORK/job/mdinfo/1RD8_equil.mdinfo -l $WORK/job/logfile/1RD8_equil.logfile
+
+END=$(date +%s)
+DIFF=$(( $END - $START ))
+ENDDATE=`date`
+echo "Simulation ended on" $ENDDATE
+echo "Simulation runtime: $DIFF seconds"

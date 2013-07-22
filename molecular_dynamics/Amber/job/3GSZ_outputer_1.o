@@ -1,0 +1,105 @@
+TACC: Setting memory limits for job 1291064 to unlimited KB
+TACC: Dumping job script:
+--------------------------------------------------------------------------------
+#!/bin/bash
+
+#$ -V
+#$ -cwd
+#$ -N MD_3GSZ_1
+#$ -j y
+#$ -o 3GSZ_outputer_1.o
+#$ -q gpu
+#$ -pe 2way 12
+#$ -l h_rt=10:00:00
+
+START=$(date +%s)
+STARTDATE=`date`
+echo ""
+echo "Amber MD Simulation setup by Amir Shahmoradi, Wilke Lab., ICMB, UT Austin"
+echo "Email: amir@physics.utexas.edu"
+echo "Simulation started on" $STARTDATE
+
+ibrun pmemd.cuda.MPI -O -i $WORK/setup/3GSZ_equil.in -p $WORK/setup/3GSZ_IS.prmtop -c $WORK/results/3GSZ_equil.rst -o $WORK/results/3GSZ_equil_1.out -r $WORK/results/3GSZ_equil_1.rst -x $WORK/results/3GSZ_equil_1.mdcrd -inf 3GSZ_equil_1.mdinfo -l 3GSZ_equil_1.logfile
+
+END=$(date +%s)
+DIFF=$(( $END - $START ))
+ENDDATE=`date`
+echo "Simulation ended on" $ENDDATE
+echo "Simulation runtime: $DIFF seconds"--------------------------------------------------------------------------------
+TACC: Done.
+
+Amber MD Simulation setup by Amir Shahmoradi, Wilke Lab., ICMB, UT Austin
+Email: amir@physics.utexas.edu
+Simulation started on Thu Jul 4 03:35:24 CDT 2013
+TACC: Starting up job 1291064
+TACC: Setting up parallel environment for MVAPICH ssh-based mpirun.
+TACC: Setup complete. Running job script.
+TACC: starting parallel tasks...
+TACC: Cleaning up after job: 1291064
+TACC: Done.
+TACC: Setting memory limits for job 1291719 to unlimited KB
+TACC: Dumping job script:
+--------------------------------------------------------------------------------
+#!/bin/bash
+
+#$ -V
+#$ -cwd
+#$ -N MD_3GSZ_1
+#$ -j y
+#$ -o 3GSZ_outputer_1.o
+#$ -q gpu
+#$ -pe 2way 12
+#$ -l h_rt=20:00:00
+
+START=$(date +%s)
+STARTDATE=`date`
+echo ""
+echo "Amber MD Simulation setup by Amir Shahmoradi, Wilke Lab., ICMB, UT Austin"
+echo "Email: amir@physics.utexas.edu"
+echo "Starting test simulation on" $STARTDATE
+
+ibrun pmemd.cuda.MPI -O -i $WORK/setup/3GSZ_equil_test.in -p $WORK/setup/3GSZ_IS.prmtop -c $WORK/results/3GSZ_equil.rst -o $WORK/results/3GSZ_equil_1.out -r $WORK/results/3GSZ_equil_1.rst -x $WORK/results/3GSZ_equil_1.mdcrd -inf 3GSZ_equil_1.mdinfo -l 3GSZ_equil_1.logfile
+
+END=$(date +%s)
+DIFF=$(( $END - $START ))
+ENDDATE=`date`
+echo "Simulation ended on" $ENDDATE
+echo "Test simulation runtime: $DIFF seconds for 1000 MD time steps"
+
+START=$(date +%s)
+STARTDATE=`date`
+echo ""
+echo "Starting MD simulation on" $STARTDATE
+
+ibrun pmemd.cuda.MPI -O -i $WORK/setup/3GSZ_equil.in -p $WORK/setup/3GSZ_IS.prmtop -c $WORK/results/3GSZ_equil.rst -o $WORK/results/3GSZ_equil_1.out -r $WORK/results/3GSZ_equil_1.rst -x $WORK/results/3GSZ_equil_1.mdcrd -inf 3GSZ_equil_1.mdinfo -l 3GSZ_equil_1.logfile
+
+END=$(date +%s)
+DIFF=$(( $END - $START ))
+ENDDATE=`date`
+echo "Simulation ended on" $ENDDATE
+echo "Simulation runtime: $DIFF seconds"--------------------------------------------------------------------------------
+TACC: Done.
+
+Amber MD Simulation setup by Amir Shahmoradi, Wilke Lab., ICMB, UT Austin
+Email: amir@physics.utexas.edu
+Starting test simulation on Thu Jul 4 15:38:48 CDT 2013
+TACC: Starting up job 1291719
+TACC: Setting up parallel environment for MVAPICH ssh-based mpirun.
+TACC: Setup complete. Running job script.
+TACC: starting parallel tasks...
+TACC: Shutting down parallel environment.
+TACC: Shutdown complete. Exiting.
+Simulation ended on Thu Jul 4 15:39:02 CDT 2013
+Test simulation runtime: 14 seconds for 1000 MD time steps
+
+Starting MD simulation on Thu Jul 4 15:39:02 CDT 2013
+TACC: Starting up job 1291719
+TACC: Setting up parallel environment for MVAPICH ssh-based mpirun.
+TACC: Setup complete. Running job script.
+TACC: starting parallel tasks...
+TACC: Shutting down parallel environment.
+TACC: Shutdown complete. Exiting.
+Simulation ended on Thu Jul 4 23:01:00 CDT 2013
+Simulation runtime: 26518 seconds
+TACC: Cleaning up after job: 1291719
+TACC: Done.

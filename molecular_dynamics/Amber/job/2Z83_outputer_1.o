@@ -1,0 +1,66 @@
+TACC: Setting memory limits for job 1291748 to unlimited KB
+TACC: Dumping job script:
+--------------------------------------------------------------------------------
+#!/bin/bash
+
+#$ -V
+#$ -cwd
+#$ -N MD_2Z83_1
+#$ -j y
+#$ -o 2Z83_outputer_1.o
+#$ -q gpu
+#$ -pe 2way 12
+#$ -l h_rt=20:00:00
+
+START=$(date +%s)
+STARTDATE=`date`
+echo ""
+echo "Amir: Amber MD Simulation setup by Amir Shahmoradi, Wilke Lab., ICMB, UT Austin"
+echo "Amir: Email -- amir@physics.utexas.edu"
+echo "Amir: Starting test simulation on" $STARTDATE
+
+ibrun pmemd.cuda.MPI -O -i $WORK/setup/2Z83_equil_test.in -p $WORK/setup/2Z83_IS.prmtop -c $WORK/results/2Z83_equil.rst -o $WORK/results/2Z83_equil_1.out -r $WORK/results/2Z83_equil_1.rst -x $WORK/results/2Z83_equil_1.mdcrd -inf 2Z83_equil_1.mdinfo -l 2Z83_equil_1.logfile
+
+END=$(date +%s)
+DIFF=$(( $END - $START ))
+ENDDATE=`date`
+echo "Amir: Simulation ended on" $ENDDATE
+echo "Amir: Test simulation runtime: $DIFF seconds for 1000 MD time steps"
+
+START=$(date +%s)
+STARTDATE=`date`
+echo ""
+echo "Amir: Starting MD simulation on" $STARTDATE
+
+ibrun pmemd.cuda.MPI -O -i $WORK/setup/2Z83_equil.in -p $WORK/setup/2Z83_IS.prmtop -c $WORK/results/2Z83_equil.rst -o $WORK/results/2Z83_equil_1.out -r $WORK/results/2Z83_equil_1.rst -x $WORK/results/2Z83_equil_1.mdcrd -inf 2Z83_equil_1.mdinfo -l 2Z83_equil_1.logfile
+
+END=$(date +%s)
+DIFF=$(( $END - $START ))
+ENDDATE=`date`
+echo "Amir: Simulation ended on" $ENDDATE
+echo "Amir: Simulation runtime: $DIFF seconds"--------------------------------------------------------------------------------
+TACC: Done.
+
+Amir: Amber MD Simulation setup by Amir Shahmoradi, Wilke Lab., ICMB, UT Austin
+Amir: Email -- amir@physics.utexas.edu
+Amir: Starting test simulation on Thu Jul 4 15:56:48 CDT 2013
+TACC: Starting up job 1291748
+TACC: Setting up parallel environment for MVAPICH ssh-based mpirun.
+TACC: Setup complete. Running job script.
+TACC: starting parallel tasks...
+TACC: Shutting down parallel environment.
+TACC: Shutdown complete. Exiting.
+Amir: Simulation ended on Thu Jul 4 15:57:00 CDT 2013
+Amir: Test simulation runtime: 12 seconds for 1000 MD time steps
+
+Amir: Starting MD simulation on Thu Jul 4 15:57:00 CDT 2013
+TACC: Starting up job 1291748
+TACC: Setting up parallel environment for MVAPICH ssh-based mpirun.
+TACC: Setup complete. Running job script.
+TACC: starting parallel tasks...
+TACC: Shutting down parallel environment.
+TACC: Shutdown complete. Exiting.
+Amir: Simulation ended on Thu Jul 4 21:58:39 CDT 2013
+Amir: Simulation runtime: 21699 seconds
+TACC: Cleaning up after job: 1291748
+TACC: Done.
