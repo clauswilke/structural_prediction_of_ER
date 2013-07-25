@@ -11,14 +11,14 @@ Structure of the directory:
 
 The following pdb files are either taken directly from Daria's table, or are one of their close families:
 
-	- Hemaglutinin Precursor --> 1RD8_AB.pdb
-	- Crimean Congo Hemorrhagic --> 4AQF_B.pdb
-	- Dengue Protease Helicase --> 2JLY.pdb
-	- Hepatitis C Protease --> 3GOL.pdb, 3GSZ.pdb, 3I5K.pdb
-	- Influenza Nucleoprotein --> 4IRY.pdb
-	- Japanese Encephalitis Helicase --> 2Z83.pdb
-	- Marburg RNA Binding Domain --> 4GHA_A.pdb
-	- Rift Valley Fever Virus Nucleoprotein --> 3LYF.pdb
+	- Hemaglutinin Precursor --> 1RD8_AB.pdb (503 residues)
+	- Crimean Congo Hemorrhagic --> 4AQF_B.pdb (474 residues)
+	- Dengue Protease Helicase --> 2JLY.pdb (451 residues)
+	- Hepatitis C Protease --> 3GOL.pdb (557 residues), 3GSZ.pd (558 residues), 3I5K.pdb (566 residues)
+	- Influenza Nucleoprotein --> 4IRY.pdb (404 residues)
+	- Japanese Encephalitis Helicase --> 2Z83.pdb (426 residues)
+	- Marburg RNA Binding Domain --> 4GHA_A.pdb (122 residues)
+	- Rift Valley Fever Virus Nucleoprotein --> 3LYF.pdb (244 residues)
 
 As of today, each structure has the following steps for its MS simulations by Amber, all available on Lonestar, TACC:
 
