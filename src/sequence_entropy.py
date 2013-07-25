@@ -51,16 +51,16 @@ def seqent(align):
     return entropy_list
 
 def main():
-    if len( sys.argv ) != 2:
+    if len( sys.argv ) != 3:
         print '''
   
   Usage:'''
-        print "     ", sys.argv[0], "<input alignment>"
+        print "     ", sys.argv[0], "<input alignment>", "<output entropy file>"
     else:
         filename = sys.argv[1]
+		outfilename = sys.argv[2]
 	align = readAlignment(filename)
 	entropy = seqent(align)
-	outfilename = filename + '.entropy'
 	outputfile=open(outfilename,'w')
 	i = 0
 	outputfile.write("res_num entropy\n")
