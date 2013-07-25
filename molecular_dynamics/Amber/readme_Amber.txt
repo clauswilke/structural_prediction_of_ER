@@ -11,14 +11,14 @@ Structure of the directory:
 
 The following pdb files are either taken directly from Daria's table, or are one of their close families:
 
-	- Hemaglutinin Precursor --> 1RD8_AB.pdb (503 residues)
-	- Crimean Congo Hemorrhagic --> 4AQF_B.pdb (474 residues)
-	- Dengue Protease Helicase --> 2JLY.pdb (451 residues)
-	- Hepatitis C Protease --> 3GOL.pdb (557 residues), 3GSZ.pd (558 residues), 3I5K.pdb (566 residues)
-	- Influenza Nucleoprotein --> 4IRY.pdb (404 residues)
-	- Japanese Encephalitis Helicase --> 2Z83.pdb (426 residues)
-	- Marburg RNA Binding Domain --> 4GHA_A.pdb (122 residues)
-	- Rift Valley Fever Virus Nucleoprotein --> 3LYF.pdb (244 residues)
+	- Hemaglutinin Precursor (HP) --> 1RD8_AB.pdb (503 residues) (Stephanie's corresponding fasta file: aln_aa_H1N1_HA.fasta)
+	- Crimean Congo Hemorrhagic Fever Nucleocapsid (CCHFN) --> 4AQF_B.pdb (474 residues) (Stephanie's corresponding fasta file: aln_aa_crimean_congo.Nucleoprotein.fasta)
+	- Dengue Protease Helicase (DPH) --> 2JLY.pdb (451 residues) (Stephanie's corresponding fasta file: aln_aa_dengue_ns3.fasta)
+	- Hepatitis C Protease (HCP) --> 3GOL.pdb (557 residues), 3GSZ.pd (558 residues), 3I5K.pdb (566 residues) (Stephanie's corresponding fasta file: aln_aa_HCV_NS5B.fasta)
+	- Influenza Nucleoprotein (INP) --> 4IRY.pdb (404 residues) (Stephanie's corresponding fasta file: aln_aa_H1N1_NP.fasta)
+	- Japanese Encephalitis Helicase/Nucleoside (JEHN) --> 2Z83.pdb (426 residues) (Stephanie's corresponding fasta file: aln_aa_JEV.fasta)
+	- Marburg RNA Binding Domain (MRNABD) --> 4GHA_A.pdb (122 residues) (Stephanie's corresponding fasta file: aln_aa_marburg.vp35.fasta)
+	- Rift Valley Fever Virus NucleoProtein (RVFVNP) --> 3LYF.pdb (244 residues) (Stephanie's corresponding fasta file: ?.fasta, no alignmet)
 
 As of today, each structure has the following steps for its MS simulations by Amber, all available on Lonestar, TACC:
 
