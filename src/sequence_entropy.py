@@ -58,7 +58,7 @@ def main():
         print "     ", sys.argv[0], "<input alignment>", "<output entropy file>"
     else:
         filename = sys.argv[1]
-		outfilename = sys.argv[2]
+        outfilename = sys.argv[2]
 	align = readAlignment(filename)
 	entropy = seqent(align)
 	outputfile=open(outfilename,'w')
