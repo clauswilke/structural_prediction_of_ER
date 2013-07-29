@@ -46,6 +46,7 @@ def seqent(align):
 		if entropy < 0.:
 			print entropy
 			raw_input ('Are you joking? Entorpy is Negative?')
+			print ('This code will terminate itself (equivalent to suicide in human society).')
 			stop
 		entropy_list.append(entropy/sum_freq)
     return entropy_list
