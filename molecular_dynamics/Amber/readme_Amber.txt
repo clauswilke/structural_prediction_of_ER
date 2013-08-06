@@ -20,7 +20,7 @@ The following pdb files are either taken directly from Daria's table, or are one
 	- Marburg RNA Binding Domain (MRNABD) --> 4GHA_A.pdb (122 residues) (Stephanie's corresponding fasta file: aln_aa_marburg.vp35.fasta)
 	- Rift Valley Fever Virus NucleoProtein (RVFVNP) --> 3LYF.pdb (244 residues) (Stephanie's corresponding fasta file: ?.fasta, no alignmet)
 
-As of today, each structure has the following steps for its MS simulations by Amber, all available on Lonestar, TACC:
+As of today, each structure has the following steps for its MD simulations by Amber, all available on Lonestar, TACC:
 
 	- A short 2000 step initial energy minimization of the structure.
 	- 100ps weakly-constrained heating to 300K.

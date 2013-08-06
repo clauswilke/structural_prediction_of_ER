@@ -22,10 +22,10 @@ resdict = { 'ALA': 'A', 'CYS': 'C', 'ASP': 'D', 'GLU': 'E', 'PHE': 'F', \
 #This is a dictionary that has the amino acid for the key and the max solvent accessibility for this amino acid
 #THIS HAS BEEN UPDATED. I AM USING THE NEW THEORETICAL NUMBERS FROM THE 2013 AUSTIN, STEPHANIE, MATT, WILKE PAPER. 
 residue_max_acc = {'A': 129.0, 'R': 274.0, 'N': 195.0, 'D': 193.0, \
-                   'C': 158.0, 'Q': 223.0, 'E': 224.0, 'G': 104.0, \
-                   'H': 209.0, 'I': 197.0, 'L': 201.0, 'K': 237.0, \
-                   'M': 218.0, 'F': 239.0, 'P': 159.0, 'S': 151.0, \
-                   'T': 172.0, 'W': 282.0, 'Y': 263.0, 'V': 174.0}
+                   'C': 167.0, 'Q': 225.0, 'E': 223.0, 'G': 104.0, \
+                   'H': 224.0, 'I': 197.0, 'L': 201.0, 'K': 236.0, \
+                   'M': 224.0, 'F': 240.0, 'P': 159.0, 'S': 155.0, \
+                   'T': 172.0, 'W': 285.0, 'Y': 263.0, 'V': 174.0}
 #This calculates the RSA values for a PDB using DSSP. It returns a list of the Amino Acids and a list of their RSA values. 
 def get_values(pdb_path,output_dssp):
     processString = 'dssp' + ' -i ' + pdb_path + ' -o ' + output_dssp
@@ -77,4 +77,5 @@ def main():
 		rsa_outputfile.write(str(i+1) + '\t' + str(aa) + '\t' + str(RSA[i]) + '\n')
 	return
 
-main()
+if __name__ == "__main__":
+  main()
