@@ -12,6 +12,7 @@ siterates/
 
 trees/
 	Contains all phylogenies. Created by RAxML. Single GTRGAMMA inference.
+	ADDITIONALLY contains files for phylogenetic weights calculated by BranchManager.
 
 HyPhy/
 	hyin/
