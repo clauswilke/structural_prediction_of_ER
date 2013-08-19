@@ -1,6 +1,8 @@
 ##plug in needed values
-#ev_rate <- pdb_alpha_beta_table[,3]/pdb_alpha_beta_table[,2]
-#rmsf <- pdbRMSFwtd
+#fubar_protein <- read.csv("~/evolutionary_rates/fubar_results/fibar_protein.csv")
+#rmsf <- read.csv("~/protein_wtdRMSF.csv")
+#ev_rate <- fubar_protein[,3]/fubar_protein[,2]
+#rmsf <- pdbRMSFwtd[,2]
 
 ##convert both aln positions and pdb positions vectors to numerical values
 num_ev_rate_pos <- as.numeric(pdb_evrate_map[,1])

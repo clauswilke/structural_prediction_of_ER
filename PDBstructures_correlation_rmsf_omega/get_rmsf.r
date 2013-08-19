@@ -1,4 +1,4 @@
-#wts <- z83_AB[,2]
+#wts <- read.csv("virus_weights.csv")[,2]
 
 gaps.xyz <- gap.inspect(aln$xyz)
 
