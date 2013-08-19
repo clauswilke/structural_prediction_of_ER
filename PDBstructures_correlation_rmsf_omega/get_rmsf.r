@@ -31,6 +31,6 @@ for (i in 1:length(xyz[1,])){
 
 
 m_mean <- matrix(xyzwtdmeans,ncol = 3, byrow = T) 
-diswtdmean <- sqrt(rowSums(m_mean^2, na.rm = F))
+rmsd <- sqrt(rowSums(m_mean^2, na.rm = F))
 m_sd <- matrix(xyzwtdsd, ncol = 3, byrow = T)
-diswtdsd <- sqrt(rowSums(m_sd^2, na.rm = F))
+rmsf <- sqrt(rowSums(m_sd^2, na.rm = F))
