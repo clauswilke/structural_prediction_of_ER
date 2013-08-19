@@ -1,16 +1,15 @@
 ##plug in needed values
-#seq_ent <- pdb_alpha_beta_table[,3]/pdb_alpha_beta_table[,2]
-#rmsf <- pdbRMSFwtd
+#rmsf <- pdb_wtdRMSF
 
 ##convert both aln positions and pdb positions vectors to numerical values
-num_seq_ent_pos <- as.numeric(pdb_evrate_map[,1])
+num_seq_ent_pos <- as.numeric(pdb_seqent_map[,1])
 num_rmsf_pos <- as.numeric(pdb_rmsf_map[,1])
 
-num_pdb_pos_seq_ent <- as.numeric(pdb_evrate_map[,3])
+num_pdb_pos_seq_ent <- as.numeric(pdb_seqent_map[,3])
 num_pdb_pos_rmsf <- as.numeric(pdb_rmsf_map[,3])
 
 ##get AA for both maps for verification with real pdb AA
-pdb_aa_seq_ent <- as.vector(pdb_evrate_map[,4])
+pdb_aa_seq_ent <- as.vector(pdb_seqent_map[,4])
 pdb_aa_rmsf <- as.vector(pdb_rmsf_map[,4])
 
 ##make data frame

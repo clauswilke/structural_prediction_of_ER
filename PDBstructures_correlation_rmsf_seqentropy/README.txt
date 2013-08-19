@@ -5,6 +5,7 @@ This folder contains the correlations between PDB structure RMSF values and sequ
 -table where RMSF and sequence entropy values are aligned against a given protein ("*evrate_rmsf_corr_vals.csv")
 -protein RMSF map ("*_rmsf_map.txt")
 -protein sequence entropy map ("*_seqent_map.txt")
+-pdb structure for mapping 
 
 align_rmsf_seqent.r:
 1. takes in fubar calculate evolutionary rate (~/evolutionary_rate/fubar_results/fubar_*), both protein maps, and the pdb structure.
