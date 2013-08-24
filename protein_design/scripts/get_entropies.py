@@ -12,7 +12,7 @@ resdict = { 'ALA': 'A', 'CYS': 'C', 'ASP': 'D', 'GLU': 'E', 'PHE': 'F',
             'MET': 'M', 'ASN': 'N', 'PRO': 'P', 'GLN': 'Q', 'ARG': 'R',                   
             'SER': 'S', 'THR': 'T', 'VAL': 'V', 'TRP': 'W', 'TYR': 'Y' }          
 
-PDBS = ["2JLY", "2Z83", "3LYF", "4GHA_A", "4IRY"] #List of PDBS hard-coded that you want to calculate entropies for
+PDBS = ["1RD8", "2JLY", "2Z83", "3GOL", "3GSZ", "3I5K", "3LYF", "4AQF_B", "4GHA_A", "4IRY"] #List of PDBS hard-coded that you want to calculate entropies for
 chain = 'X' #For these proteins they each have the same chain, this can changed if that is not the case. 
 temp = 0.6 #Temperature for the designed proteins that are being analyzed.
 
