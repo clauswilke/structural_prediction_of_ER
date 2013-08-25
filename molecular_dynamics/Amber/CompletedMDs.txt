@@ -1,0 +1,11 @@
+PDB structures for which MD has been performed so far:
+4AQF_B:	iwrap = 0
+1RD8:	iwrap = 0
+2Z83:	iwrap = 0
+4GHA:	iwrap = 0
+3GOL:	iwrap = 1
+2JLY:	iwrap = 1
+3GSZ:	iwrap = 1
+3LYF:	iwrap = 1
+4IRY:	iwrap = 1
+3I5K:	iwrap = 1
