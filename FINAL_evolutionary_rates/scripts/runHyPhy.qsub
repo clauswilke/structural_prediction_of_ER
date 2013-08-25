@@ -1,0 +1,37 @@
+#!/bin/bash
+#$ -N REL
+#$ -e e_REL
+#$ -o o_REL
+#$ -S /bin/bash
+#$ -q wilke
+#$ -m beas
+#$ -pe serial 8
+#$ -t 1-11:1
+
+
+source ~/.bashrc
+
+# Create Working Directory and remove anything that might have been there woops!
+WDIR=/state/partition1/sjs3495/$JOB_NAME-$JOB_ID-$SGE_TASK_ID/
+
+mkdir -p $WDIR
+
+if [ ! -d $WDIR ]
+then
+  echo $WDIR not created
+  exit
+fi
+cd $WDIR
+
+# Copy Data and Config Files
+cp /home/sjs3495/runHyPhy.py .
+cp /home/sjs3495/HyPhy/GY94_Header.ibf .
+cp /home/sjs3495/HyPhy/REL_5cat.bf .
+cp /home/sjs3495/HyPhy/REL.mdl .
+
+# Command to run
+module load python
+python runHyPhy.py $SGE_TASK_ID
+
+# Cleanup
+rm -rf $WDIR
