@@ -1,3 +1,13 @@
+UPDATE:
+
+The sequence alignment for Rift Valley Fever Virus NucleoProtein was later added to the repository by Stephanie.
+
+Amir Shahmoradi, Wilke Lab., University of Texas Austin, 5:50 PM Friday January 17, 2013.
+
+-------------------------------------------------------------------------
+-------------------------------------------------------------------------
+
+
 Amir Shahmoradi, Wilke Lab., University of Texas Austin, 4:43 PM Friday July 25, 2013.
 
 As of today, the following pdb files (for which MD simulations are available) are either taken directly from Daria's table, or are one of their close families:
