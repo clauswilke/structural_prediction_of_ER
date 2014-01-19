@@ -1,0 +1,32 @@
+#!/bin/bash
+
+#$ -V
+#$ -cwd
+#$ -N MD_2JLY_100_1
+#$ -j y
+#$ -o 2JLY_outputer_temp_100_1.o
+#$ -q gpu
+#$ -pe 2way 12
+#$ -l h_rt=10:00:00
+#$ -A A-bio7
+
+ibrun pmemd.cuda.MPI -O -i $WORK/setup/2JLY_equil_test_temp_100.in -p $WORK/setup/2JLY_IS.prmtop -c $WORK/results/temp_100/rst/2JLY_equil_temp_100.rst -o $WORK/results/temp_100/out/2JLY_equil_temp_100_1.out -r $WORK/results/temp_100/rst/2JLY_equil_temp_100_1.rst -x $WORK/results/temp_100/2JLY_equil_temp_100_1.mdcrd -inf $WORK/job/temp_100/mdinfo/2JLY_equil_temp_100_1.mdinfo -l $WORK/job/temp_100/logfile/2JLY_equil_temp_100_1.logfile
+
+END=$(date +%s)
+DIFF=$(( $END - $START ))
+ENDDATE=`date`
+echo "Amir: Simulation ended on" $ENDDATE
+echo "Amir: Test simulation runtime: $DIFF seconds for 1000 MD time steps"
+
+START=$(date +%s)
+STARTDATE=`date`
+echo ""
+echo "Amir: Starting MD simulation on" $STARTDATE
+
+ibrun pmemd.cuda.MPI -O -i $WORK/setup/2JLY_equil_temp_100.in -p $WORK/setup/2JLY_IS.prmtop -c $WORK/results/temp_100/rst/2JLY_equil_temp_100.rst -o $WORK/results/temp_100/out/2JLY_equil_temp_100_1.out -r $WORK/results/temp_100/rst/2JLY_equil_temp_100_1.rst -x $WORK/results/temp_100/2JLY_equil_temp_100_1.mdcrd -inf $WORK/job/temp_100/mdinfo/2JLY_equil_temp_100_1.mdinfo -l $WORK/job/temp_100/logfile/2JLY_equil_temp_100_1.logfile
+
+END=$(date +%s)
+DIFF=$(( $END - $START ))
+ENDDATE=`date`
+echo "Amir: Simulation ended on" $ENDDATE
+echo "Amir: Simulation runtime: $DIFF seconds"

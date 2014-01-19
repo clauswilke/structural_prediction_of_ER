@@ -1,0 +1,23 @@
+# COMMAND LINE: cpptraj $WORK/setup/2Z83_IS.prmtop 2Z83_cpptraj_image.in
+# Note: the input pdb file must be present in the directory where cpptraj is run (directory containing mdcrd files).
+# This code first strips water molecules from the topology file.
+# Then write out the new topology file in a new prmtop file for future reference.
+# Then corrects the atom positions for any out of box visualization errors.
+#
+parmstrip :WAT
+parmwrite out 2Z83_I_cpptraj.prmtop
+reference 2Z83_I.pdb [inpcrd]
+trajin 2Z83_equil_1.mdcrd 1 last 1
+trajin 2Z83_equil_2.mdcrd 1 last 1
+trajin 2Z83_equil_3.mdcrd 1 last 1
+center @CA mass origin
+image origin center
+trajout 2Z83_image.mdcrd
+#
+#trajin 2Z83_equil_1.mdcrd 1 last 1
+#trajin 2Z83_equil_2.mdcrd 1 last 1
+#reference 2Z83_ionized.pdb [inpcrd]
+#rmsd ref [inpcrd] perres perresout 2Z83_perres_fluc_ref_inpcrd.txt @CA
+#average 2Z83_avg_equil.pdb pdb
+#reference 2Z83_avg_equil.pdb [avg]
+#rmsd ref [avg] perres perresout 2Z83_perres_fluc_ref_avg.txt @CA

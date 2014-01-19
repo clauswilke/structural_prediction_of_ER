@@ -1,3 +1,5 @@
+Written by Daria Sydkova
+
 This folder contains the correlations between PDB structure RMSF values and sequence entropy obtained from ~/evolutionary_rates/alignments. Each protein folder contains the following:
 -alignment of protein structures with 5% difference ("*_final_aln.fa")
 -weighted RMSF of these protein structures ("*_wtdRMSF.csv")

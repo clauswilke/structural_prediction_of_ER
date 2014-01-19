@@ -1,0 +1,23 @@
+# COMMAND LINE: cpptraj $WORK/setup/3LYF_IS.prmtop 3LYF_cpptraj_image.in
+# Note: the input pdb file must be present in the directory where cpptraj is run (directory containing mdcrd files).
+# This code first strips water molecules from the topology file.
+# Then write out the new topology file in a new prmtop file for future reference.
+# Then corrects the atom positions for any out of box visualization errors.
+#
+parmstrip :WAT
+parmwrite out 3LYF_I_cpptraj.prmtop
+reference 3LYF_I.pdb [inpcrd]
+trajin 3LYF_equil_1.mdcrd 1 last 1
+trajin 3LYF_equil_2.mdcrd 1 last 1
+trajin 3LYF_equil_3.mdcrd 1 last 1
+center @CA mass origin
+image origin center
+trajout 3LYF_image.mdcrd
+#
+#trajin 3LYF_equil_1.mdcrd 1 last 1
+#trajin 3LYF_equil_2.mdcrd 1 last 1
+#reference 3LYF_ionized.pdb [inpcrd]
+#rmsd ref [inpcrd] perres perresout 3LYF_perres_fluc_ref_inpcrd.txt @CA
+#average 3LYF_avg_equil.pdb pdb
+#reference 3LYF_avg_equil.pdb [avg]
+#rmsd ref [avg] perres perresout 3LYF_perres_fluc_ref_avg.txt @CA
