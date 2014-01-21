@@ -10,10 +10,10 @@ setwd('C:/Users/Amir/Documents/GitHub/structural_prediction_of_ER/')
 entropy_HP = read.table('entropies/HP.entropy', header=T)
 rmsf_1RD8 = read.table('molecular_dynamics/Amber/postproc/rmsf/1RD8_rmsf_ref_inpcrd.txt',header=T,comment.char="")
 map_1RD8 = read.table('molecular_dynamics/map/HP_1RD8.map',header=T)
-rsa_1RD8 = read.table('molecular_dynamics/Amber/postproc/summaries/1RD8_sum.rsa',header=T)
+rsa_1RD8 = read.table('molecular_dynamics/Amber/postproc/rsa/summaries/1RD8_sum.rsa',header=T)
 dihedral_1RD8 = read.table('molecular_dynamics/Amber/postproc/dihedrals/1RD8_dihedrals.txt',header=T)
-cn13_1RD8 = read.table('molecular_dynamics/Amber/postproc/cn13/1RD8_sum.cn13',header=T)
-wcn_1RD8 = read.table('molecular_dynamics/Amber/postproc/wcn/1RD8_sum.wcn',header=T)
+cn13_1RD8 = read.table('molecular_dynamics/Amber/postproc/cn13/summaries/1RD8_sum.cn13',header=T)
+wcn_1RD8 = read.table('molecular_dynamics/Amber/postproc/wcn/summaries/1RD8_sum.wcn',header=T)
 entropy_1RD8 = entropy_HP$entropy[!is.na(map_1RD8$pdb_pos)]
 entropy_1RD8 = as.data.frame(entropy_1RD8)
 
@@ -28,10 +28,10 @@ data_1RD8 = data.frame(protein="1RD8", res_num=dihedral_1RD8$res_Num, res_name=d
 entropy_DPH = read.table('entropies/DPH.entropy', header=T)
 rmsf_2JLY = read.table('molecular_dynamics/Amber/postproc/rmsf/2JLY_rmsf_ref_inpcrd.txt',header=T,comment.char="")
 map_2JLY = read.table('molecular_dynamics/map/DPH_2JLY.map',header=T)
-rsa_2JLY = read.table('molecular_dynamics/Amber/postproc/summaries/2JLY_sum.rsa',header=T)
+rsa_2JLY = read.table('molecular_dynamics/Amber/postproc/rsa/summaries/2JLY_sum.rsa',header=T)
 dihedral_2JLY = read.table('molecular_dynamics/Amber/postproc/dihedrals/2JLY_dihedrals.txt',header=T)
-cn13_2JLY = read.table('molecular_dynamics/Amber/postproc/cn13/2JLY_sum.cn13',header=T)
-wcn_2JLY = read.table('molecular_dynamics/Amber/postproc/wcn/2JLY_sum.wcn',header=T)
+cn13_2JLY = read.table('molecular_dynamics/Amber/postproc/cn13/summaries/2JLY_sum.cn13',header=T)
+wcn_2JLY = read.table('molecular_dynamics/Amber/postproc/wcn/summaries/2JLY_sum.wcn',header=T)
 entropy_2JLY = entropy_DPH$entropy[!is.na(map_2JLY$pdb_pos)]
 entropy_2JLY = as.data.frame(entropy_2JLY)
 
@@ -46,10 +46,10 @@ data_2JLY = data.frame(protein="2JLY", res_num=dihedral_2JLY$res_Num, res_name=d
 entropy_JEHN = read.table('entropies/JEHN.entropy', header=T)
 rmsf_2Z83 = read.table('molecular_dynamics/Amber/postproc/rmsf/2Z83_rmsf_ref_inpcrd.txt',header=T,comment.char="")
 map_2Z83 = read.table('molecular_dynamics/map/JEHN_2Z83.map',header=T)
-rsa_2Z83 = read.table('molecular_dynamics/Amber/postproc/summaries/2Z83_sum.rsa',header=T)
+rsa_2Z83 = read.table('molecular_dynamics/Amber/postproc/rsa/summaries/2Z83_sum.rsa',header=T)
 dihedral_2Z83 = read.table('molecular_dynamics/Amber/postproc/dihedrals/2Z83_dihedrals.txt',header=T)
-cn13_2Z83 = read.table('molecular_dynamics/Amber/postproc/cn13/2Z83_sum.cn13',header=T)
-wcn_2Z83 = read.table('molecular_dynamics/Amber/postproc/wcn/2Z83_sum.wcn',header=T)
+cn13_2Z83 = read.table('molecular_dynamics/Amber/postproc/cn13/summaries/2Z83_sum.cn13',header=T)
+wcn_2Z83 = read.table('molecular_dynamics/Amber/postproc/wcn/summaries/2Z83_sum.wcn',header=T)
 entropy_2Z83 = entropy_JEHN$entropy[!is.na(map_2Z83$pdb_pos)]
 entropy_2Z83 = as.data.frame(entropy_2Z83)
 
@@ -68,18 +68,18 @@ rmsf_3I5K = read.table('molecular_dynamics/Amber/postproc/rmsf/3I5K_rmsf_ref_inp
 map_3GOL = read.table('molecular_dynamics/map/HCP_3GOL.map',header=T)
 map_3GSZ = read.table('molecular_dynamics/map/HCP_3GSZ.map',header=T)
 map_3I5K = read.table('molecular_dynamics/map/HCP_3I5K.map',header=T)
-rsa_3GOL = read.table('molecular_dynamics/Amber/postproc/summaries/3GOL_sum.rsa',header=T)
-rsa_3GSZ = read.table('molecular_dynamics/Amber/postproc/summaries/3GSZ_sum.rsa',header=T)
-rsa_3I5K = read.table('molecular_dynamics/Amber/postproc/summaries/3I5K_sum.rsa',header=T)
+rsa_3GOL = read.table('molecular_dynamics/Amber/postproc/rsa/summaries/3GOL_sum.rsa',header=T)
+rsa_3GSZ = read.table('molecular_dynamics/Amber/postproc/rsa/summaries/3GSZ_sum.rsa',header=T)
+rsa_3I5K = read.table('molecular_dynamics/Amber/postproc/rsa/summaries/3I5K_sum.rsa',header=T)
 dihedral_3GOL = read.table('molecular_dynamics/Amber/postproc/dihedrals/3GOL_dihedrals.txt',header=T)
 dihedral_3GSZ = read.table('molecular_dynamics/Amber/postproc/dihedrals/3GSZ_dihedrals.txt',header=T)
 dihedral_3I5K = read.table('molecular_dynamics/Amber/postproc/dihedrals/3I5K_dihedrals.txt',header=T)
-cn13_3GOL = read.table('molecular_dynamics/Amber/postproc/cn13/3GOL_sum.cn13',header=T)
-cn13_3GSZ = read.table('molecular_dynamics/Amber/postproc/cn13/3GSZ_sum.cn13',header=T)
-cn13_3I5K = read.table('molecular_dynamics/Amber/postproc/cn13/3I5K_sum.cn13',header=T)
-wcn_3GOL = read.table('molecular_dynamics/Amber/postproc/wcn/3GOL_sum.wcn',header=T)
-wcn_3GSZ = read.table('molecular_dynamics/Amber/postproc/wcn/3GSZ_sum.wcn',header=T)
-wcn_3I5K = read.table('molecular_dynamics/Amber/postproc/wcn/3I5K_sum.wcn',header=T)
+cn13_3GOL = read.table('molecular_dynamics/Amber/postproc/cn13/summaries/3GOL_sum.cn13',header=T)
+cn13_3GSZ = read.table('molecular_dynamics/Amber/postproc/cn13/summaries/3GSZ_sum.cn13',header=T)
+cn13_3I5K = read.table('molecular_dynamics/Amber/postproc/cn13/summaries/3I5K_sum.cn13',header=T)
+wcn_3GOL = read.table('molecular_dynamics/Amber/postproc/wcn/summaries/3GOL_sum.wcn',header=T)
+wcn_3GSZ = read.table('molecular_dynamics/Amber/postproc/wcn/summaries/3GSZ_sum.wcn',header=T)
+wcn_3I5K = read.table('molecular_dynamics/Amber/postproc/wcn/summaries/3I5K_sum.wcn',header=T)
 entropy_3GOL = entropy_HCP$entropy[!is.na(map_3GOL$pdb_pos)]
 entropy_3GOL = as.data.frame(entropy_3GOL)
 entropy_3GSZ = entropy_HCP$entropy[!is.na(map_3GSZ$pdb_pos)]
@@ -114,10 +114,10 @@ data_3I5K = data.frame(protein="3I5K", res_num=dihedral_3I5K$res_Num, res_name=d
 entropy_RVFVNP = read.table('entropies/RVFVNP.entropy', header=T)
 rmsf_3LYF = read.table('molecular_dynamics/Amber/postproc/rmsf/3LYF_rmsf_ref_inpcrd.txt',header=T,comment.char="")
 map_3LYF = read.table('molecular_dynamics/map/RVFVNP_3LYF.map',header=T)
-rsa_3LYF = read.table('molecular_dynamics/Amber/postproc/summaries/3LYF_sum.rsa',header=T)
+rsa_3LYF = read.table('molecular_dynamics/Amber/postproc/rsa/summaries/3LYF_sum.rsa',header=T)
 dihedral_3LYF = read.table('molecular_dynamics/Amber/postproc/dihedrals/3LYF_dihedrals.txt',header=T)
-cn13_3LYF = read.table('molecular_dynamics/Amber/postproc/cn13/3LYF_sum.cn13',header=T)
-wcn_3LYF = read.table('molecular_dynamics/Amber/postproc/wcn/3LYF_sum.wcn',header=T)
+cn13_3LYF = read.table('molecular_dynamics/Amber/postproc/cn13/summaries/3LYF_sum.cn13',header=T)
+wcn_3LYF = read.table('molecular_dynamics/Amber/postproc/wcn/summaries/3LYF_sum.wcn',header=T)
 entropy_3LYF = entropy_RVFVNP$entropy[!is.na(map_3LYF$pdb_pos)]
 entropy_3LYF = as.data.frame(entropy_3LYF)
 
@@ -132,10 +132,10 @@ data_3LYF = data.frame(protein="3LYF", res_num=dihedral_3LYF$res_Num, res_name=d
 entropy_CCHFN = read.table('entropies/CCHFN.entropy', header=T)
 rmsf_4AQF_B = read.table('molecular_dynamics/Amber/postproc/rmsf/4AQF_B_rmsf_ref_inpcrd.txt',header=T,comment.char="")
 map_4AQF_B = read.table('molecular_dynamics/map/CCHFN_4AQF_B.map',header=T)
-rsa_4AQF_B = read.table('molecular_dynamics/Amber/postproc/summaries/4AQF_B_sum.rsa',header=T)
+rsa_4AQF_B = read.table('molecular_dynamics/Amber/postproc/rsa/summaries/4AQF_B_sum.rsa',header=T)
 dihedral_4AQF_B = read.table('molecular_dynamics/Amber/postproc/dihedrals/4AQF_B_dihedrals.txt',header=T)
-cn13_4AQF_B = read.table('molecular_dynamics/Amber/postproc/cn13/4AQF_B_sum.cn13',header=T)
-wcn_4AQF_B = read.table('molecular_dynamics/Amber/postproc/wcn/4AQF_B_sum.wcn',header=T)
+cn13_4AQF_B = read.table('molecular_dynamics/Amber/postproc/cn13/summaries/4AQF_B_sum.cn13',header=T)
+wcn_4AQF_B = read.table('molecular_dynamics/Amber/postproc/wcn/summaries/4AQF_B_sum.wcn',header=T)
 entropy_4AQF_B = entropy_CCHFN$entropy[!is.na(map_4AQF_B$pdb_pos)]
 entropy_4AQF_B = as.data.frame(entropy_4AQF_B)
 
@@ -150,10 +150,10 @@ data_4AQF_B = data.frame(protein="4AQF_B", res_num=dihedral_4AQF_B$res_Num, res_
 entropy_MRNABD = read.table('entropies/MRNABD.entropy', header=T)
 rmsf_4GHA_A = read.table('molecular_dynamics/Amber/postproc/rmsf/4GHA_A_rmsf_ref_inpcrd.txt',header=T,comment.char="")
 map_4GHA_A = read.table('molecular_dynamics/map/MRNABD_4GHA_A.map',header=T)
-rsa_4GHA_A = read.table('molecular_dynamics/Amber/postproc/summaries/4GHA_A_sum.rsa',header=T)
+rsa_4GHA_A = read.table('molecular_dynamics/Amber/postproc/rsa/summaries/4GHA_A_sum.rsa',header=T)
 dihedral_4GHA_A = read.table('molecular_dynamics/Amber/postproc/dihedrals/4GHA_A_dihedrals.txt',header=T)
-cn13_4GHA_A = read.table('molecular_dynamics/Amber/postproc/cn13/4GHA_A_sum.cn13',header=T)
-wcn_4GHA_A = read.table('molecular_dynamics/Amber/postproc/wcn/4GHA_A_sum.wcn',header=T)
+cn13_4GHA_A = read.table('molecular_dynamics/Amber/postproc/cn13/summaries/4GHA_A_sum.cn13',header=T)
+wcn_4GHA_A = read.table('molecular_dynamics/Amber/postproc/wcn/summaries/4GHA_A_sum.wcn',header=T)
 entropy_4GHA_A = entropy_MRNABD$entropy[!is.na(map_4GHA_A$pdb_pos)]
 entropy_4GHA_A = as.data.frame(entropy_4GHA_A)
 
@@ -168,10 +168,10 @@ data_4GHA_A = data.frame(protein="4GHA_A", res_num=dihedral_4GHA_A$res_Num, res_
 entropy_INP = read.table('entropies/INP.entropy', header=T)
 rmsf_4IRY = read.table('molecular_dynamics/Amber/postproc/rmsf/4IRY_rmsf_ref_inpcrd.txt',header=T,comment.char="")
 map_4IRY = read.table('molecular_dynamics/map/INP_4IRY.map',header=T)
-rsa_4IRY = read.table('molecular_dynamics/Amber/postproc/summaries/4IRY_sum.rsa',header=T)
+rsa_4IRY = read.table('molecular_dynamics/Amber/postproc/rsa/summaries/4IRY_sum.rsa',header=T)
 dihedral_4IRY = read.table('molecular_dynamics/Amber/postproc/dihedrals/4IRY_dihedrals.txt',header=T)
-cn13_4IRY = read.table('molecular_dynamics/Amber/postproc/cn13/4IRY_sum.cn13',header=T)
-wcn_4IRY = read.table('molecular_dynamics/Amber/postproc/wcn/4IRY_sum.wcn',header=T)
+cn13_4IRY = read.table('molecular_dynamics/Amber/postproc/cn13/summaries/4IRY_sum.cn13',header=T)
+wcn_4IRY = read.table('molecular_dynamics/Amber/postproc/wcn/summaries/4IRY_sum.wcn',header=T)
 entropy_4IRY = entropy_MRNABD$entropy[!is.na(map_4IRY$pdb_pos)]
 entropy_4IRY = as.data.frame(entropy_4IRY)
 
@@ -186,10 +186,10 @@ data_4IRY = data.frame(protein="4IRY", res_num=dihedral_4IRY$res_Num, res_name=d
 # THERMOPHILIC STRUCTURES
 
 rmsf_1AJ8_A = read.table('molecular_dynamics/Amber/postproc/rmsf/1AJ8_A_rmsf_ref_inpcrd.txt',header=T,comment.char="")
-rsa_1AJ8_A = read.table('molecular_dynamics/Amber/postproc/summaries/1AJ8_A_sum.rsa',header=T)
+rsa_1AJ8_A = read.table('molecular_dynamics/Amber/postproc/rsa/summaries/1AJ8_A_sum.rsa',header=T)
 dihedral_1AJ8_A = read.table('molecular_dynamics/Amber/postproc/dihedrals/1AJ8_A_dihedrals.txt',header=T)
-cn13_1AJ8_A = read.table('molecular_dynamics/Amber/postproc/cn13/1AJ8_A_sum.cn13',header=T)
-wcn_1AJ8_A = read.table('molecular_dynamics/Amber/postproc/wcn/1AJ8_A_sum.wcn',header=T)
+cn13_1AJ8_A = read.table('molecular_dynamics/Amber/postproc/cn13/summaries/1AJ8_A_sum.cn13',header=T)
+wcn_1AJ8_A = read.table('molecular_dynamics/Amber/postproc/wcn/summaries/1AJ8_A_sum.wcn',header=T)
 
 data_1AJ8_A = data.frame(protein="1AJ8_A", res_num=dihedral_1AJ8_A$res_Num, res_name=dihedral_1AJ8_A$res_name,
                        rsa_cr=rsa_1AJ8_A$CRYSTAL_RSA, rsa_avg_md=rsa_1AJ8_A$MEAN_RSA, rsa_var_md=rsa_1AJ8_A$VAR_RSA, 
@@ -199,10 +199,10 @@ data_1AJ8_A = data.frame(protein="1AJ8_A", res_num=dihedral_1AJ8_A$res_Num, res_
                        wcn_cr=wcn_1AJ8_A$CRYSTAL_WCN, wcn_avg_md=wcn_1AJ8_A$MEAN_WCN, wcn_var_md=wcn_1AJ8_A$VAR_WCN)
 
 rmsf_1AOR_A = read.table('molecular_dynamics/Amber/postproc/rmsf/1AOR_A_rmsf_ref_inpcrd.txt',header=T,comment.char="")
-rsa_1AOR_A = read.table('molecular_dynamics/Amber/postproc/summaries/1AOR_A_sum.rsa',header=T)
+rsa_1AOR_A = read.table('molecular_dynamics/Amber/postproc/rsa/summaries/1AOR_A_sum.rsa',header=T)
 dihedral_1AOR_A = read.table('molecular_dynamics/Amber/postproc/dihedrals/1AOR_A_dihedrals.txt',header=T)
-cn13_1AOR_A = read.table('molecular_dynamics/Amber/postproc/cn13/1AOR_A_sum.cn13',header=T)
-wcn_1AOR_A = read.table('molecular_dynamics/Amber/postproc/wcn/1AOR_A_sum.wcn',header=T)
+cn13_1AOR_A = read.table('molecular_dynamics/Amber/postproc/cn13/summaries/1AOR_A_sum.cn13',header=T)
+wcn_1AOR_A = read.table('molecular_dynamics/Amber/postproc/wcn/summaries/1AOR_A_sum.wcn',header=T)
 
 data_1AOR_A = data.frame(protein="1AOR_A", res_num=dihedral_1AOR_A$res_Num, res_name=dihedral_1AOR_A$res_name,
                        rsa_cr=rsa_1AOR_A$CRYSTAL_RSA, rsa_avg_md=rsa_1AOR_A$MEAN_RSA, rsa_var_md=rsa_1AOR_A$VAR_RSA, 
@@ -212,10 +212,10 @@ data_1AOR_A = data.frame(protein="1AOR_A", res_num=dihedral_1AOR_A$res_Num, res_
                        wcn_cr=wcn_1AOR_A$CRYSTAL_WCN, wcn_avg_md=wcn_1AOR_A$MEAN_WCN, wcn_var_md=wcn_1AOR_A$VAR_WCN)
 
 rmsf_1CTS_A = read.table('molecular_dynamics/Amber/postproc/rmsf/1CTS_A_rmsf_ref_inpcrd.txt',header=T,comment.char="")
-rsa_1CTS_A = read.table('molecular_dynamics/Amber/postproc/summaries/1CTS_A_sum.rsa',header=T)
+rsa_1CTS_A = read.table('molecular_dynamics/Amber/postproc/rsa/summaries/1CTS_A_sum.rsa',header=T)
 dihedral_1CTS_A = read.table('molecular_dynamics/Amber/postproc/dihedrals/1CTS_A_dihedrals.txt',header=T)
-cn13_1CTS_A = read.table('molecular_dynamics/Amber/postproc/cn13/1CTS_A_sum.cn13',header=T)
-wcn_1CTS_A = read.table('molecular_dynamics/Amber/postproc/wcn/1CTS_A_sum.wcn',header=T)
+cn13_1CTS_A = read.table('molecular_dynamics/Amber/postproc/cn13/summaries/1CTS_A_sum.cn13',header=T)
+wcn_1CTS_A = read.table('molecular_dynamics/Amber/postproc/wcn/summaries/1CTS_A_sum.wcn',header=T)
 
 data_1CTS_A = data.frame(protein="1CTS_A", res_num=dihedral_1CTS_A$res_Num, res_name=dihedral_1CTS_A$res_name,
                        rsa_cr=rsa_1CTS_A$CRYSTAL_RSA, rsa_avg_md=rsa_1CTS_A$MEAN_RSA, rsa_var_md=rsa_1CTS_A$VAR_RSA, 
@@ -225,10 +225,10 @@ data_1CTS_A = data.frame(protein="1CTS_A", res_num=dihedral_1CTS_A$res_Num, res_
                        wcn_cr=wcn_1CTS_A$CRYSTAL_WCN, wcn_avg_md=wcn_1CTS_A$MEAN_WCN, wcn_var_md=wcn_1CTS_A$VAR_WCN)
 
 rmsf_1MP9_A = read.table('molecular_dynamics/Amber/postproc/rmsf/1MP9_A_rmsf_ref_inpcrd.txt',header=T,comment.char="")
-rsa_1MP9_A = read.table('molecular_dynamics/Amber/postproc/summaries/1MP9_A_sum.rsa',header=T)
+rsa_1MP9_A = read.table('molecular_dynamics/Amber/postproc/rsa/summaries/1MP9_A_sum.rsa',header=T)
 dihedral_1MP9_A = read.table('molecular_dynamics/Amber/postproc/dihedrals/1MP9_A_dihedrals.txt',header=T)
-cn13_1MP9_A = read.table('molecular_dynamics/Amber/postproc/cn13/1MP9_A_sum.cn13',header=T)
-wcn_1MP9_A = read.table('molecular_dynamics/Amber/postproc/wcn/1MP9_A_sum.wcn',header=T)
+cn13_1MP9_A = read.table('molecular_dynamics/Amber/postproc/cn13/summaries/1MP9_A_sum.cn13',header=T)
+wcn_1MP9_A = read.table('molecular_dynamics/Amber/postproc/wcn/summaries/1MP9_A_sum.wcn',header=T)
 
 data_1MP9_A = data.frame(protein="1MP9_A", res_num=dihedral_1MP9_A$res_Num, res_name=dihedral_1MP9_A$res_name,
                        rsa_cr=rsa_1MP9_A$CRYSTAL_RSA, rsa_avg_md=rsa_1MP9_A$MEAN_RSA, rsa_var_md=rsa_1MP9_A$VAR_RSA, 
@@ -240,10 +240,10 @@ data_1MP9_A = data.frame(protein="1MP9_A", res_num=dihedral_1MP9_A$res_Num, res_
 # DIFFERENT TEMPERATURE
 
 rmsf_2JLY_temp_50 = read.table('molecular_dynamics/Amber/postproc/rmsf/2JLY_temp_50_rmsf_ref_inpcrd.txt',header=T,comment.char="")
-rsa_2JLY_temp_50 = read.table('molecular_dynamics/Amber/postproc/summaries/2JLY_temp_50_sum.rsa',header=T)
+rsa_2JLY_temp_50 = read.table('molecular_dynamics/Amber/postproc/rsa/summaries/2JLY_temp_50_sum.rsa',header=T)
 dihedral_2JLY_temp_50 = read.table('molecular_dynamics/Amber/postproc/dihedrals/2JLY_temp_50_dihedrals.txt',header=T)
-cn13_2JLY_temp_50 = read.table('molecular_dynamics/Amber/postproc/cn13/2JLY_temp_50_sum.cn13',header=T)
-wcn_2JLY_temp_50 = read.table('molecular_dynamics/Amber/postproc/wcn/2JLY_temp_50_sum.wcn',header=T)
+cn13_2JLY_temp_50 = read.table('molecular_dynamics/Amber/postproc/cn13/summaries/2JLY_temp_50_sum.cn13',header=T)
+wcn_2JLY_temp_50 = read.table('molecular_dynamics/Amber/postproc/wcn/summaries/2JLY_temp_50_sum.wcn',header=T)
 
 data_2JLY_temp_50 = data.frame(protein="2JLY_temp_50", res_num=dihedral_2JLY$res_Num, res_name=dihedral_2JLY$res_name,
                        entropy=entropy_2JLY$entropy_2JLY, 
@@ -254,10 +254,10 @@ data_2JLY_temp_50 = data.frame(protein="2JLY_temp_50", res_num=dihedral_2JLY$res
                        wcn_cr=wcn_2JLY_temp_50$CRYSTAL_WCN, wcn_avg_md=wcn_2JLY_temp_50$MEAN_WCN, wcn_var_md=wcn_2JLY_temp_50$VAR_WCN)
 
 rmsf_2JLY_temp_100 = read.table('molecular_dynamics/Amber/postproc/rmsf/2JLY_temp_100_rmsf_ref_inpcrd.txt',header=T,comment.char="")
-rsa_2JLY_temp_100 = read.table('molecular_dynamics/Amber/postproc/summaries/2JLY_temp_100_sum.rsa',header=T)
+rsa_2JLY_temp_100 = read.table('molecular_dynamics/Amber/postproc/rsa/summaries/2JLY_temp_100_sum.rsa',header=T)
 dihedral_2JLY_temp_100 = read.table('molecular_dynamics/Amber/postproc/dihedrals/2JLY_temp_100_dihedrals.txt',header=T)
-cn13_2JLY_temp_100 = read.table('molecular_dynamics/Amber/postproc/cn13/2JLY_temp_100_sum.cn13',header=T)
-wcn_2JLY_temp_100 = read.table('molecular_dynamics/Amber/postproc/wcn/2JLY_temp_100_sum.wcn',header=T)
+cn13_2JLY_temp_100 = read.table('molecular_dynamics/Amber/postproc/cn13/summaries/2JLY_temp_100_sum.cn13',header=T)
+wcn_2JLY_temp_100 = read.table('molecular_dynamics/Amber/postproc/wcn/summaries/2JLY_temp_100_sum.wcn',header=T)
 
 data_2JLY_temp_100 = data.frame(protein="2JLY_temp_100", res_num=dihedral_2JLY$res_Num, res_name=dihedral_2JLY$res_name,
                        entropy=entropy_2JLY$entropy_2JLY, 
@@ -268,10 +268,10 @@ data_2JLY_temp_100 = data.frame(protein="2JLY_temp_100", res_num=dihedral_2JLY$r
                        wcn_cr=wcn_2JLY_temp_100$CRYSTAL_WCN, wcn_avg_md=wcn_2JLY_temp_100$MEAN_WCN, wcn_var_md=wcn_2JLY_temp_100$VAR_WCN)
 
 rmsf_2JLY_temp_200 = read.table('molecular_dynamics/Amber/postproc/rmsf/2JLY_temp_200_rmsf_ref_inpcrd.txt',header=T,comment.char="")
-rsa_2JLY_temp_200 = read.table('molecular_dynamics/Amber/postproc/summaries/2JLY_temp_200_sum.rsa',header=T)
+rsa_2JLY_temp_200 = read.table('molecular_dynamics/Amber/postproc/rsa/summaries/2JLY_temp_200_sum.rsa',header=T)
 dihedral_2JLY_temp_200 = read.table('molecular_dynamics/Amber/postproc/dihedrals/2JLY_temp_200_dihedrals.txt',header=T)
-cn13_2JLY_temp_200 = read.table('molecular_dynamics/Amber/postproc/cn13/2JLY_temp_200_sum.cn13',header=T)
-wcn_2JLY_temp_200 = read.table('molecular_dynamics/Amber/postproc/wcn/2JLY_temp_200_sum.wcn',header=T)
+cn13_2JLY_temp_200 = read.table('molecular_dynamics/Amber/postproc/cn13/summaries/2JLY_temp_200_sum.cn13',header=T)
+wcn_2JLY_temp_200 = read.table('molecular_dynamics/Amber/postproc/wcn/summaries/2JLY_temp_200_sum.wcn',header=T)
 
 data_2JLY_temp_200 = data.frame(protein="2JLY_temp_200", res_num=dihedral_2JLY$res_Num, res_name=dihedral_2JLY$res_name,
                        entropy=entropy_2JLY$entropy_2JLY, 
@@ -282,10 +282,10 @@ data_2JLY_temp_200 = data.frame(protein="2JLY_temp_200", res_num=dihedral_2JLY$r
                        wcn_cr=wcn_2JLY_temp_200$CRYSTAL_WCN, wcn_avg_md=wcn_2JLY_temp_200$MEAN_WCN, wcn_var_md=wcn_2JLY_temp_200$VAR_WCN)
 
 rmsf_2JLY_temp_450 = read.table('molecular_dynamics/Amber/postproc/rmsf/2JLY_temp_450_rmsf_ref_inpcrd.txt',header=T,comment.char="")
-rsa_2JLY_temp_450 = read.table('molecular_dynamics/Amber/postproc/summaries/2JLY_temp_450_sum.rsa',header=T)
+rsa_2JLY_temp_450 = read.table('molecular_dynamics/Amber/postproc/rsa/summaries/2JLY_temp_450_sum.rsa',header=T)
 dihedral_2JLY_temp_450 = read.table('molecular_dynamics/Amber/postproc/dihedrals/2JLY_temp_450_dihedrals.txt',header=T)
-cn13_2JLY_temp_450 = read.table('molecular_dynamics/Amber/postproc/cn13/2JLY_temp_450_sum.cn13',header=T)
-wcn_2JLY_temp_450 = read.table('molecular_dynamics/Amber/postproc/wcn/2JLY_temp_450_sum.wcn',header=T)
+cn13_2JLY_temp_450 = read.table('molecular_dynamics/Amber/postproc/cn13/summaries/2JLY_temp_450_sum.cn13',header=T)
+wcn_2JLY_temp_450 = read.table('molecular_dynamics/Amber/postproc/wcn/summaries/2JLY_temp_450_sum.wcn',header=T)
 
 data_2JLY_temp_450 = data.frame(protein="2JLY_temp_450", res_num=dihedral_2JLY$res_Num, res_name=dihedral_2JLY$res_name,
                        entropy=entropy_2JLY$entropy_2JLY, 
@@ -296,10 +296,10 @@ data_2JLY_temp_450 = data.frame(protein="2JLY_temp_450", res_num=dihedral_2JLY$r
                        wcn_cr=wcn_2JLY_temp_450$CRYSTAL_WCN, wcn_avg_md=wcn_2JLY_temp_450$MEAN_WCN, wcn_var_md=wcn_2JLY_temp_450$VAR_WCN)
 
 rmsf_1AOR_A_temp_373 = read.table('molecular_dynamics/Amber/postproc/rmsf/1AOR_A_temp_373_rmsf_ref_inpcrd.txt',header=T,comment.char="")
-rsa_1AOR_A_temp_373 = read.table('molecular_dynamics/Amber/postproc/summaries/1AOR_A_temp_373_sum.rsa',header=T)
+rsa_1AOR_A_temp_373 = read.table('molecular_dynamics/Amber/postproc/rsa/summaries/1AOR_A_temp_373_sum.rsa',header=T)
 dihedral_1AOR_A_temp_373 = read.table('molecular_dynamics/Amber/postproc/dihedrals/1AOR_A_temp_373_dihedrals.txt',header=T)
-cn13_1AOR_A_temp_373 = read.table('molecular_dynamics/Amber/postproc/cn13/1AOR_A_temp_373_sum.cn13',header=T)
-wcn_1AOR_A_temp_373 = read.table('molecular_dynamics/Amber/postproc/wcn/1AOR_A_temp_373_sum.wcn',header=T)
+cn13_1AOR_A_temp_373 = read.table('molecular_dynamics/Amber/postproc/cn13/summaries/1AOR_A_temp_373_sum.cn13',header=T)
+wcn_1AOR_A_temp_373 = read.table('molecular_dynamics/Amber/postproc/wcn/summaries/1AOR_A_temp_373_sum.wcn',header=T)
 
 data_1AOR_A_temp_373 = data.frame(protein="1AOR_A", res_num=dihedral_1AOR_A$res_Num, res_name=dihedral_1AOR_A$res_name,
                        rsa_cr=rsa_1AOR_A_temp_373$CRYSTAL_RSA, rsa_avg_md=rsa_1AOR_A_temp_373$MEAN_RSA, rsa_var_md=rsa_1AOR_A_temp_373$VAR_RSA, 
