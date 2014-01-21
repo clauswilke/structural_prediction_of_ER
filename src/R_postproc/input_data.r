@@ -172,7 +172,7 @@ rsa_4IRY = read.table('molecular_dynamics/Amber/postproc/rsa/summaries/4IRY_sum.
 dihedral_4IRY = read.table('molecular_dynamics/Amber/postproc/dihedrals/4IRY_dihedrals.txt',header=T)
 cn13_4IRY = read.table('molecular_dynamics/Amber/postproc/cn13/summaries/4IRY_sum.cn13',header=T)
 wcn_4IRY = read.table('molecular_dynamics/Amber/postproc/wcn/summaries/4IRY_sum.wcn',header=T)
-entropy_4IRY = entropy_MRNABD$entropy[!is.na(map_4IRY$pdb_pos)]
+entropy_4IRY = entropy_INP$entropy[!is.na(map_4IRY$pdb_pos)]
 entropy_4IRY = as.data.frame(entropy_4IRY)
 
 data_4IRY = data.frame(protein="4IRY", res_num=dihedral_4IRY$res_Num, res_name=dihedral_4IRY$res_name,
@@ -182,6 +182,24 @@ data_4IRY = data.frame(protein="4IRY", res_num=dihedral_4IRY$res_Num, res_name=d
                        phi_var_md=dihedral_4IRY$var_phi, psi_var_md=dihedral_4IRY$var_psi, chi1_var_md=dihedral_4IRY$var_chi1,
                        cn13_cr=cn13_4IRY$CRYSTAL_CN, cn13_avg_md=cn13_4IRY$MEAN_CN, cn13_var_md=cn13_4IRY$VAR_CN,
                        wcn_cr=wcn_4IRY$CRYSTAL_WCN, wcn_avg_md=wcn_4IRY$MEAN_WCN, wcn_var_md=wcn_4IRY$VAR_WCN)
+
+entropy_WNPB = read.table('entropies/WNPB.entropy', header=T)
+rmsf_2FP7_B = read.table('molecular_dynamics/Amber/postproc/rmsf/2FP7_B_rmsf_CA_ref_pdb.txt',header=T,comment.char="")
+map_2FP7_B = read.table('molecular_dynamics/map/WNPB_2FP7_B.map',header=T)
+rsa_2FP7_B = read.table('molecular_dynamics/Amber/postproc/rsa/summaries/2FP7_B_sum.rsa',header=T)
+dihedral_2FP7_B = read.table('molecular_dynamics/Amber/postproc/dihedrals/2FP7_B_dihedrals.txt',header=T)
+cn13_2FP7_B = read.table('molecular_dynamics/Amber/postproc/cn13/summaries/2FP7_B_sum.cn13',header=T)
+wcn_2FP7_B = read.table('molecular_dynamics/Amber/postproc/wcn/summaries/2FP7_B_sum.wcn',header=T)
+entropy_2FP7_B = entropy_WNPB$entropy[!is.na(map_2FP7_B$pdb_pos)]
+entropy_2FP7_B = as.data.frame(entropy_2FP7_B)
+
+data_2FP7_B = data.frame(protein="2FP7_B", res_num=dihedral_2FP7_B$res_Num, res_name=dihedral_2FP7_B$res_name,
+                       entropy=entropy_2FP7_B$entropy_2FP7_B, 
+                       rsa_cr=rsa_2FP7_B$CRYSTAL_RSA, rsa_avg_md=rsa_2FP7_B$MEAN_RSA, rsa_var_md=rsa_2FP7_B$VAR_RSA, 
+                       rmsf_avg_md=rmsf_2FP7_B$AvgRMSD, rmsf_std_md=rmsf_2FP7_B$Stdev, 
+                       phi_var_md=dihedral_2FP7_B$var_phi, psi_var_md=dihedral_2FP7_B$var_psi, chi1_var_md=dihedral_2FP7_B$var_chi1,
+                       cn13_cr=cn13_2FP7_B$CRYSTAL_CN, cn13_avg_md=cn13_2FP7_B$MEAN_CN, cn13_var_md=cn13_2FP7_B$VAR_CN,
+                       wcn_cr=wcn_2FP7_B$CRYSTAL_WCN, wcn_avg_md=wcn_2FP7_B$MEAN_WCN, wcn_var_md=wcn_2FP7_B$VAR_WCN)
 
 # THERMOPHILIC STRUCTURES
 
