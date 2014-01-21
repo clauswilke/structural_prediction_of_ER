@@ -19,8 +19,7 @@ resdict = { 'ALA': 'A', 'CYS': 'C', 'ASP': 'D', 'GLU': 'E', 'PHE': 'F', \
             'MET': 'M', 'ASN': 'N', 'PRO': 'P', 'GLN': 'Q', 'ARG': 'R', \
             'SER': 'S', 'THR': 'T', 'VAL': 'V', 'TRP': 'W', 'TYR': 'Y' }
 
-#This is a dictionary that has the amino acid for the key and the max solvent accessibility for this amino acid
-#THIS HAS BEEN UPDATED. I AM USING THE NEW THEORETICAL NUMBERS FROM THE 2013 AUSTIN, STEPHANIE, MATT, WILKE PAPER. 
+#ASA normalization constants were taken from: M. Z. Tien, A. G. Meyer, D. K. Sydykova, S. J. Spielman, C. O. Wilke (2013). Maximum allowed solvent accessibilities of residues in proteins. PLOS ONE 8:e80635.
 residue_max_acc = {'A': 129.0, 'R': 274.0, 'N': 195.0, 'D': 193.0, \
                    'C': 167.0, 'Q': 225.0, 'E': 223.0, 'G': 104.0, \
                    'H': 224.0, 'I': 197.0, 'L': 201.0, 'K': 236.0, \
