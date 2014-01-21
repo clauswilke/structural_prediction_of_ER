@@ -92,10 +92,10 @@ allocate(wcn(0:ntraj,nres),res_num(nres),res_name(nres),chain_id(nres))
 
 end program wcn_summarizer
 
-include 'nitems.f90'
-!include 'MRSA_finder.f90'
-include 'select.f90'
-include 'avevar.f90'
+include 'func_nitems.f90'
+!include 'func_MRSA_finder.f90'
+include 'func_select.f90'
+include 'sub_avevar.f90'
 
 
 
