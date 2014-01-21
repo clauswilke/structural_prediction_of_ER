@@ -1,6 +1,7 @@
 # This file reads all data for the PDB structures into R.
 # Amir Shahmoradi, Friday 8:27 PM, Nov 8, 2013
-# Amir Shahmoradi, ICMB, Wednesday 11:01 PM, Jan 15, 2014
+# Amir Shahmoradi, Wednesday 11:01 PM, Jan 15, 2014, ICMB, UT Austin
+# Amir Shahmoradi, Wednesday  8:47 PM, Jan 20, 2014, ICMB, UT Austin
 
 #INPUT FILES:
 
@@ -110,13 +111,17 @@ data_3I5K = data.frame(protein="3I5K", res_num=dihedral_3I5K$res_Num, res_name=d
                        cn13_cr=cn13_3I5K$CRYSTAL_CN, cn13_avg_md=cn13_3I5K$MEAN_CN, cn13_var_md=cn13_3I5K$VAR_CN,
                        wcn_cr=wcn_3I5K$CRYSTAL_WCN, wcn_avg_md=wcn_3I5K$MEAN_WCN, wcn_var_md=wcn_3I5K$VAR_WCN)
 
+entropy_RVFVNP = read.table('entropies/RVFVNP.entropy', header=T)
 rmsf_3LYF = read.table('molecular_dynamics/Amber/postproc/rmsf/3LYF_rmsf_ref_inpcrd.txt',header=T,comment.char="")
 rsa_3LYF = read.table('molecular_dynamics/Amber/postproc/rsa_summaries/3LYF_sum.rsa',header=T)
 dihedral_3LYF = read.table('molecular_dynamics/Amber/postproc/dihedrals/3LYF_dihedrals.txt',header=T)
 cn13_3LYF = read.table('molecular_dynamics/Amber/postproc/cn13/3LYF_sum.cn13',header=T)
 wcn_3LYF = read.table('molecular_dynamics/Amber/postproc/wcn/3LYF_sum.wcn',header=T)
+entropy_3LYF = entropy_RVFVNP$entropy[!is.na(map_3LYF$pdb_pos)]
+entropy_3LYF = as.data.frame(entropy_3LYF)
 
 data_3LYF = data.frame(protein="3LYF", res_num=dihedral_3LYF$res_Num, res_name=dihedral_3LYF$res_name,
+                       entropy=entropy_3LYF$entropy_3LYF,
                        rsa_cr=rsa_3LYF$CRYSTAL_RSA, rsa_avg_md=rsa_3LYF$MEAN_RSA, rsa_var_md=rsa_3LYF$VAR_RSA, 
                        rmsf_avg_md=rmsf_3LYF$AvgRMSD, rmsf_std_md=rmsf_3LYF$Stdev, 
                        phi_var_md=dihedral_3LYF$var_phi, psi_var_md=dihedral_3LYF$var_psi, chi1_var_md=dihedral_3LYF$var_chi1,

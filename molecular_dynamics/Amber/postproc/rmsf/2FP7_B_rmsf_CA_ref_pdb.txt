@@ -1,4 +1,4 @@
-#Residue RMSD_00001[A RMSD_00001[S
+#Residue      AvgRMSD        Stdev
        1       4.0389       2.7461
        2       1.9601       1.5477
        3       0.8222       0.3047

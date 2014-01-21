@@ -10,7 +10,7 @@ Sequence alignments and the corresponding calculated entropies for which no pdb 
 	- aln_aa_hivpol.fasta          --->  HIVP.entropy
 	- aln_aa_westNile_ns2b.fasta   --->  WNNS2B.entropy
 
-Amir Shahmoradi, 9:40 PM Friday January 20, 2013, Wilke Lab, University of Texas Austin
+Amir Shahmoradi, 9:40 PM Monday January 20, 2013, Wilke Lab, University of Texas Austin
 
 -------------------------------------------------------------------------
 -------------------------------------------------------------------------
