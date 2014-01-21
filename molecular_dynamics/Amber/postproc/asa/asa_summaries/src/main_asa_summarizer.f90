@@ -95,6 +95,3 @@ include 'func_nitems.f90'
 !include 'MRSA_finder.f90'
 include 'func_select.f90'
 include 'sub_avevar.f90'
-
-
-
