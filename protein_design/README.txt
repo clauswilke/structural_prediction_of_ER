@@ -19,7 +19,7 @@ scripts/
 		This is a script that just renamed the .pdb returned from Rosetta. 
 	
 designed_sequences/
-	Contains the sequences for the designed proteins (500 for each of 10 PDBS = 5000 Sequences Total)
+	Contains the sequences for the designed proteins (500 for each of 11 PDBS = 5500 Sequences Total)
 		
 entropies/
 	Contains all entropies calculated for the designed protein sequences  
