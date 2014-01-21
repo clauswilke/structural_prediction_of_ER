@@ -46,7 +46,7 @@ if (command_argument_count()/=4) then
 	write(*,*)
 	write(*,*) "Incorrect number of input arguments on the command line."
 	write(*,*) "Correct use:"
-	write(*,*) "./a.out <input pdb file: *_bres_X.pdb> <input mdcrd file> <output pdb file: *_bres_X.pdb> <output ASA file>"
+	write(*,'(1A110)') "./a.out <input pdb file: *_bres.pdb> <input mdcrd file> <output pdb file: *_bres_X.pdb> <output ASA file>"
 	write(*,*)
 	stop
 end if
