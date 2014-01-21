@@ -1,0 +1,81 @@
+#!/bin/bash
+
+#$ -V
+#$ -cwd
+#$ -N MD_2JLY_ini
+#$ -j y
+#$ -o 2JLY_outputer_temp_450.o
+#$ -q gpu
+#$ -pe 2way 12
+#$ -l h_rt=24:00:00
+#$ -A A-bio7
+
+START=$(date +%s)
+STARTDATE=`date`
+echo ""
+echo "Amber MD Simulation setup by Amir Shahmoradi, Wilke Lab., ICMB, UT Austin"
+echo "Email: amir@physics.utexas.edu"
+echo "Simulation started on" $STARTDATE
+
+ibrun pmemd.MPI -O -i $WORK/setup/2JLY_min.in -o $WORK/results/temp_450/out/2JLY_min.out -p $WORK/setup/2JLY_IS.prmtop -c $WORK/setup/2JLY_IS.inpcrd -r $WORK/results/temp_450/rst/2JLY_min.rst -ref $WORK/setup/2JLY_IS.inpcrd -inf $WORK/job/temp_450/mdinfo/2JLY_min.mdinfo -l $WORK/job/temp_450/logfile/2JLY_min.logfile
+
+END=$(date +%s)
+DIFF=$(( $END - $START ))
+ENDDATE=`date`
+echo "Simulation ended on" $ENDDATE
+echo "Simulation runtime: $DIFF seconds"
+
+START=$(date +%s)
+STARTDATE=`date`
+echo ""
+echo "Amber MD Simulation setup by Amir Shahmoradi, Wilke Lab., ICMB, UT Austin"
+echo "Simulation started on" $STARTDATE
+
+ibrun pmemd.cuda.MPI -O -i $WORK/setup/2JLY_heat_temp_450.in -o $WORK/results/temp_450/out/2JLY_heat_temp_450.out -p $WORK/setup/2JLY_IS.prmtop -c $WORK/results/temp_450/rst/2JLY_min.rst -r $WORK/results/temp_450/rst/2JLY_heat_temp_450.rst -x $WORK/results/temp_450/2JLY_heat_temp_450.mdcrd -ref $WORK/results/temp_450/rst/2JLY_min.rst -inf $WORK/job/temp_450/mdinfo/2JLY_heat_temp_450.mdinfo -l $WORK/job/temp_450/logfile/2JLY_heat_temp_450.logfile
+
+END=$(date +%s)
+DIFF=$(( $END - $START ))
+ENDDATE=`date`
+echo "Simulation ended on" $ENDDATE
+echo "Simulation runtime: $DIFF seconds"
+
+START=$(date +%s)
+STARTDATE=`date`
+echo ""
+echo "Amber MD Simulation setup by Amir Shahmoradi, Wilke Lab., ICMB, UT Austin"
+echo "Simulation started on" $STARTDATE
+
+ibrun pmemd.cuda.MPI -O -i $WORK/setup/2JLY_density_temp_450.in -o $WORK/results/temp_450/out/2JLY_density_temp_450.out -p $WORK/setup/2JLY_IS.prmtop -c $WORK/results/temp_450/rst/2JLY_heat_temp_450.rst -r $WORK/results/temp_450/rst/2JLY_density_temp_450.rst -x $WORK/results/temp_450/2JLY_density_temp_450.mdcrd -ref $WORK/results/temp_450/rst/2JLY_heat_temp_450.rst -inf $WORK/job/temp_450/mdinfo/2JLY_density_temp_450.mdinfo -l $WORK/job/temp_450/logfile/2JLY_density_temp_450.logfile
+
+END=$(date +%s)
+DIFF=$(( $END - $START ))
+ENDDATE=`date`
+echo "Simulation ended on" $ENDDATE
+echo "Simulation runtime: $DIFF seconds"
+
+START=$(date +%s)
+STARTDATE=`date`
+echo ""
+echo "Amber MD Simulation setup by Amir Shahmoradi, Wilke Lab., ICMB, UT Austin"
+echo "Simulation started on" $STARTDATE
+
+ibrun pmemd.cuda.MPI -O -i $WORK/setup/2JLY_equil_test_temp_450.in -o $WORK/results/temp_450/out/2JLY_equil_temp_450.out -p $WORK/setup/2JLY_IS.prmtop -c $WORK/results/temp_450/rst/2JLY_density_temp_450.rst -r $WORK/results/temp_450/rst/2JLY_equil_temp_450.rst -x $WORK/results/temp_450/2JLY_equil_temp_450.mdcrd -inf $WORK/job/temp_450/mdinfo/2JLY_equil_temp_450.mdinfo -l $WORK/job/temp_450/logfile/2JLY_equil_temp_450.logfile
+
+END=$(date +%s)
+DIFF=$(( $END - $START ))
+ENDDATE=`date`
+echo "Amir: Simulation ended on" $ENDDATE
+echo "Amir: Test simulation runtime: $DIFF seconds for 1000 MD time steps"
+
+START=$(date +%s)
+STARTDATE=`date`
+echo ""
+echo "Amir: Starting MD simulation on" $STARTDATE
+
+ibrun pmemd.cuda.MPI -O -i $WORK/setup/2JLY_equil_temp_450.in -o $WORK/results/temp_450/out/2JLY_equil_temp_450.out -p $WORK/setup/2JLY_IS.prmtop -c $WORK/results/temp_450/rst/2JLY_density_temp_450.rst -r $WORK/results/temp_450/rst/2JLY_equil_temp_450.rst -x $WORK/results/temp_450/2JLY_equil_temp_450.mdcrd -inf $WORK/job/temp_450/mdinfo/2JLY_equil_temp_450.mdinfo -l $WORK/job/temp_450/logfile/2JLY_equil_temp_450.logfile
+
+END=$(date +%s)
+DIFF=$(( $END - $START ))
+ENDDATE=`date`
+echo "Amir: Simulation ended on" $ENDDATE
+echo "Amir: Simulation runtime: $DIFF seconds"

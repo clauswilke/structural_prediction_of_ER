@@ -1,0 +1,142 @@
+TACC: Setting memory limits for job 1580964 to unlimited KB
+TACC: Dumping job script:
+--------------------------------------------------------------------------------
+#!/bin/bash
+
+#$ -V
+#$ -cwd
+#$ -N MD_2JLY_ini
+#$ -j y
+#$ -o 2JLY_outputer_temp_100.o
+#$ -q gpu
+#$ -pe 2way 12
+#$ -l h_rt=12:00:00
+#$ -A A-bio7
+
+START=$(date +%s)
+STARTDATE=`date`
+echo ""
+echo "Amber MD Simulation setup by Amir Shahmoradi, Wilke Lab., ICMB, UT Austin"
+echo "Email: amir@physics.utexas.edu"
+echo "Simulation started on" $STARTDATE
+
+ibrun pmemd.MPI -O -i $WORK/setup/2JLY_min.in -o $WORK/results/temp_100/out/2JLY_min.out -p $WORK/setup/2JLY_IS.prmtop -c $WORK/setup/2JLY_IS.inpcrd -r $WORK/results/temp_100/rst/2JLY_min.rst -ref $WORK/setup/2JLY_IS.inpcrd -inf $WORK/job/temp_100/mdinfo/2JLY_min.mdinfo -l $WORK/job/temp_100/logfile/2JLY_min.logfile
+
+END=$(date +%s)
+DIFF=$(( $END - $START ))
+ENDDATE=`date`
+echo "Simulation ended on" $ENDDATE
+echo "Simulation runtime: $DIFF seconds"
+
+START=$(date +%s)
+STARTDATE=`date`
+echo ""
+echo "Amber MD Simulation setup by Amir Shahmoradi, Wilke Lab., ICMB, UT Austin"
+echo "Simulation started on" $STARTDATE
+
+ibrun pmemd.cuda.MPI -O -i $WORK/setup/2JLY_heat_temp_100.in -o $WORK/results/temp_100/out/2JLY_heat_temp_100.out -p $WORK/setup/2JLY_IS.prmtop -c $WORK/results/temp_100/rst/2JLY_min.rst -r $WORK/results/temp_100/rst/2JLY_heat_temp_100.rst -x $WORK/results/temp_100/2JLY_heat_temp_100.mdcrd -ref $WORK/results/temp_100/rst/2JLY_min.rst -inf $WORK/job/temp_100/mdinfo/2JLY_heat_temp_100.mdinfo -l $WORK/job/temp_100/logfile/2JLY_heat_temp_100.logfile
+
+END=$(date +%s)
+DIFF=$(( $END - $START ))
+ENDDATE=`date`
+echo "Simulation ended on" $ENDDATE
+echo "Simulation runtime: $DIFF seconds"
+
+START=$(date +%s)
+STARTDATE=`date`
+echo ""
+echo "Amber MD Simulation setup by Amir Shahmoradi, Wilke Lab., ICMB, UT Austin"
+echo "Simulation started on" $STARTDATE
+
+ibrun pmemd.cuda.MPI -O -i $WORK/setup/2JLY_density_temp_100.in -o $WORK/results/temp_100/out/2JLY_density_temp_100.out -p $WORK/setup/2JLY_IS.prmtop -c $WORK/results/temp_100/rst/2JLY_heat_temp_100.rst -r $WORK/results/temp_100/rst/2JLY_density_temp_100.rst -x $WORK/results/temp_100/2JLY_density_temp_100.mdcrd -ref $WORK/results/temp_100/rst/2JLY_heat_temp_100.rst -inf $WORK/job/temp_100/mdinfo/2JLY_density_temp_100.mdinfo -l $WORK/job/temp_100/logfile/2JLY_density_temp_100.logfile
+
+END=$(date +%s)
+DIFF=$(( $END - $START ))
+ENDDATE=`date`
+echo "Simulation ended on" $ENDDATE
+echo "Simulation runtime: $DIFF seconds"
+
+START=$(date +%s)
+STARTDATE=`date`
+echo ""
+echo "Amber MD Simulation setup by Amir Shahmoradi, Wilke Lab., ICMB, UT Austin"
+echo "Simulation started on" $STARTDATE
+
+ibrun pmemd.cuda.MPI -O -i $WORK/setup/2JLY_equil_test_temp_100.in -o $WORK/results/temp_100/out/2JLY_equil_temp_100.out -p $WORK/setup/2JLY_IS.prmtop -c $WORK/results/temp_100/rst/2JLY_density_temp_100.rst -r $WORK/results/temp_100/rst/2JLY_equil_temp_100.rst -x $WORK/results/temp_100/2JLY_equil_temp_100.mdcrd -inf $WORK/job/temp_100/mdinfo/2JLY_equil_temp_100.mdinfo -l $WORK/job/temp_100/logfile/2JLY_equil_temp_100.logfile
+
+END=$(date +%s)
+DIFF=$(( $END - $START ))
+ENDDATE=`date`
+echo "Amir: Simulation ended on" $ENDDATE
+echo "Amir: Test simulation runtime: $DIFF seconds for 1000 MD time steps"
+
+START=$(date +%s)
+STARTDATE=`date`
+echo ""
+echo "Amir: Starting MD simulation on" $STARTDATE
+
+ibrun pmemd.cuda.MPI -O -i $WORK/setup/2JLY_equil_temp_100.in -o $WORK/results/temp_100/out/2JLY_equil_temp_100.out -p $WORK/setup/2JLY_IS.prmtop -c $WORK/results/temp_100/rst/2JLY_density_temp_100.rst -r $WORK/results/temp_100/rst/2JLY_equil_temp_100.rst -x $WORK/results/temp_100/2JLY_equil_temp_100.mdcrd -inf $WORK/job/temp_100/mdinfo/2JLY_equil_temp_100.mdinfo -l $WORK/job/temp_100/logfile/2JLY_equil_temp_100.logfile
+
+END=$(date +%s)
+DIFF=$(( $END - $START ))
+ENDDATE=`date`
+echo "Amir: Simulation ended on" $ENDDATE
+echo "Amir: Simulation runtime: $DIFF seconds"--------------------------------------------------------------------------------
+TACC: Done.
+
+Amber MD Simulation setup by Amir Shahmoradi, Wilke Lab., ICMB, UT Austin
+Email: amir@physics.utexas.edu
+Simulation started on Fri Nov 15 02:46:47 CST 2013
+TACC: Starting up job 1580964
+TACC: Setting up parallel environment for MVAPICH ssh-based mpirun.
+TACC: Setup complete. Running job script.
+TACC: starting parallel tasks...
+TACC: Shutting down parallel environment.
+TACC: Shutdown complete. Exiting.
+Simulation ended on Fri Nov 15 02:51:25 CST 2013
+Simulation runtime: 278 seconds
+
+Amber MD Simulation setup by Amir Shahmoradi, Wilke Lab., ICMB, UT Austin
+Simulation started on Fri Nov 15 02:51:25 CST 2013
+TACC: Starting up job 1580964
+TACC: Setting up parallel environment for MVAPICH ssh-based mpirun.
+TACC: Setup complete. Running job script.
+TACC: starting parallel tasks...
+TACC: Shutting down parallel environment.
+TACC: Shutdown complete. Exiting.
+Simulation ended on Fri Nov 15 02:58:57 CST 2013
+Simulation runtime: 452 seconds
+
+Amber MD Simulation setup by Amir Shahmoradi, Wilke Lab., ICMB, UT Austin
+Simulation started on Fri Nov 15 02:58:57 CST 2013
+TACC: Starting up job 1580964
+TACC: Setting up parallel environment for MVAPICH ssh-based mpirun.
+TACC: Setup complete. Running job script.
+TACC: starting parallel tasks...
+TACC: Shutting down parallel environment.
+TACC: Shutdown complete. Exiting.
+Simulation ended on Fri Nov 15 03:07:13 CST 2013
+Simulation runtime: 496 seconds
+
+Amber MD Simulation setup by Amir Shahmoradi, Wilke Lab., ICMB, UT Austin
+Simulation started on Fri Nov 15 03:07:13 CST 2013
+TACC: Starting up job 1580964
+TACC: Setting up parallel environment for MVAPICH ssh-based mpirun.
+TACC: Setup complete. Running job script.
+TACC: starting parallel tasks...
+TACC: Shutting down parallel environment.
+TACC: Shutdown complete. Exiting.
+Amir: Simulation ended on Fri Nov 15 03:07:32 CST 2013
+Amir: Test simulation runtime: 19 seconds for 1000 MD time steps
+
+Amir: Starting MD simulation on Fri Nov 15 03:07:32 CST 2013
+TACC: Starting up job 1580964
+TACC: Setting up parallel environment for MVAPICH ssh-based mpirun.
+TACC: Setup complete. Running job script.
+TACC: starting parallel tasks...
+TACC: Shutting down parallel environment.
+TACC: Shutdown complete. Exiting.
+Amir: Simulation ended on Fri Nov 15 09:53:15 CST 2013
+Amir: Simulation runtime: 24343 seconds
+TACC: Cleaning up after job: 1580964
+TACC: Done.

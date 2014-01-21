@@ -1,0 +1,23 @@
+# COMMAND LINE: cpptraj $WORK/setup/4AQF_B_IS.prmtop 4AQF_B_cpptraj_image.in
+# Note: the input pdb file must be present in the directory where cpptraj is run (directory containing mdcrd files).
+# This code first strips water molecules from the topology file.
+# Then write out the new topology file in a new prmtop file for future reference.
+# Then corrects the atom positions for any out of box visualization errors.
+#
+parmstrip :WAT
+parmwrite out 4AQF_B_I_cpptraj.prmtop
+reference 4AQF_B_I.pdb [inpcrd]
+trajin 4AQF_B_equil_1.mdcrd 1 last 1
+trajin 4AQF_B_equil_2.mdcrd 1 last 1
+trajin 4AQF_B_equil_3.mdcrd 1 last 1
+center @CA mass origin
+image origin center
+trajout 4AQF_B_image.mdcrd
+#
+#trajin 4AQF_B_equil_1.mdcrd 1 last 1
+#trajin 4AQF_B_equil_2.mdcrd 1 last 1
+#reference 4AQF_B_ionized.pdb [inpcrd]
+#rmsd ref [inpcrd] perres perresout 4AQF_B_perres_fluc_ref_inpcrd.txt @CA
+#average 4AQF_B_avg_equil.pdb pdb
+#reference 4AQF_B_avg_equil.pdb [avg]
+#rmsd ref [avg] perres perresout 4AQF_B_perres_fluc_ref_avg.txt @CA

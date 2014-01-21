@@ -172,9 +172,9 @@ align_pos	consensus_aa	pdb_pos	pdb_aa
 171	S	NA	-
 172	Q	5	G
 173	E	6	E
-174	G	NA	-
-175	P	7	P
-176	L	8	D
+174	G	7	P
+175	P	8	D
+176	L	NA	-
 177	P	9	Y
 178	E	10	E
 179	I	11	V
@@ -620,3 +620,4 @@ align_pos	consensus_aa	pdb_pos	pdb_aa
 619	R	450	R
 620	K	451	K
 621	-	NA	-
+622	-	NA	-
