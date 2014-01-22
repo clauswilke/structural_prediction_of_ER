@@ -4,7 +4,7 @@
 # Then uses the topolgy file to calculate the RMSD per residue of the given structure.
 #
 parmstrip :WAT
-reference 1RD8_I.pdb [inpcrd]
+reference 1RD8_AB_amber.pdb [inpcrd]
 trajin 1RD8_image.mdcrd 1 last 1
 #strip :Na+,Cl-
 

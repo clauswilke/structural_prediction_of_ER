@@ -2,14 +2,14 @@
 # Note: the input pdb file must be present in the directory where cpptraj is run (directory containing mdcrd files).
 # This code first strips water molecules and ions (Na+ and Cl-) from the topology file.
 # Then uses the topolgy file to calculate the RMSD per residue of the given structure.
-#
+
 parmstrip :WAT:Na+:Cl-
 reference 2FP7_B_amber.pdb [inpcrd]
 trajin 2FP7_B_image.mdcrd 1 last 1
 strip :Na+,Cl-
 
-rmsd ref [inpcrd] out 2FP7_B_rmsd_CA_ref_pdb.txt @CA
-rmsd ref [inpcrd] perres perresavg 2FP7_B_rmsf_CA_ref_pdb.txt perresmask @CA perresinvert
+rmsd ref [inpcrd] out 2FP7_B.rmsd @CA
+rmsd ref [inpcrd] perres perresavg 2FP7_B.rmsf perresmask @CA perresinvert
 
 #rmsd ref [inpcrd] out 2FP7_B_rmsd_ref_pdb.txt @CA,C,O,N
 #rmsd ref [inpcrd] perres perresavg 2FP7_B_rmsf_ref_pdb.txt perresmask @CA,C,O,N perresinvert

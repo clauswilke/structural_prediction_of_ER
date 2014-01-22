@@ -20,7 +20,7 @@ Amir Shahmoradi, Monday 3:50 PM Jan 20, 2013, Wilke Lab., University of Texas Au
 		
 	The code will automatically inform the user about the required command-line input file names in order to generate the wcn values.
 	
-	The first two moments (mean and variance and median) of the wcn values from MD trajectories for each protein residue are summarized in the corresponding summary files in the subdirectory 'wcn_summaries'.
+	The first two moments (mean and variance and median + median + wcn from crystal structure) of the wcn values from MD trajectories for each protein residue are summarized in the corresponding summary files in the subdirectory 'wcn_summaries'.
 
 	ATTN-ATTN-ATTN-ATTN-ATTN-ATTN-ATTN-ATTN-ATTN-ATTN-ATTN-ATTN:
 	
