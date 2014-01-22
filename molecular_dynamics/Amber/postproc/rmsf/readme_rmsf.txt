@@ -1,17 +1,10 @@
-Amir Shahmoradi, Wilke Lab., University of Texas Austin, 3:22 PM Friday July 25, 2013.
+Amir Shahmoradi, Tuesday 10:51 PM January 21, 2014, Wilke Lab, ICMB, University of Texas Austin
 
-This directory contains the (Amber cpptraj output) rmsf (root-mean-square-fluctuation per residue) files. Each file's name is detemined by the pdb_id + file_content (here, rmsf) + and the reference frame with respect to which the rmsf was calculated (inpcrd: the initial pdb coordinate file for MD simulation).
+	This directory contains the (Amber CPPTRAJ output) mean and standard_deviation of rmsf (root-mean-square-fluctuation per residue) and rmsd (root-mean-square-distance of all CA atoms from the original pdb structure) files. The convention for file naming is the following:
+	
+		<pdb name> _ <chain id> _ <reference structure to which fitting was made (Cpdb stands for Crystal pdb)> _ <the backbone atom used for fluctuation calculation (CA)> .rmsf
+		<pdb name> _ <chain id> _ <reference structure to which fitting was made (Cpdb stands for Crystal pdb)> _ <the backbone atom used for fluctuation calculation (CA)> .rmsd
+	
+	The subdirectory 'src' contains the input scripts to Amber CPPTRAJ software used to calculate the rmsf values. First the mdcrd files from MD simulations for each pdb structure are corrected and combined into a single '*_image.mdrcd' files. The necessary scripts are in the subdirectory 'image'.
 
-The subdirectory 'src' contains the input scripts to Amber cpptraj software that was used to calculate the rmsf values.
-The rmsf values are calculated based on the positions of only CA atoms of the protein backbone. Otherwise, if all atoms in the amino acid are used, then the name of the corresponding rmsf and rmsd files have '_all' at the end.
-
-My latest file naming convention is given in the example below:
-
-	2FP7_B_rmsf_CA_ref_pdb.txt
-
-		"2FP7_B" is the name of the protein.
-		"rmsf" or "rmsd" indicates the type of the calculation.
-		"CA" implies that the fitting and fluctuation calculations are all based on the positions of only CA atoms in the protein backbone.
-		"ref_pdb" indicates that the original protein crystal structure is used as the reference for fitting of the MD trajectories.
-
-Amir Shahmoradi, Wilke Lab., University of Texas Austin, 9:49 PM Saturday January 18, 2013.
+	Then the rmsf values are calculated using the CPPTRAJ scripts in subdirectory 'rmsf'.
