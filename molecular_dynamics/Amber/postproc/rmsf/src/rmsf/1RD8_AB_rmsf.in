@@ -5,10 +5,10 @@
 # Then uses the topology file to calculate the RMSD and RMSD_per_residue (RMSF) of the given structure.
 # ATTN:  The calculated RMSD and RMSF is based on the fluctuations of ONLY the CA atoms of the protein backbone.
 
-parmstrip :WAT:Na+:Cl-
-reference 1RD8_AB_amber.pdb [inpcrd]
+parmstrip :WAT
+reference 1RD8_I.pdb [inpcrd]
 trajin 1RD8_image.mdcrd 1 last 1
-strip :Na+,Cl-
+#strip :Na+,Cl-
 
 rmsd ref [inpcrd] out 1RD8_AB_Cpdb_CA.rmsd @CA
 rmsd ref [inpcrd] perres perresavg 1RD8_AB_Cpdb_CA.rmsf perresmask @CA perresinvert

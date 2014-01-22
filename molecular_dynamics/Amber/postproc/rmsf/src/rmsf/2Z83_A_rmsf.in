@@ -1,14 +1,14 @@
 # script written by Amir Shahmoradi, Tuesday 10:23 PM January 21, 2014, Wilke Lab, ICMB, University of Texas Austin
-# USAGE --> TYPE IN TACC LONESTAR COMMAND LINE:  cpptraj $WORK/setup/2Z83_A_IS.prmtop 2Z83_A_rmsf.in
+# USAGE --> TYPE IN TACC LONESTAR COMMAND LINE:  cpptraj $WORK/setup/2Z83_IS.prmtop 2Z83_A_rmsf.in
 # Note: the input pdb file must be present in the directory where cpptraj is run (directory containing mdcrd files).
 # This code first strips water molecules and ions (Na+ and Cl-) from the topology file.
 # Then uses the topology file to calculate the RMSD and RMSD_per_residue (RMSF) of the given structure.
 # ATTN:  The calculated RMSD and RMSF is based on the fluctuations of ONLY the CA atoms of the protein backbone.
 
-parmstrip :WAT:Na+:Cl-
-reference 2Z83_A_amber.pdb [inpcrd]
+parmstrip :WAT
+reference 2Z83_I.pdb [inpcrd]
 trajin 2Z83_image.mdcrd 1 last 1
-strip :Na+,Cl-
+#strip :Na+,Cl-
 
 rmsd ref [inpcrd] out 2Z83_A_Cpdb_CA.rmsd @CA
 rmsd ref [inpcrd] perres perresavg 2Z83_A_Cpdb_CA.rmsf perresmask @CA perresinvert
