@@ -1,14 +1,15 @@
 # This file reads all data for the PDB structures into R.
-# Amir Shahmoradi, Friday 8:27 PM, Nov 8, 2013
-# Amir Shahmoradi, Wednesday 11:01 PM, Jan 15, 2014, ICMB, UT Austin
+# Amir Shahmoradi, Wednesday  4:09 PM, Jan 23, 2014, ICMB, UT Austin
 # Amir Shahmoradi, Wednesday  8:47 PM, Jan 20, 2014, ICMB, UT Austin
+# Amir Shahmoradi, Wednesday 11:01 PM, Jan 15, 2014, ICMB, UT Austin
+# Amir Shahmoradi, Friday 8:27 PM, Nov 8, 2013
 
 #INPUT FILES:
 
 setwd('C:/Users/Amir/Documents/GitHub/structural_prediction_of_ER/')
 
 entropy_HP = read.table('entropies/HP.entropy', header=T)
-rmsf_1RD8 = read.table('molecular_dynamics/Amber/postproc/rmsf/1RD8_rmsf_ref_inpcrd.txt',header=T,comment.char="")
+rmsf_1RD8 = read.table('molecular_dynamics/Amber/postproc/rmsf/1RD8_AB_Cpdb_CA.rmsf',header=T,comment.char="")
 map_1RD8 = read.table('molecular_dynamics/map/HP_1RD8.map',header=T)
 rsa_1RD8 = read.table('molecular_dynamics/Amber/postproc/rsa/summaries/1RD8_sum.rsa',header=T)
 dihedral_1RD8 = read.table('molecular_dynamics/Amber/postproc/dihedrals/1RD8_dihedrals.txt',header=T)
@@ -26,8 +27,8 @@ data_1RD8 = data.frame(protein="1RD8", res_num=dihedral_1RD8$res_Num, res_name=d
                        wcn_cr=wcn_1RD8$CRYSTAL_WCN, wcn_avg_md=wcn_1RD8$MEAN_WCN, wcn_var_md=wcn_1RD8$VAR_WCN)
 
 entropy_DPH = read.table('entropies/DPH.entropy', header=T)
-rmsf_2JLY = read.table('molecular_dynamics/Amber/postproc/rmsf/2JLY_rmsf_ref_inpcrd.txt',header=T,comment.char="")
-map_2JLY = read.table('molecular_dynamics/map/DPH_2JLY.map',header=T)
+rmsf_2JLY = read.table('molecular_dynamics/Amber/postproc/rmsf/2JLY_A_Cpdb_CA.rmsf',header=T,comment.char="")
+map_2JLY = read.table('molecular_dynamics/map/DPH_2JLY_A.map',header=T)
 rsa_2JLY = read.table('molecular_dynamics/Amber/postproc/rsa/summaries/2JLY_sum.rsa',header=T)
 dihedral_2JLY = read.table('molecular_dynamics/Amber/postproc/dihedrals/2JLY_dihedrals.txt',header=T)
 cn13_2JLY = read.table('molecular_dynamics/Amber/postproc/cn13/summaries/2JLY_sum.cn13',header=T)
