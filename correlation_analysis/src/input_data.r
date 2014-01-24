@@ -9,40 +9,40 @@
 setwd('C:/Users/Amir/Documents/GitHub/structural_prediction_of_ER/')
 
 entropy_HP = read.table('entropies/HP.entropy', header=T)
-rmsf_1RD8 = read.table('molecular_dynamics/Amber/postproc/rmsf/1RD8_AB_Cpdb_CA.rmsf',header=T,comment.char="")
-map_1RD8 = read.table('molecular_dynamics/map/HP_1RD8.map',header=T)
-rsa_1RD8 = read.table('molecular_dynamics/Amber/postproc/rsa/summaries/1RD8_sum.rsa',header=T)
-dihedral_1RD8 = read.table('molecular_dynamics/Amber/postproc/dihedrals/1RD8_dihedrals.txt',header=T)
-cn13_1RD8 = read.table('molecular_dynamics/Amber/postproc/cn13/summaries/1RD8_sum.cn13',header=T)
-wcn_1RD8 = read.table('molecular_dynamics/Amber/postproc/wcn/summaries/1RD8_sum.wcn',header=T)
-entropy_1RD8 = entropy_HP$entropy[!is.na(map_1RD8$pdb_pos)]
-entropy_1RD8 = as.data.frame(entropy_1RD8)
+map_1RD8_AB = read.table('molecular_dynamics/map/HP_1RD8_AB.map',header=T)
+entropy_1RD8_AB = entropy_HP$entropy[!is.na(map_1RD8_AB$pdb_pos)]; entropy_1RD8_AB = as.data.frame(entropy_1RD8_AB)
+rsa_1RD8_AB = read.table('molecular_dynamics/Amber/postproc/rsa/summaries/1RD8_AB_sum.rsa',header=T)
+rmsf_1RD8_AB = read.table('molecular_dynamics/Amber/postproc/rmsf/1RD8_AB_Cpdb_CA.rmsf',header=T,comment.char="")
+dihedral_1RD8_AB = read.table('molecular_dynamics/Amber/postproc/dihedrals/1RD8_AB.dihedral',header=T)
+cn13_1RD8_AB = read.table('molecular_dynamics/Amber/postproc/cn13/summaries/1RD8_AB_sum.cn13',header=T)
+wcn_1RD8_AB = read.table('molecular_dynamics/Amber/postproc/wcn/summaries/1RD8_AB_sum.wcn',header=T)
+desent_1RD8_AB = read.table('protein_design/entropies/1RD8_AB_0.6.desent',header=T)
 
-data_1RD8 = data.frame(protein="1RD8", res_num=dihedral_1RD8$res_Num, res_name=dihedral_1RD8$res_name,
-                       entropy=entropy_1RD8$entropy_1RD8, 
-                       rsa_cr=rsa_1RD8$CRYSTAL_RSA, rsa_avg_md=rsa_1RD8$MEAN_RSA, rsa_var_md=rsa_1RD8$VAR_RSA, 
-                       rmsf_avg_md=rmsf_1RD8$AvgRMSD, rmsf_std_md=rmsf_1RD8$Stdev, 
-                       phi_var_md=dihedral_1RD8$var_phi, psi_var_md=dihedral_1RD8$var_psi, chi1_var_md=dihedral_1RD8$var_chi1,
-                       cn13_cr=cn13_1RD8$CRYSTAL_CN, cn13_avg_md=cn13_1RD8$MEAN_CN, cn13_var_md=cn13_1RD8$VAR_CN,
-                       wcn_cr=wcn_1RD8$CRYSTAL_WCN, wcn_avg_md=wcn_1RD8$MEAN_WCN, wcn_var_md=wcn_1RD8$VAR_WCN)
+data_1RD8_AB = data.frame(protein="1RD8_AB", res_num=dihedral_1RD8_AB$res_Num, res_name=dihedral_1RD8_AB$res_name,
+                       entropy=entropy_1RD8_AB$entropy_1RD8_AB, desent=desent_1RD8_AB$entropy,
+                       rsa_cr=rsa_1RD8_AB$CRYSTAL_RSA, rsa_avg_md=rsa_1RD8_AB$MEAN_RSA, rsa_var_md=rsa_1RD8_AB$VAR_RSA, 
+                       rmsf_avg_md=rmsf_1RD8_AB$AvgRMSD, rmsf_std_md=rmsf_1RD8_AB$Stdev, 
+                       phi_var_md=dihedral_1RD8_AB$var_phi, psi_var_md=dihedral_1RD8_AB$var_psi, chi1_var_md=dihedral_1RD8_AB$var_chi1,
+                       cn13_cr=cn13_1RD8_AB$CRYSTAL_CN, cn13_avg_md=cn13_1RD8_AB$MEAN_CN, cn13_var_md=cn13_1RD8_AB$VAR_CN,
+                       wcn_cr=wcn_1RD8_AB$CRYSTAL_WCN, wcn_avg_md=wcn_1RD8_AB$MEAN_WCN, wcn_var_md=wcn_1RD8_AB$VAR_WCN)
 
 entropy_DPH = read.table('entropies/DPH.entropy', header=T)
-rmsf_2JLY = read.table('molecular_dynamics/Amber/postproc/rmsf/2JLY_A_Cpdb_CA.rmsf',header=T,comment.char="")
-map_2JLY = read.table('molecular_dynamics/map/DPH_2JLY_A.map',header=T)
-rsa_2JLY = read.table('molecular_dynamics/Amber/postproc/rsa/summaries/2JLY_sum.rsa',header=T)
-dihedral_2JLY = read.table('molecular_dynamics/Amber/postproc/dihedrals/2JLY_dihedrals.txt',header=T)
-cn13_2JLY = read.table('molecular_dynamics/Amber/postproc/cn13/summaries/2JLY_sum.cn13',header=T)
-wcn_2JLY = read.table('molecular_dynamics/Amber/postproc/wcn/summaries/2JLY_sum.wcn',header=T)
-entropy_2JLY = entropy_DPH$entropy[!is.na(map_2JLY$pdb_pos)]
-entropy_2JLY = as.data.frame(entropy_2JLY)
+map_2JLY_A = read.table('molecular_dynamics/map/DPH_2JLY_A.map',header=T)
+entropy_2JLY_A = entropy_DPH$entropy[!is.na(map_2JLY_A$pdb_pos)]; entropy_2JLY_A = as.data.frame(entropy_2JLY_A)
+rsa_2JLY_A = read.table('molecular_dynamics/Amber/postproc/rsa/summaries/2JLY_A_sum.rsa',header=T)
+rmsf_2JLY_A = read.table('molecular_dynamics/Amber/postproc/rmsf/2JLY_A_Cpdb_CA.rmsf',header=T,comment.char="")
+dihedral_2JLY_A = read.table('molecular_dynamics/Amber/postproc/dihedrals/2JLY_A.dihedral',header=T)
+cn13_2JLY_A = read.table('molecular_dynamics/Amber/postproc/cn13/summaries/2JLY_A_sum.cn13',header=T)
+wcn_2JLY_A = read.table('molecular_dynamics/Amber/postproc/wcn/summaries/2JLY_A_sum.wcn',header=T)
+desent_2JLY_A = read.table('protein_design/entropies/2JLY_A_0.6.desent',header=T)
 
-data_2JLY = data.frame(protein="2JLY", res_num=dihedral_2JLY$res_Num, res_name=dihedral_2JLY$res_name,
-                       entropy=entropy_2JLY$entropy_2JLY, 
-                       rsa_cr=rsa_2JLY$CRYSTAL_RSA, rsa_avg_md=rsa_2JLY$MEAN_RSA, rsa_var_md=rsa_2JLY$VAR_RSA, 
-                       rmsf_avg_md=rmsf_2JLY$AvgRMSD, rmsf_std_md=rmsf_2JLY$Stdev, 
-                       phi_var_md=dihedral_2JLY$var_phi, psi_var_md=dihedral_2JLY$var_psi, chi1_var_md=dihedral_2JLY$var_chi1,
-                       cn13_cr=cn13_2JLY$CRYSTAL_CN, cn13_avg_md=cn13_2JLY$MEAN_CN, cn13_var_md=cn13_2JLY$VAR_CN,
-                       wcn_cr=wcn_2JLY$CRYSTAL_WCN, wcn_avg_md=wcn_2JLY$MEAN_WCN, wcn_var_md=wcn_2JLY$VAR_WCN)
+data_2JLY_A = data.frame(protein="2JLY_A", res_num=dihedral_2JLY_A$res_Num, res_name=dihedral_2JLY_A$res_name,
+                       entropy=entropy_2JLY_A$entropy_2JLY_A, desent=desent_2JLY_A$entropy,
+                       rsa_cr=rsa_2JLY_A$CRYSTAL_RSA, rsa_avg_md=rsa_2JLY_A$MEAN_RSA, rsa_var_md=rsa_2JLY_A$VAR_RSA, 
+                       rmsf_avg_md=rmsf_2JLY_A$AvgRMSD, rmsf_std_md=rmsf_2JLY_A$Stdev, 
+                       phi_var_md=dihedral_2JLY_A$var_phi, psi_var_md=dihedral_2JLY_A$var_psi, chi1_var_md=dihedral_2JLY_A$var_chi1,
+                       cn13_cr=cn13_2JLY_A$CRYSTAL_CN, cn13_avg_md=cn13_2JLY_A$MEAN_CN, cn13_var_md=cn13_2JLY_A$VAR_CN,
+                       wcn_cr=wcn_2JLY_A$CRYSTAL_WCN, wcn_avg_md=wcn_2JLY_A$MEAN_WCN, wcn_var_md=wcn_2JLY_A$VAR_WCN)
 					   
 entropy_JEHN = read.table('entropies/JEHN.entropy', header=T)
 rmsf_2Z83 = read.table('molecular_dynamics/Amber/postproc/rmsf/2Z83_rmsf_ref_inpcrd.txt',header=T,comment.char="")
@@ -258,61 +258,61 @@ data_1MP9_A = data.frame(protein="1MP9_A", res_num=dihedral_1MP9_A$res_Num, res_
 
 # DIFFERENT TEMPERATURE
 
-rmsf_2JLY_temp_50 = read.table('molecular_dynamics/Amber/postproc/rmsf/2JLY_temp_50_rmsf_ref_inpcrd.txt',header=T,comment.char="")
-rsa_2JLY_temp_50 = read.table('molecular_dynamics/Amber/postproc/rsa/summaries/2JLY_temp_50_sum.rsa',header=T)
-dihedral_2JLY_temp_50 = read.table('molecular_dynamics/Amber/postproc/dihedrals/2JLY_temp_50_dihedrals.txt',header=T)
-cn13_2JLY_temp_50 = read.table('molecular_dynamics/Amber/postproc/cn13/summaries/2JLY_temp_50_sum.cn13',header=T)
-wcn_2JLY_temp_50 = read.table('molecular_dynamics/Amber/postproc/wcn/summaries/2JLY_temp_50_sum.wcn',header=T)
+rmsf_2JLY_A_temp_50 = read.table('molecular_dynamics/Amber/postproc/rmsf/2JLY_A_temp_50_rmsf_ref_inpcrd.txt',header=T,comment.char="")
+rsa_2JLY_A_temp_50 = read.table('molecular_dynamics/Amber/postproc/rsa/summaries/2JLY_A_temp_50_sum.rsa',header=T)
+dihedral_2JLY_A_temp_50 = read.table('molecular_dynamics/Amber/postproc/dihedrals/2JLY_A_temp_50_dihedrals.txt',header=T)
+cn13_2JLY_A_temp_50 = read.table('molecular_dynamics/Amber/postproc/cn13/summaries/2JLY_A_temp_50_sum.cn13',header=T)
+wcn_2JLY_A_temp_50 = read.table('molecular_dynamics/Amber/postproc/wcn/summaries/2JLY_A_temp_50_sum.wcn',header=T)
 
-data_2JLY_temp_50 = data.frame(protein="2JLY_temp_50", res_num=dihedral_2JLY$res_Num, res_name=dihedral_2JLY$res_name,
-                       entropy=entropy_2JLY$entropy_2JLY, 
-                       rsa_cr=rsa_2JLY_temp_50$CRYSTAL_RSA, rsa_avg_md=rsa_2JLY_temp_50$MEAN_RSA, rsa_var_md=rsa_2JLY_temp_50$VAR_RSA, 
-                       rmsf_avg_md=rmsf_2JLY_temp_50$AvgRMSD, rmsf_std_md=rmsf_2JLY_temp_50$Stdev, 
-                       phi_var_md=dihedral_2JLY_temp_50$var_phi, psi_var_md=dihedral_2JLY_temp_50$var_psi, chi1_var_md=dihedral_2JLY_temp_50$var_chi1,
-                       cn13_cr=cn13_2JLY_temp_50$CRYSTAL_CN, cn13_avg_md=cn13_2JLY_temp_50$MEAN_CN, cn13_var_md=cn13_2JLY_temp_50$VAR_CN,
-                       wcn_cr=wcn_2JLY_temp_50$CRYSTAL_WCN, wcn_avg_md=wcn_2JLY_temp_50$MEAN_WCN, wcn_var_md=wcn_2JLY_temp_50$VAR_WCN)
+data_2JLY_A_temp_50 = data.frame(protein="2JLY_A_temp_50", res_num=dihedral_2JLY_A$res_Num, res_name=dihedral_2JLY_A$res_name,
+                       entropy=entropy_2JLY_A$entropy_2JLY_A, 
+                       rsa_cr=rsa_2JLY_A_temp_50$CRYSTAL_RSA, rsa_avg_md=rsa_2JLY_A_temp_50$MEAN_RSA, rsa_var_md=rsa_2JLY_A_temp_50$VAR_RSA, 
+                       rmsf_avg_md=rmsf_2JLY_A_temp_50$AvgRMSD, rmsf_std_md=rmsf_2JLY_A_temp_50$Stdev, 
+                       phi_var_md=dihedral_2JLY_A_temp_50$var_phi, psi_var_md=dihedral_2JLY_A_temp_50$var_psi, chi1_var_md=dihedral_2JLY_A_temp_50$var_chi1,
+                       cn13_cr=cn13_2JLY_A_temp_50$CRYSTAL_CN, cn13_avg_md=cn13_2JLY_A_temp_50$MEAN_CN, cn13_var_md=cn13_2JLY_A_temp_50$VAR_CN,
+                       wcn_cr=wcn_2JLY_A_temp_50$CRYSTAL_WCN, wcn_avg_md=wcn_2JLY_A_temp_50$MEAN_WCN, wcn_var_md=wcn_2JLY_A_temp_50$VAR_WCN)
 
-rmsf_2JLY_temp_100 = read.table('molecular_dynamics/Amber/postproc/rmsf/2JLY_temp_100_rmsf_ref_inpcrd.txt',header=T,comment.char="")
-rsa_2JLY_temp_100 = read.table('molecular_dynamics/Amber/postproc/rsa/summaries/2JLY_temp_100_sum.rsa',header=T)
-dihedral_2JLY_temp_100 = read.table('molecular_dynamics/Amber/postproc/dihedrals/2JLY_temp_100_dihedrals.txt',header=T)
-cn13_2JLY_temp_100 = read.table('molecular_dynamics/Amber/postproc/cn13/summaries/2JLY_temp_100_sum.cn13',header=T)
-wcn_2JLY_temp_100 = read.table('molecular_dynamics/Amber/postproc/wcn/summaries/2JLY_temp_100_sum.wcn',header=T)
+rmsf_2JLY_A_temp_100 = read.table('molecular_dynamics/Amber/postproc/rmsf/2JLY_A_temp_100_rmsf_ref_inpcrd.txt',header=T,comment.char="")
+rsa_2JLY_A_temp_100 = read.table('molecular_dynamics/Amber/postproc/rsa/summaries/2JLY_A_temp_100_sum.rsa',header=T)
+dihedral_2JLY_A_temp_100 = read.table('molecular_dynamics/Amber/postproc/dihedrals/2JLY_A_temp_100_dihedrals.txt',header=T)
+cn13_2JLY_A_temp_100 = read.table('molecular_dynamics/Amber/postproc/cn13/summaries/2JLY_A_temp_100_sum.cn13',header=T)
+wcn_2JLY_A_temp_100 = read.table('molecular_dynamics/Amber/postproc/wcn/summaries/2JLY_A_temp_100_sum.wcn',header=T)
 
-data_2JLY_temp_100 = data.frame(protein="2JLY_temp_100", res_num=dihedral_2JLY$res_Num, res_name=dihedral_2JLY$res_name,
-                       entropy=entropy_2JLY$entropy_2JLY, 
-                       rsa_cr=rsa_2JLY_temp_100$CRYSTAL_RSA, rsa_avg_md=rsa_2JLY_temp_100$MEAN_RSA, rsa_var_md=rsa_2JLY_temp_100$VAR_RSA, 
-                       rmsf_avg_md=rmsf_2JLY_temp_100$AvgRMSD, rmsf_std_md=rmsf_2JLY_temp_100$Stdev, 
-                       phi_var_md=dihedral_2JLY_temp_100$var_phi, psi_var_md=dihedral_2JLY_temp_100$var_psi, chi1_var_md=dihedral_2JLY_temp_100$var_chi1,
-                       cn13_cr=cn13_2JLY_temp_100$CRYSTAL_CN, cn13_avg_md=cn13_2JLY_temp_100$MEAN_CN, cn13_var_md=cn13_2JLY_temp_100$VAR_CN,
-                       wcn_cr=wcn_2JLY_temp_100$CRYSTAL_WCN, wcn_avg_md=wcn_2JLY_temp_100$MEAN_WCN, wcn_var_md=wcn_2JLY_temp_100$VAR_WCN)
+data_2JLY_A_temp_100 = data.frame(protein="2JLY_A_temp_100", res_num=dihedral_2JLY_A$res_Num, res_name=dihedral_2JLY_A$res_name,
+                       entropy=entropy_2JLY_A$entropy_2JLY_A, 
+                       rsa_cr=rsa_2JLY_A_temp_100$CRYSTAL_RSA, rsa_avg_md=rsa_2JLY_A_temp_100$MEAN_RSA, rsa_var_md=rsa_2JLY_A_temp_100$VAR_RSA, 
+                       rmsf_avg_md=rmsf_2JLY_A_temp_100$AvgRMSD, rmsf_std_md=rmsf_2JLY_A_temp_100$Stdev, 
+                       phi_var_md=dihedral_2JLY_A_temp_100$var_phi, psi_var_md=dihedral_2JLY_A_temp_100$var_psi, chi1_var_md=dihedral_2JLY_A_temp_100$var_chi1,
+                       cn13_cr=cn13_2JLY_A_temp_100$CRYSTAL_CN, cn13_avg_md=cn13_2JLY_A_temp_100$MEAN_CN, cn13_var_md=cn13_2JLY_A_temp_100$VAR_CN,
+                       wcn_cr=wcn_2JLY_A_temp_100$CRYSTAL_WCN, wcn_avg_md=wcn_2JLY_A_temp_100$MEAN_WCN, wcn_var_md=wcn_2JLY_A_temp_100$VAR_WCN)
 
-rmsf_2JLY_temp_200 = read.table('molecular_dynamics/Amber/postproc/rmsf/2JLY_temp_200_rmsf_ref_inpcrd.txt',header=T,comment.char="")
-rsa_2JLY_temp_200 = read.table('molecular_dynamics/Amber/postproc/rsa/summaries/2JLY_temp_200_sum.rsa',header=T)
-dihedral_2JLY_temp_200 = read.table('molecular_dynamics/Amber/postproc/dihedrals/2JLY_temp_200_dihedrals.txt',header=T)
-cn13_2JLY_temp_200 = read.table('molecular_dynamics/Amber/postproc/cn13/summaries/2JLY_temp_200_sum.cn13',header=T)
-wcn_2JLY_temp_200 = read.table('molecular_dynamics/Amber/postproc/wcn/summaries/2JLY_temp_200_sum.wcn',header=T)
+rmsf_2JLY_A_temp_200 = read.table('molecular_dynamics/Amber/postproc/rmsf/2JLY_A_temp_200_rmsf_ref_inpcrd.txt',header=T,comment.char="")
+rsa_2JLY_A_temp_200 = read.table('molecular_dynamics/Amber/postproc/rsa/summaries/2JLY_A_temp_200_sum.rsa',header=T)
+dihedral_2JLY_A_temp_200 = read.table('molecular_dynamics/Amber/postproc/dihedrals/2JLY_A_temp_200_dihedrals.txt',header=T)
+cn13_2JLY_A_temp_200 = read.table('molecular_dynamics/Amber/postproc/cn13/summaries/2JLY_A_temp_200_sum.cn13',header=T)
+wcn_2JLY_A_temp_200 = read.table('molecular_dynamics/Amber/postproc/wcn/summaries/2JLY_A_temp_200_sum.wcn',header=T)
 
-data_2JLY_temp_200 = data.frame(protein="2JLY_temp_200", res_num=dihedral_2JLY$res_Num, res_name=dihedral_2JLY$res_name,
-                       entropy=entropy_2JLY$entropy_2JLY, 
-                       rsa_cr=rsa_2JLY_temp_200$CRYSTAL_RSA, rsa_avg_md=rsa_2JLY_temp_200$MEAN_RSA, rsa_var_md=rsa_2JLY_temp_200$VAR_RSA, 
-                       rmsf_avg_md=rmsf_2JLY_temp_200$AvgRMSD, rmsf_std_md=rmsf_2JLY_temp_200$Stdev, 
-                       phi_var_md=dihedral_2JLY_temp_200$var_phi, psi_var_md=dihedral_2JLY_temp_200$var_psi, chi1_var_md=dihedral_2JLY_temp_200$var_chi1,
-                       cn13_cr=cn13_2JLY_temp_200$CRYSTAL_CN, cn13_avg_md=cn13_2JLY_temp_200$MEAN_CN, cn13_var_md=cn13_2JLY_temp_200$VAR_CN,
-                       wcn_cr=wcn_2JLY_temp_200$CRYSTAL_WCN, wcn_avg_md=wcn_2JLY_temp_200$MEAN_WCN, wcn_var_md=wcn_2JLY_temp_200$VAR_WCN)
+data_2JLY_A_temp_200 = data.frame(protein="2JLY_A_temp_200", res_num=dihedral_2JLY_A$res_Num, res_name=dihedral_2JLY_A$res_name,
+                       entropy=entropy_2JLY_A$entropy_2JLY_A, 
+                       rsa_cr=rsa_2JLY_A_temp_200$CRYSTAL_RSA, rsa_avg_md=rsa_2JLY_A_temp_200$MEAN_RSA, rsa_var_md=rsa_2JLY_A_temp_200$VAR_RSA, 
+                       rmsf_avg_md=rmsf_2JLY_A_temp_200$AvgRMSD, rmsf_std_md=rmsf_2JLY_A_temp_200$Stdev, 
+                       phi_var_md=dihedral_2JLY_A_temp_200$var_phi, psi_var_md=dihedral_2JLY_A_temp_200$var_psi, chi1_var_md=dihedral_2JLY_A_temp_200$var_chi1,
+                       cn13_cr=cn13_2JLY_A_temp_200$CRYSTAL_CN, cn13_avg_md=cn13_2JLY_A_temp_200$MEAN_CN, cn13_var_md=cn13_2JLY_A_temp_200$VAR_CN,
+                       wcn_cr=wcn_2JLY_A_temp_200$CRYSTAL_WCN, wcn_avg_md=wcn_2JLY_A_temp_200$MEAN_WCN, wcn_var_md=wcn_2JLY_A_temp_200$VAR_WCN)
 
-rmsf_2JLY_temp_450 = read.table('molecular_dynamics/Amber/postproc/rmsf/2JLY_temp_450_rmsf_ref_inpcrd.txt',header=T,comment.char="")
-rsa_2JLY_temp_450 = read.table('molecular_dynamics/Amber/postproc/rsa/summaries/2JLY_temp_450_sum.rsa',header=T)
-dihedral_2JLY_temp_450 = read.table('molecular_dynamics/Amber/postproc/dihedrals/2JLY_temp_450_dihedrals.txt',header=T)
-cn13_2JLY_temp_450 = read.table('molecular_dynamics/Amber/postproc/cn13/summaries/2JLY_temp_450_sum.cn13',header=T)
-wcn_2JLY_temp_450 = read.table('molecular_dynamics/Amber/postproc/wcn/summaries/2JLY_temp_450_sum.wcn',header=T)
+rmsf_2JLY_A_temp_450 = read.table('molecular_dynamics/Amber/postproc/rmsf/2JLY_A_temp_450_rmsf_ref_inpcrd.txt',header=T,comment.char="")
+rsa_2JLY_A_temp_450 = read.table('molecular_dynamics/Amber/postproc/rsa/summaries/2JLY_A_temp_450_sum.rsa',header=T)
+dihedral_2JLY_A_temp_450 = read.table('molecular_dynamics/Amber/postproc/dihedrals/2JLY_A_temp_450_dihedrals.txt',header=T)
+cn13_2JLY_A_temp_450 = read.table('molecular_dynamics/Amber/postproc/cn13/summaries/2JLY_A_temp_450_sum.cn13',header=T)
+wcn_2JLY_A_temp_450 = read.table('molecular_dynamics/Amber/postproc/wcn/summaries/2JLY_A_temp_450_sum.wcn',header=T)
 
-data_2JLY_temp_450 = data.frame(protein="2JLY_temp_450", res_num=dihedral_2JLY$res_Num, res_name=dihedral_2JLY$res_name,
-                       entropy=entropy_2JLY$entropy_2JLY, 
-                       rsa_cr=rsa_2JLY_temp_450$CRYSTAL_RSA, rsa_avg_md=rsa_2JLY_temp_450$MEAN_RSA, rsa_var_md=rsa_2JLY_temp_450$VAR_RSA, 
-                       rmsf_avg_md=rmsf_2JLY_temp_450$AvgRMSD, rmsf_std_md=rmsf_2JLY_temp_450$Stdev, 
-                       phi_var_md=dihedral_2JLY_temp_450$var_phi, psi_var_md=dihedral_2JLY_temp_450$var_psi, chi1_var_md=dihedral_2JLY_temp_450$var_chi1,
-                       cn13_cr=cn13_2JLY_temp_450$CRYSTAL_CN, cn13_avg_md=cn13_2JLY_temp_450$MEAN_CN, cn13_var_md=cn13_2JLY_temp_450$VAR_CN,
-                       wcn_cr=wcn_2JLY_temp_450$CRYSTAL_WCN, wcn_avg_md=wcn_2JLY_temp_450$MEAN_WCN, wcn_var_md=wcn_2JLY_temp_450$VAR_WCN)
+data_2JLY_A_temp_450 = data.frame(protein="2JLY_A_temp_450", res_num=dihedral_2JLY_A$res_Num, res_name=dihedral_2JLY_A$res_name,
+                       entropy=entropy_2JLY_A$entropy_2JLY_A, 
+                       rsa_cr=rsa_2JLY_A_temp_450$CRYSTAL_RSA, rsa_avg_md=rsa_2JLY_A_temp_450$MEAN_RSA, rsa_var_md=rsa_2JLY_A_temp_450$VAR_RSA, 
+                       rmsf_avg_md=rmsf_2JLY_A_temp_450$AvgRMSD, rmsf_std_md=rmsf_2JLY_A_temp_450$Stdev, 
+                       phi_var_md=dihedral_2JLY_A_temp_450$var_phi, psi_var_md=dihedral_2JLY_A_temp_450$var_psi, chi1_var_md=dihedral_2JLY_A_temp_450$var_chi1,
+                       cn13_cr=cn13_2JLY_A_temp_450$CRYSTAL_CN, cn13_avg_md=cn13_2JLY_A_temp_450$MEAN_CN, cn13_var_md=cn13_2JLY_A_temp_450$VAR_CN,
+                       wcn_cr=wcn_2JLY_A_temp_450$CRYSTAL_WCN, wcn_avg_md=wcn_2JLY_A_temp_450$MEAN_WCN, wcn_var_md=wcn_2JLY_A_temp_450$VAR_WCN)
 
 rmsf_1AOR_A_temp_373 = read.table('molecular_dynamics/Amber/postproc/rmsf/1AOR_A_temp_373_rmsf_ref_inpcrd.txt',header=T,comment.char="")
 rsa_1AOR_A_temp_373 = read.table('molecular_dynamics/Amber/postproc/rsa/summaries/1AOR_A_temp_373_sum.rsa',header=T)
