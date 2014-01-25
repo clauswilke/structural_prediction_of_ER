@@ -4,8 +4,7 @@
 # source("input_data.r")
 
 # install.packages("Hmisc", dependencies=TRUE) If Hmisc is not already installed, uncomment this command and let the code install it.
-
-library(Hmisc)	# adds minor ticks to plots
+# library(Hmisc)	# adds minor ticks to plots
 
 setwd('C:/Users/Amir/Documents/GitHub/structural_prediction_of_ER/')
 
