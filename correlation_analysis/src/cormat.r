@@ -1,8 +1,8 @@
 # This function calculates the correlation matrix of the variables considered for each protein structure in the study.
 # Amir Shahmoradi, Wednesday 1:30 PM, Jan 15, 2015, Wilke Lab, ICMB, UT Austin
 
-data = rbind(data_1RD8, data_2JLY, data_2Z83, data_3GOL, data_3GSZ, data_3I5K, data_4AQF_B, data_4GHA_A, data_4IRY,
-             data_2JLY_temp_50, data_2JLY_temp_100, data_2JLY_temp_200, data_2JLY_temp_450)
+data = rbind(data_1RD8_AB, data_2JLY_A, data_2Z83_A, data_3GOL_A, data_3GSZ_A, data_3I5K_A, data_4AQF_B, data_4GHA_A, data_4IRY_A) #,
+             #data_2JLY_A_temp_50, data_2JLY_temp_100, data_2JLY_temp_200, data_2JLY_temp_450)
 data$protein = factor(data$protein)
 
 result_rsa = data.frame()

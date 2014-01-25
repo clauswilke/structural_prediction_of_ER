@@ -25,7 +25,7 @@ data_1RD8_AB = data.frame(protein="1RD8_AB", res_num=dihedral_1RD8_AB$res_Num, r
                        phi_var_md=dihedral_1RD8_AB$var_phi, psi_var_md=dihedral_1RD8_AB$var_psi, chi1_var_md=dihedral_1RD8_AB$var_chi1,
                        cn13_cr=cn13_1RD8_AB$CRYSTAL_CN, cn13_avg_md=cn13_1RD8_AB$MEAN_CN, cn13_var_md=cn13_1RD8_AB$VAR_CN,
                        wcn_cr=wcn_1RD8_AB$CRYSTAL_WCN, wcn_avg_md=wcn_1RD8_AB$MEAN_WCN, wcn_var_md=wcn_1RD8_AB$VAR_WCN)
-write.csv( data_1RD8_AB, "correlation_analysis/data_1RD8_AB.csv", row.names=F )
+write.csv( data_1RD8_AB, "correlation_analysis/combined_data/data_1RD8_AB.csv", row.names=F )
 
 entropy_DPH = read.table('entropies/DPH.entropy', header=T)
 map_2JLY_A = read.table('molecular_dynamics/map/DPH_2JLY_A.map',header=T)
@@ -44,7 +44,7 @@ data_2JLY_A = data.frame(protein="2JLY_A", res_num=dihedral_2JLY_A$res_Num, res_
                        phi_var_md=dihedral_2JLY_A$var_phi, psi_var_md=dihedral_2JLY_A$var_psi, chi1_var_md=dihedral_2JLY_A$var_chi1,
                        cn13_cr=cn13_2JLY_A$CRYSTAL_CN, cn13_avg_md=cn13_2JLY_A$MEAN_CN, cn13_var_md=cn13_2JLY_A$VAR_CN,
                        wcn_cr=wcn_2JLY_A$CRYSTAL_WCN, wcn_avg_md=wcn_2JLY_A$MEAN_WCN, wcn_var_md=wcn_2JLY_A$VAR_WCN)
-write.csv( data_2JLY_A, "correlation_analysis/data_2JLY_A.csv", row.names=F )
+write.csv( data_2JLY_A, "correlation_analysis/combined_data/data_2JLY_A.csv", row.names=F )
 					   
 entropy_JEHN = read.table('entropies/JEHN.entropy', header=T)
 map_2Z83_A = read.table('molecular_dynamics/map/JEHN_2Z83_A.map',header=T)
@@ -63,7 +63,7 @@ data_2Z83_A = data.frame(protein="2Z83_A", res_num=dihedral_2Z83_A$res_Num, res_
                        phi_var_md=dihedral_2Z83_A$var_phi, psi_var_md=dihedral_2Z83_A$var_psi, chi1_var_md=dihedral_2Z83_A$var_chi1,
                        cn13_cr=cn13_2Z83_A$CRYSTAL_CN, cn13_avg_md=cn13_2Z83_A$MEAN_CN, cn13_var_md=cn13_2Z83_A$VAR_CN,
                        wcn_cr=wcn_2Z83_A$CRYSTAL_WCN, wcn_avg_md=wcn_2Z83_A$MEAN_WCN, wcn_var_md=wcn_2Z83_A$VAR_WCN)
-write.csv( data_2Z83_A, "correlation_analysis/data_2Z83_A.csv", row.names=F )
+write.csv( data_2Z83_A, "correlation_analysis/combined_data/data_2Z83_A.csv", row.names=F )
 
 entropy_HCP = read.table('entropies/HCP.entropy', header=T)
 map_3GOL_A = read.table('molecular_dynamics/map/HCP_3GOL_A.map',header=T)
@@ -82,7 +82,7 @@ data_3GOL_A = data.frame(protein="3GOL_A", res_num=dihedral_3GOL_A$res_Num, res_
                        phi_var_md=dihedral_3GOL_A$var_phi, psi_var_md=dihedral_3GOL_A$var_psi, chi1_var_md=dihedral_3GOL_A$var_chi1,
                        cn13_cr=cn13_3GOL_A$CRYSTAL_CN, cn13_avg_md=cn13_3GOL_A$MEAN_CN, cn13_var_md=cn13_3GOL_A$VAR_CN,
                        wcn_cr=wcn_3GOL_A$CRYSTAL_WCN, wcn_avg_md=wcn_3GOL_A$MEAN_WCN, wcn_var_md=wcn_3GOL_A$VAR_WCN)
-write.csv( data_3GOL_A, "correlation_analysis/data_3GOL_A.csv", row.names=F )
+write.csv( data_3GOL_A, "correlation_analysis/combined_data/data_3GOL_A.csv", row.names=F )
 					   
 entropy_HCP = read.table('entropies/HCP.entropy', header=T)
 map_3GSZ_A = read.table('molecular_dynamics/map/HCP_3GSZ_A.map',header=T)
@@ -101,7 +101,7 @@ data_3GSZ_A = data.frame(protein="3GSZ_A", res_num=dihedral_3GSZ_A$res_Num, res_
                        phi_var_md=dihedral_3GSZ_A$var_phi, psi_var_md=dihedral_3GSZ_A$var_psi, chi1_var_md=dihedral_3GSZ_A$var_chi1,
                        cn13_cr=cn13_3GSZ_A$CRYSTAL_CN, cn13_avg_md=cn13_3GSZ_A$MEAN_CN, cn13_var_md=cn13_3GSZ_A$VAR_CN,
                        wcn_cr=wcn_3GSZ_A$CRYSTAL_WCN, wcn_avg_md=wcn_3GSZ_A$MEAN_WCN, wcn_var_md=wcn_3GSZ_A$VAR_WCN)
-write.csv( data_3GSZ_A, "correlation_analysis/data_3GSZ_A.csv", row.names=F )
+write.csv( data_3GSZ_A, "correlation_analysis/combined_data/data_3GSZ_A.csv", row.names=F )
 
 entropy_HCP = read.table('entropies/HCP.entropy', header=T)
 map_3I5K_A = read.table('molecular_dynamics/map/HCP_3I5K_A.map',header=T)
@@ -120,7 +120,7 @@ data_3I5K_A = data.frame(protein="3I5K_A", res_num=dihedral_3I5K_A$res_Num, res_
                        phi_var_md=dihedral_3I5K_A$var_phi, psi_var_md=dihedral_3I5K_A$var_psi, chi1_var_md=dihedral_3I5K_A$var_chi1,
                        cn13_cr=cn13_3I5K_A$CRYSTAL_CN, cn13_avg_md=cn13_3I5K_A$MEAN_CN, cn13_var_md=cn13_3I5K_A$VAR_CN,
                        wcn_cr=wcn_3I5K_A$CRYSTAL_WCN, wcn_avg_md=wcn_3I5K_A$MEAN_WCN, wcn_var_md=wcn_3I5K_A$VAR_WCN)
-write.csv( data_3I5K_A, "correlation_analysis/data_3I5K_A.csv", row.names=F )
+write.csv( data_3I5K_A, "correlation_analysis/combined_data/data_3I5K_A.csv", row.names=F )
 
 entropy_RVFVNP = read.table('entropies/RVFVNP.entropy', header=T)
 map_3LYF_A = read.table('molecular_dynamics/map/RVFVNP_3LYF_A.map',header=T)
@@ -139,7 +139,7 @@ data_3LYF_A = data.frame(protein="3LYF_A", res_num=dihedral_3LYF_A$res_Num, res_
                        phi_var_md=dihedral_3LYF_A$var_phi, psi_var_md=dihedral_3LYF_A$var_psi, chi1_var_md=dihedral_3LYF_A$var_chi1,
                        cn13_cr=cn13_3LYF_A$CRYSTAL_CN, cn13_avg_md=cn13_3LYF_A$MEAN_CN, cn13_var_md=cn13_3LYF_A$VAR_CN,
                        wcn_cr=wcn_3LYF_A$CRYSTAL_WCN, wcn_avg_md=wcn_3LYF_A$MEAN_WCN, wcn_var_md=wcn_3LYF_A$VAR_WCN)
-write.csv( data_3LYF_A, "correlation_analysis/data_3LYF_A.csv", row.names=F )
+write.csv( data_3LYF_A, "correlation_analysis/combined_data/data_3LYF_A.csv", row.names=F )
 					   
 entropy_CCHFN = read.table('entropies/CCHFN.entropy', header=T)
 map_4AQF_B = read.table('molecular_dynamics/map/CCHFN_4AQF_B.map',header=T)
@@ -158,7 +158,7 @@ data_4AQF_B = data.frame(protein="4AQF_B", res_num=dihedral_4AQF_B$res_Num, res_
                        phi_var_md=dihedral_4AQF_B$var_phi, psi_var_md=dihedral_4AQF_B$var_psi, chi1_var_md=dihedral_4AQF_B$var_chi1,
                        cn13_cr=cn13_4AQF_B$CRYSTAL_CN, cn13_avg_md=cn13_4AQF_B$MEAN_CN, cn13_var_md=cn13_4AQF_B$VAR_CN,
                        wcn_cr=wcn_4AQF_B$CRYSTAL_WCN, wcn_avg_md=wcn_4AQF_B$MEAN_WCN, wcn_var_md=wcn_4AQF_B$VAR_WCN)
-write.csv( data_4AQF_B, "correlation_analysis/data_4AQF_B.csv", row.names=F )
+write.csv( data_4AQF_B, "correlation_analysis/combined_data/data_4AQF_B.csv", row.names=F )
 					   
 entropy_MRNABD = read.table('entropies/MRNABD.entropy', header=T)
 map_4GHA_A = read.table('molecular_dynamics/map/MRNABD_4GHA_A.map',header=T)
@@ -177,7 +177,7 @@ data_4GHA_A = data.frame(protein="4GHA_A", res_num=dihedral_4GHA_A$res_Num, res_
                        phi_var_md=dihedral_4GHA_A$var_phi, psi_var_md=dihedral_4GHA_A$var_psi, chi1_var_md=dihedral_4GHA_A$var_chi1,
                        cn13_cr=cn13_4GHA_A$CRYSTAL_CN, cn13_avg_md=cn13_4GHA_A$MEAN_CN, cn13_var_md=cn13_4GHA_A$VAR_CN,
                        wcn_cr=wcn_4GHA_A$CRYSTAL_WCN, wcn_avg_md=wcn_4GHA_A$MEAN_WCN, wcn_var_md=wcn_4GHA_A$VAR_WCN)
-write.csv( data_4GHA_A, "correlation_analysis/data_4GHA_A.csv", row.names=F )
+write.csv( data_4GHA_A, "correlation_analysis/combined_data/data_4GHA_A.csv", row.names=F )
 
 entropy_INP = read.table('entropies/INP.entropy', header=T)
 map_4IRY_A = read.table('molecular_dynamics/map/INP_4IRY_A.map',header=T)
@@ -196,7 +196,7 @@ data_4IRY_A = data.frame(protein="4IRY_A", res_num=dihedral_4IRY_A$res_Num, res_
                        phi_var_md=dihedral_4IRY_A$var_phi, psi_var_md=dihedral_4IRY_A$var_psi, chi1_var_md=dihedral_4IRY_A$var_chi1,
                        cn13_cr=cn13_4IRY_A$CRYSTAL_CN, cn13_avg_md=cn13_4IRY_A$MEAN_CN, cn13_var_md=cn13_4IRY_A$VAR_CN,
                        wcn_cr=wcn_4IRY_A$CRYSTAL_WCN, wcn_avg_md=wcn_4IRY_A$MEAN_WCN, wcn_var_md=wcn_4IRY_A$VAR_WCN)
-write.csv( data_4IRY_A, "correlation_analysis/data_4IRY_A.csv", row.names=F )
+write.csv( data_4IRY_A, "correlation_analysis/combined_data/data_4IRY_A.csv", row.names=F )
 
 entropy_WNPB = read.table('entropies/WNPB.entropy', header=T)
 map_2FP7_B = read.table('molecular_dynamics/map/WNPB_2FP7_B.map',header=T)
@@ -215,7 +215,7 @@ data_2FP7_B = data.frame(protein="2FP7_B", res_num=dihedral_2FP7_B$res_Num, res_
                        phi_var_md=dihedral_2FP7_B$var_phi, psi_var_md=dihedral_2FP7_B$var_psi, chi1_var_md=dihedral_2FP7_B$var_chi1,
                        cn13_cr=cn13_2FP7_B$CRYSTAL_CN, cn13_avg_md=cn13_2FP7_B$MEAN_CN, cn13_var_md=cn13_2FP7_B$VAR_CN,
                        wcn_cr=wcn_2FP7_B$CRYSTAL_WCN, wcn_avg_md=wcn_2FP7_B$MEAN_WCN, wcn_var_md=wcn_2FP7_B$VAR_WCN)
-write.csv( data_2FP7_B, "correlation_analysis/data_2FP7_B.csv", row.names=F )
+write.csv( data_2FP7_B, "correlation_analysis/combined_data/data_2FP7_B.csv", row.names=F )
 
 # THERMOPHILIC STRUCTURES
 
