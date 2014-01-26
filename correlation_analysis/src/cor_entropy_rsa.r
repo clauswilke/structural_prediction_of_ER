@@ -1,5 +1,6 @@
-# This function calculates the correlation between the two variables entropy and RSA for each protein structure in the study and outputs the result into a CSV file.
-# Amir Shahmoradi, Saturday 2:00 AM, Jan 25, 2015, Wilke Lab, ICMB, UT Austin
+# This function calculates the correlation between the two variables entropy and RSA for each protein structure in the study and outputs the result into a CSV file. It also generates the corresponding graphs of entropy vs. RSA correlations.
+
+# Amir Shahmoradi, Saturday 2:00 AM, Jan 25, 2014, Wilke Lab, ICMB, UT Austin
 
 # source("input_data.r")
 

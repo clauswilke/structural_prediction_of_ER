@@ -1,5 +1,6 @@
-# This function calculates the correlation between the two variables entropy and RSA for each protein structure in the study and outputs the result into a CSV file.
-# Amir Shahmoradi, Friday 11:02 PM, Jan 24, 2015, Wilke Lab, ICMB, UT Austin
+# This function calculates the correlation between the two variables entropy and contact number (CN13) for each protein structure in the study and outputs the result into a CSV file. It also generates the corresponding graph of entropy vs. CN13 correlations.
+
+# Amir Shahmoradi, Friday 11:02 PM, Jan 24, 2014, Wilke Lab, ICMB, UT Austin
 
 # source("input_data.r")
 
