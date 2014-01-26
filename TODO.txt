@@ -1,35 +1,38 @@
 Things to do:
 
 - Describe file naming convention in top-level README.txt (Amir)
-
+	Note by Amir: Done, August 2013
+	
 - Deposit master table listing viruses and structures to analyze (Dariya)
+	Note by Amir: Done, August 2013
+	
+- Verify/fix/re-obtain sequence alignments for HIV RT, West Nile protease, Rift Valley fever (Stephanie)
+	Note by Amir: Done by Stephanie, August 2013
 
-- Verify/fix/reobtain sequence alignments for HIV RT,
-  West Nile protease, Rift Valley fever (Stephanie)
-
-- Curate PDB structures and choose reference structures, update Dariya's table
-  accordingly (Austin, in consultation with Dariya and Amir)
+- Choose reference structures, update Dariya's table accordingly (Austin, in consultation with Dariya and Amir)
+	Note by Amir: Done by invisible hand of God in an anonymous collaboration with Austin, Daria and Amir, August 2013
 
 - Calculate omega using REL model, 5 categories (Stephanie)
+	Note by Amir: Apparently it is done by Stephanie (needs confirmation)
 
-- Calculate site entropy and site entropy of filtered alignments (removing
-  pairwise similar sequences) (Amir)
+- Calculate site entropy and site entropy of filtered alignments (removing pairwise similar sequences) (Amir)
+	Note by Amir: Done, August 2013, but as far as I remember, we did not see any significant change (might need Claus's supervision)
 
 
 Structural properties to consider
 
 - From PDB structures
-    * RSA (Dariya, Amir)
-    * RMSF (Dariya)
-    * RSA variability (Dariya)
-    * b factors (Dariya)
+    * RSA (Dariya, Amir)		 			-- ?
+    * RMSF (Dariya) 			 			-- ?
+    * RSA variability (Dariya)	 			-- ?
+    * b factors (Dariya)		 			-- ?
 
 - From MD
-    * RMSF (Amir)
-    * mean RSA (Amir)
-    * potentially other measures of RMSF (Amir)
-    * RSA variability (Amir)
+    * RMSF (Amir)						 	-- Done
+    * mean RSA (Amir)					 	-- Done
+    * other measures of RMSF (Amir)		 	-- Done (Dihedral angles considered)
+    * RSA variability (Amir)			 	-- Done
 
 - From Rosetta design
-    * site variability, entropy (Eleisha)
-    * RSA variability (Eleisha)
+    * site variability, entropy (Eleisha)	-- Done
+    * RSA variability (Eleisha)				-- ?
