@@ -1,4 +1,5 @@
 alignments:
+
 The folder contains alignments of pdb structures with 10%, 5%, and 2% differences in aligned amino acids. The folders are named "ten_unique_seq.fa", "five_unique_seq.fa", and "two_unique_seq.fa" for each protein respectively. The alignments also contain an alignment with all unique sequences, named "all_unique_seq.fa", which has sequences with difference in 1 amino acid. 
 
 pdb_availability.csv:
