@@ -1,0 +1,149 @@
+&pdb_1RD8
+	natoms=7762, ntot=7877, nres=503, nframes=1500,
+	pdb_in='C:\Users\Amir\Documents\GitHub\structural_prediction_of_ER\molecular_dynamics\Amber\postproc\pdb_bres_X\1RD8_X.pdb',
+	mdcrd_filename='1RD8_image.mdcrd',
+	dihedral_out='1RD8_dihedrals.txt',
+	box_size_file='1RD8_box_size.txt',
+/
+&pdb_2JLY
+	natoms=7205, ntot=7205, nres=451, nframes=1500,
+	pdb_in='C:\Users\Amir\Documents\GitHub\structural_prediction_of_ER\molecular_dynamics\Amber\postproc\pdb_bres_X\2JLY_X.pdb',
+	mdcrd_filename='2JLY_image.mdcrd',
+	dihedral_out='2JLY_dihedrals.txt',
+	box_size_file='2JLY_box_size.txt',
+/
+&pdb_2Z83
+	natoms=6705, ntot=6772, nres=426, nframes=1500,
+	pdb_in='C:\Users\Amir\Documents\GitHub\structural_prediction_of_ER\molecular_dynamics\Amber\postproc\pdb_bres_X\2Z83_X.pdb',
+	mdcrd_filename='2Z83_image.mdcrd',
+	dihedral_out='2Z83_dihedrals.txt',
+	box_size_file='2Z83_box_size.txt',
+/
+&pdb_3GOL
+	natoms=8690, ntot=8785, nres=557, nframes=1500,
+	pdb_in='C:\Users\Amir\Documents\GitHub\structural_prediction_of_ER\molecular_dynamics\Amber\postproc\pdb_bres_X\3GOL_X.pdb',
+	mdcrd_filename='3GOL_image.mdcrd',
+	dihedral_out='3GOL_dihedrals.txt',
+	box_size_file='3GOL_box_size.txt',
+/
+&pdb_3GSZ
+	natoms=8754, ntot=8847, nres=558, nframes=1500,
+	pdb_in='C:\Users\Amir\Documents\GitHub\structural_prediction_of_ER\molecular_dynamics\Amber\postproc\pdb_bres_X\3GSZ_X.pdb',
+	mdcrd_filename='3GSZ_image.mdcrd',
+	dihedral_out='3GSZ_dihedrals.txt',
+	box_size_file='3GSZ_box_size.txt',
+/
+&pdb_3I5K
+	natoms=8863, ntot=8955, nres=566, nframes=1500,
+	pdb_in='C:\Users\Amir\Documents\GitHub\structural_prediction_of_ER\molecular_dynamics\Amber\postproc\pdb_bres_X\3I5K_X.pdb',
+	mdcrd_filename='3I5K_image.mdcrd',
+	dihedral_out='3I5K_dihedrals.txt',
+	box_size_file='3I5K_box_size.txt',
+/
+&pdb_3LYF
+	natoms=3843, ntot=3897, nres=244, nframes=1500,
+	pdb_in='C:\Users\Amir\Documents\GitHub\structural_prediction_of_ER\molecular_dynamics\Amber\postproc\pdb_bres_X\3LYF_X.pdb',
+	mdcrd_filename='3LYF_image.mdcrd',
+	dihedral_out='3LYF_dihedrals.txt'
+	box_size_file='3LYF_box_size.txt'
+/
+&pdb_4AQF_B
+	natoms=7444, ntot=7568, nres=474, nframes=1500,
+	pdb_in='C:\Users\Amir\Documents\GitHub\structural_prediction_of_ER\molecular_dynamics\Amber\postproc\pdb_bres_X\4AQF_B_X.pdb',
+	mdcrd_filename='4AQF_B_image.mdcrd',
+	dihedral_out='4AQF_B_dihedrals.txt'
+	box_size_file='4AQF_B_box_size.txt'
+/
+&pdb_4GHA_A
+	natoms=1917, ntot=1955, nres=122, nframes=1500,
+	pdb_in='C:\Users\Amir\Documents\GitHub\structural_prediction_of_ER\molecular_dynamics\Amber\postproc\pdb_bres_X\4GHA_A_X.pdb',
+	mdcrd_filename='4GHA_A_image.mdcrd',
+	dihedral_out='4GHA_A_dihedrals.txt',
+	box_size_file='4GHA_A_box_size.txt',
+/
+&pdb_4IRY
+	natoms=6429, ntot=6513, nres=404, nframes=1500,
+	pdb_in='C:\Users\Amir\Documents\GitHub\structural_prediction_of_ER\molecular_dynamics\Amber\postproc\pdb_bres_X\4IRY_X.pdb',
+	mdcrd_filename='4IRY_image.mdcrd',
+	dihedral_out='4IRY_dihedrals.txt'
+	box_size_file='4IRY_box_size.txt'
+/
+
+&pdb_1AJ8_A
+	natoms=6025, ntot=6025, nres=371, nframes=1500,
+	pdb_in='C:\Users\Amir\Documents\GitHub\structural_prediction_of_ER\molecular_dynamics\Amber\postproc\pdb_bres_X\1AJ8_A_X.pdb',
+	mdcrd_filename='1AJ8_A_image.mdcrd',
+	dihedral_out='1AJ8_A_dihedrals.txt',
+	box_size_file='1AJ8_A_box_size.txt',
+/
+
+&pdb_1AOR_A
+	natoms=9367, ntot=9367, nres=605, nframes=1500,
+	pdb_in='C:\Users\Amir\Documents\GitHub\structural_prediction_of_ER\molecular_dynamics\Amber\postproc\pdb_bres_X\1AOR_A_X.pdb',
+	mdcrd_filename='1AOR_A_image.mdcrd',
+	dihedral_out='1AOR_A_dihedrals.txt',
+	box_size_file='1AOR_A_box_size.txt',
+/
+
+&pdb_1CTS_A
+	natoms=6880, ntot=6880, nres=437, nframes=1500,
+	pdb_in='C:\Users\Amir\Documents\GitHub\structural_prediction_of_ER\molecular_dynamics\Amber\postproc\pdb_bres_X\1CTS_A_X.pdb',
+	mdcrd_filename='1CTS_A_image.mdcrd',
+	dihedral_out='1CTS_A_dihedrals.txt',
+	box_size_file='1CTS_A_box_size.txt',
+/
+
+&pdb_1MP9_A
+	natoms=3140, ntot=3140, nres=193, nframes=1500,
+	pdb_in='C:\Users\Amir\Documents\GitHub\structural_prediction_of_ER\molecular_dynamics\Amber\postproc\pdb_bres_X\1MP9_A_X.pdb',
+	mdcrd_filename='1MP9_A_image.mdcrd',
+	dihedral_out='1MP9_A_dihedrals.txt',
+	box_size_file='1MP9_A_box_size.txt',
+/
+
+&pdb_2JLY_temp_50
+	natoms=7205, ntot=7205, nres=451, nframes=1500,
+	pdb_in='C:\Users\Amir\Documents\GitHub\structural_prediction_of_ER\molecular_dynamics\Amber\postproc\pdb_bres_X\2JLY_X.pdb',
+	mdcrd_filename='2JLY_temp_50_image.mdcrd',
+	dihedral_out='2JLY_temp_50_dihedrals.txt',
+	box_size_file='2JLY_temp_50_box_size.txt',
+/
+
+&pdb_2JLY_temp_100
+	natoms=7205, ntot=7205, nres=451, nframes=1500,
+	pdb_in='C:\Users\Amir\Documents\GitHub\structural_prediction_of_ER\molecular_dynamics\Amber\postproc\pdb_bres_X\2JLY_X.pdb',
+	mdcrd_filename='2JLY_temp_100_image.mdcrd',
+	dihedral_out='2JLY_temp_100_dihedrals.txt',
+	box_size_file='2JLY_temp_100_box_size.txt',
+/
+
+&pdb_2JLY_temp_200
+	natoms=7205, ntot=7205, nres=451, nframes=1500,
+	pdb_in='C:\Users\Amir\Documents\GitHub\structural_prediction_of_ER\molecular_dynamics\Amber\postproc\pdb_bres_X\2JLY_X.pdb',
+	mdcrd_filename='2JLY_temp_200_image.mdcrd',
+	dihedral_out='2JLY_temp_200_dihedrals.txt',
+	box_size_file='2JLY_temp_200_box_size.txt',
+/
+
+&pdb_2JLY_temp_450
+	natoms=7205, ntot=7205, nres=451, nframes=1500,
+	pdb_in='C:\Users\Amir\Documents\GitHub\structural_prediction_of_ER\molecular_dynamics\Amber\postproc\pdb_bres_X\2JLY_X.pdb',
+	mdcrd_filename='2JLY_temp_450_image.mdcrd',
+	dihedral_out='2JLY_temp_450_dihedrals.txt',
+	box_size_file='2JLY_temp_450_box_size.txt',
+/
+
+&pdb_1AOR_A_temp_373
+	natoms=9367, ntot=9367, nres=605, nframes=1500,
+	pdb_in='C:\Users\Amir\Documents\GitHub\structural_prediction_of_ER\molecular_dynamics\Amber\postproc\pdb_bres_X\1AOR_A_X.pdb',
+	mdcrd_filename='1AOR_A_temp_373_image.mdcrd',
+	dihedral_out='1AOR_A_temp_373_dihedrals.txt',
+	box_size_file='1AOR_A_temp_373_box_size.txt',
+/
+&pdb_2FP7_B
+	natoms=2210, ntot=2210, nres=147, nframes=1500,
+	pdb_in='C:\Users\Amir\Documents\GitHub\structural_prediction_of_ER\molecular_dynamics\Amber\postproc\pdb_bres_X\2FP7_B_X.pdb',
+	mdcrd_filename='2FP7_B_image.mdcrd',
+	dihedral_out='2FP7_B.dihedral',
+	box_size_file='2FP7_B_box_size.txt',
+/

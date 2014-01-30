@@ -1,0 +1,80 @@
+heat 1AOR_A
+&cntrl
+	ig = -1,			! The seed for the pseudo-random number generator (default=71277):
+						! -1 --> The random seed will be based on the current date and time, and hence will be different for every run.
+						! It is recommended that, unless you specifically desire reproducibility, that you set ig=-1 for all runs involving ntt=2 or 3.
+	imin = 0,			! Flag to run energy minimization:
+						! 0 --> (default) no minimization performed.
+						! 1 --> Perform energy minimization.
+						! 5 Read in a trajectory for analysis (c.f., Amber12 Manual, Sec. 2.5.1, Page 18).
+	irest = 0,			! Flag to restart a simulation:
+						! 0 --> (default) Do not restart the simulation; instead, run as a new simulation.
+						! 1 --> Restart the simulation, reading coordinates and velocities from a previously saved restart file.
+						! NOTE: The velocity information is necessary when restarting, so ntx (below) must be 4 or higher if irest = 1.
+	ntx = 1,			! Option to read the initial coordinates, velocities and box size from the inpcrd file:
+						! 1 --> (default) Coordinates, but no velocities, will be read (c.f., Amber12 Manual 2.5.2, Page 18).
+						! 2 --> Coordinates, but no velocities, will be read; an unformatted (binary) coordinate file is expected.
+						! 4 --> Coordinates and velocities will be read; an unformatted coordinate file is expected.
+						! 5 --> Coordinates and velocities will be read; a formatted (ASCII) coordinate file is expected. Box information will be read if ntb > 0. The velocity information will only be used if irest = 1 (see below).
+						! 6 --> Coordinates, velocities and box information will be read; an unformatted coordinate file is expected.
+						! NOTE: Either 1 or 2 must be used when one is starting from minimized or model-built coordinates.
+	nstlim = 50000,		! Number of MD-steps to be performed. Default is 1. nstlim*dt gives the MD simulation time in pico-seconds.
+	ntpr = 5000,		! Every ntpr steps, energy information will be printed in human-readable form to files "mdout" and "mdinfo".
+	ntwprt = 9367,		! The number of atoms to include in trajectory files (mdcrd and mdvel). This flag can be used to decrease the size of the these files, by including only the first part of the system:
+						! 0  --> (default) Include all atoms of the system when writing trajectories.
+						! >0 --> Include only atoms 1 to ntwprt when writing trajectories.
+	ntwx = 5000,		! Default = 0. Every ntwx steps, the coordinates will be written to the mdcrd file. If ntwx = 0, no coordinate trajectory file will be written.
+						! NOTE: If you want a snapshot be stored in mdcrd file, every x pico-seconds of MD simulation, then choose ntwx = x/dt.
+	dt = 0.002,			! The time step (psec). Default 0.001. Recommended MAXIMUM is .002 if SHAKE is used, or .001 if it isn’t. For temperatures above 300K, the step size should be reduced. 
+	cut = 10.0,			! The nonbonded cutoff, in Angstroms. For PME, the cutoff is used to limit direct space sum, and >9.0 is usually a good value.
+	ntc = 2,			! Flag for SHAKE to perform bond length constraints. Typically NTF=NTC.
+						! 1 --> (default) SHAKE is not performed.
+						! 2 --> bonds involving hydrogen are constrained. Note: to employ TIP3P set NTF=NTC=2 (c.f., page 26 Amber Manual).
+						! 3 --> all bonds are constrained (not available for parallel or qmmm runs in sander)
+	ntf = 2,			! Force evaluation. If SHAKE is used (see NTC), it is not necessary to calculate forces for the constrained bonds:
+						! 1 --> (default) complete interaction is calculated.
+						! 2 --> bond interactions involving H-atoms omitted (use with NTC=2).
+						! 3 --> all the bond interactions are omitted (use with NTC=3).
+						! Note: If SHAKE is used (see NTC), it is not necessary to calculate forces for the constrained bonds.
+	ntb = 1,			! Flag for periodic boundary conditions:
+						! 0 --> no PBC (default when igb & ntp are both 0),
+						! 1 --> constant volume,
+						! 2 --> constant pressure (default when ntp>0).
+						! Note: There is no longer any need to set this variable, since it can be determined from igb and ntp parameters. The “proper” default for ntb is chosen (ntb=0 when igb > 0, ntb=2 when ntp > 0, and ntb=1 otherwise).
+	ntt = 3,			! Flag for temperature scaling:
+						! 0 --> Microcanonical ensemble: Constant total energy classical dynamics (assuming that ntb<2, as should probably always be the case when ntt=0).
+						! 1 --> Constant temperature, using the weak-coupling algorithm. Read note below.
+						! 2 --> Andersen temperature coupling scheme.
+						! 3 --> Use Langevin dynamics with the collision frequency given by gamma_ln. Note that when g has its default value of zero, this is the same as setting ntt = 0.
+						! NOTE: Using ntt=1 is especially dangerous for generalized Born simulations, where there are no collisions with solvent to aid in thermalization). Other temperature coupling options (especially ntt=3) should be used instead.
+	iwrap = 0			! 0 --> No wrapping will be performed, in which case it is typical to use ptraj as a post-processing program to translate molecules back to the primary box.
+						! 1 --> The coordinates written to the restart and trajectory files will be "wrapped" into a primary box. This often makes the resulting structures look better visually, but has no effect on the energy or forces.
+						! NOTE: For very long runs, setting iwrap = 1 may be required to keep the coordinate output from overflowing the trajectory and restart file formats, especially if trajectories are written in ASCII format.
+						! NOTE: Performing such wrapping, however, can mess up diffusion and other(?) calculations.
+	gamma_ln = 2.0,		! Default=0. The collision frequency in ps^-1, when ntt = 3.
+						! Note that it is not necessary that g approximate the physical collision frequency, which is about 50 ps^-1 for liquid water.
+						! in terms of sampling or stability of integration, to use much smaller values, around 2 to 5 ps^-1.
+	tempi = 0.0,		! Initial temperature:
+						! For the initial dynamics run, (NTX < 3) the velocities are assigned from a Maxwellian distribution at TEMPI K.
+						! 0 --> (Default) If TEMPI = 0.0, the velocities will be calculated from the forces instead. TEMPI has no effect if NTX > 3.
+	temp0 = 300.0,		! Reference temperature at which the system is to be kept, if ntt > 0. Default is 300. 
+						! NOTE that for temperatures above 300K, the STEP SIZE SHOULD BE REDUCED since increased distance traveled between evaluations can lead to SHAKE and other problems.
+	nmropt = 1			! 0 --> (default) No nmr-type analysis will be done.
+						! 1 --> NMR restraints and weight changes will be read.
+						! 2 --> NMR restraints, weight changes, NOESY volumes, chemical shifts and residual dipolar restraints will be read (c.f., Amber12 User Manual, Sec. 2.5.1, Page 18).
+	ntr = 1,					! Flag for restraining specified atoms in Cartesian space using a harmonic potential, if ntr > 0. The restrained atoms are determined by the restraintmask string. The force constant is given by restraint_wt. The coordinates are read in "restrt" format from the "refc" file (see NTRX, above). Default = 0. C.f., Amber12 Manual Sec. 2.5.4.
+	restraintmask = '!@H=',		! String that specifies the restrained atoms when ntr=1. '!@H=' means all heavy atoms (i.e. except hydrogens) (c.f., Amber8 User Manual, Sec. 11.5)
+	restraint_wt = 2.0			! The weight (in kcal/mol.Å^2) for the positional restraints. The restraint is of the form k(Dx)2, where k is the value given by this variable, and Dx is the difference between one of the Cartesian coordinates of a restrained atom and its reference position.
+/
+
+! The following block is read only if nmropt=1 and it describes the parameters for changing temperature, restraint weights, etc., during the MD run. Each parameter is specified by a separate &wt namelist block, ending with "&wt type=’END’, /" (c.f., Sec. 2.7 of Amber12 User Manual).
+&wt
+	TYPE = 'TEMP0',		! Defines quantity being varied; valid options are listed in Amber12 Manual, Sec 2.7, Page 37.
+	istep1 = 0,			! (default=0) The change is applied over steps/iterations ISTEP1 through ISTEP2.
+	istep2 = 50000,		! (default=0) If ISTEP2=0, this change will remain in effect from step ISTEP1 to the end of the run at a value of VALUE1 (VALUE2 is ignored in this case).
+						! I recommend setting istep2=nstlim.
+	value1 = 0.1,		! Value of the change corresponding to ISTEP1.
+	value2 = 300.0,		! Value of the change corresponding to ISTEP2. If ISTEP2=0, the change is fixed at VALUE1 for the remainder of the run, once step ISTEP1 is reached.
+	/
+&wt TYPE = 'END' /
+

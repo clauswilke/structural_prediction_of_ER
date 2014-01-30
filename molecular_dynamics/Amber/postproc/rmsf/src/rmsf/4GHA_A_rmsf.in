@@ -1,0 +1,23 @@
+# script written by Amir Shahmoradi, Tuesday 10:28 PM January 21, 2014, Wilke Lab, ICMB, University of Texas Austin
+# USAGE --> TYPE IN TACC LONESTAR COMMAND LINE:  cpptraj $WORK/setup/4GHA_IS.prmtop 4GHA_A_rmsf.in
+# Note: the input pdb file must be present in the directory where cpptraj is run (directory containing mdcrd files).
+# This code first strips water molecules and ions (Na+ and Cl-) from the topology file.
+# Then uses the topology file to calculate the RMSD and RMSD_per_residue (RMSF) of the given structure.
+# ATTN:  The calculated RMSD and RMSF is based on the fluctuations of ONLY the CA atoms of the protein backbone.
+
+parmstrip :WAT
+reference 4GHA_A_I.pdb [inpcrd]
+trajin 4GHA_A_image.mdcrd 1 last 1
+#strip :Na+,Cl-
+
+rmsd ref [inpcrd] out 4GHA_A_Cpdb_CA.rmsd @CA
+rmsd ref [inpcrd] perres perresavg 4GHA_A_Cpdb_CA.rmsf perresmask @CA perresinvert
+
+#rmsd ref [inpcrd] out 4GHA_A_rmsd_ref_pdb.txt @CA,C,O,N
+#rmsd ref [inpcrd] perres perresavg 4GHA_A_rmsf_ref_pdb.txt perresmask @CA,C,O,N perresinvert
+#rmsd ref [inpcrd] perres perresavg 4GHA_A_rmsfcentered_ref_inpcrd.txt perresmask @CA  perrescenter perresinvert
+# ATTN: centering (the above line) does not matter when only one atoms (CA as in here) is used for rmsf calculation.
+#radgyr @CA out 4GHA_A_radgyr.txt
+#average 4GHA_A_avg_equil.pdb pdb
+#reference 4GHA_A_avg_equil.pdb [avg]
+#rmsd ref [avg] perres perresout 4GHA_A_perres_fluc_ref_avg.txt @CA

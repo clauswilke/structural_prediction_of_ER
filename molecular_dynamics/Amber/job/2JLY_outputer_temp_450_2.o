@@ -1,0 +1,57 @@
+TACC: Setting memory limits for job 1583678 to unlimited KB
+TACC: Dumping job script:
+--------------------------------------------------------------------------------
+#!/bin/bash
+
+#$ -V
+#$ -cwd
+#$ -N MD_2JLY_450_2
+#$ -j y
+#$ -o 2JLY_outputer_temp_450_2.o
+#$ -q gpu
+#$ -pe 2way 12
+#$ -l h_rt=17:00:00
+#$ -A A-bio7
+
+ibrun pmemd.cuda.MPI -O -i $WORK/setup/2JLY_equil_test_temp_450.in -p $WORK/setup/2JLY_IS.prmtop -c $WORK/results/temp_450/rst/2JLY_equil_temp_450_1.rst -o $WORK/results/temp_450/out/2JLY_equil_temp_450_2.out -r $WORK/results/temp_450/rst/2JLY_equil_temp_450_2.rst -x $WORK/results/temp_450/2JLY_equil_temp_450_2.mdcrd -inf $WORK/job/temp_450/mdinfo/2JLY_equil_temp_450_2.mdinfo -l $WORK/job/temp_450/logfile/2JLY_equil_temp_450_2.logfile
+
+END=$(date +%s)
+DIFF=$(( $END - $START ))
+ENDDATE=`date`
+echo "Amir: Simulation ended on" $ENDDATE
+echo "Amir: Test simulation runtime: $DIFF seconds for 1000 MD time steps"
+
+START=$(date +%s)
+STARTDATE=`date`
+echo ""
+echo "Amir: Starting MD simulation on" $STARTDATE
+
+ibrun pmemd.cuda.MPI -O -i $WORK/setup/2JLY_equil_temp_450.in -p $WORK/setup/2JLY_IS.prmtop -c $WORK/results/temp_450/rst/2JLY_equil_temp_450_1.rst -o $WORK/results/temp_450/out/2JLY_equil_temp_450_2.out -r $WORK/results/temp_450/rst/2JLY_equil_temp_450_2.rst -x $WORK/results/temp_450/2JLY_equil_temp_450_2.mdcrd -inf $WORK/job/temp_450/mdinfo/2JLY_equil_temp_450_2.mdinfo -l $WORK/job/temp_450/logfile/2JLY_equil_temp_450_2.logfile
+
+END=$(date +%s)
+DIFF=$(( $END - $START ))
+ENDDATE=`date`
+echo "Amir: Simulation ended on" $ENDDATE
+echo "Amir: Simulation runtime: $DIFF seconds"--------------------------------------------------------------------------------
+TACC: Done.
+TACC: Starting up job 1583678
+TACC: Setting up parallel environment for MVAPICH ssh-based mpirun.
+TACC: Setup complete. Running job script.
+TACC: starting parallel tasks...
+TACC: Shutting down parallel environment.
+TACC: Shutdown complete. Exiting.
+/opt/sge6.2/execd_spool/c300-212/job_scripts/1583678: line 16: 1384542666 -  : syntax error: operand expected (error token is " ")
+Amir: Simulation ended on Fri Nov 15 13:11:06 CST 2013
+Amir: Test simulation runtime:  seconds for 1000 MD time steps
+
+Amir: Starting MD simulation on Fri Nov 15 13:11:06 CST 2013
+TACC: Starting up job 1583678
+TACC: Setting up parallel environment for MVAPICH ssh-based mpirun.
+TACC: Setup complete. Running job script.
+TACC: starting parallel tasks...
+TACC: Shutting down parallel environment.
+TACC: Shutdown complete. Exiting.
+Amir: Simulation ended on Sat Nov 16 03:05:16 CST 2013
+Amir: Simulation runtime: 50050 seconds
+TACC: Cleaning up after job: 1583678
+TACC: Done.
