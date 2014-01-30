@@ -1,9 +1,16 @@
+#find all related PDB structures
+pdb <- read.pdb("~/raw_pdbs/split_chain/4AEX_A.pdb")
+blast <- blast.pdb(seq.pdb(pdb))
+
+#enforce blast hits cutoff 
+blasthits <- blast$hit.tbl[1:277,]
+
+#align all related sequences
 setwd("~/raw_pdbs/split_chain")
 pdb_chains <- paste(substr(blasthits[,2],nchar(blasthits[,2])-5,nchar(blasthits[,2])-2),"_", substr(blasthits[,2], nchar(blasthits[,2]), nchar(blasthits[,2])), sep = "")
 pdbs <- pdbaln(paste(pdb_chains, ".pdb",sep = ""))
 
-## find reference seq or longest sequence
-
+#find the longest sequence to use as reference seq 
 min_num_gaps = length(pdbs$ali[1,])
 for (i in 1:length(pdbs$ali[,1]))
 {       ali_bool <- pdbs$ali[i,] == "-"
