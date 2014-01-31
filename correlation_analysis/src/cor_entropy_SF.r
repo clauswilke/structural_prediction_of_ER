@@ -1,6 +1,6 @@
-# This function calculates the correlation between the two variables entropy and rmsf for each protein structure in the study and outputs the result into a CSV file. It also generates the corresponding graphs of entropy vs. rmsf correlations.
+# This function combines all different measures of structural fluctuations (rmsfHS, rmsfMD, dihedral angles) and calculates the correlation between the variables and entropy each protein structure in the study and outputs the result into a CSV file. It also generates the corresponding graphs of entropy vs. Structural Fluctuation (SF) correlations.
 
-# Amir Shahmoradi, Saturday 1:51 AM, Jan 25, 2014, Wilke Lab, ICMB, UT Austin
+# Amir Shahmoradi, Friday 1:14 PM, Jan 31, 2014, Wilke Lab, ICMB, UT Austin
 
 # source("input_data.r")
 
@@ -22,6 +22,8 @@ for(protein in levels(data$protein))
     
 	#print(head(d))
 	#print(length(na.omit(d$rmsfHS)))
+	
+	
 	
 	x = cor.test( d$rmsf_avg_md, d$entropy, method="spearman", na.action="na.omit" )
     r.rmsf_avg_md = x$estimate
