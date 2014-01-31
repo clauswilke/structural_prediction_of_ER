@@ -17,6 +17,8 @@ dihedral_1RD8_AB = read.table('molecular_dynamics/Amber/postproc/dihedrals/1RD8_
 cn13_1RD8_AB = read.table('molecular_dynamics/Amber/postproc/cn13/summaries/1RD8_AB_sum.cn13',header=T)
 wcn_1RD8_AB = read.table('molecular_dynamics/Amber/postproc/wcn/summaries/1RD8_AB_sum.wcn',header=T)
 desent_1RD8_AB = read.table('protein_design/entropies/1RD8_AB_0.6.desent',header=T)
+bfca_1RD8_AB = read.table('bfactors/1RD8_AB_CA.bfactor',header=T,comment.char="")
+rmsfHS_1RD8_AB = read.table('homologous_structures/rmsf/1RD8_AB_HS.rmsf',header=T,comment.char="")
 
 data_1RD8_AB = data.frame(protein="1RD8_AB", res_num=dihedral_1RD8_AB$res_Num, res_name=dihedral_1RD8_AB$res_name,
                        entropy=entropy_1RD8_AB$entropy_1RD8_AB, desent=desent_1RD8_AB$entropy,
@@ -24,7 +26,8 @@ data_1RD8_AB = data.frame(protein="1RD8_AB", res_num=dihedral_1RD8_AB$res_Num, r
                        rmsf_avg_md=rmsf_1RD8_AB$AvgRMSD, rmsf_std_md=rmsf_1RD8_AB$Stdev, 
                        phi_var_md=dihedral_1RD8_AB$var_phi, psi_var_md=dihedral_1RD8_AB$var_psi, chi1_var_md=dihedral_1RD8_AB$var_chi1,
                        cn13_cr=cn13_1RD8_AB$CRYSTAL_CN, cn13_avg_md=cn13_1RD8_AB$MEAN_CN, cn13_var_md=cn13_1RD8_AB$VAR_CN,
-                       wcn_cr=wcn_1RD8_AB$CRYSTAL_WCN, wcn_avg_md=wcn_1RD8_AB$MEAN_WCN, wcn_var_md=wcn_1RD8_AB$VAR_WCN)
+                       wcn_cr=wcn_1RD8_AB$CRYSTAL_WCN, wcn_avg_md=wcn_1RD8_AB$MEAN_WCN, wcn_var_md=wcn_1RD8_AB$VAR_WCN,
+					   bfca=bfca_1RD8_AB$bfactor, rmsfHS=rmsfHS_1RD8_AB$rmsf)
 write.csv( data_1RD8_AB, "correlation_analysis/combined_data/data_1RD8_AB.csv", row.names=F )
 
 
@@ -37,6 +40,8 @@ dihedral_2FP7_B = read.table('molecular_dynamics/Amber/postproc/dihedrals/2FP7_B
 cn13_2FP7_B = read.table('molecular_dynamics/Amber/postproc/cn13/summaries/2FP7_B_sum.cn13',header=T)
 wcn_2FP7_B = read.table('molecular_dynamics/Amber/postproc/wcn/summaries/2FP7_B_sum.wcn',header=T)
 desent_2FP7_B = read.table('protein_design/entropies/2FP7_B_0.6.desent',header=T)
+bfca_2FP7_B = read.table('bfactors/2FP7_B_CA.bfactor',header=T,comment.char="")
+rmsfHS_2FP7_B = read.table('homologous_structures/rmsf/2FP7_B_HS.rmsf',header=T,comment.char="")
 
 data_2FP7_B = data.frame(protein="2FP7_B", res_num=dihedral_2FP7_B$res_Num, res_name=dihedral_2FP7_B$res_name,
                        entropy=entropy_2FP7_B$entropy_2FP7_B, desent=desent_2FP7_B$entropy,
@@ -44,7 +49,8 @@ data_2FP7_B = data.frame(protein="2FP7_B", res_num=dihedral_2FP7_B$res_Num, res_
                        rmsf_avg_md=rmsf_2FP7_B$AvgRMSD, rmsf_std_md=rmsf_2FP7_B$Stdev, 
                        phi_var_md=dihedral_2FP7_B$var_phi, psi_var_md=dihedral_2FP7_B$var_psi, chi1_var_md=dihedral_2FP7_B$var_chi1,
                        cn13_cr=cn13_2FP7_B$CRYSTAL_CN, cn13_avg_md=cn13_2FP7_B$MEAN_CN, cn13_var_md=cn13_2FP7_B$VAR_CN,
-                       wcn_cr=wcn_2FP7_B$CRYSTAL_WCN, wcn_avg_md=wcn_2FP7_B$MEAN_WCN, wcn_var_md=wcn_2FP7_B$VAR_WCN)
+                       wcn_cr=wcn_2FP7_B$CRYSTAL_WCN, wcn_avg_md=wcn_2FP7_B$MEAN_WCN, wcn_var_md=wcn_2FP7_B$VAR_WCN,
+					   bfca=bfca_2FP7_B$bfactor, rmsfHS=rmsfHS_2FP7_B$rmsf)
 write.csv( data_2FP7_B, "correlation_analysis/combined_data/data_2FP7_B.csv", row.names=F )
 
 
@@ -57,6 +63,7 @@ dihedral_2JLY_A = read.table('molecular_dynamics/Amber/postproc/dihedrals/2JLY_A
 cn13_2JLY_A = read.table('molecular_dynamics/Amber/postproc/cn13/summaries/2JLY_A_sum.cn13',header=T)
 wcn_2JLY_A = read.table('molecular_dynamics/Amber/postproc/wcn/summaries/2JLY_A_sum.wcn',header=T)
 desent_2JLY_A = read.table('protein_design/entropies/2JLY_A_0.6.desent',header=T)
+bfca_2JLY_A = read.table('bfactors/2JLY_A_CA.bfactor',header=T,comment.char="")
 
 data_2JLY_A = data.frame(protein="2JLY_A", res_num=dihedral_2JLY_A$res_Num, res_name=dihedral_2JLY_A$res_name,
                        entropy=entropy_2JLY_A$entropy_2JLY_A, desent=desent_2JLY_A$entropy,
@@ -64,7 +71,8 @@ data_2JLY_A = data.frame(protein="2JLY_A", res_num=dihedral_2JLY_A$res_Num, res_
                        rmsf_avg_md=rmsf_2JLY_A$AvgRMSD, rmsf_std_md=rmsf_2JLY_A$Stdev, 
                        phi_var_md=dihedral_2JLY_A$var_phi, psi_var_md=dihedral_2JLY_A$var_psi, chi1_var_md=dihedral_2JLY_A$var_chi1,
                        cn13_cr=cn13_2JLY_A$CRYSTAL_CN, cn13_avg_md=cn13_2JLY_A$MEAN_CN, cn13_var_md=cn13_2JLY_A$VAR_CN,
-                       wcn_cr=wcn_2JLY_A$CRYSTAL_WCN, wcn_avg_md=wcn_2JLY_A$MEAN_WCN, wcn_var_md=wcn_2JLY_A$VAR_WCN)
+                       wcn_cr=wcn_2JLY_A$CRYSTAL_WCN, wcn_avg_md=wcn_2JLY_A$MEAN_WCN, wcn_var_md=wcn_2JLY_A$VAR_WCN,
+					   bfca=bfca_2JLY_A$bfactor)
 write.csv( data_2JLY_A, "correlation_analysis/combined_data/data_2JLY_A.csv", row.names=F )
 
 					   
@@ -77,6 +85,8 @@ dihedral_2Z83_A = read.table('molecular_dynamics/Amber/postproc/dihedrals/2Z83_A
 cn13_2Z83_A = read.table('molecular_dynamics/Amber/postproc/cn13/summaries/2Z83_A_sum.cn13',header=T)
 wcn_2Z83_A = read.table('molecular_dynamics/Amber/postproc/wcn/summaries/2Z83_A_sum.wcn',header=T)
 desent_2Z83_A = read.table('protein_design/entropies/2Z83_A_0.6.desent',header=T)
+bfca_2Z83_A = read.table('bfactors/2Z83_A_CA.bfactor',header=T,comment.char="")
+rmsfHS_2Z83_A = read.table('homologous_structures/rmsf/2Z83_A_HS.rmsf',header=T,comment.char="")
 
 data_2Z83_A = data.frame(protein="2Z83_A", res_num=dihedral_2Z83_A$res_Num, res_name=dihedral_2Z83_A$res_name,
                        entropy=entropy_2Z83_A$entropy_2Z83_A, desent=desent_2Z83_A$entropy,
@@ -84,7 +94,8 @@ data_2Z83_A = data.frame(protein="2Z83_A", res_num=dihedral_2Z83_A$res_Num, res_
                        rmsf_avg_md=rmsf_2Z83_A$AvgRMSD, rmsf_std_md=rmsf_2Z83_A$Stdev, 
                        phi_var_md=dihedral_2Z83_A$var_phi, psi_var_md=dihedral_2Z83_A$var_psi, chi1_var_md=dihedral_2Z83_A$var_chi1,
                        cn13_cr=cn13_2Z83_A$CRYSTAL_CN, cn13_avg_md=cn13_2Z83_A$MEAN_CN, cn13_var_md=cn13_2Z83_A$VAR_CN,
-                       wcn_cr=wcn_2Z83_A$CRYSTAL_WCN, wcn_avg_md=wcn_2Z83_A$MEAN_WCN, wcn_var_md=wcn_2Z83_A$VAR_WCN)
+                       wcn_cr=wcn_2Z83_A$CRYSTAL_WCN, wcn_avg_md=wcn_2Z83_A$MEAN_WCN, wcn_var_md=wcn_2Z83_A$VAR_WCN,
+					   bfca=bfca_2Z83_A$bfactor, rmsfHS=rmsfHS_2Z83_A$rmsf)
 write.csv( data_2Z83_A, "correlation_analysis/combined_data/data_2Z83_A.csv", row.names=F )
 
 
@@ -97,6 +108,8 @@ dihedral_3GOL_A = read.table('molecular_dynamics/Amber/postproc/dihedrals/3GOL_A
 cn13_3GOL_A = read.table('molecular_dynamics/Amber/postproc/cn13/summaries/3GOL_A_sum.cn13',header=T)
 wcn_3GOL_A = read.table('molecular_dynamics/Amber/postproc/wcn/summaries/3GOL_A_sum.wcn',header=T)
 desent_3GOL_A = read.table('protein_design/entropies/3GOL_A_0.6.desent',header=T)
+bfca_3GOL_A = read.table('bfactors/3GOL_A_CA.bfactor',header=T,comment.char="")
+rmsfHS_3GOL_A = read.table('homologous_structures/rmsf/3GOL_A_HS.rmsf',header=T,comment.char="")
 
 data_3GOL_A = data.frame(protein="3GOL_A", res_num=dihedral_3GOL_A$res_Num, res_name=dihedral_3GOL_A$res_name,
                        entropy=entropy_3GOL_A$entropy_3GOL_A, desent=desent_3GOL_A$entropy,
@@ -104,7 +117,8 @@ data_3GOL_A = data.frame(protein="3GOL_A", res_num=dihedral_3GOL_A$res_Num, res_
                        rmsf_avg_md=rmsf_3GOL_A$AvgRMSD, rmsf_std_md=rmsf_3GOL_A$Stdev, 
                        phi_var_md=dihedral_3GOL_A$var_phi, psi_var_md=dihedral_3GOL_A$var_psi, chi1_var_md=dihedral_3GOL_A$var_chi1,
                        cn13_cr=cn13_3GOL_A$CRYSTAL_CN, cn13_avg_md=cn13_3GOL_A$MEAN_CN, cn13_var_md=cn13_3GOL_A$VAR_CN,
-                       wcn_cr=wcn_3GOL_A$CRYSTAL_WCN, wcn_avg_md=wcn_3GOL_A$MEAN_WCN, wcn_var_md=wcn_3GOL_A$VAR_WCN)
+                       wcn_cr=wcn_3GOL_A$CRYSTAL_WCN, wcn_avg_md=wcn_3GOL_A$MEAN_WCN, wcn_var_md=wcn_3GOL_A$VAR_WCN,
+					   bfca=bfca_3GOL_A$bfactor, rmsfHS=rmsfHS_3GOL_A$rmsf)
 write.csv( data_3GOL_A, "correlation_analysis/combined_data/data_3GOL_A.csv", row.names=F )
 
 
@@ -117,6 +131,7 @@ dihedral_3LYF_A = read.table('molecular_dynamics/Amber/postproc/dihedrals/3LYF_A
 cn13_3LYF_A = read.table('molecular_dynamics/Amber/postproc/cn13/summaries/3LYF_A_sum.cn13',header=T)
 wcn_3LYF_A = read.table('molecular_dynamics/Amber/postproc/wcn/summaries/3LYF_A_sum.wcn',header=T)
 desent_3LYF_A = read.table('protein_design/entropies/3LYF_A_0.6.desent',header=T)
+bfca_3LYF_A = read.table('bfactors/3LYF_A_CA.bfactor',header=T,comment.char="")
 
 data_3LYF_A = data.frame(protein="3LYF_A", res_num=dihedral_3LYF_A$res_Num, res_name=dihedral_3LYF_A$res_name,
                        entropy=entropy_3LYF_A$entropy_3LYF_A, desent=desent_3LYF_A$entropy,
@@ -124,7 +139,8 @@ data_3LYF_A = data.frame(protein="3LYF_A", res_num=dihedral_3LYF_A$res_Num, res_
                        rmsf_avg_md=rmsf_3LYF_A$AvgRMSD, rmsf_std_md=rmsf_3LYF_A$Stdev, 
                        phi_var_md=dihedral_3LYF_A$var_phi, psi_var_md=dihedral_3LYF_A$var_psi, chi1_var_md=dihedral_3LYF_A$var_chi1,
                        cn13_cr=cn13_3LYF_A$CRYSTAL_CN, cn13_avg_md=cn13_3LYF_A$MEAN_CN, cn13_var_md=cn13_3LYF_A$VAR_CN,
-                       wcn_cr=wcn_3LYF_A$CRYSTAL_WCN, wcn_avg_md=wcn_3LYF_A$MEAN_WCN, wcn_var_md=wcn_3LYF_A$VAR_WCN)
+                       wcn_cr=wcn_3LYF_A$CRYSTAL_WCN, wcn_avg_md=wcn_3LYF_A$MEAN_WCN, wcn_var_md=wcn_3LYF_A$VAR_WCN,
+					   bfca=bfca_3LYF_A$bfactor)
 write.csv( data_3LYF_A, "correlation_analysis/combined_data/data_3LYF_A.csv", row.names=F )
 
 					   
@@ -137,6 +153,7 @@ dihedral_4AQF_B = read.table('molecular_dynamics/Amber/postproc/dihedrals/4AQF_B
 cn13_4AQF_B = read.table('molecular_dynamics/Amber/postproc/cn13/summaries/4AQF_B_sum.cn13',header=T)
 wcn_4AQF_B = read.table('molecular_dynamics/Amber/postproc/wcn/summaries/4AQF_B_sum.wcn',header=T)
 desent_4AQF_B = read.table('protein_design/entropies/4AQF_B_0.6.desent',header=T)
+bfca_4AQF_B = read.table('bfactors/4AQF_B_CA.bfactor',header=T,comment.char="")
 
 data_4AQF_B = data.frame(protein="4AQF_B", res_num=dihedral_4AQF_B$res_Num, res_name=dihedral_4AQF_B$res_name,
                        entropy=entropy_4AQF_B$entropy_4AQF_B, desent=desent_4AQF_B$entropy,
@@ -144,7 +161,8 @@ data_4AQF_B = data.frame(protein="4AQF_B", res_num=dihedral_4AQF_B$res_Num, res_
                        rmsf_avg_md=rmsf_4AQF_B$AvgRMSD, rmsf_std_md=rmsf_4AQF_B$Stdev, 
                        phi_var_md=dihedral_4AQF_B$var_phi, psi_var_md=dihedral_4AQF_B$var_psi, chi1_var_md=dihedral_4AQF_B$var_chi1,
                        cn13_cr=cn13_4AQF_B$CRYSTAL_CN, cn13_avg_md=cn13_4AQF_B$MEAN_CN, cn13_var_md=cn13_4AQF_B$VAR_CN,
-                       wcn_cr=wcn_4AQF_B$CRYSTAL_WCN, wcn_avg_md=wcn_4AQF_B$MEAN_WCN, wcn_var_md=wcn_4AQF_B$VAR_WCN)
+                       wcn_cr=wcn_4AQF_B$CRYSTAL_WCN, wcn_avg_md=wcn_4AQF_B$MEAN_WCN, wcn_var_md=wcn_4AQF_B$VAR_WCN,
+					   bfca=bfca_4AQF_B$bfactor)
 write.csv( data_4AQF_B, "correlation_analysis/combined_data/data_4AQF_B.csv", row.names=F )
 
 					   
@@ -157,6 +175,7 @@ dihedral_4GHA_A = read.table('molecular_dynamics/Amber/postproc/dihedrals/4GHA_A
 cn13_4GHA_A = read.table('molecular_dynamics/Amber/postproc/cn13/summaries/4GHA_A_sum.cn13',header=T)
 wcn_4GHA_A = read.table('molecular_dynamics/Amber/postproc/wcn/summaries/4GHA_A_sum.wcn',header=T)
 desent_4GHA_A = read.table('protein_design/entropies/4GHA_A_0.6.desent',header=T)
+bfca_4GHA_A = read.table('bfactors/4GHA_A_CA.bfactor',header=T,comment.char="")
 
 data_4GHA_A = data.frame(protein="4GHA_A", res_num=dihedral_4GHA_A$res_Num, res_name=dihedral_4GHA_A$res_name,
                        entropy=entropy_4GHA_A$entropy_4GHA_A, desent=desent_4GHA_A$entropy,
@@ -164,7 +183,8 @@ data_4GHA_A = data.frame(protein="4GHA_A", res_num=dihedral_4GHA_A$res_Num, res_
                        rmsf_avg_md=rmsf_4GHA_A$AvgRMSD, rmsf_std_md=rmsf_4GHA_A$Stdev, 
                        phi_var_md=dihedral_4GHA_A$var_phi, psi_var_md=dihedral_4GHA_A$var_psi, chi1_var_md=dihedral_4GHA_A$var_chi1,
                        cn13_cr=cn13_4GHA_A$CRYSTAL_CN, cn13_avg_md=cn13_4GHA_A$MEAN_CN, cn13_var_md=cn13_4GHA_A$VAR_CN,
-                       wcn_cr=wcn_4GHA_A$CRYSTAL_WCN, wcn_avg_md=wcn_4GHA_A$MEAN_WCN, wcn_var_md=wcn_4GHA_A$VAR_WCN)
+                       wcn_cr=wcn_4GHA_A$CRYSTAL_WCN, wcn_avg_md=wcn_4GHA_A$MEAN_WCN, wcn_var_md=wcn_4GHA_A$VAR_WCN,
+					   bfca=bfca_4GHA_A$bfactor)
 write.csv( data_4GHA_A, "correlation_analysis/combined_data/data_4GHA_A.csv", row.names=F )
 
 
@@ -177,6 +197,7 @@ dihedral_4IRY_A = read.table('molecular_dynamics/Amber/postproc/dihedrals/4IRY_A
 cn13_4IRY_A = read.table('molecular_dynamics/Amber/postproc/cn13/summaries/4IRY_A_sum.cn13',header=T)
 wcn_4IRY_A = read.table('molecular_dynamics/Amber/postproc/wcn/summaries/4IRY_A_sum.wcn',header=T)
 desent_4IRY_A = read.table('protein_design/entropies/4IRY_A_0.6.desent',header=T)
+bfca_4IRY_A = read.table('bfactors/4IRY_A_CA.bfactor',header=T,comment.char="")
 
 data_4IRY_A = data.frame(protein="4IRY_A", res_num=dihedral_4IRY_A$res_Num, res_name=dihedral_4IRY_A$res_name,
                        entropy=entropy_4IRY_A$entropy_4IRY_A, desent=desent_4IRY_A$entropy,
@@ -184,7 +205,8 @@ data_4IRY_A = data.frame(protein="4IRY_A", res_num=dihedral_4IRY_A$res_Num, res_
                        rmsf_avg_md=rmsf_4IRY_A$AvgRMSD, rmsf_std_md=rmsf_4IRY_A$Stdev, 
                        phi_var_md=dihedral_4IRY_A$var_phi, psi_var_md=dihedral_4IRY_A$var_psi, chi1_var_md=dihedral_4IRY_A$var_chi1,
                        cn13_cr=cn13_4IRY_A$CRYSTAL_CN, cn13_avg_md=cn13_4IRY_A$MEAN_CN, cn13_var_md=cn13_4IRY_A$VAR_CN,
-                       wcn_cr=wcn_4IRY_A$CRYSTAL_WCN, wcn_avg_md=wcn_4IRY_A$MEAN_WCN, wcn_var_md=wcn_4IRY_A$VAR_WCN)
+                       wcn_cr=wcn_4IRY_A$CRYSTAL_WCN, wcn_avg_md=wcn_4IRY_A$MEAN_WCN, wcn_var_md=wcn_4IRY_A$VAR_WCN,
+					   bfca=bfca_4IRY_A$bfactor)
 write.csv( data_4IRY_A, "correlation_analysis/combined_data/data_4IRY_A.csv", row.names=F )
 
 # DIFFERENT TEMPERATURE
@@ -263,6 +285,7 @@ dihedral_3GSZ_A = read.table('molecular_dynamics/Amber/postproc/dihedrals/3GSZ_A
 cn13_3GSZ_A = read.table('molecular_dynamics/Amber/postproc/cn13/summaries/3GSZ_A_sum.cn13',header=T)
 wcn_3GSZ_A = read.table('molecular_dynamics/Amber/postproc/wcn/summaries/3GSZ_A_sum.wcn',header=T)
 desent_3GSZ_A = read.table('protein_design/entropies/3GSZ_A_0.6.desent',header=T)
+bfca_3GSZ_A = read.table('bfactors/3GSZ_A_CA.bfactor',header=T,comment.char="")
 
 data_3GSZ_A = data.frame(protein="3GSZ_A", res_num=dihedral_3GSZ_A$res_Num, res_name=dihedral_3GSZ_A$res_name,
                        entropy=entropy_3GSZ_A$entropy_3GSZ_A, desent=desent_3GSZ_A$entropy,
@@ -270,7 +293,8 @@ data_3GSZ_A = data.frame(protein="3GSZ_A", res_num=dihedral_3GSZ_A$res_Num, res_
                        rmsf_avg_md=rmsf_3GSZ_A$AvgRMSD, rmsf_std_md=rmsf_3GSZ_A$Stdev, 
                        phi_var_md=dihedral_3GSZ_A$var_phi, psi_var_md=dihedral_3GSZ_A$var_psi, chi1_var_md=dihedral_3GSZ_A$var_chi1,
                        cn13_cr=cn13_3GSZ_A$CRYSTAL_CN, cn13_avg_md=cn13_3GSZ_A$MEAN_CN, cn13_var_md=cn13_3GSZ_A$VAR_CN,
-                       wcn_cr=wcn_3GSZ_A$CRYSTAL_WCN, wcn_avg_md=wcn_3GSZ_A$MEAN_WCN, wcn_var_md=wcn_3GSZ_A$VAR_WCN)
+                       wcn_cr=wcn_3GSZ_A$CRYSTAL_WCN, wcn_avg_md=wcn_3GSZ_A$MEAN_WCN, wcn_var_md=wcn_3GSZ_A$VAR_WCN,
+					   bfca=bfca_3GSZ_A$bfactor)
 write.csv( data_3GSZ_A, "correlation_analysis/combined_data/data_3GSZ_A.csv", row.names=F )
 
 
@@ -283,6 +307,7 @@ dihedral_3I5K_A = read.table('molecular_dynamics/Amber/postproc/dihedrals/3I5K_A
 cn13_3I5K_A = read.table('molecular_dynamics/Amber/postproc/cn13/summaries/3I5K_A_sum.cn13',header=T)
 wcn_3I5K_A = read.table('molecular_dynamics/Amber/postproc/wcn/summaries/3I5K_A_sum.wcn',header=T)
 desent_3I5K_A = read.table('protein_design/entropies/3I5K_A_0.6.desent',header=T)
+bfca_3I5K_A = read.table('bfactors/3I5K_A_CA.bfactor',header=T,comment.char="")
 
 data_3I5K_A = data.frame(protein="3I5K_A", res_num=dihedral_3I5K_A$res_Num, res_name=dihedral_3I5K_A$res_name,
                        entropy=entropy_3I5K_A$entropy_3I5K_A, desent=desent_3I5K_A$entropy,
@@ -290,7 +315,8 @@ data_3I5K_A = data.frame(protein="3I5K_A", res_num=dihedral_3I5K_A$res_Num, res_
                        rmsf_avg_md=rmsf_3I5K_A$AvgRMSD, rmsf_std_md=rmsf_3I5K_A$Stdev, 
                        phi_var_md=dihedral_3I5K_A$var_phi, psi_var_md=dihedral_3I5K_A$var_psi, chi1_var_md=dihedral_3I5K_A$var_chi1,
                        cn13_cr=cn13_3I5K_A$CRYSTAL_CN, cn13_avg_md=cn13_3I5K_A$MEAN_CN, cn13_var_md=cn13_3I5K_A$VAR_CN,
-                       wcn_cr=wcn_3I5K_A$CRYSTAL_WCN, wcn_avg_md=wcn_3I5K_A$MEAN_WCN, wcn_var_md=wcn_3I5K_A$VAR_WCN)
+                       wcn_cr=wcn_3I5K_A$CRYSTAL_WCN, wcn_avg_md=wcn_3I5K_A$MEAN_WCN, wcn_var_md=wcn_3I5K_A$VAR_WCN,
+					   bfca=bfca_3I5K_A$bfactor)
 write.csv( data_3I5K_A, "correlation_analysis/combined_data/data_3I5K_A.csv", row.names=F )
 
 
