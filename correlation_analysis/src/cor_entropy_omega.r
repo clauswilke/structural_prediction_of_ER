@@ -73,18 +73,18 @@ for(protein in levels(data$protein))
 		p.omega_cn13_avg_md = x$p.value
 		
     row = data.frame( protein=protein,
-                      r.entropy_rsa_avg_md  = r.entropy_rsa_avg_md,  p.entropy_rsa_avg_md  = p.entropy_rsa_avg_md,
-                      r.entropy_wcn_avg_md  = r.entropy_wcn_avg_md,  p.entropy_wcn_avg_md  = p.entropy_wcn_avg_md,
-                      r.entropy_cn13_avg_md = r.entropy_cn13_avg_md, p.entropy_cn13_avg_md = p.entropy_cn13_avg_md,
-                      r.entropy_chi1_var_md = r.entropy_chi1_var_md, p.entropy_chi1_var_md = p.entropy_chi1_var_md,
-                      r.entropy_rmsf_avg_md = r.entropy_rmsf_avg_md, p.entropy_rmsf_avg_md = p.entropy_rmsf_avg_md,
-                      r.entropy_bfca        = r.entropy_bfca,        p.entropy_bfca        = p.entropy_bfca,
-					  r.omega_rsa_avg_md    = r.omega_rsa_avg_md,    p.omega_rsa_avg_md    = p.omega_rsa_avg_md,
-                      r.omega_wcn_avg_md    = r.omega_wcn_avg_md,    p.omega_wcn_avg_md    = p.omega_wcn_avg_md,
-                      r.omega_cn13_avg_md   = r.omega_cn13_avg_md,   p.omega_cn13_avg_md   = p.omega_cn13_avg_md,
-                      r.omega_chi1_var_md   = r.omega_chi1_var_md,   p.omega_chi1_var_md   = p.omega_chi1_var_md,
-                      r.omega_rmsf_avg_md   = r.omega_rmsf_avg_md,   p.omega_rmsf_avg_md   = p.omega_rmsf_avg_md,
-                      r.omega_bfca          = r.omega_bfca,          p.omega_bfca          = p.omega_bfca )
+                      r.entropy_rsa_avg_md  =  r.entropy_rsa_avg_md,  p.entropy_rsa_avg_md  = p.entropy_rsa_avg_md,
+                      r.entropy_wcn_avg_md  = -r.entropy_wcn_avg_md,  p.entropy_wcn_avg_md  = p.entropy_wcn_avg_md,
+                      r.entropy_cn13_avg_md =  r.entropy_cn13_avg_md, p.entropy_cn13_avg_md = p.entropy_cn13_avg_md,
+                      r.entropy_chi1_var_md =  r.entropy_chi1_var_md, p.entropy_chi1_var_md = p.entropy_chi1_var_md,
+                      r.entropy_rmsf_avg_md =  r.entropy_rmsf_avg_md, p.entropy_rmsf_avg_md = p.entropy_rmsf_avg_md,
+                      r.entropy_bfca        =  r.entropy_bfca,        p.entropy_bfca        = p.entropy_bfca,
+					  r.omega_rsa_avg_md    =  r.omega_rsa_avg_md,    p.omega_rsa_avg_md    = p.omega_rsa_avg_md,
+                      r.omega_wcn_avg_md    = -r.omega_wcn_avg_md,    p.omega_wcn_avg_md    = p.omega_wcn_avg_md,
+                      r.omega_cn13_avg_md   =  r.omega_cn13_avg_md,   p.omega_cn13_avg_md   = p.omega_cn13_avg_md,
+                      r.omega_chi1_var_md   =  r.omega_chi1_var_md,   p.omega_chi1_var_md   = p.omega_chi1_var_md,
+                      r.omega_rmsf_avg_md   =  r.omega_rmsf_avg_md,   p.omega_rmsf_avg_md   = p.omega_rmsf_avg_md,
+                      r.omega_bfca          =  r.omega_bfca,          p.omega_bfca          = p.omega_bfca )
 	
     result = rbind( result, row )
     print( protein )
@@ -98,7 +98,7 @@ write.csv( result, "correlation_analysis/cor_tables/cor_entropy_omega.csv", row.
 #index.p = names(result) %in% c("p.entropy_rsa_avg_md", "p.entropy_wcn_avg_md", "p.entropy_chi1_var_md", "p.entropy_rmsf_avg_md", "p.entropy_bfca",
 #                               "p.omega_rsa_avg_md", "p.omega_wcn_avg_md", "p.omega_chi1_var_md", "p.omega_rmsf_avg_md", "p.omega_bfca") # columns that store significance
 
-colors = c('red', 'blue', 'green', 'purple', 'black', 'gray') #, 'gray', 'cyan2') #, 'darkred', 'darkgreen', 'bisque2')
+colors = c('red', 'blue', 'green', 'bisque3', 'black', 'gray') #, 'gray', 'cyan2') #, 'darkred', 'darkgreen', 'bisque2')
 variables = c('MD RSA', 'MD WCN', expression(paste("MD var(", chi[1], ")")), 'MD RMSF', 'B factor')
 labels = c('1RD8', '2FP7', '2JLY', '2Z83', '3GOL', '3LYF', '4AQF', '4GHA', '4IRY')
 
