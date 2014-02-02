@@ -66,7 +66,7 @@ write.csv( result, "correlation_analysis/cor_tables/cor_entropy_SF.csv", row.nam
 index = names(result) %in% c("phi_rho", "psi_rho", "chi1_rho", "bfca_rho", "avg_md_rho", "avg_cr_rho") # columns we want to plot
 index.p = names(result) %in% c("phi_P", "psi_P", "chi1_P", "bfca_P", "avg_md_P", "avg_cr_P") # columns that store significance
 
-colors = c('red', 'blue', 'green', 'purple', 'chocolate1', 'darkgreen', 'black', 'gray', 'cyan2') #, 'darkred', 'darkgreen', 'bisque2')
+colors = c('red', 'blue', 'green', 'purple', 'orange3', 'darkgreen', 'black', 'gray', 'cyan2') #, 'darkred', 'darkgreen', 'bisque2')
 proteins = c('1RD8_AB', '2FP7_B', '2JLY_A', '2Z83_A', '3GOL_A', '3LYF_A', '4AQF_B', '4GHA_A', '4IRY_A') #, '3GSZ_A', '3I5K_A', '2JLY_A_temp_50', '2JLY_A_temp_100', '2JLY_A_temp_200', '2JLY_A_temp_450')
 labels = c('1RD8', '2FP7', '2JLY', '2Z83', '3GOL', '3LYF', '4AQF', '4GHA', '4IRY') #, '3GSZ_A', '3I5K_A', '2JLY_A_temp_50', '2JLY_A_temp_100', '2JLY_A_temp_200', '2JLY_A_temp_450')
 
@@ -80,7 +80,7 @@ axis( 2,  # y axis
 axis( 1,
       at=c(1, 2, 3, 4, 5, 6),
       padj=c(0,0,0,0,0,0),
-      c(expression(paste("variance ", phi)), expression(paste("variance ", psi)), expression(paste("variance ", chi[1])), "bfactor", "MD rmsf", "CS rmsf"))
+      c(expression(paste("variance ", phi)), expression(paste("variance ", psi)), expression(paste("variance ", chi[1])), "B factor", "MD RMSF", "CS RMSF"))
 
 
 for( i in 1:nrow(result) )

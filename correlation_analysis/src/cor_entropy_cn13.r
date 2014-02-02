@@ -42,7 +42,7 @@ write.csv( result, "correlation_analysis/cor_tables/cor_entropy_cn13.csv", row.n
 
 index = names(result) %in% c("cr_rho", "avg_md_rho", "var_md_rho") # columns we want to plot
 
-colors = c('red', 'blue', 'green', 'purple', 'chocolate1', 'darkgreen', 'black', 'gray', 'cyan2') #, 'darkred', 'darkgreen', 'bisque2')
+colors = c('red', 'blue', 'green', 'purple', 'orange3', 'darkgreen', 'black', 'gray', 'cyan2') #, 'darkred', 'darkgreen', 'bisque2')
 proteins = c('1RD8_AB', '2FP7_B', '2JLY_A', '2Z83_A', '3GOL_A', '3LYF_A', '4AQF_B', '4GHA_A', '4IRY_A') #, '3GSZ_A', '3I5K_A', '2JLY_A_temp_50', '2JLY_A_temp_100', '2JLY_A_temp_200', '2JLY_A_temp_450')
 
 pdf( "correlation_analysis/figures/cor_entropy_cn13.pdf", width=4.5, height=4, useDingbats=FALSE )
