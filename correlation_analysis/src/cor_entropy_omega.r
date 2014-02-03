@@ -120,6 +120,7 @@ plot(0,xaxt='n',yaxt='n',bty='n',pch='',ylab=expression(paste("Correlation (", r
 	points( result$r.entropy_bfca       , result$r.omega_bfca       , pch=19, col = colors[5] )
 	#points( result$r.entropy_cn13_avg_md, result$r.omega_cn13_avg_md, pch=19, col = colors[6] )
 	abline(0,1)
+	#abline(-0.2,1)
 
 legend( -.5, 0.5, variables[1:5], pch=19, col=colors[1:5], bty='n', cex=0.9)
 #legend( 0.4, -.28, variables[4:5], pch=19, col=colors[4:5], bty='n', cex=0.9)
