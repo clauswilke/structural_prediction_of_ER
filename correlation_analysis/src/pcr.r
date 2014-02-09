@@ -1,3 +1,5 @@
+# This R code performs Principal Component Regression on different variables correlating with entropy and outputs the component loadings and the percentage of the entropy's explained variance by each principal component in a CVS file.
+
 # Amir Shahmoradi, Wednesday 10:07 PM, February 5 2014, Wilke Lab, ICMB, UT Austin
 
 library( pls )
