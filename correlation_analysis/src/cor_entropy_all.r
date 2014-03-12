@@ -80,7 +80,7 @@ axis( 2,  # y axis
 axis( 1,
       at=c(1, 2, 3, 4, 5),
       padj=c(0,0,0,0,0,0),
-      c("MD RSA", "MD WCN", expression(paste("MD var(", chi[1],")")), "MD RMSF", "B factor")) #,  "CS rmsf"))
+      c("MD RSA", "MD IWCN", expression(paste("MD var(", chi[1],")")), "MD RMSF", "B factor")) #,  "CS rmsf"))
 
 
 for( i in 1:nrow(result) )
