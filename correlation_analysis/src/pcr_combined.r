@@ -2,7 +2,7 @@
 
 # Amir Shahmoradi, Thursday 2:23 PM, February 6 2014, Wilke Lab, ICMB, UT Austin
 
-library( pls )
+#library( pls )
 
 # source("input_data.r")
 
@@ -18,13 +18,14 @@ pca_data = data[,names(data) %in% c('protein','entropy','rsa_avg_md','wcn_avg_md
 pca_data$chi1_var_md[is.na(pca_data$chi1_var_md)] = mean(na.omit(pca_data$chi1_var_md))
 
 	pca_data$rsa_avg_md  = scale(pca_data$rsa_avg_md  , center = TRUE, scale = TRUE)
-	pca_data$wcn_avg_md  = scale(pca_data$wcn_avg_md  , center = TRUE, scale = TRUE)
+	pca_data$wcn_avg_md  = scale(1/pca_data$wcn_avg_md  , center = TRUE, scale = TRUE)
 	pca_data$chi1_var_md = scale(pca_data$chi1_var_md , center = TRUE, scale = TRUE)
 	pca_data$rmsf_avg_md = scale(pca_data$rmsf_avg_md , center = TRUE, scale = TRUE)
 	pca_data$bfca        = scale(pca_data$bfca        , center = TRUE, scale = TRUE)
 	pca_data$desent      = scale(pca_data$desent      , center = TRUE, scale = TRUE)
 
 pca=prcomp(pca_data[,c(-1,-2)], scale = T, center=F)
+#biplot(pca, xlabs=rep('.',nrow(pca_data)))
 
 rotmat = pca$rotation
 
@@ -70,12 +71,12 @@ for(protein in levels(pca_data$protein))
 	# Combine correlation values in row for each protein and dump it in RESULT data.frame
 		
 		row = data.frame( protein=protein,
-						  rsq.PC1 = r.PC1^2, p.PC1 = p.PC1, 
-						  rsq.PC2 = r.PC2^2, p.PC2 = p.PC2, 
-						  rsq.PC3 = r.PC3^2, p.PC3 = p.PC3, 
-						  rsq.PC4 = r.PC4^2, p.PC4 = p.PC4, 
-						  rsq.PC5 = r.PC5^2, p.PC5 = p.PC5, 
-						  rsq.PC6 = r.PC6^2, p.PC6 = p.PC6, 
+						  rsq.PC1 = r.PC1, p.PC1 = p.PC1, 
+						  rsq.PC2 = r.PC2, p.PC2 = p.PC2, 
+						  rsq.PC3 = r.PC3, p.PC3 = p.PC3, 
+						  rsq.PC4 = r.PC4, p.PC4 = p.PC4, 
+						  rsq.PC5 = r.PC5, p.PC5 = p.PC5, 
+						  rsq.PC6 = r.PC6, p.PC6 = p.PC6, 
 						  rsq.total = x2$r.squared )
 		sum = sum(unlist(row[1,2:7]))
 		diff = row$rsq.total[1]-sum
