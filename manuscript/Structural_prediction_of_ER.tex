@@ -4,6 +4,7 @@
 \usepackage[margin=1in]{geometry}
 \usepackage{hyperref}
 \usepackage{natbib}
+\usepackage{color}
 
 \graphicspath{{../correlation_analysis/figures/}}
 
@@ -52,7 +53,6 @@ All alignments were constructed using amino-acid sequences with MAFFT \citep{Kat
 
 As an alternative measure of site-specific sequence variability, we also calculated the Shannon entropy ($H$) defined as
 \begin{equation}
-\label{eqn:entropy}
         H_i = - \sum_jP_{ij}\ln P_{ij}
 \end{equation}
 for the $i^{th}$ amino-acid site in each of the protein structures. Here $P_{ij}$ is relative frequency of amino acid $j$ at position $i$ in the alignment.
@@ -64,13 +64,13 @@ for the $i^{th}$ amino-acid site in each of the protein structures. Here $P_{ij}
 
 \subsection*{Molecular Dynamics Simulations}
 
-The computational expense of Molecular Dynamics (MD) simulations limited our analysis to only one representative PDB structure from each of the $8$ protein families tabulated in Table \ref{tab:pdb_names}. However, to ensure the dynamic properties of homologous PDB structures do not differ significantly from each other, MD simulations were performed on two additional homologous PDB structures taken from Hepatitis C Protease. All simulations were performed on Lonestar's Dell Linux Cluster at Texas Advanced Computing Center (TACC) (citation maybe needed xx) using the GPU implementation of {\it Amber12} Molecular Dynamics simulation package (cite xx) with the most recent release of Amber fixed-charge force field (ff12SB; c.f., AmberTools13 Manual).
+The computational expense of Molecular Dynamics (MD) simulations limited our analysis to only one representative PDB structure from each of the $8$ protein families tabulated in Table \ref{tab:pdb_names}. However, to ensure the dynamic properties of homologous PDB structures do not differ significantly from each other, MD simulations were performed on two additional homologous PDB structures taken from Hepatitis C Protease. All simulations were performed on Lonestar's Dell Linux Cluster at Texas Advanced Computing Center (TACC) using the GPU implementation of {\it Amber12} Molecular Dynamics simulation package (cite xx) with the most recent release of Amber fixed-charge force field (ff12SB; c.f., AmberTools13 Manual).
 		
-        Prior to MD production runs, all PDB structures were first energy minimized using the steepest descent method for $1000$ steps followed by conjugate gradient for another $1000$ steps. Then, the structures were constantly heated from $0K$ to $300K$ for $0.1ns$, followed by $0.1ns$ constant pressure simulations with positional harmonic restraints on all atoms to avoid instabilities during the equilibration process. The systems were then equilibrated for another $5ns$ without positional restraints, each followed by $15ns$ of production simulations in for subsequent post-processing and analyses. All equilibration and production simulations were run using SHAKE algorithm (cite xx) by which all bonds involving hydrogen are constrained to avoid instabilities for a choice of $2fs$ time step in simulations. Langevin dynamics were used for temperature control (cite for Langevin dynamics xx).
+Prior to MD production runs, all PDB structures were first energy minimized using the steepest descent method for $1000$ steps followed by conjugate gradient for another $1000$ steps. Then, the structures were constantly heated from $0K$ to $300K$ for $0.1ns$, followed by $0.1ns$ constant pressure simulations with positional harmonic restraints on all atoms to avoid instabilities during the equilibration process. The systems were then equilibrated for another $5ns$ without positional restraints, each followed by $15ns$ of production simulations in for subsequent post-processing and analyses. All equilibration and production simulations were run using SHAKE algorithm (cite xx) by which all bonds involving hydrogen are constrained to avoid instabilities for a choice of $2fs$ time step in simulations. Langevin dynamics were used for temperature control (cite for Langevin dynamics xx).
 
 \subsection*{Structural flexibility and buriedness measures}
 
-        Almost all structural determinants of sequence variability can be classified into either of the following two major categories:
+Almost all structural determinants of sequence variability can be classified into either of the following two major categories:
 
         \begin{enumerate}
 
@@ -82,15 +82,15 @@ The computational expense of Molecular Dynamics (MD) simulations limited our ana
                 % xx , as it strongly depends on how well the 3D structures -- either from the homologous sets or MD trajectories -- fit the corresponding reference structures. This fitting procedure can adversely affect the measurements of  spatial fluctuation
 
             \item {\bf measures of residue buriedness and local density.}
-                The site-specific Relative Solvent Accessibility (RSA) is likely the most prominent variable indicating the degree of amino acid exposure to solvent molecules. We used DSSP software (cite xx) to calculate the Accessible Surface Area (ASA) for all protein crystal structures in this work, also for the ensemble of coordinates obtained from MD simulations. The ASA values were then normalized to the theoretical maximum ASA values of Tien et al (cite xx) to obtain the corresponding RSA values. Another indicator of residue solvent exposure, though indirectly, is the residue Contact Number (CN), defined as the total number of $C_\alpha$ atoms surrounding $C_\alpha$ atom of a desired site in a protein, within a spherical neighborhood of a predefined radius $r_0$. Following Franzosa (cite xx), we assume $r_0=13\AA$ for the calculation of the contact numbers for all structures and MD trajectories.
+                The site-specific Relative Solvent Accessibility (RSA) is likely the most prominent variable indicating the degree of amino acid exposure to solvent molecules. We used DSSP software \citep{KabschSander1983} to calculate the Accessible Surface Area (ASA) for all protein crystal structures in this work, also for the ensemble of coordinates obtained from MD simulations. The ASA values were then normalized to the theoretical maximum ASA values of \citet{Tienetal2013} to obtain the corresponding RSA values. Another indicator of residue solvent exposure, though indirectly, is the residue Contact Number (CN), defined as the total number of $C_\alpha$ atoms surrounding $C_\alpha$ atom of a desired site in a protein, within a spherical neighborhood of a predefined radius $r_0$. Following Franzosa (cite xx), we assume $r_0=13\AA$ for the calculation of the contact numbers for all structures and MD trajectories.
 
-                Additionally, we also calculate a variant of Contact Number definition that was recently proposed by Shih et al (cite xx), defined as the total number of contact $C_\alpha$ atoms at an amino acid site, weighted by the inverse square separation between the neighbor atoms and the site of interest. This Weighted Contact Number (WCN) avoids the problem of manually assigning a neighborhood radius in order to calculate the contact numbers. As it will be shown in the following sections, both definitions of contact numbers are negatively correlated with sequence variability, in contrast to other structural variability measures that often correlate positively. Thus, for the sake of consistency with other structural variables, we use the inverted values of the two contact number definitions (CN \& WCN) and denote them by iCN \& iWCN, respectively.
+                Additionally, we also calculate a variant of Contact Number definition that was recently proposed by \citet{Shihetal2012}, defined as the total number of contact $C_\alpha$ atoms at an amino acid site, weighted by the inverse square separation between the neighbor atoms and the site of interest. This Weighted Contact Number (WCN) avoids the problem of manually assigning a neighborhood radius in order to calculate the contact numbers. As it will be shown in the following sections, both definitions of contact numbers are negatively correlated with sequence variability, in contrast to other structural variability measures that often correlate positively. Thus, for the sake of consistency with other structural variables, we use the inverted values of the two contact number definitions and denote them by iCN and iWCN, respectively: $\text{iCN}=1/\text{CN}$, $\text{iWCN}=1/\text{WCN}$. Note that for Spearman correlations, which we use throughout here, replacing a variable by its inverse changes the sign of the correlation coefficient but not the magnitude.
 
         \end{enumerate}
 
 \subsection*{Sequence Entropy from Designed Proteins}
 
-Design entropy was calculated as described in \citep{Jacksonetal2013}. In brief, proteins were designed using RosettaDesign (Version 39284) \citep{leaver-fay_rosetta3:_2011} using both a fixed and flexible backbone approach. This was done for all PDB structures in Table \ref{tab:pdb_names} as initial template structures. For each template, we created a series of backbone ensembles. For each of these ensembles, side chains were designed onto each ensemble. For the fixed protein design process, the backbone of the structure was held rigid when the ensembles were generated.  Flexible backbones were generated  using Backrub \citep{smith_backrub-like_2008}. When designing the proteins using Backrub we used a temperature parameter of $0.6$. The temperature parameter determines how much flexibility is allowed during the design process. A temperature of 0.6 was chosen to allow for an intermediate amount of flexibility.   For each of the 11 template structures we designed 100 proteins using the fixed backbone approach and 100 proteins using the flexible backbone approach. The entropy of the designed sequences were subsequenctly calculated by first aligning the designed sequences using MAFFT (cite xx). For each alignment we calculated the entropy ($H_i$) at the $i^{th}$ site, according to Eqn. \ref{eqn:entropy}.
+Design entropy was calculated as described \citep{Jacksonetal2013}. In brief, proteins were designed using RosettaDesign (Version 39284) \citep{leaver-fay_rosetta3:_2011} using a flexible backbone approach. This was done for all PDB structures in Table \ref{tab:pdb_names} as initial template structures. For each template, we created a backbone ensemble using the Backrub method \citep{smith_backrub-like_2008}. The temperature parameter in Backrub was set to 0.6, allowing for an intermediate amount of flexibility.  For each of the 11 template structures we designed 100 proteins. {\color{red}\emph{Is this correct? It shouldn't have been done that way.}The entropy of the designed sequences were subsequenctly calculated by first aligning the designed sequences using MAFFT}
 
 \subsection*{Availability of data and methods}
 
@@ -98,17 +98,13 @@ All details of simulations, input$/$output files and scripts for subsequent anal
 
 \section*{Results}
 
-\subsection*{Molecular Dynamics vs. Homologous Crystal Structures}
+Proteins are dynamic, flexible entities, and PDB crystal structures represent only a single snapshot of the infinite number of conformational variations a protein will sample over time. When we derive quantities such as RSA or contact numbers from PDB structures, we don't know \emph{a priori} how representative these quantities are of the protein in solution. Therefore, we first assessed to what extent these quantities differed when we obtained them from crystal structures vs.\ from MD simulations, in the latter case averaged over 15ns of chemical time. We found that RSA, CN, and WCN from crystal structures were highly correlated with their averages over MD trajectories, for all protein structures we examined (Spearman rank correlation coefficients of $>0.9$). Further, when we correlated these quantities with sequence variability (as measured by site-specific entropy $H_i$), we found that the correlation coefficients were virtually identical (Figure~\ref{fig:cor_cr_md}A-C). Thus, in terms of predicting evolutionary variation, RSA and contact numbers obtained from the static structures perform as well as their dynamic equivalents averaged over short time scales.
 
+However, the same was not true when we considered backbone variability as measured by root mean fluctuations (RMSF). RMSF cannot be obtained from a single crystal structure, but we can calculate it from an alignment of multiple crystal structures were available. When we compared RMSF from MD to RMSF from crystal structures, we found that they were generally quite different. In particular, the strength of the correlation between site entropy and RMSF from MD was independent of the strength of the correlation between site entropy and RMSF from crystal structures (Figure~\ref{fig:cor_cr_md}D). In fact, for the structure for which RMSF from MD had the highest explanatory power for site entropy {\color{red}(Which structure is this?)}, the RMSF from crystal structures had the least explanatory power for site entropy (Figure~\ref{fig:cor_cr_md}D). The reverse was also true. {\color{red}(Which is the structure for which RMSF from crystal structure works best?)}
 
+To further investigate the relationship between backbone fluctuations and sequence variability, we also considered the correlation between sequence entropy and B factors of the $C_\alpha$ atoms in the protein backbone. We found that these correlations were generally different from the ones found for either the MD RMSF or the crystal structure RMSF (Figure \ref{fig:cor_entropy_bfca_rmsf}). Thus, B factors, MD RMSF, and crystal RMSF, though all measures of backbone fluctuations, contained distinct information about sequence variability in our data set.
 
-Figure \ref{fig:cor_cr_md} illustrates such an example comparison of the prediction power of the variables derived from $15ns$ of MD simulations and crystalline structures for the proteins that were considered in this study. Each plot compares the Spearman's correlation of sequence entropy with one structural variable as measured from PDB crystals on the horizontal axis, and from MD simulations on the vertical axis. For all the proteins considered in this study, the site-specific RSAs and contact numbers (CN \& iWCN) from crystal structures and MD simulations are strongly correlated with Spearman rank correlation coefficients of $>0.9$. Both RSA definitions also correlate moderately but highly significantly with the site-specific sequence entropies in all protein families.
-
-For the case of backbone fluctuations (RMSD) in Plot {\bf D}, only $4$ structures had adequate number of homologous crystal structures for RMSD calculations. As evidenced by the plots, the buriedness measures based on MD simulations do not seem to add any more information about sequence entropy as there is already in the PDB crystal structures for the same buriedness measures. In contrast, the results based on MD fluctuation measures appear to be in complete disagreement with those of crystal structures.
-
-To further investigate the origins of the discrepancy, we also compared the entropy-RMSF correlation strengths based on MD and crystal structures with entropy-B factor correlations, illustrated in the plots of Figure \ref{fig:cor_entropy_bfca_rmsf}. B factors are regarded as an effective measure of atomic fluctuations in protein crystal structures and therefore, an approximate measure of local atomic fluctuations. For the sake of consistency, both RMSF and B factor were calculated for only $C_\alpha$ atoms in the protein backbone. Nevertheless, the same level of disagreement between the three different measures of site-specific fluctuations (i.e., B factors \& RMSF from MD and crystal structures) is observed. In other words, despite representing the same quantity, the three variables apparently do not explain the same information about sequence entropy.
-
-\subsection*{Structural Fluctuations vs. buriedness measures in Predicting Sequence Entropy}
+{\color{blue}Continue editing from here}
 
 Focusing on structural fluctuations first, we compared six different measures of local spatial fluctuations in predicting sequence entropy. The results are illustrated in Figure \ref{fig:cor_entropy_SF}, where the Spearman's correlation coefficients of entropy with individual structural variables are compared against each other, for all $9$ protein families considered in the study. Given our data and results, the {\it backbone} dihedral angles seem to be the least explanatory variables of sequence entropy, while the variance of $\chi_1$ angle generally exhibits stronger and more significant correlation with entropy. Despite the observed inconsistency between B factor and the two measures of RMSF at the protein family level (Figures \ref{fig:cor_cr_md} \& \ref{fig:cor_entropy_bfca_rmsf}) in the previous section, it is evident that these three measures of local fluctuations explain the same amounts of sequence entropy at about the same significance levels on average.
 
@@ -125,9 +121,39 @@ Next, we compared the three most contributing fluctuation factors to sequence en
 
 
 \bibliographystyle{MBE}  % natbib.sty
-\bibliography{Structural_prediction_of_ER}%%%refs.bib
+\bibliography{Structural_prediction_of_ER.bib}%%%refs.bib
 
 \newpage
+
+\section*{Tables}
+
+\begin{table}[htbp]
+        \begin{center}
+                \caption{PDB structures considered in this study \label{tab:pdb_names}}
+                \begin{tabular}{c c c c c} % c}
+                        \hline
+                        \hline
+                        Viral                                           & PDB            & PDB       & Number of          & Number of   \\ %& Reference \\
+                        Protein                                                 & Structure      & Chain     & Residues           & Sequences   \\ %&           \\
+                        \hline                                                                                          
+                        Hemagglutinin Precursor         & 1RD8           & AB        & 503                & 1039        \\ %& -         \\
+                        Dengue Protease Helicase        & 2JLY           & A         & 451                & 2362        \\ %& -         \\
+                        West Nile Protease              & 2FP7           & B         & 147                & 237         \\ %& -         \\
+                        Japanese Encephalitis Helicase  & 2Z83           & A         & 426                & 145         \\ %& -         \\
+                        Hepatitis C Protease            & 3GOL           & A         & 557                & 1021        \\ %& -         \\
+                        Hepatitis C Protease            & 3GSZ           & A         & 558                & 1021        \\ %& -         \\
+                        Hepatitis C Protease            & 3I5K           & A         & 566                & 1021        \\ %& -         \\
+                        Rift Valley Fever Nucleoprotein & 3LYF           & A         & 244                & 95          \\ %& -         \\
+                        Crimean Congo Nucleocapsid      & 4AQF           & B         & 474                & 69          \\ %& -         \\
+                        Marburg RNA Binding Domain      & 4GHA           & A         & 122                & 42          \\ %& -         \\
+                        Influenza Nucleoprotein         & 4IRY           & A         & 404                & 943         \\ %& -         \\
+                        \hline
+                        \hline
+                \end{tabular}
+        \end{center}
+\end{table}
+
+\cleardoublepage
 
 \section*{Figures}
 
@@ -183,7 +209,7 @@ Next, we compared the three most contributing fluctuation factors to sequence en
             \label{fig:cor_entropy_all}
             \end{figure*}
 
-\input tab_pdb_names.tex
+
 
 \end{document}
 
