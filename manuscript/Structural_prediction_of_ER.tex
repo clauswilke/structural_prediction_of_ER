@@ -1,196 +1,73 @@
+\documentclass[12pt]{article}
 
-\documentclass[preprint,12pt]{article}
+\usepackage{graphicx,amsmath,amssymb,amsfonts}
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+\usepackage{natbib}
 
-    \usepackage{amssymb}
-    %% The amsthm package provides extended theorem environments
-    %% \usepackage{amsthm}
-    \usepackage{hyperref}
-    %\usepackage{natbib}
-    %\usepackage{amsmath}
-    \usepackage{nicefrac}
-    \usepackage[usenames,dvipsnames]{xcolor}
-    %\usepackage{graphicx}
-    \usepackage{footnote}
-    \usepackage{rotating}
-    \usepackage{slashbox}
-    \usepackage{graphicx,amsmath,amssymb,amsfonts}
-    %\usepackage{enumerate,setspace}
-    %\usepackage{psfrag}
-    %\usepackage{color}
-    \newcommand{\MK}{{K}}
-    \newcommand{\DLK}{\kappa}
-    \newcommand\T{\rule{0pt}{3.1ex}}
-    \newcommand\B{\rule[-1.7ex]{0pt}{0pt}}
-    \newcommand\TT{\rule{0pt}{5.1ex}}
-    \newcommand\ft{\small}
-    \newcommand\ftt{\footnotesize}
-    \providecommand{\tabularnewline}{\\}
-    \renewcommand{\a}{{\bf a}}
-
-    \newcommand{\w}{{\cal W}}
-    \renewcommand{\b}{{\bf b}}
-    \renewcommand{\c}{{\bf c}}
-    \newcommand{\e}{{\rm e}}
-    \renewcommand{\O}{\mathcal{O}}
-    \newcommand{\g}{g}
-    \newcommand{\Tr}{E}
-    \newcommand{\ol}{\overline}
-    \newcommand{\DLc}{c}
-    \newcommand{\ep}{\sigma}
-    \renewcommand{\L}{{\cal L}}
-    \newcommand{\tr}{E}
-    \newcommand{\E}{{\cal E}}
-    \newcommand{\nabbold}{ \text{\boldmath $\nabla$}}
-    \renewcommand{\a}{{\bf a}}
-    \renewcommand{\b}{{\bf b}}
-    \newcommand{\para}[1]{\vspace{1ex} \noindent {\bf #1}}
-    \newcommand{\dr}{{\text{d}}}
-    \newcommand{\DLGamma}{{\gamma}}
-    \newcommand{\DLTr}{e}
-    \newcommand{\DLtr}{\epsilon}
-    \newcommand{\DLDelta}{\delta}
-    \newcommand{\Mdel}{ \pl \delta \preq }
-    \newcommand{\eff}{\tilde}
-    \newcommand{\W}{{\cal W}}
-    \newcommand{\eq}{{\rm eq}}
-    \renewcommand{\v}{\upsilon}
-    \newcommand{\Meant}{ \pl  \gamma(t)  \pr }
-    \newcommand{\st}{{\text{st}}}
-    \newcommand{\cov}{\textbf{cov}}
-    \newcommand{\MeanE}{[E^*]}
-    \newcommand{\TOmega}{\nu}
-    \usepackage{fullpage}
-    \newcommand{\corr}[1]{{\noindent \color{red} \small #1}}
-    \newcommand{\add}[1]{{\noindent \color{green} \small #1}}
-    \newcommand{\ql}{ { \langle } }
-    \newcommand{\qr}{ { \rangle } }
-    \newcommand{\pl}{  \langle  }
-    \newcommand{\pr}{  \rangle }
-    \newcommand{\stab}{{\rm stab}}
-    \newcommand{\ad}{{\rm ad}}
-    \newcommand{\EQ}{\begin{equation}}
-    \newcommand{\EE}{\end{equation}}
-    \newcommand{\EQA}{\begin{eqnarray}}
-    \newcommand{\EEA}{\end{eqnarray}}
-    \newcommand{\recom}{r}
-
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-    %\newcommand{\rmsf}{$C_\alpha$RMSF }
-    %\newcommand{\bfca}{$C_\alpha$Bfactor }
-
-
-    \def\longrightharpoonup{\relbar\joinrel\rightharpoonup}
-    \def\longleftharpoondown{\leftharpoondown\joinrel\relbar}
-    \usepackage{color}
-
-    \def\longrightleftharpoons{
-      \mathop{
-        \vcenter{
-          \hbox{
-    	\ooalign{
-    	  \raise1pt\hbox{$\longrightharpoonup\joinrel$}\crcr
-    	  \lower1pt\hbox{$\longleftharpoondown\joinrel$}
-    	}
-          }
-        }
-      }
-    }
-    \newcommand{\rates}[2]{\displaystyle
-      \mathrel{\longrightleftharpoons^{#1\mathstrut}_{#2}}}
-
-    \newcommand{\partialT}{\frac{\partial}{\partial t}}
-    \newcommand{\partialG}{\frac{\partial}{\partial \Gamma}}
-    \newcommand{\bG}{{\bf \Gamma}}
-    \newcommand{\partialD}{\frac{\partial}{\partial \Delta}}
-    \newcommand{\partialGsq}{\frac{\partial^2}{\partial \Gamma^2}}
-    \newcommand{\partialDsq}{\frac{\partial^2}{\partial \Delta^2}}
-    \newcommand{\partialEStar}{\frac{\partial}{\partial E^*}}
-    \newcommand{\partialEStarsq}{\frac{\partial^2}{\partial {E^*}^2}}
-    \newcommand{\R}{\mathcal{R}}
-    \newcommand{\A}{{\cal A}}
-    \newcommand{\D}{{\bf D}}
-    \newcommand{\cD}{{\cal D}}
-    \newcommand{\V}{{\bf V}}
-    \renewcommand{\H}{{\bf H}}
-    \usepackage[numbers, compress]{natbib}
-    \usepackage[font={small}]{caption}
-
-    \graphicspath{{C:/Users/Amir/Documents/GitHub/structural_prediction_of_ER/correlation_analysis/figures/}}
+\graphicspath{{../correlation_analysis/figures/}}
 
 \begin{document}
 
-\begin{titlepage}
-    \title{Protein Dynamics and Evolution: The role of Structural Flexibility and Packing on Sequence Evolution}
-    \author{Amir Shahmoradi, $^{1,2}$ %\footnote{$^{*}$ Authors with equal contributions.}
+
+\title{Predicting evolutionary site variability from structure in viral proteins: buriedness, flexibility, and design}
+\author{Amir Shahmoradi, $^{1,2}$ %\footnote{$^{*}$ Authors with equal contributions.}
             Daria K. Sydykova,$^{2}$ Stephanie J. Spielman,$^{2}$ \\
             Eleisha L. Jackson,$^{2}$ Eric T. Dawson,$^{2}$ Austin G. Meyer,$^{2}$ Claus O. Wilke$^{2}$}
 
-    \date{\small $^1$ Department of Physics, The University of Texas at Austin, TX, 78712 \\
+\date{\small $^1$ Department of Physics, The University of Texas at Austin, TX, 78712 \\
                  $^2$ Institute for Cellular and Molecular Biology, The University of Texas at Austin, TX, 78712 \\ }
 
-    \maketitle
+\maketitle
 
-    \begin{abstract}
-        Several recent works have shown that site-specific evolutionary variation in proteins can be predicted from protein structure. Most prominently, sites that are buried and/or have many contacts with other sites in a structure evolve more slowly than surface sites with few contacts. Here, we present a comprehensive study of numerous different structural properties that may constrain sequence variation, including measures of buriedness (relative solvent accessibility, contact number), measures of structural fluctuations (B factors, root-mean-square fluctuations, variation in dihedral angles), and variability in designed structures. Structural fluctuation measures were obtained from molecular dynamics simulations performed on 9 non-homologous viral protein structures, and from variation in homologous variants of these proteins where available. Variability in designed structures was obtained from flexible-backbone design via Rosetta. We found that most of the structural properties correlate with site variation in the majority of structures, though the correlations are generally weak (correlation coefficients of 0.1 to 0.4). We further found that measures of buriedness tend to be better predictors of evolutionary variation than measures of structural fluctuations. Variability in designed structures was a weaker predictor of evolutionary variability than both measures of buriedness and measures of fluctuations. We conclude that simple measures of buriedness are better predictors of evolutionary variation than more complicated predictors obtained from dynamic simulations, ensembles of homologous structures, or computational protein design.
-    \end{abstract}
-\end{titlepage}
+\begin{abstract}
+Several recent works have shown that site-specific evolutionary variation in proteins can be predicted from protein structure. Most prominently, sites that are buried and/or have many contacts with other sites in a structure evolve more slowly than surface sites with few contacts. Here, we present a comprehensive study of numerous different structural properties that may constrain sequence variation, including measures of buriedness (relative solvent accessibility, contact number), measures of structural fluctuations (B factors, root-mean-square fluctuations, variation in dihedral angles), and variability in designed structures. Structural fluctuation measures were obtained from molecular dynamics simulations performed on 9 non-homologous viral protein structures, and from variation in homologous variants of these proteins where available. Variability in designed structures was obtained from flexible-backbone design via Rosetta. We found that most of the structural properties correlate with site variation in the majority of structures, though the correlations are generally weak (correlation coefficients of 0.1 to 0.4). We further found that measures of buriedness tend to be better predictors of evolutionary variation than measures of structural fluctuations. Variability in designed structures was a weaker predictor of evolutionary variability than both measures of buriedness and measures of fluctuations. We conclude that simple measures of buriedness are better predictors of evolutionary variation than more complicated predictors obtained from dynamic simulations, ensembles of homologous structures, or computational protein design.
+\end{abstract}
 
 
-\section{Introduction\label{sec:Intro}}
+\section*{Introduction}
 
-    Identification of the driving factors in protein evolution has been on of the important objectives in molecular biology and protein research (cite xx). It is already well-established and understood that highly conserved amino acid sites in the protein sequences often fall in hotspot regions responsible for the protein's biophysical function (cite xx) or happen to be pivotal in maintaining the protein's native conformation. Aside from biophysical constraints, several structural determinants of protein dynamics and flexibility have been recently proposed to impose site-specific evolutionary pressure on the protein sequence. Examples include residue-level solvent exposure (cite xx), local protein density (cite xx), and measures of residue-level flexibility of the protein backbone (cite xx).
+Identification of the driving factors in protein evolution has been on of the important objectives in molecular biology and protein research (cite xx). It is already well-established and understood that highly conserved amino acid sites in the protein sequences often fall in hotspot regions responsible for the protein's biophysical function (cite xx) or happen to be pivotal in maintaining the protein's native conformation. Aside from biophysical constraints, several structural determinants of protein dynamics and flexibility have been recently proposed to impose site-specific evolutionary pressure on the protein sequence. Examples include residue-level solvent exposure (cite xx), local protein density (cite xx), and measures of residue-level flexibility of the protein backbone (cite xx).
 
-    Among correlating variables, the Relative Solvent Accessibility (hereafter RSA) has gained special attention for its ability in predicting the general patterns of residue-level sequence variability and evolution in globular proteins. This variable is defined as a residue's site-specific Accessible Surface Area (ASA) to solvent molecules, normalized by the theoretically or experimentally determined maximum accessible area for the same residue (Tien, Rose). RSA was first introduced in the context of hydrophobicity scales derived by computational means from protein crystal structures (cite xx) and its association with sequence variability may be explained in terms of the residue hydrophobicity which correlates strongly with RSA (Cite xx). The core of globular proteins is generally thought as a region of near-zero solvent accessibility that is mainly occupied by tightly-packed hydrophobic amino acid side chains. It can be therefore expected that any mutations of these hydrophobic residues in the protein core to hydrophilic or bulkier side chains (cite xx) may result in significant changes the native conformation of the protein which might in turn adversely affect the biophysical functioning of the protein and hence exert selection pressure against such mutations. In other words, the positive association of RSA with sequence variability is not a causal relation but merely a reflection of the effects of geometrical (cite Mike xx) or chemical (cite xx) constraints on sequence variability.
+Among correlating variables, the Relative Solvent Accessibility (hereafter RSA) has gained special attention for its ability in predicting the general patterns of residue-level sequence variability and evolution in globular proteins. This variable is defined as a residue's site-specific Accessible Surface Area (ASA) to solvent molecules, normalized by the theoretically or experimentally determined maximum accessible area for the same residue (Tien, Rose). RSA was first introduced in the context of hydrophobicity scales derived by computational means from protein crystal structures (cite xx) and its association with sequence variability may be explained in terms of the residue hydrophobicity which correlates strongly with RSA (Cite xx). The core of globular proteins is generally thought as a region of near-zero solvent accessibility that is mainly occupied by tightly-packed hydrophobic amino acid side chains. It can be therefore expected that any mutations of these hydrophobic residues in the protein core to hydrophilic or bulkier side chains (cite xx) may result in significant changes the native conformation of the protein which might in turn adversely affect the biophysical functioning of the protein and hence exert selection pressure against such mutations. In other words, the positive association of RSA with sequence variability is not a causal relation but merely a reflection of the effects of geometrical (cite Mike xx) or chemical (cite xx) constraints on sequence variability.
 
-    Along with RSA, other measures of residue buriedness, such as residue contact number (cite xx) have been proposed and shown to correlate with sequence variability, or even argued to serve as better predictors than RSA (cite xx).  Based on physical arguments and experimental evidence (xx what kind of arguments?), Halle 2001 argued that the local residue packing density is a direct proxy measure of residue and site-specific backbone flexibility, in particular the Debye-Waller factors, commonly known as B factor. Therefore, given the strong observational evidence for the significant positive correlation of residue density and packing with sequence evolution (cite xx), one may also expect to observe a positive trend between local flexibility and sequence variability. Indeed, several independent work have argued for the potential role of protein dynamics on sequence variability by measuring protein backbone flexibility (e.g., Bahar et all. Cite etc XX) via Elastic Network Models.
+Along with RSA, other measures of residue buriedness, such as residue contact number (cite xx) have been proposed and shown to correlate with sequence variability, or even argued to serve as better predictors than RSA (cite xx).  Based on physical arguments and experimental evidence (xx what kind of arguments?), \citet{Halle2002} argued that the local residue packing density is a direct proxy measure of residue and site-specific backbone flexibility, in particular the Debye-Waller factors, commonly known as B factors. Therefore, given the strong observational evidence for the significant positive correlation of residue density and packing with sequence evolution \citep{Yehetal2014}, one may also expect to observe a positive trend between local flexibility and sequence variability. Indeed, several authors have argued for the potential role of protein dynamics on sequence variability (e.g., Bahar et all. Cite etc XX).
 	
-    Although multitude of structural variables have been shown or predicted to influence residue-level sequence variability, there is currently no consensus on which variable and to what extent has the dominant role in regulating sequence variability, independently of other structural determinants (see however, a recent work by Echave et al 2014, in press). So far, a comprehensive study of all potential structural determinants of protein sequence evolution has been missing in the literature, with the existing work mainly focusing on individual variables. In particular, measures of residue spatial fluctuations and protein dynamics have only received marginal attention and consideration as potential contributing factors to sequence evolution.
+Although multitude of structural variables have been shown or predicted to influence residue-level sequence variability, there is currently no consensus on which variable and to what extent has the dominant role in regulating sequence variability, independently of other structural determinants (see however, a recent work by Echave et al 2014, in press). So far, a comprehensive study of all potential structural determinants of protein sequence evolution has been missing in the literature, with the existing work mainly focusing on individual variables. In particular, measures of residue spatial fluctuations and protein dynamics have only received marginal attention and consideration as potential contributing factors to sequence evolution.
 
-    Proteins are intrinsically dynamic entities in vivo, far from their perceived rigidities in crystal structures and their dynamic behavior is expected to influence their sequence evolution (cite Marsh).  However, contrary to RSA and residue contact number, an accurate determination of the protein's dynamical behavior and residue fluctuations -- solely based on the set of 3-dimensional atomic coordinates in crystal structures -- remains a challenging task. B factors are generally considered as an attractive proxy to local flexibility, though the atomistic definition of B factor may not be appropriate for the study of side-chain flexibility and fluctuations. Experimental studies of protein dynamics in vivo has also proven extremely difficult if not impossible (cite xx).
+Proteins are intrinsically dynamic entities in vivo, far from their perceived rigidities in crystal structures and their dynamic behavior is expected to influence their sequence evolution (cite Marsh).  However, contrary to RSA and residue contact number, an accurate determination of the protein's dynamical behavior and residue fluctuations---solely based on the set of 3-dimensional atomic coordinates in crystal structures---remains a challenging task. B factors are generally considered as an attractive proxy to local flexibility, though the atomistic definition of B factor may not be appropriate for the study of side-chain flexibility and fluctuations. Experimental studies of protein dynamics in vivo has also proven extremely difficult if not impossible (cite xx).
 
-    Alternatively, Molecular Dynamics (hereafter, MD) simulations provide an ideally suited method of studying protein dynamics and its potential role in driving sequence evolution.  Here in this work, we attempt to present a comprehensive study of several potential structural determinants of sequence variability from both protein crystallography and Molecular Dynamics perspectives. In addition to the factors already discussed in previous works, such as RSA and residue contact number, we also consider new dynamical measures of structural variability in the study, such as variance of the backbone and residue dihedral angles and residue spatial fluctuations from MD simulations and discuss their potential influence on sequence variability. The extent and breadth of such analysis however, limits diversity of the input data used in our work to highly evolving proteins that have multiple high-resolution homologous crystal structures in Protein Data Bank (cite xx). The availability of multiple structures is required for the calculation of site-specific spatial fluctuations and comparison of the results with the same variability measures based on MD simulations. In addition, the selected proteins should also have ample sequence data to ensure good statistic for sequence alignment and the calculation of sequence variability and evolutionary rates. \\
+Alternatively, Molecular Dynamics (hereafter, MD) simulations provide an ideally suited method of studying protein dynamics and its potential role in driving sequence evolution.  Here in this work, we attempt to present a comprehensive study of several potential structural determinants of sequence variability from both protein crystallography and Molecular Dynamics perspectives. In addition to the factors already discussed in previous works, such as RSA and residue contact number, we also consider new dynamical measures of structural variability in the study, such as variance of the backbone and residue dihedral angles and residue spatial fluctuations from MD simulations and discuss their potential influence on sequence variability. The extent and breadth of such analysis however, limits diversity of the input data used in our work to highly evolving proteins that have multiple high-resolution homologous crystal structures in Protein Data Bank (cite xx). The availability of multiple structures is required for the calculation of site-specific spatial fluctuations and comparison of the results with the same variability measures based on MD simulations. In addition, the selected proteins should also have ample sequence data to ensure good statistic for sequence alignment and the calculation of sequence variability and evolutionary rates.
 	
-    In the following sections, first we briefly present the methodology employed for data selection, sequence alignments, data analysis and the procedure for obtaining the relevant structural variables from Molecular Dynamics simulations and homologous structures, followed by the results and a discussion of the potential contributors to sequence variability or evolution. We show that measures of residue buriedness such as RSA and contact number outperform site-specific measures of residue fluctuations and discuss the potential underlying biases and reasons contributing to this observation.
+In the following sections, first we briefly present the methodology employed for data selection, sequence alignments, data analysis and the procedure for obtaining the relevant structural variables from Molecular Dynamics simulations and homologous structures, followed by the results and a discussion of the potential contributors to sequence variability or evolution. We show that measures of residue buriedness such as RSA and contact number outperform site-specific measures of residue fluctuations and discuss the potential underlying biases and reasons contributing to this observation.
 
-\section{Materials and Methods}
+\section*{Materials and Methods}
 
-	\subsection{Protein Family Selection and Sequence Alignment}
+\subsection*{Protein Family Selection and Sequence Alignment}
 	
-        All protein crystal structures in this work were taken from Data Bank (PDB) based on the availability of sequence data and homologous PDB structures. We focused our attention on viral proteins as they often have extensive sequence data available for alignment and for the calculation of evolutionary rates and sequence variability. Towards this, a total of $8$ viral protein families were selected for analysis as tabulated in Table \ref{tab:pdb_names}.
+All protein crystal structures in this work were taken from Data Bank (PDB) based on the availability of sequence data and homologous PDB structures. We focused our attention on viral proteins as they often have extensive sequence data available for alignment and for the calculation of evolutionary rates and sequence variability. Towards this, a total of $8$ viral protein families were selected for analysis as tabulated in Table \ref{tab:pdb_names}.
 
-        All alignments were constructed using amino-acid sequences with MAFFT, specifying the ``--auto" flag to select the optimal algorithm for the given data set, (cite {Katoh2002,Katoh2005}) and then back-translated to a codon alignment using the original nucleotide sequence data. We generated a phylogeny for each codon alignment in RAxML (cite {Stamatakis2006}) using the GTRGAMMA model. Using the codon alignment and phylogeny, we inferred evolutionary rates with the Random Effects Likelihood (REL) method (e.g., {NielsenYang1998}) using the HyPhy software (cite {Pond2005}), with five $omega$ rate categories as free parameters under the GY94 evolutionary model (cite {GoldmanYang1994}). This model is given by instantaneous rate matrix, for codon substitution of $i$ to $j$ (for $i \neq j$),
+All alignments were constructed using amino-acid sequences with MAFFT \citep{Katohetal2002,Katohetal2005}, specifying the ``--auto" flag to select the optimal algorithm for the given data set, and then back-translated to a codon alignment using the original nucleotide sequence data. Evolutionary rates were calculated as described \citep{SpielmanWilke2013}. In brief, we generated a phylogeny for each codon alignment in RAxML \citep{RaxMLHPC} using the GTRGAMMA model. Using the codon alignment and phylogeny, we inferred evolutionary rates with a Random Effects Likelihood (REL) model, using the HyPhy software \citep{KosakovskyPondetal2005}. The REL model was a variant of the GY94 evolutionary model \citep{GoldmanYang1994} with five $omega$ rate categories as free parameters. We employed an Empirical Bayes approach \citep{Yang2000} to infer $dN/dS$ values for each position in the alignment. The amino-acid sequence of the seed protein structures were then mapped to the corresponding alignments for subsequent analyses.
+%Additionally, using the phylogenies inferred with RAxML, we calculated a phylogenetic weight for each sequence using BranchManager \citep{Stone2007}.
 
-        \begin{equation}
-            Q_{ij} = \left\{ \begin{array}{rl}
-            0                           &\mbox{more than one nucleotide changes} \\
-            \pi_j                       &\mbox{synonymous transversion} \\
-            \kappa\pi_j              &\mbox{synonymous transition}     \\
-            \omega\pi_j              &\mbox{nonsynonymous transversion}  \\
-            \kappa\omega\pi_j     &\mbox{nonsynonymous transition}
-        \end{array} \right.,
-        \end{equation}
-        where $\pi_j$ is the frequency of codon $j$, $\kappa$ is the ratio of transition to tranversion substitutions, and $\omega$ is the ratio of nonsynonymous to synonymous substitution rates. The indices $i$ and $j$ include all 61 sense codons. We employed an Empirical Bayes approach \citep{Yang2000} to infer $dN/dS$ values for each position in the alignment. The amino-acid sequence of the seed protein structures were then mapped to the corresponding alignments for subsequent analyses. Additionally, using the phylogenies inferred with RAxML, we calculated a phylogenetic weight for each sequence using BranchManager \citep{Stone2007}.
+As an alternative measure of site-specific sequence variability, we also calculated the Shannon entropy ($H$) defined as
+\begin{equation}
+        H_i = - \sum_jP_{ij}\ln P_{ij}
+\end{equation}
+for the $i^{th}$ amino-acid site in each of the protein structures. Here $P_{ij}$ is relative frequency of amino acid $j$ at position $i$ in the alignment.
 
-        As an alternative measure of site-specific sequence variability, we also calculated the Shannon entropy ($H$) defined as,
 
-        \begin{equation}
-        H_i = - \sum_{j=1,20}P_{ij}\ln P_{ij}
-        \end{equation}
-
-        for the $i^{th}$ amino-acid site in each of the protein structures. Here $P_{ij}$ is the probability mass function for all $20$ amino-acids that could occupy the $i^{th}$ site. It will be argued and shown almost all structural variability measures are better predictors of sequence entropy as compared to the evolutionary rates ($dN/dS$).
-
-    \subsection{Homologous Crystal Structures}
+\subsection*{Homologous Crystal Structures}
 
         Regarding Daria's work.
 
-    \subsection{Molecular Dynamics Simulations}
+\subsection*{Molecular Dynamics Simulations}
 
-        The computational expense of Molecular Dynamics (MD) simulations limited our analysis to only one representative PDB structure from each of the $8$ protein families tabulated in Table \ref{tab:pdb_names}. However, to ensure the dynamic properties of homologous PDB structures do not differ significantly from each other, MD simulations were performed on two additional homologous PDB structures taken from Hepatitis C Protease. All simulations were performed on Lonestar's Dell Linux Cluster at Texas Advanced Computing Center (TACC) (citation maybe needed xx) using the GPU implementation of {\it Amber12} Molecular Dynamics simulation package (cite xx) with the most recent release of Amber fixed-charge force field (ff12SB; c.f., AmberTools13 Manual).
+The computational expense of Molecular Dynamics (MD) simulations limited our analysis to only one representative PDB structure from each of the $8$ protein families tabulated in Table \ref{tab:pdb_names}. However, to ensure the dynamic properties of homologous PDB structures do not differ significantly from each other, MD simulations were performed on two additional homologous PDB structures taken from Hepatitis C Protease. All simulations were performed on Lonestar's Dell Linux Cluster at Texas Advanced Computing Center (TACC) (citation maybe needed xx) using the GPU implementation of {\it Amber12} Molecular Dynamics simulation package (cite xx) with the most recent release of Amber fixed-charge force field (ff12SB; c.f., AmberTools13 Manual).
 		
-        Prior to MD production runs, all PDB structures were first energy minimized using the steepest descent method for $1000$ steps followed by conjugate gradient for another $1000$ steps. Then, the structures were constantly heated from $0K$ to $300K$ for $0.1ns$, followed by $0.1ns$ constant pressure simulations with positional harmonic restraints on all atoms to avoid instabilities during the equilibration process. The systems were then equilibrated for another $5ns$ without positional restraints, each followed by $15ns$ of production simulations in for subsequent post-processing and analyses. All equilibration and production simulations were run using SHAKE algorithm (cite xx) by which all bonds involving hydrogen are constrained to avoid instabilities for a choice of $2fs$ time step in simulations. Langevin dynamics were used for temperature control (cite for Langevin dynamics xx).\footnote{All details of simulations, input$/$output files and our automated pipeline for subsequent analyses are available to view or download at \url{https://github.com/clauswilke/structural\_prediction\_of\_ER}}.
+        Prior to MD production runs, all PDB structures were first energy minimized using the steepest descent method for $1000$ steps followed by conjugate gradient for another $1000$ steps. Then, the structures were constantly heated from $0K$ to $300K$ for $0.1ns$, followed by $0.1ns$ constant pressure simulations with positional harmonic restraints on all atoms to avoid instabilities during the equilibration process. The systems were then equilibrated for another $5ns$ without positional restraints, each followed by $15ns$ of production simulations in for subsequent post-processing and analyses. All equilibration and production simulations were run using SHAKE algorithm (cite xx) by which all bonds involving hydrogen are constrained to avoid instabilities for a choice of $2fs$ time step in simulations. Langevin dynamics were used for temperature control (cite for Langevin dynamics xx).
 
-    \subsection{Structural flexibility and buriedness measures}
+\subsection*{Structural flexibility and buriedness measures}
 
         Almost all structural determinants of sequence variability can be classified into either of the following two major categories:
 
@@ -210,45 +87,48 @@
 
         \end{enumerate}
 
-    \subsection{Sequence Entropy from Designed Proteins}
+\subsection*{Sequence Entropy from Designed Proteins}
 
-        Regarding Eleisha's work.
-		
-\section{Results}
+Design entropy was calculated as described \citep{Jacksonetal2013}. In brief, we did \dots
 
-    In the following paragraphs we present and compare the effects of different site-specific measures of spatial variability and buriedness on sequence variability (i.e., sequence entropy) among the protein structures considered in this study.
+\subsection*{Availability of data and methods}
 
-    \subsection{Molecular Dynamics vs. Homologous Crystal Structures}
+All details of simulations, input$/$output files and scripts for subsequent analyses are available to view or download at \url{https://github.com/clauswilke/structural\_prediction\_of\_ER}.
 
-        The field of Biochemistry and Molecular Biology has seen major contributions from Molecular Dynamics simulations over the past decade. The increasingly parallel computational power [e.g., cite TACC] combined with new efficient algorithms and integrators [cite] have made routine micro-second MD simulations possible (e.g., cite Shaw et al). Nevertheless, a comprehensive study of the protein's structural variability effects and dynamics on sequence evolution, from MD perspective, seems to be missing in the relevant literature. Figure \ref{fig:cor_cr_md} illustrates such an example comparison of the prediction power of the variables derived from $15ns$ of MD simulations and crystalline structures for the proteins that were considered in this study. Each plot compares the Spearman's correlation of sequence entropy with one structural variable as measured from PDB crystals on the horizontal axis, and from MD simulations on the vertical axis. For all the proteins considered in this study, the site-specific RSAs and contact numbers (CN \& iWCN) from crystal structures and MD simulations are strongly correlated with Spearman rank correlation coefficients of $>0.9$. Both RSA definitions also correlate moderately but highly significantly with the site-specific sequence entropies in all protein families.
+\section*{Results}
 
-        For the case of backbone fluctuations (RMSD) in Plot {\bf D}, only $4$ structures had adequate number of homologous crystal structures for RMSD calculations. As evidenced by the plots, the buriedness measures based on MD simulations do not seem to add any more information about sequence entropy as there is already in the PDB crystal structures for the same buriedness measures. In contrast, the results based on MD fluctuation measures appear to be in complete disagreement with those of crystal structures.
+\subsection*{Molecular Dynamics vs. Homologous Crystal Structures}
 
-        To further investigate the origins of the discrepancy, we also compared the entropy-RMSF correlation strengths based on MD and crystal structures with entropy-B factor correlations, illustrated in the plots of Figure \ref{fig:cor_entropy_bfca_rmsf}. B factors are regarded as an effective measure of atomic fluctuations in protein crystal structures and therefore, an approximate measure of local atomic fluctuations. For the sake of consistency, both RMSF and B factor were calculated for only $C_\alpha$ atoms in the protein backbone. Nevertheless, the same level of disagreement between the three different measures of site-specific fluctuations (i.e., B factors \& RMSF from MD and crystal structures) is observed. In other words, despite representing the same quantity, the three variables apparently do not explain the same information about sequence entropy.
 
-    	%\subsection{Structural Fluctuations vs. Sequence Entropy}
-        \subsection{Structural Fluctuations vs. buriedness measures in Predicting Sequence Entropy}
 
-            Focusing on structural fluctuations first, we compared six different measures of local spatial fluctuations in predicting sequence entropy. The results are illustrated in Figure \ref{fig:cor_entropy_SF}, where the Spearman's correlation coefficients of entropy with individual structural variables are compared against each other, for all $9$ protein families considered in the study. Given our data and results, the {\it backbone} dihedral angles seem to be the least explanatory variables of sequence entropy, while the variance of $\chi_1$ angle generally exhibits stronger and more significant correlation with entropy. Despite the observed inconsistency between B factor and the two measures of RMSF at the protein family level (Figures \ref{fig:cor_cr_md} \& \ref{fig:cor_entropy_bfca_rmsf}) in the previous section, it is evident that these three measures of local fluctuations explain the same amounts of sequence entropy at about the same significance levels on average.
+Figure \ref{fig:cor_cr_md} illustrates such an example comparison of the prediction power of the variables derived from $15ns$ of MD simulations and crystalline structures for the proteins that were considered in this study. Each plot compares the Spearman's correlation of sequence entropy with one structural variable as measured from PDB crystals on the horizontal axis, and from MD simulations on the vertical axis. For all the proteins considered in this study, the site-specific RSAs and contact numbers (CN \& iWCN) from crystal structures and MD simulations are strongly correlated with Spearman rank correlation coefficients of $>0.9$. Both RSA definitions also correlate moderately but highly significantly with the site-specific sequence entropies in all protein families.
 
-            Next, we compared the three most contributing fluctuation factors to sequence entropy with measures of buriedness and local density (RSA \& iWCN). The Spearman correlation strength of the variables with sequence entropy are compared to each other in Figure \ref{fig:cor_entropy_all}. A trend can be seen in the explanatory power of the variables, from left to the right of the plot. The variables RSA and the weighted contact number (iWCN) exhibit similar correlation strengths with sequence entropy with average $\rho\sim0.26$ \& $\rho\sim0.22$ respectively, over all protein structures. I contrast, the three fluctuation measures VAR$(\chi_1)$, MD RMSF \& B factor exhibit lower levels of associations with sequence entropy corresponding to average $\rho\sim0.17$, $\rho\sim0.10$ \& $\rho\sim0.13$ respectively, over all protein structures.
+For the case of backbone fluctuations (RMSD) in Plot {\bf D}, only $4$ structures had adequate number of homologous crystal structures for RMSD calculations. As evidenced by the plots, the buriedness measures based on MD simulations do not seem to add any more information about sequence entropy as there is already in the PDB crystal structures for the same buriedness measures. In contrast, the results based on MD fluctuation measures appear to be in complete disagreement with those of crystal structures.
 
-    	\subsection{Sequence Entropy from Designed and Natural Proteins}
-        \label{sec:SDN}
+To further investigate the origins of the discrepancy, we also compared the entropy-RMSF correlation strengths based on MD and crystal structures with entropy-B factor correlations, illustrated in the plots of Figure \ref{fig:cor_entropy_bfca_rmsf}. B factors are regarded as an effective measure of atomic fluctuations in protein crystal structures and therefore, an approximate measure of local atomic fluctuations. For the sake of consistency, both RMSF and B factor were calculated for only $C_\alpha$ atoms in the protein backbone. Nevertheless, the same level of disagreement between the three different measures of site-specific fluctuations (i.e., B factors \& RMSF from MD and crystal structures) is observed. In other words, despite representing the same quantity, the three variables apparently do not explain the same information about sequence entropy.
+
+\subsection*{Structural Fluctuations vs. buriedness measures in Predicting Sequence Entropy}
+
+Focusing on structural fluctuations first, we compared six different measures of local spatial fluctuations in predicting sequence entropy. The results are illustrated in Figure \ref{fig:cor_entropy_SF}, where the Spearman's correlation coefficients of entropy with individual structural variables are compared against each other, for all $9$ protein families considered in the study. Given our data and results, the {\it backbone} dihedral angles seem to be the least explanatory variables of sequence entropy, while the variance of $\chi_1$ angle generally exhibits stronger and more significant correlation with entropy. Despite the observed inconsistency between B factor and the two measures of RMSF at the protein family level (Figures \ref{fig:cor_cr_md} \& \ref{fig:cor_entropy_bfca_rmsf}) in the previous section, it is evident that these three measures of local fluctuations explain the same amounts of sequence entropy at about the same significance levels on average.
+
+Next, we compared the three most contributing fluctuation factors to sequence entropy with measures of buriedness and local density (RSA \& iWCN). The Spearman correlation strength of the variables with sequence entropy are compared to each other in Figure \ref{fig:cor_entropy_all}. A trend can be seen in the explanatory power of the variables, from left to the right of the plot. The variables RSA and the weighted contact number (iWCN) exhibit similar correlation strengths with sequence entropy with average $\rho\sim0.26$ \& $\rho\sim0.22$ respectively, over all protein structures. I contrast, the three fluctuation measures VAR$(\chi_1)$, MD RMSF \& B factor exhibit lower levels of associations with sequence entropy corresponding to average $\rho\sim0.17$, $\rho\sim0.10$ \& $\rho\sim0.13$ respectively, over all protein structures.
+
+\subsection*{Sequence Entropy from Designed and Natural Proteins}
 
             Discussion of the PCA analysis and potential RMSF-designed entropy bias.
 	
     	
-    \subsection{Discussion \& Concluding Remarks}
-	\label{sec:discussion}
+\section*{Discussion}
 
-        %The potential role of site-specific relative solvent accessibility in sequence variation has been already discussed in the literature (e.g., references). Here we calculated the site-specific RSA values for all protein crystal structures using DSSP software (reference). An independent measure of RSA can also be obtained from Molecular Dynamics trajectories for each PDB structure. This is done by measuring RSA for each MD trajectory snapshot. This results in an ensemble of RSA values for for each protein structure which can be averaged to a single representative value of RSA from MD simulations and compared to RSA measurements from crystal structure.
-		
-%\bibliographystyle{natbib}  % natbib.sty
-%\bibliography{Biophysics_review_paper}%%%refs.bib
+
+
+
+\bibliographystyle{MBE}  % natbib.sty
+\bibliography{Structural_prediction_of_ER.bib}%%%refs.bib
 
 \newpage
 
+\section*{Figures}
 
             \begin{figure*}[t]
             \begin{center}
