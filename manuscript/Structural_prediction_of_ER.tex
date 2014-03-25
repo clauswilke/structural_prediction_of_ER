@@ -52,6 +52,7 @@ All alignments were constructed using amino-acid sequences with MAFFT \citep{Kat
 
 As an alternative measure of site-specific sequence variability, we also calculated the Shannon entropy ($H$) defined as
 \begin{equation}
+\label{eqn:entropy}
         H_i = - \sum_jP_{ij}\ln P_{ij}
 \end{equation}
 for the $i^{th}$ amino-acid site in each of the protein structures. Here $P_{ij}$ is relative frequency of amino acid $j$ at position $i$ in the alignment.
@@ -89,7 +90,7 @@ The computational expense of Molecular Dynamics (MD) simulations limited our ana
 
 \subsection*{Sequence Entropy from Designed Proteins}
 
-Design entropy was calculated as described \citep{Jacksonetal2013}. In brief, we did \dots
+Design entropy was calculated as described in \citep{Jacksonetal2013}. In brief, proteins were designed using RosettaDesign (Version 39284) \citep{leaver-fay_rosetta3:_2011} using both a fixed and flexible backbone approach. This was done for all PDB structures in Table \ref{tab:pdb_names} as initial template structures. For each template, we created a series of backbone ensembles. For each of these ensembles, side chains were designed onto each ensemble. For the fixed protein design process, the backbone of the structure was held rigid when the ensembles were generated.  Flexible backbones were generated  using Backrub \citep{smith_backrub-like_2008}. When designing the proteins using Backrub we used a temperature parameter of $0.6$. The temperature parameter determines how much flexibility is allowed during the design process. A temperature of 0.6 was chosen to allow for an intermediate amount of flexibility.   For each of the 11 template structures we designed 100 proteins using the fixed backbone approach and 100 proteins using the flexible backbone approach. The entropy of the designed sequences were subsequenctly calculated by first aligning the designed sequences using MAFFT (cite xx). For each alignment we calculated the entropy ($H_i$) at the $i^{th}$ site, according to Eqn. \ref{eqn:entropy}.
 
 \subsection*{Availability of data and methods}
 
@@ -124,7 +125,7 @@ Next, we compared the three most contributing fluctuation factors to sequence en
 
 
 \bibliographystyle{MBE}  % natbib.sty
-\bibliography{Structural_prediction_of_ER.bib}%%%refs.bib
+\bibliography{Structural_prediction_of_ER}%%%refs.bib
 
 \newpage
 
@@ -183,7 +184,6 @@ Next, we compared the three most contributing fluctuation factors to sequence en
             \end{figure*}
 
 \input tab_pdb_names.tex
-
 
 \end{document}
 
