@@ -90,7 +90,7 @@ Almost all structural determinants of sequence variability can be classified int
 
 \subsection*{Sequence Entropy from Designed Proteins}
 
-Design entropy was calculated as described \citep{Jacksonetal2013}. In brief, proteins were designed using RosettaDesign (Version 39284) \citep{leaver-fay_rosetta3:_2011} using a flexible backbone approach. This was done for all PDB structures in Table \ref{tab:pdb_names} as initial template structures. For each template, we created a backbone ensemble using the Backrub method \citep{smith_backrub-like_2008}. The temperature parameter in Backrub was set to 0.6, allowing for an intermediate amount of flexibility.  For each of the 11 template structures we designed 100 proteins. {\color{red}\emph{Is this correct? It shouldn't have been done that way.}The entropy of the designed sequences were subsequenctly calculated by first aligning the designed sequences using MAFFT}
+Design entropy was calculated as described \citep{Jacksonetal2013}. In brief, proteins were designed using RosettaDesign (Version 39284) \citep{leaver-fay_rosetta3:_2011} using a flexible backbone approach. This was done for all PDB structures in Table \ref{tab:pdb_names} as initial template structures. For each template, we created a backbone ensemble using the Backrub method \citep{smith_backrub-like_2008}. The temperature parameter in Backrub was set to 0.6, allowing for an intermediate amount of flexibility.  For each of the 9 template structures we designed 100 proteins.
 
 \subsection*{Availability of data and methods}
 
@@ -131,7 +131,7 @@ To further investigate the relationship between backbone fluctuations and sequen
 \subsection*{Sequence entropy vs.\ evolutionary-rate ratio $\omega$}
 
 
-{\color{blue} Put discussion of entropy vs.\ omega here. Figure still needs to be put into the manuscript.}
+{\color{blue} Put discussion of entropy vs.\ omega here. Figure~\ref{fig:cor_entropy_omega}.}
 
 \subsection*{Multi-variate analysis of structural predictors}
 
@@ -183,50 +183,53 @@ To further investigate the relationship between backbone fluctuations and sequen
 
 \begin{figure}[tbh]
 \begin{center}
-   \includegraphics[height=0.35\textheight]{cor_entropy_all.pdf}
+    \includegraphics[height=0.35\textheight]{cor_entropy_all.pdf}
 \end{center}
-\caption{Comparison of the Spearman's rank correlation coefficients of sequence entropy with structural variability and buriedness measures. Different colors represent data for different protein structures. The correlation coefficients are represented by solid dots where significant (i.e., $p$-value $\leq0.05$) or empty dots otherwise (where $p$-value $\geq0.05$). The variables: B factor, RMSF and the backbone dihedral angle $\chi_1$ represent different measures of structural variability and fluctuations, while the RSA and IWCN assess the amino acids solvent accessibility and the local packing density respectively. Compared to fluctuation measures, the buriedness variables consistently show stronger correlations with sequence entropy among all viral proteins considered in this analysis.}
+\caption{\textbf{Spearman correlation of sequence entropy with measures of buriedness and of structural variability.} Each symbol represents one correlation coefficient for one protein structure. Significant correlations ($P<0.05$) are shown as filled symbols, and insignificant correlations ($P\leq0.05$) are shown as open symbols. The quantities RSA, iWCN, Var($\chi_1$), and RMSF were obtained as time-averages over 15ns of MD simulations. B factors were obtained from crystal structures. Compared to the measures of structural variability, the buriedness measures consistently show stronger correlations with sequence entropy.}
 \label{fig:cor_entropy_all}
 \end{figure}
 
 
 \begin{figure}[tbh]
 \begin{center}
-      \includegraphics[height=0.35\textheight]{cor_entropy_SF.pdf}
+    \includegraphics[height=0.35\textheight]{cor_entropy_SF.pdf}
 \end{center}
-\caption{Comparison of the Spearman's rank correlation coefficients of different structural variability measures with sequence entropy. Different colors represent data for different protein PDB structures. The correlation coefficients are represented by solid dots where significant (i.e., $p$-value $\leq0.05$) or empty dots otherwise (where $p$-value $\geq0.05$). The variables $\phi$, $\psi$, and $\chi_1$ represent the protein's backbone dihedral angles, measured from MD simulations. The Root-Mean-Square Fluctuations for the proteins' $C_\alpha$ atoms are calculated from both MD simulations (variable MD RMSF) and Crystal Structures (CS RMSF). Almost all structural measures of variability correlate weakly, but significantly with sequence entropy.}
+\caption{\textbf{Spearman correlation of sequence entropy with measures of structural variability.} Each symbol represents one correlation coefficient for one protein structure. Significant correlations ($P<0.05$) are shown as filled symbols, and insignificant correlations ($P\leq0.05$) are shown as open symbols. The quantities Var($\psi$), Var($\phi$), Var($\chi_1$), and MD RMSF were obtained as time-averages over 15ns of MD simulations. B factors were obtained from crystal structures. CS RMSF values were obtained from alignments of homologous crystal structures. Almost all structural measures of variability correlate weakly but significantly with sequence entropy.}
 \label{fig:cor_entropy_SF}
 \end{figure}
 
-            \begin{figure*}[tbh]
-            \begin{center}
-                \includegraphics[height=0.7\textheight]{cor_cr_md.pdf}
-            \end{center}
-            \caption{
-                     %{\bf Comparison of predictive power of four measures of structural variability about sequence entropy.}
-                     {\bf Molecular dynamics vs. protein crystal structures in predicting sequence entropy.}
-                     The vertical axes in all plots represent the Spearman's rank correlation coefficient of sequence entropy with one structural variable obtained from $15ns$ of Molecular Dynamics (MD) simulations. The horizontal axes represent the Spearman's rank correlation coefficient of sequence entropy with the same structural variable as in the vertical axes, but measured from protein crystal structures. Each black dot in the plots represents one protein structure provided in Table \ref{tab:pdb_names}. %The plots {\bf A}, {\bf B} \& {\bf C} all indicate the high similarity of the Relative Solvent Accessibility (RSA) and the two definitions of the amino acid Contact Number (ICN13 \& IWCN) measured from MD simulations with the corresponding measures from the protein crystal structures. Plot {\bf D} compares the correlation of sequence entropy with site-specific (backbone $C_\alpha$) Root-Mean-Square Fluctuation (RMSF) as measured from MD simulations and homologous crystal structures. Only four protein families had adequate number of homologous pdb structures for RMSF measurements to be included on this plot. Unlike measures of buriedness (RSA, ICN$13$ \& IWCN), RMSF from MD is not consistent with the corresponding measures from Crystal Structures. This is potentially due to the systematic biases that are involved in measuring RMSF (c.f., Section xx).
-                     }
-            \label{fig:cor_cr_md}
-            \end{figure*}
+\begin{figure}[tbh]
+\begin{center}
+    \includegraphics[height=0.7\textheight]{cor_cr_md.pdf}
+\end{center}
+\caption{\textbf{Spearman correlations of sequence entropy with MD-derived and crystal-structure derived structural measures.}
+The vertical axes in all plots represent the Spearman correlation of sequence entropy with one structural variable obtained from $15ns$ of Molecular Dynamics (MD) simulations. The horizontal axes represent the Spearman's rank correlation coefficient of sequence entropy with the same structural variable as in the vertical axes but measured from protein crystal structures. Each dot represents one correlation coefficient for one protein structure. The quantities iCN, iWCN, and RSA have nearly identical predictive power for sequence entropy regardless of whether they are derived from MD simulations or from crystal structures. By contrast, RMSF from MD simulations leads to very different correlations than RMSF from crystal structures does.
+}
+\label{fig:cor_cr_md}
+\end{figure}
 
-            \begin{figure*}[tbh]
-            \begin{center}
-                \includegraphics[height=0.35\textheight]{cor_entropy_bfca_rmsf.pdf}
-            \end{center}
-            \caption{
-                     {\bf RMSF vs. B factor in sequence entropy prediction.} {\bf (A)} Comparison of the Spearman's rank correlation coefficients of entropy--RMSF with entropy-B factor. Each black dot represents one protein structure. {\bf (B)} Comparison of the Spearman's rank correlation coefficients of entropy--RMSF with entropy--B factor. Each black dot represents one protein structure for which there were adequate number of homologous structures in the Protein Data Bank, in order to calculate RMSF. As evidenced from the data in the plots, the three different measures of site-specific structural flexibility -- MD RMSF, CS RMSF, and B factor -- are inconsistent with each other.
-                     }
-            \label{fig:cor_entropy_bfca_rmsf}
-            \end{figure*}
+\begin{figure}[tbh]
+\begin{center}
+    \includegraphics[height=0.35\textheight]{cor_entropy_bfca_rmsf.pdf}
+\end{center}
+\caption{\textbf{Spearman correlations of sequence entropy with measures of structural variability.}
+Vertical and horizonal axes represent Spearman correlations of the indicated quantities. Each dot represents one correlation coefficient for one protein structure. MD RMSF, crystal-structure RMSF, and B factors all have explain different amounts of variance in sequence entropy for different proteins.}
+\label{fig:cor_entropy_bfca_rmsf}
+\end{figure}
 
-	
+\begin{figure}[tbh]
+\begin{center}
+    \includegraphics[height=0.7\textheight]{cor_entropy_omega.pdf}
+\end{center}
+\caption{\textbf{Spearman correlations of structural quantities with sequence entropy and with the evolutionary rate ratio $\omega$.} All structural quantities generally predict as much as or more variation in sequence entropy than in $\omega$.}
+\label{fig:cor_entropy_omega}
+\end{figure}
 
 \begin{figure}[tbh]
 \begin{center}
        \includegraphics[height=0.7\textheight]{cor_entropy_PC_screen.pdf}
 \end{center}
-\caption{{Principal Component (PC) Regression of sequence entropy given the structural variables:} {\bf (A)} An illustration of the Spearman's rank correlation coefficients of sequence entropy with different components of PC analysis on $6$ structural variability measures: RSA, iWCN, MD RMSF, B factor \& sequence entropy from designed proteins. Different colors represent data for different protein structures. The correlation coefficients are represented by solid dots where significant (i.e., $p$-value $\leq0.05$) or empty dots otherwise (where $p$-value $\geq0.05$). {\bf (B)} Plot of the second vs. first principal components depicting the major contribution of buriedness measures to the first component and therefore, to the explained variance of sequence entropy in plot {\bf (A)}. Red vectors represent the contributions of each of the structural variables to principal components and the black dots represent the amino acid sites on all $9$ protein structures considered. {\bf (C)} Plot of the third vs. first principal components depicting the major contribution of -- xx needs further discussion with Claus. I doubt if the original conclusion about these two plots is credible. xx}
+\caption{\textbf{Principal Component (PC) Regression of sequence entropy given the structural variables.} {\color{blue}\textbf{Copy edit}{\bf (A)} An illustration of the Spearman's rank correlation coefficients of sequence entropy with different components of PC analysis on $6$ structural variability measures: RSA, iWCN, MD RMSF, B factor \& sequence entropy from designed proteins. Different colors represent data for different protein structures. The correlation coefficients are represented by solid dots where significant (i.e., $p$-value $\leq0.05$) or empty dots otherwise (where $p$-value $\geq0.05$). {\bf (B)} Plot of the second vs. first principal components depicting the major contribution of buriedness measures to the first component and therefore, to the explained variance of sequence entropy in plot {\bf (A)}. Red vectors represent the contributions of each of the structural variables to principal components and the black dots represent the amino acid sites on all $9$ protein structures considered. {\bf (C)}}}
 \label{fig:cor_entropy_all}
 \end{figure}
 
