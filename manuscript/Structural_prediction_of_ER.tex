@@ -98,21 +98,44 @@ All details of simulations, input$/$output files and scripts for subsequent anal
 
 \section*{Results}
 
-Proteins are dynamic, flexible entities, and PDB crystal structures represent only a single snapshot of the infinite number of conformational variations a protein will sample over time. When we derive quantities such as RSA or contact numbers from PDB structures, we don't know \emph{a priori} how representative these quantities are of the protein in solution. Therefore, we first assessed to what extent these quantities differed when we obtained them from crystal structures vs.\ from MD simulations, in the latter case averaged over 15ns of chemical time. We found that RSA, CN, and WCN from crystal structures were highly correlated with their averages over MD trajectories, for all protein structures we examined (Spearman rank correlation coefficients of $>0.9$). Further, when we correlated these quantities with sequence variability (as measured by site-specific entropy $H_i$), we found that the correlation coefficients were virtually identical (Figure~\ref{fig:cor_cr_md}A-C). Thus, in terms of predicting evolutionary variation, RSA and contact numbers obtained from the static structures perform as well as their dynamic equivalents averaged over short time scales.
+\subsection*{Data set and structural variables considered}
+
+Our goal in this work is to determine which structural properties best predict amino-acid variability at individual sites in proteins. To this end, we selected 9 viral proteins for which we had both high-quality crystal structures and abundant sequences to assess evolutionary variability (Table~\ref{tab:pdb_names}). We quantified evolutionary variability in two ways, by calculating entropies for each alignment column (sequence entropy) and by calculating the evolutionary-rate ratio $\omega=dN/dS$ (see Methods for details). Throughout this paper, we primarily report results obtained for sequence entropy. Results for $\omega$ are largely comparable, with some specific caveats detailed below.
+
+As predictors of evolutionary variability, we considered two broad classes of structural properties, residue buriedness and residue flexibility. Measures of buriedness quantify the extent to which a residue is protected from solvent. A commonly used measure of buriedness is solvent-accessible surface area (ASA) or its normalized variant relative solvent accessibility (RSA). Here we considered RSA, since it can be compared among residues of different sizes. We also considered contact number (CN) and weighted contact number (WCN). Both of these quantities assess the number of other residues a focal residue contacts. CN simply counts the number of contacts within a sphere of a given radius around the $\alpha$-carbon of the focal residue. WCN weights contacts by the distance between the two residues. Note that residue buriedness decreases as RSA increases, but it increases with increasing CN or WCN. To avoid this difference in directionality, in most analyses we replaced CN and WCN with their inverse, iCN=1/CN and iWCN=1/WCN. Because nearly all analyses we carried out were non-parametric and only depended on the rank order of the variables, this substitution only changed the sign of correlations but not the magnitude.
+
+Measures of flexibility assess the extent to which a residue fluctuates in space as a protein undergoes thermodynamic fluctuations in solution. There are different ways to quantify these fluctuations. First, we can measure the root mean-square deviation of the C$\alpha$ atom over time. This quantity is commonly called RMSF. Second, we can consider B factors, which measure the spatial localization of individual atoms in a protein crystal. Third, we can measure the variability in side-chain or backbone dihedral angles, such as Var($\chi_1$), Var($\phi$), or Var($\psi$). Here, we considered all these measures of structural variability.
+
+To calculate measures of flexibility, we generated molecular-dynamics (MD) trajectories for all crystal structures in Table~\ref{tab:pdb_names}. In all cases, we equilibrated the structure and then simulated 15ns of chemical time (see Methods). We recorded snapshots of the simulated structure every {\color{red}XXns (or whatever the time unit is)}. From these snapshots, for each residue we calculated RMSF as well as the variability in dihedral and side-chain angles. We also calculated time-averaged values of the three measures of buriedness RSA, CN, and WCN. We refer to these time-averaged values as MD RSA, MD CN, and MD WCN, respectively.
+
+
+\subsection*{Structural buriedness vs.\ spatial fluctuations as predictors of evolutionary variability}
+
+We first compared a subset of variables among the measures of buriedness and measures of fluctuations in their explanatory power for sequence variation. Figure~\ref{fig:cor_entropy_all} shows the Spearman correlation between sequence entropy and each of the quantities RSA, iWCN, Var$(\chi_1)$, RMSF, and B factor, for each protein. Significant correlations ($P<0.05$) are shown with filled symbols, and non-significant correlations are shown with empty symbols ($P\geq0.05$).
+In this figure, several patterns emerge. First, all correlations are generally positive and significant. The main exception is the RNA binding domain of Marburg virus, PDB ID 4GHA, which mostly shows no correlation but shows a negative correlation between sequence entropy and the variability in the $\chi_1$ angle. Second, correlations are generally weak. No correlation coefficient exceeds 0.4. Third, on average the correlation strength decreases as we move from left to right in the figure. The two measures of buriedness, RSA and iWCN, show the strongest correlations. Their correlations are on average $\rho=0.26$ and $\rho=0.22$, respectively. The three fluctuation measures Var($\chi_1$), RMSF, and B factor exhibit weaker correlations, on average $\rho=0.17$, $\rho=0.10$, and $\rho=0.13$, respectively.
+
+{\color{blue}\emph{This still needs copy-editing. In particular, remove reference to inconsistency between B factor and RMSF, and explain crystal RMSF.}
+We next analyzed structural fluctuations more carefully, by comparing six different measures of local spatial fluctuations in predicting sequence entropy. The results are illustrated in Figure \ref{fig:cor_entropy_SF}, where the Spearman's correlation coefficients of entropy with individual structural variables are compared against each other, for all 9 protein families considered in the study. Given our data and results, the {\it backbone} dihedral angles seem to be the least explanatory variables of sequence entropy, while the variance of $\chi_1$ angle generally exhibits stronger and more significant correlation with entropy. Despite the observed inconsistency between B factor and the two measures of RMSF at the protein family level (Figures \ref{fig:cor_cr_md} and \ref{fig:cor_entropy_bfca_rmsf}) in the previous section, it is evident that these three measures of local fluctuations explain the same amounts of sequence entropy at about the same significance levels on average.
+}
+
+\subsection*{MD time-averages vs.\ crystal-structure snapshots}
+
+In all analyses considered so far (with the exception of analyses involving B factors), we averaged structural quantities over MD trajectories comprising 15ns of chemical time. This is not conventional practice for quantities such as RSA or contact numbers. Instead, most authors simply obtain these quantities from individual crystal structures. We therefore asked whether MD averages differed in any meaningful way from estimates obtained from crystal structures, and whether estimates from MD and from crystal structures different in their predictive power for sequence variability.
+
+We found that RSA, CN, and WCN from crystal structures were highly correlated with their averages over MD trajectories, for all protein structures we examined (Spearman correlation coefficients of $>0.9$ in all cases {\color{red}Can we put these into a table?}). Further, when we correlated these quantities with sequence entropy, we found that the correlation coefficients we obtained for each protein were virtually identical (Figure~\ref{fig:cor_cr_md}A-C). Thus, in terms of predicting evolutionary variation, RSA and contact numbers obtained from the static structures performed as well as their dynamic equivalents averaged over short time scales.
 
 However, the same was not true when we considered backbone variability as measured by root mean fluctuations (RMSF). RMSF cannot be obtained from a single crystal structure, but we can calculate it from an alignment of multiple crystal structures were available. When we compared RMSF from MD to RMSF from crystal structures, we found that they were generally quite different. In particular, the strength of the correlation between site entropy and RMSF from MD was independent of the strength of the correlation between site entropy and RMSF from crystal structures (Figure~\ref{fig:cor_cr_md}D). In fact, for the structure for which RMSF from MD had the highest explanatory power for site entropy {\color{red}(Which structure is this?)}, the RMSF from crystal structures had the least explanatory power for site entropy (Figure~\ref{fig:cor_cr_md}D). The reverse was also true. {\color{red}(Which is the structure for which RMSF from crystal structure works best?)}
 
-To further investigate the relationship between backbone fluctuations and sequence variability, we also considered the correlation between sequence entropy and B factors of the $C_\alpha$ atoms in the protein backbone. We found that these correlations were generally different from the ones found for either the MD RMSF or the crystal structure RMSF (Figure \ref{fig:cor_entropy_bfca_rmsf}). Thus, B factors, MD RMSF, and crystal RMSF, though all measures of backbone fluctuations, contained distinct information about sequence variability in our data set.
+To further investigate the relationship between backbone fluctuations and sequence variability, we also compared the RMSF correlations to the correlations between sequence entropy and B factors. Again, we found that these correlations were generally different from the ones found for either the MD RMSF or the crystal structure RMSF (Figure \ref{fig:cor_entropy_bfca_rmsf}). Thus, B factors, MD RMSF, and crystal RMSF, though all measures of backbone fluctuations, contained distinct information about sequence variability in our data set.
 
-{\color{blue}Continue editing from here}
+\subsection*{Sequence entropy vs.\ evolutionary-rate ratio $\omega$}
 
-Focusing on structural fluctuations first, we compared six different measures of local spatial fluctuations in predicting sequence entropy. The results are illustrated in Figure \ref{fig:cor_entropy_SF}, where the Spearman's correlation coefficients of entropy with individual structural variables are compared against each other, for all $9$ protein families considered in the study. Given our data and results, the {\it backbone} dihedral angles seem to be the least explanatory variables of sequence entropy, while the variance of $\chi_1$ angle generally exhibits stronger and more significant correlation with entropy. Despite the observed inconsistency between B factor and the two measures of RMSF at the protein family level (Figures \ref{fig:cor_cr_md} \& \ref{fig:cor_entropy_bfca_rmsf}) in the previous section, it is evident that these three measures of local fluctuations explain the same amounts of sequence entropy at about the same significance levels on average.
 
-Next, we compared the three most contributing fluctuation factors to sequence entropy with measures of buriedness and local density (RSA \& iWCN). The Spearman correlation strength of the variables with sequence entropy are compared to each other in Figure \ref{fig:cor_entropy_all}. A trend can be seen in the explanatory power of the variables, from left to the right of the plot. The variables RSA and the weighted contact number (iWCN) exhibit similar correlation strengths with sequence entropy with average $\rho\sim0.26$ \& $\rho\sim0.22$ respectively, over all protein structures. I contrast, the three fluctuation measures VAR$(\chi_1)$, MD RMSF \& B factor exhibit lower levels of associations with sequence entropy corresponding to average $\rho\sim0.17$, $\rho\sim0.10$ \& $\rho\sim0.13$ respectively, over all protein structures.
+{\color{blue} Put discussion of entropy vs.\ omega here. Figure still needs to be put into the manuscript.}
 
-\subsection*{Sequence Entropy from Designed and Natural Proteins}
+\subsection*{Multi-variate analysis of structural predictors}
 
-            Discussion of the PCA analysis and potential RMSF-designed entropy bias.
+{\color{blue} Put discussion of the PCA analysis here. Figure~\ref{fig:cor_entropy_all}.}
 	
     	
 \section*{Discussion}
@@ -157,7 +180,25 @@ Next, we compared the three most contributing fluctuation factors to sequence en
 
 \section*{Figures}
 
-            \begin{figure*}[t]
+
+\begin{figure}[tbh]
+\begin{center}
+   \includegraphics[height=0.35\textheight]{cor_entropy_all.pdf}
+\end{center}
+\caption{Comparison of the Spearman's rank correlation coefficients of sequence entropy with structural variability and buriedness measures. Different colors represent data for different protein structures. The correlation coefficients are represented by solid dots where significant (i.e., $p$-value $\leq0.05$) or empty dots otherwise (where $p$-value $\geq0.05$). The variables: B factor, RMSF and the backbone dihedral angle $\chi_1$ represent different measures of structural variability and fluctuations, while the RSA and IWCN assess the amino acids solvent accessibility and the local packing density respectively. Compared to fluctuation measures, the buriedness variables consistently show stronger correlations with sequence entropy among all viral proteins considered in this analysis.}
+\label{fig:cor_entropy_all}
+\end{figure}
+
+
+\begin{figure}[tbh]
+\begin{center}
+      \includegraphics[height=0.35\textheight]{cor_entropy_SF.pdf}
+\end{center}
+\caption{Comparison of the Spearman's rank correlation coefficients of different structural variability measures with sequence entropy. Different colors represent data for different protein PDB structures. The correlation coefficients are represented by solid dots where significant (i.e., $p$-value $\leq0.05$) or empty dots otherwise (where $p$-value $\geq0.05$). The variables $\phi$, $\psi$, and $\chi_1$ represent the protein's backbone dihedral angles, measured from MD simulations. The Root-Mean-Square Fluctuations for the proteins' $C_\alpha$ atoms are calculated from both MD simulations (variable MD RMSF) and Crystal Structures (CS RMSF). Almost all structural measures of variability correlate weakly, but significantly with sequence entropy.}
+\label{fig:cor_entropy_SF}
+\end{figure}
+
+            \begin{figure*}[tbh]
             \begin{center}
                 \includegraphics[height=0.7\textheight]{cor_cr_md.pdf}
             \end{center}
@@ -169,7 +210,7 @@ Next, we compared the three most contributing fluctuation factors to sequence en
             \label{fig:cor_cr_md}
             \end{figure*}
 
-            \begin{figure*}[t]
+            \begin{figure*}[tbh]
             \begin{center}
                 \includegraphics[height=0.35\textheight]{cor_entropy_bfca_rmsf.pdf}
             \end{center}
@@ -179,35 +220,15 @@ Next, we compared the three most contributing fluctuation factors to sequence en
             \label{fig:cor_entropy_bfca_rmsf}
             \end{figure*}
 
-            \begin{figure*}[t]
-            \begin{center}
-                \includegraphics[height=0.35\textheight]{cor_entropy_SF.pdf}
-            \end{center}
-            \caption{
-                     Comparison of the Spearman's rank correlation coefficients of different structural variability measures with sequence entropy. Different colors represent data for different protein PDB structures. The correlation coefficients are represented by solid dots where significant (i.e., $p$-value $\leq0.05$) or empty dots otherwise (where $p$-value $\geq0.05$). The variables $\phi$, $\psi$, and $\chi_1$ represent the protein's backbone dihedral angles, measured from MD simulations. The Root-Mean-Square Fluctuations for the proteins' $C_\alpha$ atoms are calculated from both MD simulations (variable MD RMSF) and Crystal Structures (CS RMSF). Almost all structural measures of variability correlate weakly, but significantly with sequence entropy.
-                     }
-            \label{fig:cor_entropy_SF}
-            \end{figure*}
 	
-            \begin{figure*}[t]
-            \begin{center}
-                \includegraphics[height=0.35\textheight]{cor_entropy_all.pdf}
-            \end{center}
-            \caption{
-                     Comparison of the Spearman's rank correlation coefficients of sequence entropy with structural variability and buriedness measures. Different colors represent data for different protein structures. The correlation coefficients are represented by solid dots where significant (i.e., $p$-value $\leq0.05$) or empty dots otherwise (where $p$-value $\geq0.05$). The variables: B factor, RMSF and the backbone dihedral angle $\chi_1$ represent different measures of structural variability and fluctuations, while the RSA and IWCN assess the amino acids solvent accessibility and the local packing density respectively. Compared to fluctuation measures, the buriedness variables consistently show stronger correlations with sequence entropy among all viral proteins considered in this analysis.
-                     }
-            \label{fig:cor_entropy_all}
-            \end{figure*}
 
-            \begin{figure*}[t]
-            \begin{center}
-                \includegraphics[height=0.7\textheight]{cor_entropy_PC_screen.pdf}
-            \end{center}
-            \caption{
-                     {Principal Component (PC) Regression of sequence entropy given the structural variables:} {\bf (A)} An illustration of the Spearman's rank correlation coefficients of sequence entropy with different components of PC analysis on $6$ structural variability measures: RSA, iWCN, MD RMSF, B factor \& sequence entropy from designed proteins. Different colors represent data for different protein structures. The correlation coefficients are represented by solid dots where significant (i.e., $p$-value $\leq0.05$) or empty dots otherwise (where $p$-value $\geq0.05$). {\bf (B)} Plot of the second vs. first principal components depicting the major contribution of buriedness measures to the first component and therefore, to the explained variance of sequence entropy in plot {\bf (A)}. Red vectors represent the contributions of each of the structural variables to principal components and the black dots represent the amino acid sites on all $9$ protein structures considered. {\bf (C)} Plot of the third vs. first principal components depicting the major contribution of -- xx needs further discussion with Claus. I doubt if the original conclusion about these two plots is credible. xx
-                     }
-            \label{fig:cor_entropy_all}
-            \end{figure*}
+\begin{figure}[tbh]
+\begin{center}
+       \includegraphics[height=0.7\textheight]{cor_entropy_PC_screen.pdf}
+\end{center}
+\caption{{Principal Component (PC) Regression of sequence entropy given the structural variables:} {\bf (A)} An illustration of the Spearman's rank correlation coefficients of sequence entropy with different components of PC analysis on $6$ structural variability measures: RSA, iWCN, MD RMSF, B factor \& sequence entropy from designed proteins. Different colors represent data for different protein structures. The correlation coefficients are represented by solid dots where significant (i.e., $p$-value $\leq0.05$) or empty dots otherwise (where $p$-value $\geq0.05$). {\bf (B)} Plot of the second vs. first principal components depicting the major contribution of buriedness measures to the first component and therefore, to the explained variance of sequence entropy in plot {\bf (A)}. Red vectors represent the contributions of each of the structural variables to principal components and the black dots represent the amino acid sites on all $9$ protein structures considered. {\bf (C)} Plot of the third vs. first principal components depicting the major contribution of -- xx needs further discussion with Claus. I doubt if the original conclusion about these two plots is credible. xx}
+\label{fig:cor_entropy_all}
+\end{figure}
 
 
 
