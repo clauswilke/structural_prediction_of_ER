@@ -7,8 +7,8 @@
 
 setwd('C:/Users/Amir/Documents/GitHub/structural_prediction_of_ER/')
 
-data = rbind(data_1RD8_AB, data_2FP7_B, data_2JLY_A, data_2Z83_A, data_3GOL_A, data_3LYF_A, data_4AQF_B, data_4GHA_A, data_4IRY_A,
-             data_3GSZ_A, data_3I5K_A, data_2JLY_A_temp_50, data_2JLY_A_temp_100, data_2JLY_A_temp_200, data_2JLY_A_temp_450)
+data = rbind(data_1RD8_AB, data_2FP7_B, data_2JLY_A, data_2Z83_A, data_3GOL_A, data_3LYF_A, data_4AQF_B, data_4GHA_A, data_4IRY_A)
+            #,data_3GSZ_A, data_3I5K_A, data_2JLY_A_temp_50, data_2JLY_A_temp_100, data_2JLY_A_temp_200, data_2JLY_A_temp_450)
 
 data$protein = factor(data$protein)
 
@@ -120,7 +120,7 @@ screen(4)
 
 screen(1)
 	par( mai=c(0.65, 0.65, 0.4, 0.2), mgp=c(2, 0.5, 0), tck=-0.03 )
-	plot(0,xaxt='n',yaxt='n',bty='n',pch='',xlab="entropy - ICN13 (Crystal Structure)",ylab="entropy - ICN13 (MD simulation)", xlim=c(-.1,.4),ylim=c(-.1,.4))
+	plot(0,xaxt='n',yaxt='n',bty='n',pch='',xlab="entropy - iCN (Crystal Structure)",ylab="entropy - iCN (MD simulation)", xlim=c(-.1,.4),ylim=c(-.1,.4))
 	axis( 1,  # x axis
 		at=c(-.1,0,.1,.2,.3,.4),
 		c("","0.0","","0.2","","0.4"))
@@ -133,7 +133,7 @@ screen(1)
 	
 screen(2)
 	par( mai=c(0.65, 0.65, 0.4, 0.2), mgp=c(2, 0.5, 0), tck=-0.03 )
-	plot(0,xaxt='n',yaxt='n',bty='n',pch='',xlab="entropy - IWCN (Crystal Structure)",ylab="entropy - IWCN (MD simulation)", xlim=c(-.1,.4),ylim=c(-.1,.4))
+	plot(0,xaxt='n',yaxt='n',bty='n',pch='',xlab="entropy - iWCN (Crystal Structure)",ylab="entropy - iWCN (MD simulation)", xlim=c(-.1,.4),ylim=c(-.1,.4))
 	axis( 1,  # x axis
 		at=c(-.1,0,.1,.2,.3,.4),
 		c("","0.0","","0.2","","0.4"))
