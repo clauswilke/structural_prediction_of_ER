@@ -44,49 +44,44 @@ In the following sections, first we briefly present the methodology employed for
 
 \section*{Materials and Methods}
 
-\subsection*{Protein Family Selection and Sequence Alignment}
-	
-All protein crystal structures in this work were taken from Data Bank (PDB) based on the availability of sequence data and homologous PDB structures. We focused our attention on viral proteins as they often have extensive sequence data available for alignment and for the calculation of evolutionary rates and sequence variability. Towards this, a total of $8$ viral protein families were selected for analysis as tabulated in Table \ref{tab:pdb_names}.
+\section*{Sequence data, alignments, and evolutionary rates}
 
-All alignments were constructed using amino-acid sequences with MAFFT \citep{Katohetal2002,Katohetal2005}, specifying the ``--auto" flag to select the optimal algorithm for the given data set, and then back-translated to a codon alignment using the original nucleotide sequence data. Evolutionary rates were calculated as described \citep{SpielmanWilke2013}. In brief, we generated a phylogeny for each codon alignment in RAxML \citep{RaxMLHPC} using the GTRGAMMA model. Using the codon alignment and phylogeny, we inferred evolutionary rates with a Random Effects Likelihood (REL) model, using the HyPhy software \citep{KosakovskyPondetal2005}. The REL model was a variant of the GY94 evolutionary model \citep{GoldmanYang1994} with five $omega$ rate categories as free parameters. We employed an Empirical Bayes approach \citep{Yang2000} to infer $dN/dS$ values for each position in the alignment. The amino-acid sequence of the seed protein structures were then mapped to the corresponding alignments for subsequent analyses.
-%Additionally, using the phylogenies inferred with RAxML, we calculated a phylogenetic weight for each sequence using BranchManager \citep{Stone2007}.
+All viral sequences except influenza and HIV sequences were retrieved from \url{http://hfv.lanl.gov/components/sequence/HCV/search/searchi.html}.
+The sequences were truncated to the desired genomic region but not in any other way restricted. Influenza sequences were downloaded from \url{http://www.fludb.org/brc/home.spg?decorator=influenza}. We only considered human influenza A, H1N1, excluding H1N1 sequences from the 2009 Swine Flu outbreak. We only used sequences from after 1998 but did not place geographic restrictions. HIV-1 sequences were retrieved from \url{http://www.hiv.lanl.gov/components/sequence/HIV/search/search.html}.
+Sequences were truncated to the desired genomic region, but no other restrictions were imposed.
 
-As an alternative measure of site-specific sequence variability, we also calculated the Shannon entropy ($H$) defined as
+For all viral sequences, we removed any sequence that was not in reading frame, any sequence which was shorter than 80\% of the longest sequence for a given viral protein (so as to remove all partial sequences), and any sequence containing any ambiguous characters. Alignments were constructed using amino-acid sequences with MAFFT \citep{Katohetal2002,Katohetal2005}, specifying the ``--auto" flag to select the optimal algorithm for the given data set, and then back-translated to a codon alignment using the original nucleotide sequence data.
+
+To assess site-specific sequence variability in amino-acid alignments, we calculated the Shannon entropy ($H_i$) at each alignment column $i$:
 \begin{equation}
-        H_i = - \sum_jP_{ij}\ln P_{ij}
+        H_i = - \sum_jP_{ij}\ln P_{ij}.
 \end{equation}
-for the $i^{th}$ amino-acid site in each of the protein structures. Here $P_{ij}$ is relative frequency of amino acid $j$ at position $i$ in the alignment.
+Here, $P_{ij}$ is relative frequency of amino acid $j$ at position $i$ in the alignment.
 
-
-\subsection*{Homologous Crystal Structures}
-
-        Regarding Daria's work.
+For each alignment, we also calculated evolutionary rates, as described \citep{SpielmanWilke2013}. In brief, we generated a phylogeny for each codon alignment in RAxML \citep{RaxMLHPC} using the GTRGAMMA model. Using the codon alignment and phylogeny, we inferred evolutionary rates with a Random Effects Likelihood (REL) model, using the HyPhy software \citep{KosakovskyPondetal2005}. The REL model was a variant of the GY94 evolutionary model \citep{GoldmanYang1994} with five $omega$ rate categories as free parameters. We employed an Empirical Bayes approach \citep{Yang2000} to infer $dN/dS$ values for each position in the alignment. The amino-acid sequence of the seed protein structures were then mapped to the corresponding alignments for subsequent analyses.
+%Additionally, using the phylogenies inferred with RAxML, we calculated a phylogenetic weight for each sequence using BranchManager \citep{Stone2007}.
 
 \subsection*{Molecular Dynamics Simulations}
 
-The computational expense of Molecular Dynamics (MD) simulations limited our analysis to only one representative PDB structure from each of the $8$ protein families tabulated in Table \ref{tab:pdb_names}. However, to ensure the dynamic properties of homologous PDB structures do not differ significantly from each other, MD simulations were performed on two additional homologous PDB structures taken from Hepatitis C Protease. All simulations were performed on Lonestar's Dell Linux Cluster at Texas Advanced Computing Center (TACC) using the GPU implementation of {\it Amber12} Molecular Dynamics simulation package (cite xx) with the most recent release of Amber fixed-charge force field (ff12SB; c.f., AmberTools13 Manual).
+Molecular dynamics (MD) simulations were carried out using the GPU implementation of the {\it Amber12} simulation package (cite xx) with the most recent release of Amber fixed-charge force field (ff12SB; c.f., AmberTools13 Manual).
 		
-Prior to MD production runs, all PDB structures were first energy minimized using the steepest descent method for $1000$ steps followed by conjugate gradient for another $1000$ steps. Then, the structures were constantly heated from $0K$ to $300K$ for $0.1ns$, followed by $0.1ns$ constant pressure simulations with positional harmonic restraints on all atoms to avoid instabilities during the equilibration process. The systems were then equilibrated for another $5ns$ without positional restraints, each followed by $15ns$ of production simulations in for subsequent post-processing and analyses. All equilibration and production simulations were run using SHAKE algorithm (cite xx) by which all bonds involving hydrogen are constrained to avoid instabilities for a choice of $2fs$ time step in simulations. Langevin dynamics were used for temperature control (cite for Langevin dynamics xx).
+Prior to MD production runs, all PDB structures were first energy minimized using the steepest descent method for 1000 steps, followed by conjugate gradient for another 1000 steps. Then, the structures were constantly heated from 0K to 300K for 0.1ns, followed by 0.1ns constant pressure simulations with positional harmonic restraints on all atoms to avoid instabilities during the equilibration process. The systems were then equilibrated for another 5ns without positional restraints, each followed by 15ns of production simulations for subsequent post-processing and analyses. All equilibration and production simulations were run using the SHAKE algorithm (cite xx), {\color{blue}by which all bonds involving hydrogen are constrained to avoid instabilities for a choice of 2fs time step in simulations.} Langevin dynamics were used for temperature control (cite for Langevin dynamics xx).
 
-\subsection*{Structural flexibility and buriedness measures}
+\subsection*{Measures of buriedness and of structural flexibility}
 
-Almost all structural determinants of sequence variability can be classified into either of the following two major categories:
+As measures of residue buriedness, we calculated Relative Solvent Accessibility (RSA), contact number (CN), and weighted contact number (WCN). To calculate RSA, we first calculated the Accessible Surface Area (ASA) for each residue in each protein, using the DSSP software \citep{KabschSander1983}. We then normalized ASA values by the theoretical maximum ASA of each residue \citep{Tienetal2013} to obtain RSA. We calculated CN for each residue as the total number of C$\alpha$ atoms surrounding the  C$\alpha$ atom of the focal residue within a spherical neighborhood of a predefined radius $r_0$. Following Franzosa (cite xx), we used $r_0=13\AA$. We calculated WCN as the total number of surrounding C$\alpha$ atoms for each focal residue, weighted by the inverse square separation between the C$\alpha$ atoms of the focal residue and the contacting residue, respectively \citep{Shihetal2012}.
 
-        \begin{enumerate}
+In most analyses, we actually used the inverse of CN and/or WCN, $\text{iCN}=1/\text{CN}$ and $\text{iWCN}=1/\text{WCN}$. Note that for Spearman correlations, which we use throughout here, replacing a variable by its inverse changes the sign of the correlation coefficient but not the magnitude.
 
-            \item {\bf measures of local fluctuation/flexibility.}
-                Among the most popular measures of local flexibility is the Root-Mean Square Fluctuation (RMSF) of the protein backbone with respects to a reference structure, often chosen to be the $3D$ coordinates in the seed PDB file among homologous structures. In case of MD simulations, the reference can also be represented by the average structure over the entire MD trajectories, though it may not necessarily correspond to a realistic conformation of the protein. Based on MD trajectories, we calculated RMSF for the backbone $C_\alpha$ atoms of all protein structures with respect to the corresponding coordinates of the PDB crystal structures listed in Table \ref{tab:pdb_names}. In addition, the same RMSF measurements were carried out based on the structural alignments for four protein families that had adequate number of homologous structures in Protein Data Bank (how many specifically?? i.o.w. why did Daria end up with only these four? xx).
+As measures of structural variability, we considered RMSF, variability in backbone and side-chain dihedral angles, and B factors. {\color{blue}Based on MD trajectories, we calculated RMSF for the backbone C$\alpha$ atoms of all protein structures with respect to the corresponding coordinates of the PDB crystal structures listed in Table \ref{tab:pdb_names}. In addition, the same RMSF measurements were carried out based on the structural alignments for four protein families that had adequate number of homologous structures in Protein Data Bank}
 
-                The variable RMSF, by its definition, can be potentially a biased measure of site-specific flexibility and fluctuations due to its dependence on the goodness of the structural fitting and alignments prior to RMSF calculations. We therefore considered also the variations in the backbone and residue dihedral angles ($\phi$, $\psi$ \& $\chi_2$) as independent measures of {\it local} residue and backbone flexibility which are less prone to systematic biases. The variances of $\phi$ \& $\psi$ can serve as approximate measures of the site-specific flexibility of the backbone atoms, while the variance of $\chi$ angle mainly represents the side-chain flexibility and local fluctuations. The $\chi_1$ angle, however, is undefined for the two amino acids Alanine and Glycin and the corresponding sites in the proteins are excluded for the study of $\chi_1$ and sequence variability relations.
+To assess variability in backbone and side-chain dihedral angles, we calculated Var($\phi$), Var($\psi$), and Var($chi_1$). {\color{red}The variance of a dihedral angle is defined as \dots.} Since the $\chi_1$ angle is undefined for Ala and Gly we excluded all sides with these residues in analyses involving $\chi_1$.
 
-                % xx , as it strongly depends on how well the 3D structures -- either from the homologous sets or MD trajectories -- fit the corresponding reference structures. This fitting procedure can adversely affect the measurements of  spatial fluctuation
+B factors were extracted from the crystal structures listed in Table~\ref{tab:pdb_names}. We only considered the B factors of the C$\alpha$ atom of each residue.
 
-            \item {\bf measures of residue buriedness and local density.}
-                The site-specific Relative Solvent Accessibility (RSA) is likely the most prominent variable indicating the degree of amino acid exposure to solvent molecules. We used DSSP software \citep{KabschSander1983} to calculate the Accessible Surface Area (ASA) for all protein crystal structures in this work, also for the ensemble of coordinates obtained from MD simulations. The ASA values were then normalized to the theoretical maximum ASA values of \citet{Tienetal2013} to obtain the corresponding RSA values. Another indicator of residue solvent exposure, though indirectly, is the residue Contact Number (CN), defined as the total number of $C_\alpha$ atoms surrounding $C_\alpha$ atom of a desired site in a protein, within a spherical neighborhood of a predefined radius $r_0$. Following Franzosa (cite xx), we assume $r_0=13\AA$ for the calculation of the contact numbers for all structures and MD trajectories.
-
-                Additionally, we also calculate a variant of Contact Number definition that was recently proposed by \citet{Shihetal2012}, defined as the total number of contact $C_\alpha$ atoms at an amino acid site, weighted by the inverse square separation between the neighbor atoms and the site of interest. This Weighted Contact Number (WCN) avoids the problem of manually assigning a neighborhood radius in order to calculate the contact numbers. As it will be shown in the following sections, both definitions of contact numbers are negatively correlated with sequence variability, in contrast to other structural variability measures that often correlate positively. Thus, for the sake of consistency with other structural variables, we use the inverted values of the two contact number definitions and denote them by iCN and iWCN, respectively: $\text{iCN}=1/\text{CN}$, $\text{iWCN}=1/\text{WCN}$. Note that for Spearman correlations, which we use throughout here, replacing a variable by its inverse changes the sign of the correlation coefficient but not the magnitude.
-
-        \end{enumerate}
+\subsection*{Protein crystal structures}
+	
+A total of $8$ viral proteins were selected for analysis, as tabulated in Table \ref{tab:pdb_names}.
 
 \subsection*{Sequence Entropy from Designed Proteins}
 
@@ -115,7 +110,7 @@ We first compared a subset of variables among the measures of buriedness and mea
 In this figure, several patterns emerge. First, all correlations are generally positive and significant. The main exception is the RNA binding domain of Marburg virus, PDB ID 4GHA, which mostly shows no correlation but shows a negative correlation between sequence entropy and the variability in the $\chi_1$ angle. Second, correlations are generally weak. No correlation coefficient exceeds 0.4. Third, on average the correlation strength decreases as we move from left to right in the figure. The two measures of buriedness, RSA and iWCN, show the strongest correlations. Their correlations are on average $\rho=0.26$ and $\rho=0.22$, respectively. The three fluctuation measures Var($\chi_1$), RMSF, and B factor exhibit weaker correlations, on average $\rho=0.17$, $\rho=0.10$, and $\rho=0.13$, respectively.
 
 {\color{blue}\emph{This still needs copy-editing. In particular, remove reference to inconsistency between B factor and RMSF, and explain crystal RMSF.}
-We next analyzed structural fluctuations more carefully, by comparing six different measures of local spatial fluctuations in predicting sequence entropy. The results are illustrated in Figure \ref{fig:cor_entropy_SF}, where the Spearman's correlation coefficients of entropy with individual structural variables are compared against each other, for all 9 protein families considered in the study. Given our data and results, the {\it backbone} dihedral angles seem to be the least explanatory variables of sequence entropy, while the variance of $\chi_1$ angle generally exhibits stronger and more significant correlation with entropy. Despite the observed inconsistency between B factor and the two measures of RMSF at the protein family level (Figures \ref{fig:cor_cr_md} and \ref{fig:cor_entropy_bfca_rmsf}) in the previous section, it is evident that these three measures of local fluctuations explain the same amounts of sequence entropy at about the same significance levels on average.
+We next analyzed structural fluctuations more carefully, by comparing six different measures of local spatial fluctuations in predicting sequence entropy. The variable RMSF, by its definition, can be potentially a biased measure of site-specific flexibility and fluctuations due to its dependence on the goodness of the structural fitting and alignments prior to RMSF calculations. We therefore considered also the variations in the backbone and residue dihedral angles ($\phi$, $\psi$ \& $\chi_2$) as independent measures of {\it local} residue and backbone flexibility which are less prone to systematic biases. The variances of $\phi$ \& $\psi$ can serve as approximate measures of the site-specific flexibility of the backbone atoms, while the variance of $\chi$ angle mainly represents the side-chain flexibility and local fluctuations. The results are illustrated in Figure \ref{fig:cor_entropy_SF}, where the Spearman's correlation coefficients of entropy with individual structural variables are compared against each other, for all 9 protein families considered in the study. Given our data and results, the {\it backbone} dihedral angles seem to be the least explanatory variables of sequence entropy, while the variance of $\chi_1$ angle generally exhibits stronger and more significant correlation with entropy. Despite the observed inconsistency between B factor and the two measures of RMSF at the protein family level (Figures \ref{fig:cor_cr_md} and \ref{fig:cor_entropy_bfca_rmsf}) in the previous section, it is evident that these three measures of local fluctuations explain the same amounts of sequence entropy at about the same significance levels on average.
 }
 
 \subsection*{MD time-averages vs.\ crystal-structure snapshots}
@@ -135,7 +130,7 @@ To further investigate the relationship between backbone fluctuations and sequen
 
 \subsection*{Multi-variate analysis of structural predictors}
 
-{\color{blue} Put discussion of the PCA analysis here. Figure~\ref{fig:cor_entropy_all}.}
+{\color{blue} Put discussion of the PCA analysis here. Figure~\ref{fig:cor_entropy_pc_screen}.}
 	
     	
 \section*{Discussion}
@@ -151,29 +146,28 @@ To further investigate the relationship between backbone fluctuations and sequen
 \section*{Tables}
 
 \begin{table}[htbp]
-        \begin{center}
-                \caption{PDB structures considered in this study \label{tab:pdb_names}}
-                \begin{tabular}{c c c c c} % c}
+\begin{center}
+\caption{PDB structures considered in this study \label{tab:pdb_names}}
+\begin{tabular}{c c c c c} % c}
                         \hline
                         \hline
-                        Viral                                           & PDB            & PDB       & Number of          & Number of   \\ %& Reference \\
-                        Protein                                                 & Structure      & Chain     & Residues           & Sequences   \\ %&           \\
-                        \hline                                                                                          
-                        Hemagglutinin Precursor         & 1RD8           & AB        & 503                & 1039        \\ %& -         \\
-                        Dengue Protease Helicase        & 2JLY           & A         & 451                & 2362        \\ %& -         \\
-                        West Nile Protease              & 2FP7           & B         & 147                & 237         \\ %& -         \\
-                        Japanese Encephalitis Helicase  & 2Z83           & A         & 426                & 145         \\ %& -         \\
-                        Hepatitis C Protease            & 3GOL           & A         & 557                & 1021        \\ %& -         \\
-                        Hepatitis C Protease            & 3GSZ           & A         & 558                & 1021        \\ %& -         \\
-                        Hepatitis C Protease            & 3I5K           & A         & 566                & 1021        \\ %& -         \\
-                        Rift Valley Fever Nucleoprotein & 3LYF           & A         & 244                & 95          \\ %& -         \\
-                        Crimean Congo Nucleocapsid      & 4AQF           & B         & 474                & 69          \\ %& -         \\
-                        Marburg RNA Binding Domain      & 4GHA           & A         & 122                & 42          \\ %& -         \\
-                        Influenza Nucleoprotein         & 4IRY           & A         & 404                & 943         \\ %& -         \\
-                        \hline
-                        \hline
-                \end{tabular}
-        \end{center}
+  Viral   & PDB     & PDB      & Number of  & Number of   \\ 
+  Protein   & Structure  & Chain     & Residues    & Sequences   \\                                                           
+  Hemagglutinin Precursor         & 1RD8           & AB        & 503                & 1039        \\ %& -         \\
+  Dengue Protease Helicase        & 2JLY           & A         & 451                & 2362        \\ %& -         \\
+  West Nile Protease              & 2FP7           & B         & 147                & 237         \\ %& -         \\
+  Japanese Encephalitis Helicase  & 2Z83           & A         & 426                & 145         \\ %& -         \\
+  Hepatitis C Protease            & 3GOL           & A         & 557                & 1021        \\ %& -         \\
+  %Hepatitis C Protease            & 3GSZ           & A         & 558                & 1021        \\ %& -         \\
+  %Hepatitis C Protease            & 3I5K           & A         & 566                & 1021        \\ %& -         \\
+  Rift Valley Fever Nucleoprotein & 3LYF           & A         & 244                & 95          \\ %& -         \\
+  Crimean Congo Nucleocapsid      & 4AQF           & B         & 474                & 69          \\ %& -         \\
+  Marburg RNA Binding Domain      & 4GHA           & A         & 122                & 42          \\ %& -         \\
+  Influenza Nucleoprotein         & 4IRY           & A         & 404                & 943         \\ %& -         \\
+  \hline
+  \hline
+\end{tabular}
+\end{center}
 \end{table}
 
 \cleardoublepage
@@ -230,7 +224,7 @@ Vertical and horizonal axes represent Spearman correlations of the indicated qua
        \includegraphics[height=0.7\textheight]{cor_entropy_PC_screen.pdf}
 \end{center}
 \caption{\textbf{Principal Component (PC) Regression of sequence entropy given the structural variables.} {\color{blue}\textbf{Copy edit}{\bf (A)} An illustration of the Spearman's rank correlation coefficients of sequence entropy with different components of PC analysis on $6$ structural variability measures: RSA, iWCN, MD RMSF, B factor \& sequence entropy from designed proteins. Different colors represent data for different protein structures. The correlation coefficients are represented by solid dots where significant (i.e., $p$-value $\leq0.05$) or empty dots otherwise (where $p$-value $\geq0.05$). {\bf (B)} Plot of the second vs. first principal components depicting the major contribution of buriedness measures to the first component and therefore, to the explained variance of sequence entropy in plot {\bf (A)}. Red vectors represent the contributions of each of the structural variables to principal components and the black dots represent the amino acid sites on all $9$ protein structures considered. {\bf (C)}}}
-\label{fig:cor_entropy_all}
+\label{fig:cor_entropy_PC_screen}
 \end{figure}
 
 
