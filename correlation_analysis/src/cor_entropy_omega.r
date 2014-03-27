@@ -114,7 +114,7 @@ variables = c('MD RSA', 'MD iWCN', expression(paste("MD Var(", chi[1], ")")), 'M
 
 pdf( "correlation_analysis/figures/cor_entropy_omega.pdf", width=4.5, height=4, useDingbats=FALSE )
 par( mai=c(0.65, 0.65, 0.1, 0.05), mgp=c(2, 0.5, 0), tck=-0.03 )
-plot(0,xaxt='n',yaxt='n',bty='n',pch='',ylab=expression(paste("Correlation (", rho, ") with ", Omega)),xlab=expression(paste("Correlation (", rho, ") with entropy")), xlim=c(-.5,.5),ylim=c(-.5,.5)) #, main = 'sequence entropy - contact number association', cex.main=0.8)
+plot(0,xaxt='n',yaxt='n',bty='n',pch='',ylab=expression(paste("Correlation (", rho, ") with ", omega)),xlab=expression(paste("Correlation (", rho, ") with entropy")), xlim=c(-.5,.5),ylim=c(-.5,.5)) #, main = 'sequence entropy - contact number association', cex.main=0.8)
 #minor.tick(nx=0, ny=4, tick.ratio=2)
 #axis( 2 ) # y axis
 #axis( 1 ) # , at=c(1, 2, 3, 4, 5), c("Designed Entropy" )) #, "Avg MD", "Variance MD"))

@@ -4,7 +4,7 @@
 
 # source("input_data.r")
 
-out_path = 'C:/Users/Amir/Documents/GitHub/structural_prediction_of_ER/correlation_analysis/pcr_combined/pcr_combined_cors.csv'
+out_path = 'C:/Users/Amir/Documents/GitHub/structural_prediction_of_ER/correlation_analysis/pcr_combined/pcr_combined_cors_entropy.csv'
 
 # Replace NAs with mean values in data:
 
@@ -92,7 +92,7 @@ colors = c('red', 'blue', 'green', 'purple', 'orange3', 'darkgreen', 'black', 'g
 proteins = c('1RD8_AB', '2FP7_B', '2JLY_A', '2Z83_A', '3GOL_A', '3LYF_A', '4AQF_B', '4GHA_A', '4IRY_A') #, '3GSZ_A', '3I5K_A', '2JLY_A_temp_50', '2JLY_A_temp_100', '2JLY_A_temp_200', '2JLY_A_temp_450')
 labels = c('1RD8', '2FP7', '2JLY', '2Z83', '3GOL', '3LYF', '4AQF', '4GHA', '4IRY') #, '3GSZ_A', '3I5K_A', '2JLY_A_temp_50', '2JLY_A_temp_100', '2JLY_A_temp_200', '2JLY_A_temp_450')
 
-pdf( "correlation_analysis/figures/cor_entropy_PC_screen.pdf", width=9.3, height=9.2, useDingbats=FALSE )
+pdf( "correlation_analysis/figures/PC_screen_entropy.pdf", width=9.3, height=9.2, useDingbats=FALSE )
 
 split.screen(c(2,1))
 

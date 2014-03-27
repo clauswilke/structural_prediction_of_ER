@@ -80,7 +80,7 @@ axis( 2,  # y axis
 axis( 1,
       at=c(1, 2, 3, 4, 5, 6),
       padj=c(0,0,0,0,0,0),
-      c(expression(paste("Var ", phi)), expression(paste("Var ", psi)), expression(paste("Var ", chi[1])), "B factor", "MD RMSF", "CS RMSF"))
+      c(expression(paste("Var(", phi,")")), expression(paste("Var(", psi,")")), expression(paste("Var(", chi[1],")")), "B factor", "MD RMSF", "CS RMSF"))
 
 
 for( i in 1:nrow(result) )
