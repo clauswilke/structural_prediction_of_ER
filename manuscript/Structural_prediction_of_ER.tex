@@ -46,8 +46,8 @@ In the following sections, first we briefly present the methodology employed for
 
 \section*{Sequence data, alignments, and evolutionary rates}
 
-All viral sequences except influenza and HIV sequences were retrieved from \url{http://hfv.lanl.gov/components/sequence/HCV/search/searchi.html}.
-The sequences were truncated to the desired genomic region but not in any other way restricted. Influenza sequences were downloaded from \url{http://www.fludb.org/brc/home.spg?decorator=influenza}. We only considered human influenza A, H1N1, excluding H1N1 sequences from the 2009 Swine Flu outbreak. We only used sequences from after 1998 but did not place geographic restrictions.
+All viral sequences except influenza sequences were retrieved from \url{http://hfv.lanl.gov/components/sequence/HCV/search/searchi.html}.
+The sequences were truncated to the desired genomic region but not in any other way restricted. Influenza sequences were downloaded from \url{http://www.fludb.org/brc/home.spg?decorator=influenza}. We only considered human influenza A, H1N1, excluding H1N1 sequences derived from the 2009 Swine Flu outbreak. We only used sequences from after 1998 but did not place any geographic restrictions.
 %HIV-1 sequences were retrieved from \url{http://www.hiv.lanl.gov/components/sequence/HIV/search/search.html}.
 %Sequences were truncated to the desired genomic region, but no other restrictions were imposed.
 
@@ -55,18 +55,18 @@ For all viral sequences, we removed any sequence that was not in reading frame, 
 
 To assess site-specific sequence variability in amino-acid alignments, we calculated the Shannon entropy ($H_i$) at each alignment column $i$:
 \begin{equation}
-        H_i = - \sum_jP_{ij}\ln P_{ij}.
+        H_i = - \sum_jP_{ij}\ln P_{ij},
 \end{equation}
-Here, $P_{ij}$ is relative frequency of amino acid $j$ at position $i$ in the alignment.
+where $P_{ij}$ is relative frequency of amino acid $j$ at position $i$ in the alignment.
 
-For each alignment, we also calculated evolutionary rates, as described \citep{SpielmanWilke2013}. In brief, we generated a phylogeny for each codon alignment in RAxML \citep{RaxMLHPC} using the GTRGAMMA model. Using the codon alignment and phylogeny, we inferred evolutionary rates with a Random Effects Likelihood (REL) model, using the HyPhy software \citep{KosakovskyPondetal2005}. The REL model was a variant of the GY94 evolutionary model \citep{GoldmanYang1994} with five $omega$ rate categories as free parameters. We employed an Empirical Bayes approach \citep{Yang2000} to infer $dN/dS$ values for each position in the alignment. The amino-acid sequence of the seed protein structures were then mapped to the corresponding alignments for subsequent analyses.
-%Additionally, using the phylogenies inferred with RAxML, we calculated a phylogenetic weight for each sequence using BranchManager \citep{Stone2007}.
+For each alignment, we also calculated evolutionary rates, as described \citep{SpielmanWilke2013}. In brief, we generated a phylogeny for each codon alignment in RAxML \citep{RaxMLHPC} using the GTRGAMMA model. Using the codon alignment and phylogeny, we inferred evolutionary rates with a Random Effects Likelihood (REL) model, using the HyPhy software \citep{KosakovskyPondetal2005}. The REL model was a variant of the GY94 evolutionary model \citep{GoldmanYang1994} with five $\omega$ rate categories as free parameters.  We employed an Empirical Bayes approach \citep{Yang2000} to infer $\omega$ values for each position in the alignment. These $\omega$ values represent the evolutionary-rate ratio $dN/dS$ at each site.
 
-\subsection*{Molecular Dynamics Simulations}
 
-Molecular dynamics (MD) simulations were carried out using the GPU implementation of the {\it Amber12} simulation package (cite xx) with the most recent release of Amber fixed-charge force field (ff12SB; c.f., AmberTools13 Manual).
-		
-Prior to MD production runs, all PDB structures were first energy minimized using the steepest descent method for 1000 steps, followed by conjugate gradient for another 1000 steps. Then, the structures were constantly heated from 0K to 300K for 0.1ns, followed by 0.1ns constant pressure simulations with positional harmonic restraints on all atoms to avoid instabilities during the equilibration process. The systems were then equilibrated for another 5ns without positional restraints, each followed by 15ns of production simulations for subsequent post-processing and analyses. All equilibration and production simulations were run using the SHAKE algorithm (cite xx), {\color{blue}by which all bonds involving hydrogen are constrained to avoid instabilities for a choice of 2fs time step in simulations.} Langevin dynamics were used for temperature control (cite for Langevin dynamics xx).
+\subsection*{Protein crystal structures}
+
+A total of 9 viral protein structures were selected for analysis, as tabulated in Table \ref{tab:pdb_names}. Sites in the PDB structures were mapped to sites in the viral sequence alignments via a custom-built python script that creates a consensus map between a PDB sequence and all sequences in an alignment.
+
+For each of the viral proteins, homologous structures were identified using the \texttt{blast.pdb} function of the R package Bio3D \citep{Bio3D}. BLAST hits were retained if they had $\geq35$\% sequence identity and $\geq90$\% alignment length. Among the retained hits, we subsequently identified sets of homologous structures with unique sequences and with mutual pairwise sequence divergences of $\geq2\%$, $\geq5\%$, and $\geq10\%$.
 
 \subsection*{Measures of buriedness and of structural flexibility}
 
@@ -74,15 +74,26 @@ As measures of residue buriedness, we calculated Relative Solvent Accessibility 
 
 In most analyses, we actually used the inverse of CN and/or WCN, $\text{iCN}=1/\text{CN}$ and $\text{iWCN}=1/\text{WCN}$. Note that for Spearman correlations, which we use throughout here, replacing a variable by its inverse changes the sign of the correlation coefficient but not the magnitude.
 
-As measures of structural variability, we considered RMSF, variability in backbone and side-chain dihedral angles, and B factors. {\color{blue}Based on MD trajectories, we calculated RMSF for the backbone C$\alpha$ atoms of all protein structures with respect to the corresponding coordinates of the PDB crystal structures listed in Table \ref{tab:pdb_names}. In addition, the same RMSF measurements were carried out based on the structural alignments for four protein families that had adequate number of homologous structures in Protein Data Bank}
+As measures of structural variability, we considered RMSF, variability in backbone and side-chain dihedral angles, and B factors. We calculated RMSF for backbone C$\alpha$ atoms based on both MD trajectories and homologous structures. For MD trajectories, we calculated RMSF as
+\begin{equation}
+    \text{RMSF}_j = \Big[\sum_i \big(\mathbf{r}_i^{(j)}-\mathbf{r}_0^{(j)}\big)^2\Big]^{1/2}
+\end{equation}
+where $\text{RMSF}_j$ is the root-mean-square fluctuation at site $j$, $\mathbf{r}_i^{(j)}$ is the position of the C$\alpha$ atom of residue $j$ at MD frame $i$, and $\mathbf{r}_0^{(j)}$ is the position of the C$\alpha$ atom of residue $j$ in the original crystal structure. {\color{red}Structures weren't aligned? Is this described correctly?}
+
+To calculate RMSF from homologous structures, we first aligned the structures using the Bio3D package \citep{Bio3D}, and then we calculated
+\begin{equation}
+    \text{RMSF}_j = \Big[\sum_i w_i\big(\mathbf{r}_i^{(j)}-\langle\mathbf{r}^{(j)}\rangle\big)^2\Big]^{1/2},
+\end{equation}
+where $\mathbf{r}_i^{(j)}$ now stands for the position of the C$\alpha$ atom of residue $j$ in structure $i$, $\langle\mathbf{r}^{(j)}\rangle$ is the mean position of that C$\alpha$ atom over all aligned structures, and $w_i$ is a weight to correct for potential phylogenetic relationship among the aligned structures. The weights $w_i$ were calculated using BranchManager \citep{Stone2007}, based on phylogenies built with RAxML as before.
 
 To assess variability in backbone and side-chain dihedral angles, we calculated Var($\phi$), Var($\psi$), and Var($chi_1$). {\color{red}The variance of a dihedral angle is defined as \dots.} Since the $\chi_1$ angle is undefined for Ala and Gly we excluded all sides with these residues in analyses involving $\chi_1$.
 
-B factors were extracted from the crystal structures listed in Table~\ref{tab:pdb_names}. We only considered the B factors of the C$\alpha$ atom of each residue.
+B factors were extracted from the crystal structures. We only considered the B factors of the C$\alpha$ atom of each residue.
 
-\subsection*{Protein crystal structures}
-	
-A total of $8$ viral proteins were selected for analysis, as tabulated in Table \ref{tab:pdb_names}.
+
+\subsection*{Molecular Dynamics Simulations}
+
+Molecular dynamics (MD) simulations were carried out using the GPU implementation of the {\it Amber12} simulation package {\color{red}(cite xx)} with the most recent release of the Amber fixed-charge force field (ff12SB; c.f., AmberTools13 Manual). Prior to MD production runs, all PDB structures were first energy minimized using the steepest descent method for 1000 steps, followed by conjugate gradient for another 1000 steps. Then, the structures were constantly heated from 0K to 300K for 0.1ns, followed by 0.1ns constant pressure simulations with positional harmonic restraints on all atoms to avoid instabilities during the equilibration process. The systems were then equilibrated for another 5ns without positional restraints, each followed by 15ns of production simulations for subsequent post-processing and analyses. All equilibration and production simulations were run using the SHAKE algorithm {\color{red}(cite xx)}, {\color{red}\emph{I don't understand this sentence:}by which all bonds involving hydrogen are constrained to avoid instabilities for a choice of 2fs time step in simulations.} Langevin dynamics were used for temperature control {\color{red}(cite for Langevin dynamics xx)}.
 
 \subsection*{Sequence Entropy from Designed Proteins}
 
@@ -110,7 +121,7 @@ To calculate measures of flexibility, we generated molecular-dynamics (MD) traje
 We first compared a subset of variables among the measures of buriedness and measures of fluctuations in their explanatory power for sequence variation. Figure~\ref{fig:cor_entropy_all} shows the Spearman correlation between sequence entropy and each of the quantities RSA, iWCN, Var$(\chi_1)$, RMSF, and B factor, for each protein. Significant correlations ($P<0.05$) are shown with filled symbols, and non-significant correlations are shown with empty symbols ($P\geq0.05$).
 In this figure, several patterns emerge. First, all correlations are generally positive and significant. The main exception is the RNA binding domain of Marburg virus, PDB ID 4GHA, which mostly shows no correlation but shows a negative correlation between sequence entropy and the variability in the $\chi_1$ angle. Second, correlations are generally weak. No correlation coefficient exceeds 0.4. Third, on average the correlation strength decreases as we move from left to right in the figure. The two measures of buriedness, RSA and iWCN, show the strongest correlations. Their correlations are on average $\rho=0.26$ and $\rho=0.22$, respectively. The three fluctuation measures Var($\chi_1$), RMSF, and B factor exhibit weaker correlations, on average $\rho=0.17$, $\rho=0.10$, and $\rho=0.13$, respectively.
 
-We next analyzed structural fluctuations more carefully, by comparing the correlations of entropy with six different measures of local structural flexibility.  We considered variations in the backbone and side-chain dihedral angles ($\phi$, $\psi$, and $\chi_1$), B factors, RMSF obtained from MD simulations, and RMSF obtained from crystal structures. For the latter quantity, we aligned homologous structures with distinct sequences, obtained from the PDB (see Methods for details). The correlation strengths of these quantities with entropy are shown in Figure~\ref{fig:cor_entropy_SF}. We found that the variation in backbone dihedral angles Var($\phi$) and Var($\psi$) explained the least variation in sequence entropy, while the variation in the side-chain dihedral angle Var($\chi_1$) explained, on average, more variation in sequence entropy than any other measure of structural flexibility. B factors and the two measures of RMSF explained on average approximately the same amount of variation in entropy, even though the results for individual proteins were discordant (see also next sub-section).
+We next analyzed structural fluctuations more carefully, by comparing the correlations of entropy with six different measures of local structural flexibility.  We considered variations in the backbone and side-chain dihedral angles ($\phi$, $\psi$, and $\chi_1$), B factors, RMSF obtained from MD simulations, and RMSF obtained from crystal structures. For the latter quantity, we aligned homologous structures with distinct sequences, obtained from the PDB (see Methods and Table~\ref{tab:homologs} for details). The correlation strengths of these quantities with entropy are shown in Figure~\ref{fig:cor_entropy_SF}. We found that the variation in backbone dihedral angles, Var($\phi$) and Var($\psi$), explained the least variation in sequence entropy, while the variation in the side-chain dihedral angle Var($\chi_1$) explained, on average, more variation in sequence entropy than any other measure of structural flexibility. B factors and the two measures of RMSF explained on average approximately the same amount of variation in entropy, even though the results for individual proteins were discordant (see also next sub-section).
 
 \subsection*{MD time-averages vs.\ crystal-structure snapshots}
 
@@ -134,12 +145,16 @@ Besides the measures of buriedness and measures of structural flexibility discus
 
 The various structural quantities we have considered are by no means independent of each other. Measures of buriedness co-vary with each other, as do measures of structural flexibility. Further, the latter co-vary with the former, as does design entropy. To determine the extent to which the various quantities contain independent information about sequence variability, and to assess whether combining multiple structural quantities yields improved predictive power, we carried out a joint multivariate analysis including most of the structural quantities considered in this work. The approach we used is a principal component (PC) regression, which has previously been used successfully to disentangle genomic predictors of whole-protein evolutionary rates \citep{Drummondetal2006,Bloometal2006}. In this analysis, we first carry out a principal component analysis of the predictor variables (i.e., the structural quantities such as RSA and RMSF), and we then regress the response (sequence entropy or $\omega$) against the individual components.
 
-Because we wanted to analyze all proteins in our data set individually but in such a way that results were comparable from one protein to the next, we pooled all structural quantities for a single PC analysis and then regressed entropy and $\omega$ against each PC separately for each protein. The results of this analysis are shown in Figure~\ref{fig:cor_entropy_PC_screen}.
-{\color{blue} Need to finish this. A few more sentences of what we actually found. }
+Because we wanted to analyze all proteins in our data set individually but in such a way that results were comparable from one protein to the next, we pooled all structural quantities for a single PC analysis and then regressed entropy and $\omega$ against each PC separately for each protein. The results of this analysis are shown in Figure~\ref{fig:cor_entropy_PC_screen}. The first component (PC1) explained on average the largest amount of variation in sequence entropy (see Figure~\ref{fig:cor_entropy_PC_screen}A). We found the second-highest $r^2$ values, on average, for PC3, while all other components explained very little variation in sequence entropy. When looking at the composition of the components, we found that RSA, iWCN, RMSF, and Var($\chi_1$) all loaded strongly on PC1, while PC2 and PC3 where primarily represented by design entropy and B factors (see Figure~\ref{fig:cor_entropy_PC_screen}B and C). RMSF also had moderate loadings on PC3. Interestingly, design entropy and B factors load with equal signs on PC2 but with opposite signs on PC3.
+
+We think that PC1 can be considered as a buriedness component. By definition, PC1 measures the largest amount of variation among the structural quantities, and all structural quantities reflect to some extent the buriedness of residues. PC2 and PC3 are more difficult to interpret. Since design entropy and B factors load strongly on both but with two different combinations of signs, we think the most parsimonious interpretation is to consider PC2 as a component representing sites with high design entropy and high spatial fluctuations (as measured by B factors) and PC3 representing sites with high design entropy and low spatial fluctuations. Using these interpretations, our PC regression analysis suggests that of all the structural quantities, residue buriedness is the best predictor of evolutionary variation. Design entropy is a useful predictor as well, but it tends to perform better at sites with low spatial fluctuations.
+
+{\color{blue}\emph{Still to do:} We found comparable results when we considered $\omega$ instead of entropy and when we included the RMSF derived from crystal structures.}
+
 
 \section*{Discussion}
 
-{\color{blue}Put a summary paragraph here.}
+We have carried out a comprehensive analysis of how well structural quantities predict evolutionary variation in nine viral proteins. We have found that measures of buriedness generally perform better than measures of structural flexibility. Simple measures of buriedness also perform better than computational protein design using a sophisticated all-atom force field to determine which residues are allowed at which sites. 
 
 
 {\color{blue}One paragraph about the \citep{Yehetal2014} paper and RSA vs. CN.}
@@ -184,7 +199,7 @@ The correlation strengths we have observed here between evolutionary variation a
 \end{table}
 
 \begin{table}[htbp]
-\caption{\textbf{Availability of homologous crystal structures.} \label{tab:homologs}}
+\caption{\textbf{Availability of homologous crystal structures.} Even though most viral proteins have many PDB structures available, the sequence divergence among these structures is low. To calculate RMSF from crystal structures, we here considered all proteins for which we could find at least five homologous structures at 5\% pairwise sequence divergence (highlighted in bold). \label{tab:homologs}}
 \smallskip
 
 \centerline{
@@ -192,20 +207,20 @@ The correlation strengths we have observed here between evolutionary variation a
                         \hline
   Viral Protein & BLAST hits$^\text{a}$ & \multicolumn{4}{c}{Unique sequences} \\ 
     \cline{3-6}\noalign{\smallskip}
-                &            & all  & $\geq2$\%$^\text{b}$  &  \textbf{$\mathbf{\geq}$5\%}$^\text{b}$  & $\geq10$\%$^\text{b}$ \\\hline
+                &            & all  & $\geq2$\%$^\text{b}$  &  $\geq5$\%$^\text{b}$  & $\geq10$\%$^\text{b}$ \\\hline
   Hemagglutinin Precursor         & 57 & 12 & 7 & \textbf{5} & 4\\
   Dengue Protease Helicase        & 31 & 11 & 7 & \textbf{7} & 6\\
   West Nile Protease              & 16 & 15 & 6 & \textbf{6} & 2\\
   Japanese Encephalitis Helicase  & 31 & 12 & 7 & \textbf{7} & 6\\
   Hepatitis C Protease            & 277 & 32 & 10 & \textbf{5} & 4 \\
   Rift Valley Fever Nucleoprotein & 95  & 9 & 5 & \textbf{5} & 5\\
-  Crimean Congo Nucleocapsid      & 7 & 4 & 3 & \textbf{1} & 1\\
-  Marburg RNA Binding Domain      & 40 & 6 & 3 & \textbf{3} & 3\\
-  Influenza Nucleoprotein         & 69 & 19 & 4 & \textbf{4} & 2\\
+  Crimean Congo Nucleocapsid      & 7 & 4 & 3 & 1 & 1\\
+  Marburg RNA Binding Domain      & 40 & 6 & 3 & 3 & 3\\
+  Influenza Nucleoprotein         & 69 & 19 & 4 & 4 & 2\\
   \hline
 \end{tabular}
 }
-$^\text{a}$ Excluding all hits with $<35$\% sequence identity and $<90$\% alignment length\\
+$^\text{a}$ BLAST hits against all sequences in the PDB, excluding hits with $<35$\% sequence identity and $<90$\% alignment length\\
 $^\text{b}$ Unique sequences at indicated minimum pairwise sequence divergence
 \end{table}
 
