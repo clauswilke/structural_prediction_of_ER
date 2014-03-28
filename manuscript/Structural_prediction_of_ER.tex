@@ -47,8 +47,9 @@ In the following sections, first we briefly present the methodology employed for
 \section*{Sequence data, alignments, and evolutionary rates}
 
 All viral sequences except influenza and HIV sequences were retrieved from \url{http://hfv.lanl.gov/components/sequence/HCV/search/searchi.html}.
-The sequences were truncated to the desired genomic region but not in any other way restricted. Influenza sequences were downloaded from \url{http://www.fludb.org/brc/home.spg?decorator=influenza}. We only considered human influenza A, H1N1, excluding H1N1 sequences from the 2009 Swine Flu outbreak. We only used sequences from after 1998 but did not place geographic restrictions. HIV-1 sequences were retrieved from \url{http://www.hiv.lanl.gov/components/sequence/HIV/search/search.html}.
-Sequences were truncated to the desired genomic region, but no other restrictions were imposed.
+The sequences were truncated to the desired genomic region but not in any other way restricted. Influenza sequences were downloaded from \url{http://www.fludb.org/brc/home.spg?decorator=influenza}. We only considered human influenza A, H1N1, excluding H1N1 sequences from the 2009 Swine Flu outbreak. We only used sequences from after 1998 but did not place geographic restrictions.
+%HIV-1 sequences were retrieved from \url{http://www.hiv.lanl.gov/components/sequence/HIV/search/search.html}.
+%Sequences were truncated to the desired genomic region, but no other restrictions were imposed.
 
 For all viral sequences, we removed any sequence that was not in reading frame, any sequence which was shorter than 80\% of the longest sequence for a given viral protein (so as to remove all partial sequences), and any sequence containing any ambiguous characters. Alignments were constructed using amino-acid sequences with MAFFT \citep{Katohetal2002,Katohetal2005}, specifying the ``--auto" flag to select the optimal algorithm for the given data set, and then back-translated to a codon alignment using the original nucleotide sequence data.
 
@@ -158,26 +159,54 @@ The correlation strengths we have observed here between evolutionary variation a
 \section*{Tables}
 
 \begin{table}[htbp]
-\begin{center}
-\caption{PDB structures considered in this study \label{tab:pdb_names}}
+\caption{\textbf{PDB structures considered in this study.}\label{tab:pdb_names}}
+\smallskip
+
+\centerline{
 \begin{tabular}{c c c c c} % c}
                         \hline
     Viral Protein   &  PDB ID  & Chain    & Sequence  & Number of   \\ 
     &    &       & Length    & Sequences   \\\hline                                                           
-  Hemagglutinin Precursor         & 1RD8           & AB        & 503                & 1039        \\ %& -         \\
-  Dengue Protease Helicase        & 2JLY           & A         & 451                & 2362        \\ %& -         \\
-  West Nile Protease              & 2FP7           & B         & 147                & 237         \\ %& -         \\
-  Japanese Encephalitis Helicase  & 2Z83           & A         & 426                & 145         \\ %& -         \\
-  Hepatitis C Protease            & 3GOL           & A         & 557                & 1021        \\ %& -         \\
-  %Hepatitis C Protease            & 3GSZ           & A         & 558                & 1021        \\ %& -         \\
-  %Hepatitis C Protease            & 3I5K           & A         & 566                & 1021        \\ %& -         \\
-  Rift Valley Fever Nucleoprotein & 3LYF           & A         & 244                & 95          \\ %& -         \\
-  Crimean Congo Nucleocapsid      & 4AQF           & B         & 474                & 69          \\ %& -         \\
-  Marburg RNA Binding Domain      & 4GHA           & A         & 122                & 42          \\ %& -         \\
-  Influenza Nucleoprotein         & 4IRY           & A         & 404                & 943         \\ %& -         \\
+  Hemagglutinin Precursor         & 1RD8           & AB        & 503                & 1039        \\
+  Dengue Protease Helicase        & 2JLY           & A         & 451                & 2362        \\
+  West Nile Protease              & 2FP7           & B         & 147                & 237         \\
+  Japanese Encephalitis Helicase  & 2Z83           & A         & 426                & 145         \\
+  Hepatitis C Protease            & 3GOL           & A         & 557                & 1021        \\
+  %Hepatitis C Protease            & 3GSZ           & A         & 558                & 1021        \\
+  %Hepatitis C Protease            & 3I5K           & A         & 566                & 1021        \\
+  Rift Valley Fever Nucleoprotein & 3LYF           & A         & 244                & 95          \\
+  Crimean Congo Nucleocapsid      & 4AQF           & B         & 474                & 69          \\
+  Marburg RNA Binding Domain      & 4GHA           & A         & 122                & 42          \\
+  Influenza Nucleoprotein         & 4IRY           & A         & 404                & 943         \\
   \hline
 \end{tabular}
-\end{center}
+}
+\end{table}
+
+\begin{table}[htbp]
+\caption{\textbf{Availability of homologous crystal structures.} \label{tab:homologs}}
+\smallskip
+
+\centerline{
+\begin{tabular}{c c c c c c}
+                        \hline
+  Viral Protein & BLAST hits$^\text{a}$ & \multicolumn{4}{c}{Unique sequences} \\ 
+    \cline{3-6}\noalign{\smallskip}
+                &            & all  & $\geq2$\%$^\text{b}$  &  \textbf{$\mathbf{\geq}$5\%}$^\text{b}$  & $\geq10$\%$^\text{b}$ \\\hline
+  Hemagglutinin Precursor         & 57 & 12 & 7 & \textbf{5} & 4\\
+  Dengue Protease Helicase        & 31 & 11 & 7 & \textbf{7} & 6\\
+  West Nile Protease              & 16 & 15 & 6 & \textbf{6} & 2\\
+  Japanese Encephalitis Helicase  & 31 & 12 & 7 & \textbf{7} & 6\\
+  Hepatitis C Protease            & 277 & 32 & 10 & \textbf{5} & 4 \\
+  Rift Valley Fever Nucleoprotein & 95  & 9 & 5 & \textbf{5} & 5\\
+  Crimean Congo Nucleocapsid      & 7 & 4 & 3 & \textbf{1} & 1\\
+  Marburg RNA Binding Domain      & 40 & 6 & 3 & \textbf{3} & 3\\
+  Influenza Nucleoprotein         & 69 & 19 & 4 & \textbf{4} & 2\\
+  \hline
+\end{tabular}
+}
+$^\text{a}$ Excluding all hits with $<35$\% sequence identity and $<90$\% alignment length\\
+$^\text{b}$ Unique sequences at indicated minimum pairwise sequence divergence
 \end{table}
 
 \cleardoublepage
