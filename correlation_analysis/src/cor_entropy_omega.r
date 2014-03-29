@@ -38,6 +38,18 @@ for(protein in levels(data$protein))
 		r.entropy_rmsf_avg_md = x$estimate
 		p.entropy_rmsf_avg_md = x$p.value
 		
+		if (length(na.omit(d$rmsfHS))>=3)
+		{
+			x = cor.test( d$rmsfHS, d$entropy, method="spearman", na.action="na.omit" )
+			r.entropy_rmsf_cr = x$estimate
+			p.entropy_rmsf_cr = x$p.value
+		}
+		else
+		{
+			r.entropy_rmsf_cr = NA
+			p.entropy_rmsf_cr = NA
+		}
+
 		x = cor.test( d$bfca, d$entropy, method="spearman", na.action="na.omit" )
 		r.entropy_bfca = x$estimate
 		p.entropy_bfca = x$p.value
@@ -68,6 +80,18 @@ for(protein in levels(data$protein))
 		r.omega_rmsf_avg_md = x$estimate
 		p.omega_rmsf_avg_md = x$p.value
 		
+		if (length(na.omit(d$rmsfHS))>=3)
+		{
+			x = cor.test( d$rmsfHS, d$omega, method="spearman", na.action="na.omit" )
+			r.omega_rmsf_cr = x$estimate
+			p.omega_rmsf_cr = x$p.value
+		}
+		else
+		{
+			r.omega_rmsf_cr = NA
+			p.omega_rmsf_cr = NA
+		}
+		
 		x = cor.test( d$bfca, d$omega, method="spearman", na.action="na.omit" )
 		r.omega_bfca = x$estimate
 		p.omega_bfca = x$p.value
@@ -86,6 +110,7 @@ for(protein in levels(data$protein))
                       r.entropy_cn13_avg_md =  r.entropy_cn13_avg_md, p.entropy_cn13_avg_md = p.entropy_cn13_avg_md,
                       r.entropy_chi1_var_md =  r.entropy_chi1_var_md, p.entropy_chi1_var_md = p.entropy_chi1_var_md,
                       r.entropy_rmsf_avg_md =  r.entropy_rmsf_avg_md, p.entropy_rmsf_avg_md = p.entropy_rmsf_avg_md,
+                      r.entropy_rmsf_cr     =  r.entropy_rmsf_cr,     p.entropy_rmsf_cr     = p.entropy_rmsf_cr,
                       r.entropy_bfca        =  r.entropy_bfca,        p.entropy_bfca        = p.entropy_bfca,
                       r.entropy_desent      =  r.entropy_desent,      p.entropy_desent      = p.entropy_desent,
 					  r.omega_rsa_avg_md    =  r.omega_rsa_avg_md,    p.omega_rsa_avg_md    = p.omega_rsa_avg_md,
@@ -93,6 +118,7 @@ for(protein in levels(data$protein))
                       r.omega_cn13_avg_md   =  r.omega_cn13_avg_md,   p.omega_cn13_avg_md   = p.omega_cn13_avg_md,
                       r.omega_chi1_var_md   =  r.omega_chi1_var_md,   p.omega_chi1_var_md   = p.omega_chi1_var_md,
                       r.omega_rmsf_avg_md   =  r.omega_rmsf_avg_md,   p.omega_rmsf_avg_md   = p.omega_rmsf_avg_md,
+                      r.omega_rmsf_cr       =  r.omega_rmsf_cr,       p.omega_rmsf_cr       = p.omega_rmsf_cr,
                       r.omega_bfca          =  r.omega_bfca,          p.omega_bfca          = p.omega_bfca,
                       r.omega_desent        =  r.omega_desent,        p.omega_desent        = p.omega_desent )
 	
@@ -108,8 +134,8 @@ write.csv( result, "correlation_analysis/cor_tables/cor_entropy_omega.csv", row.
 #index.p = names(result) %in% c("p.entropy_rsa_avg_md", "p.entropy_wcn_avg_md", "p.entropy_chi1_var_md", "p.entropy_rmsf_avg_md", "p.entropy_bfca",
 #                               "p.omega_rsa_avg_md", "p.omega_wcn_avg_md", "p.omega_chi1_var_md", "p.omega_rmsf_avg_md", "p.omega_bfca") # columns that store significance
 
-colors = c('red', 'blue', 'green', 'bisque3', 'black', 'gray', 'darkgreen') #, 'gray', 'cyan2') #, 'darkred', 'bisque2')
-variables = c('MD RSA', 'MD iWCN', expression(paste("MD Var(", chi[1], ")")), 'MD RMSF', 'B factor', 'Designed Entropy')
+colors = c('red', 'blue', 'green', 'bisque2', 'bisque3', 'black', 'gray', 'darkgreen') #, 'cyan2') # , 'darkred')
+variables = c('MD RSA', 'MD iWCN', expression(paste("MD Var(", chi[1], ")")), 'MD RMSF', 'CS RMSF', 'B factor', 'Designed Entropy')
 #labels = c('1RD8', '2FP7', '2JLY', '2Z83', '3GOL', '3LYF', '4AQF', '4GHA', '4IRY')
 
 pdf( "correlation_analysis/figures/cor_entropy_omega.pdf", width=4.5, height=4, useDingbats=FALSE )
@@ -127,11 +153,12 @@ plot(0,xaxt='n',yaxt='n',bty='n',pch='',ylab=expression(paste("Correlation (", r
 	points( result$r.entropy_wcn_avg_md , result$r.omega_wcn_avg_md , pch=19, col = colors[2] )
 	points( result$r.entropy_chi1_var_md, result$r.omega_chi1_var_md, pch=19, col = colors[3] )
 	points( result$r.entropy_rmsf_avg_md, result$r.omega_rmsf_avg_md, pch=19, col = colors[4] )
-	points( result$r.entropy_bfca       , result$r.omega_bfca       , pch=19, col = colors[5] )
-	points( result$r.entropy_desent     , result$r.omega_desent     , pch=19, col = colors[6] )
+	points( result$r.entropy_rmsf_cr    , result$r.omega_rmsf_cr    , pch=19, col = colors[5] )
+	points( result$r.entropy_bfca       , result$r.omega_bfca       , pch=19, col = colors[6] )
+	points( result$r.entropy_desent     , result$r.omega_desent     , pch=19, col = colors[7] )
 	abline(0,1)
 	#abline(-0.2,1)
 
-legend( -.5, 0.5, variables[1:6], pch=19, col=colors[1:6], bty='n', cex=0.9)
+legend( -.5, 0.5, variables[1:7], pch=19, col=colors[1:7], bty='n', cex=0.9)
 #legend( 0.4, -.28, variables[4:5], pch=19, col=colors[4:5], bty='n', cex=0.9)
 dev.off()

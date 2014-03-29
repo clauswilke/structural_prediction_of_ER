@@ -59,30 +59,6 @@ data_2FP7_B = data.frame(protein="2FP7_B", res_num=dihedral_2FP7_B$res_Num, res_
 write.csv( data_2FP7_B, "correlation_analysis/combined_data/data_2FP7_B.csv", row.names=F )
 
 
-entropy_DPH = read.table('entropies/DPH.entropy', header=T)
-map_2JLY_A = read.table('molecular_dynamics/map/DPH_2JLY_A.map',header=T)
-entropy_2JLY_A = entropy_DPH$entropy[!is.na(map_2JLY_A$pdb_pos)]; entropy_2JLY_A = as.data.frame(entropy_2JLY_A)
-rsa_2JLY_A = read.table('molecular_dynamics/Amber/postproc/rsa/summaries/2JLY_A_sum.rsa',header=T)
-rmsf_2JLY_A = read.table('molecular_dynamics/Amber/postproc/rmsf/2JLY_A_Cpdb_CA.rmsf',header=T,comment.char="")
-dihedral_2JLY_A = read.table('molecular_dynamics/Amber/postproc/dihedrals/2JLY_A.dihedral',header=T)
-cn13_2JLY_A = read.table('molecular_dynamics/Amber/postproc/cn13/summaries/2JLY_A_sum.cn13',header=T)
-wcn_2JLY_A = read.table('molecular_dynamics/Amber/postproc/wcn/summaries/2JLY_A_sum.wcn',header=T)
-desent_2JLY_A = read.table('protein_design/entropies/2JLY_A_0.6.desent',header=T)
-bfca_2JLY_A = read.table('bfactors/2JLY_A_CA.bfactor',header=T,comment.char="")
-omega_DPH = read.table('evolutionary_rates/siterates_REL/dengue_ns3.txt', header=F, col.names = c("res_num", "omega"))
-omega_2JLY_A = omega_DPH$omega[!is.na(map_2JLY_A$pdb_pos)]; omega_2JLY_A = as.data.frame(omega_2JLY_A)
-
-data_2JLY_A = data.frame(protein="2JLY_A", res_num=dihedral_2JLY_A$res_Num, res_name=dihedral_2JLY_A$res_name,
-                       omega=omega_2JLY_A$omega, entropy=entropy_2JLY_A$entropy_2JLY_A, desent=desent_2JLY_A$entropy,
-                       rsa_cr=rsa_2JLY_A$CRYSTAL_RSA, rsa_avg_md=rsa_2JLY_A$MEAN_RSA, rsa_var_md=rsa_2JLY_A$VAR_RSA, 
-                       rmsf_avg_md=rmsf_2JLY_A$AvgRMSD, rmsf_std_md=rmsf_2JLY_A$Stdev, 
-                       phi_var_md=dihedral_2JLY_A$var_phi, psi_var_md=dihedral_2JLY_A$var_psi, chi1_var_md=dihedral_2JLY_A$var_chi1,
-                       cn13_cr=cn13_2JLY_A$CRYSTAL_CN, cn13_avg_md=cn13_2JLY_A$MEAN_CN, cn13_var_md=cn13_2JLY_A$VAR_CN,
-                       wcn_cr=wcn_2JLY_A$CRYSTAL_WCN, wcn_avg_md=wcn_2JLY_A$MEAN_WCN, wcn_var_md=wcn_2JLY_A$VAR_WCN,
-					   bfca=bfca_2JLY_A$bfactor, rmsfHS=NA)
-write.csv( data_2JLY_A, "correlation_analysis/combined_data/data_2JLY_A.csv", row.names=F )
-
-					   
 entropy_JEHN = read.table('entropies/JEHN.entropy', header=T)
 map_2Z83_A = read.table('molecular_dynamics/map/JEHN_2Z83_A.map',header=T)
 entropy_2Z83_A = entropy_JEHN$entropy[!is.na(map_2Z83_A$pdb_pos)]; entropy_2Z83_A = as.data.frame(entropy_2Z83_A)
@@ -106,6 +82,51 @@ data_2Z83_A = data.frame(protein="2Z83_A", res_num=dihedral_2Z83_A$res_Num, res_
                        wcn_cr=wcn_2Z83_A$CRYSTAL_WCN, wcn_avg_md=wcn_2Z83_A$MEAN_WCN, wcn_var_md=wcn_2Z83_A$VAR_WCN,
 					   bfca=bfca_2Z83_A$bfactor, rmsfHS=rmsfHS_2Z83_A$rmsf)
 write.csv( data_2Z83_A, "correlation_analysis/combined_data/data_2Z83_A.csv", row.names=F )
+
+
+entropy_DPH = read.table('entropies/DPH.entropy', header=T)
+map_2JLY_A = read.table('molecular_dynamics/map/DPH_2JLY_A.map',header=T)
+entropy_2JLY_A = entropy_DPH$entropy[!is.na(map_2JLY_A$pdb_pos)]; entropy_2JLY_A = as.data.frame(entropy_2JLY_A)
+rsa_2JLY_A = read.table('molecular_dynamics/Amber/postproc/rsa/summaries/2JLY_A_sum.rsa',header=T)
+rmsf_2JLY_A = read.table('molecular_dynamics/Amber/postproc/rmsf/2JLY_A_Cpdb_CA.rmsf',header=T,comment.char="")
+dihedral_2JLY_A = read.table('molecular_dynamics/Amber/postproc/dihedrals/2JLY_A.dihedral',header=T)
+cn13_2JLY_A = read.table('molecular_dynamics/Amber/postproc/cn13/summaries/2JLY_A_sum.cn13',header=T)
+wcn_2JLY_A = read.table('molecular_dynamics/Amber/postproc/wcn/summaries/2JLY_A_sum.wcn',header=T)
+desent_2JLY_A = read.table('protein_design/entropies/2JLY_A_0.6.desent',header=T)
+bfca_2JLY_A = read.table('bfactors/2JLY_A_CA.bfactor',header=T,comment.char="")
+omega_DPH = read.table('evolutionary_rates/siterates_REL/dengue_ns3.txt', header=F, col.names = c("res_num", "omega"))
+omega_2JLY_A = omega_DPH$omega[!is.na(map_2JLY_A$pdb_pos)]; omega_2JLY_A = as.data.frame(omega_2JLY_A)
+# For CS RMSF, take the alignments from 2Z83, map 2JLY_A to JEHN alignemnt:
+mapped_RMSFHS_2Z83_A = c(); counter = 1
+for ( i in 1:nrow(map_2Z83_A) )
+{
+	if ( is.na(map_2Z83_A$pdb_pos[i]) )
+	{
+		#cat( "i: ", as.character(i), "\n" )
+		mapped_RMSFHS_2Z83_A[i] = NA
+	}
+	else
+	{
+		#print (counter)
+		mapped_RMSFHS_2Z83_A[i] = rmsfHS_2Z83_A$rmsf[counter]
+		counter = counter + 1
+	}
+}
+mapped_RMSFHS_2Z83_A = cbind(map_2Z83_A,mapped_RMSFHS_2Z83_A)
+map_JEHN_2JLY_A = read.table('molecular_dynamics/map/JEHN_2JLY_A.map',header=T)
+csdata_2JLY_A = data.frame( aln_pos_2JLY_A = map_JEHN_2JLY_A$align_pos,  pdb_pos_2JLY_A = map_JEHN_2JLY_A$pdb_pos)
+csdata_2JLY_A = cbind(csdata_2JLY_A,mapped_RMSFHS_2Z83_A)
+rmsfHS_2JLY_A = csdata_2JLY_A$mapped_RMSFHS_2Z83_A[ !is.na(csdata_2JLY_A$pdb_pos_2JLY_A) ]
+
+data_2JLY_A = data.frame(protein="2JLY_A", res_num=dihedral_2JLY_A$res_Num, res_name=dihedral_2JLY_A$res_name,
+                       omega=omega_2JLY_A$omega, entropy=entropy_2JLY_A$entropy_2JLY_A, desent=desent_2JLY_A$entropy,
+                       rsa_cr=rsa_2JLY_A$CRYSTAL_RSA, rsa_avg_md=rsa_2JLY_A$MEAN_RSA, rsa_var_md=rsa_2JLY_A$VAR_RSA, 
+                       rmsf_avg_md=rmsf_2JLY_A$AvgRMSD, rmsf_std_md=rmsf_2JLY_A$Stdev, 
+                       phi_var_md=dihedral_2JLY_A$var_phi, psi_var_md=dihedral_2JLY_A$var_psi, chi1_var_md=dihedral_2JLY_A$var_chi1,
+                       cn13_cr=cn13_2JLY_A$CRYSTAL_CN, cn13_avg_md=cn13_2JLY_A$MEAN_CN, cn13_var_md=cn13_2JLY_A$VAR_CN,
+                       wcn_cr=wcn_2JLY_A$CRYSTAL_WCN, wcn_avg_md=wcn_2JLY_A$MEAN_WCN, wcn_var_md=wcn_2JLY_A$VAR_WCN,
+					   bfca=bfca_2JLY_A$bfactor, rmsfHS=rmsfHS_2JLY_A)
+write.csv( data_2JLY_A, "correlation_analysis/combined_data/data_2JLY_A.csv", row.names=F )
 
 
 entropy_HCP = read.table('entropies/HCP.entropy', header=T)
