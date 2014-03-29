@@ -1,0 +1,1 @@
+pca_1RD8_AB = prcomp(!is.na(data_1RD8_AB[,c('omega','entropy','desent','rsa_cr','rsa_avg_md','rmsf_avg_md','phi_var_md','psi_var_md','chi1_var_md','cn13_cr','cn13_avg_md','wcn_cr','wcn_avg_md','bfca')]), scale=T)

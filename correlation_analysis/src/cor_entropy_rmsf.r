@@ -20,10 +20,9 @@ for(protein in levels(data$protein))
 {
     d = data[data$protein==protein,]
     
-	x = cor.test( d$rmsf_avg_md, d$entropy, method="spearman", na.action="na.omit" )
-    r.rmsf_cr = x$estimate
-    p.rmsf_cr = x$p.value
-    
+	#print(head(d))
+	#print(length(na.omit(d$rmsfHS)))
+	
 	x = cor.test( d$rmsf_avg_md, d$entropy, method="spearman", na.action="na.omit" )
     r.rmsf_avg_md = x$estimate
     p.rmsf_avg_md = x$p.value
@@ -32,7 +31,19 @@ for(protein in levels(data$protein))
     r.rmsf_std_md = x$estimate
     p.rmsf_std_md = x$p.value
 
-    row = data.frame( protein=protein, cr_rho = r.rmsf_avg_md, cr_P = p.rmsf_cr, avg_md_rho = r.rmsf_avg_md, avg_md_P = p.rmsf_avg_md, std_md_rho = r.rmsf_std_md, std_md_P = p.rmsf_std_md )
+	if (length(na.omit(d$rmsfHS))>=3)
+	{
+		x = cor.test( d$rmsfHS, d$entropy, method="spearman", na.action="na.omit" )
+		r.rmsf_cr = x$estimate
+		p.rmsf_cr = x$p.value
+	}
+	else
+	{
+		r.rmsf_cr = NA
+		p.rmsf_cr = NA
+	}
+    
+    row = data.frame( protein=protein, avg_md_rho = r.rmsf_avg_md, avg_md_P = p.rmsf_avg_md, std_md_rho = r.rmsf_std_md, std_md_P = p.rmsf_std_md, cr_rho = r.rmsf_cr, cr_P = p.rmsf_cr )
     result = rbind( result, row )
     print( protein )
 }
@@ -42,7 +53,7 @@ write.csv( result, "correlation_analysis/cor_tables/cor_entropy_rmsf.csv", row.n
 
 index = names(result) %in% c("cr_rho", "avg_md_rho", "std_md_rho") # columns we want to plot
 
-colors = c('red', 'blue', 'green', 'purple', 'chocolate1', 'darkgreen', 'black', 'gray', 'cyan2') #, 'darkred', 'darkgreen', 'bisque2')
+colors = c('red', 'blue', 'green', 'purple', 'orange3', 'darkgreen', 'black', 'gray', 'cyan2') #, 'darkred', 'darkgreen', 'bisque2')
 proteins = c('1RD8_AB', '2FP7_B', '2JLY_A', '2Z83_A', '3GOL_A', '3LYF_A', '4AQF_B', '4GHA_A', '4IRY_A') #, '3GSZ_A', '3I5K_A', '2JLY_A_temp_50', '2JLY_A_temp_100', '2JLY_A_temp_200', '2JLY_A_temp_450')
 
 pdf( "correlation_analysis/figures/cor_entropy_rmsf.pdf", width=4.5, height=4, useDingbats=FALSE )

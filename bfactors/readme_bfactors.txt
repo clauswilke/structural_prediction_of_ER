@@ -1,3 +1,8 @@
+Amir Shahmoradi, Thursday 10:54 PM, Jan 30 2014, Wilke Lab., University of Texas Austin
+
+	ATTN:
+		Today I noticed that the original 2JLY_A.pdb file has two identical residues at the position 321 (ASER & BSER). Because of this there were 452 CA atoms in the corresponding bfactor file, which did not match the 451 residue numbers in the Amber modified pdb file 2JLY_A_amber.pdb. To resolve this problem, I removed the second residue (BSER) from the original pdb file. The corresponding bfactors were however very similar to each other differing by only <0.1%.
+
 Amir Shahmoradi, Monday 8:51 PM, Jan 27 2014, Wilke Lab., University of Texas Austin
 	
 	This directory contains b-factors for CA atoms of each amino acid in each pdb structure for which MD simulations were run.
