@@ -51,7 +51,7 @@ The sequences were truncated to the desired genomic region but not in any other 
 %HIV-1 sequences were retrieved from \url{http://www.hiv.lanl.gov/components/sequence/HIV/search/search.html}.
 %Sequences were truncated to the desired genomic region, but no other restrictions were imposed.
 
-For all viral sequences, we removed any sequence that was not in reading frame, any sequence which was shorter than 80\% of the longest sequence for a given viral protein (so as to remove all partial sequences), and any sequence containing any ambiguous characters. Alignments were constructed using amino-acid sequences with MAFFT \citep{Katohetal2002,Katohetal2005}, specifying the ``--auto" flag to select the optimal algorithm for the given data set, and then back-translated to a codon alignment using the original nucleotide sequence data.
+For all viral sequences, we removed any sequence that was not in reading frame, any sequence which was shorter than 80\% of the longest sequence for a given viral protein (so as to remove all partial sequences), and any sequence containing any ambiguous characters. Alignments were constructed using amino-acid sequences with MAFFT \citep{Katohetal2002,Katohetal2005}, specifying the \verb+--auto+ flag to select the optimal algorithm for the given data set, and then back-translated to a codon alignment using the original nucleotide sequence data.
 
 To assess site-specific sequence variability in amino-acid alignments, we calculated the Shannon entropy ($H_i$) at each alignment column $i$:
 \begin{equation}
@@ -66,7 +66,7 @@ For each alignment, we also calculated evolutionary rates, as described \citep{S
 
 A total of 9 viral protein structures were selected for analysis, as tabulated in Table \ref{tab:pdb_names}. Sites in the PDB structures were mapped to sites in the viral sequence alignments via a custom-built python script that creates a consensus map between a PDB sequence and all sequences in an alignment.
 
-For each of the viral proteins, homologous structures were identified using the \texttt{blast.pdb} function of the R package Bio3D \citep{Bio3D}. BLAST hits were retained if they had $\geq35$\% sequence identity and $\geq90$\% alignment length. Among the retained hits, we subsequently identified sets of homologous structures with unique sequences and with mutual pairwise sequence divergences of $\geq2\%$, $\geq5\%$, and $\geq10\%$.
+For each of the viral proteins, homologous structures were identified using the \texttt{blast.pdb} function of the R package Bio3D \citep{Grantetal2006}. BLAST hits were retained if they had $\geq35$\% sequence identity and $\geq90$\% alignment length. Among the retained hits, we subsequently identified sets of homologous structures with unique sequences and with mutual pairwise sequence divergences of $\geq2\%$, $\geq5\%$, and $\geq10\%$.
 
 \subsection*{Measures of buriedness and of structural flexibility}
 
@@ -78,15 +78,21 @@ As measures of structural variability, we considered RMSF, variability in backbo
 \begin{equation}
     \text{RMSF}_j = \Big[\sum_i \big(\mathbf{r}_i^{(j)}-\mathbf{r}_0^{(j)}\big)^2\Big]^{1/2}
 \end{equation}
-where $\text{RMSF}_j$ is the root-mean-square fluctuation at site $j$, $\mathbf{r}_i^{(j)}$ is the position of the C$\alpha$ atom of residue $j$ at MD frame $i$, and $\mathbf{r}_0^{(j)}$ is the position of the C$\alpha$ atom of residue $j$ in the original crystal structure. {\color{red}Structures weren't aligned? Is this described correctly?}
+where $\text{RMSF}_j$ is the root-mean-square fluctuation at site $j$, $\mathbf{r}_i^{(j)}$ is the position of the C$\alpha$ atom of residue $j$ at MD frame $i$, and $\mathbf{r}_0^{(j)}$ is the position of the C$\alpha$ atom of residue $j$ in the original crystal structure.
 
-To calculate RMSF from homologous structures, we first aligned the structures using the Bio3D package \citep{Bio3D}, and then we calculated
+To calculate RMSF from homologous structures, we first aligned the structures using the Bio3D package \citep{Grantetal2006}, and then we calculated
 \begin{equation}
     \text{RMSF}_j = \Big[\sum_i w_i\big(\mathbf{r}_i^{(j)}-\langle\mathbf{r}^{(j)}\rangle\big)^2\Big]^{1/2},
 \end{equation}
 where $\mathbf{r}_i^{(j)}$ now stands for the position of the C$\alpha$ atom of residue $j$ in structure $i$, $\langle\mathbf{r}^{(j)}\rangle$ is the mean position of that C$\alpha$ atom over all aligned structures, and $w_i$ is a weight to correct for potential phylogenetic relationship among the aligned structures. The weights $w_i$ were calculated using BranchManager \citep{Stone2007}, based on phylogenies built with RAxML as before.
 
-To assess variability in backbone and side-chain dihedral angles, we calculated Var($\phi$), Var($\psi$), and Var($chi_1$). {\color{red}The variance of a dihedral angle is defined as \dots.} Since the $\chi_1$ angle is undefined for Ala and Gly we excluded all sides with these residues in analyses involving $\chi_1$.
+To assess variability in backbone and side-chain dihedral angles, we calculated Var($\phi$), Var($\psi$), and Var($\chi_1$). The variance of a dihedral angle was defined according to the most common definition in directional statistics:  
+First, a unit vector $\mathbf{x}_i$ is assigned to each dihedral angle $\alpha_i$ in the sample. The unit vector is defined as $\mathbf{x}_i = ( \cos (\alpha_i), \sin (\alpha_i) )$.
+The variance of the dihedral angle is then defined as
+\begin{equation}
+\text{Var}(\alpha) = 1 - ||\langle \mathbf{x}\rangle||,
+\end{equation}
+where $||\langle \mathbf{x}\rangle||$ represents the length of the mean $\langle \mathbf{x}\rangle$, calculated as $\langle \mathbf{x}\rangle=\sum_i \mathbf{x}_i/n$. Here, $n$ is the sample size. The variance of a dihedral angle is, by definition, a real number in the range $[0,1]$, with $\text{Var}(\alpha) = 0$ corresponding to the minimum variability of the dihedral angle and $\text{Var}(\alpha) = 1$ to the maximum, respectively \citep{Berens2009}. Since the $\chi_1$ angle is undefined for Ala and Gly we excluded all sides with these residues in analyses involving $\chi_1$.
 
 B factors were extracted from the crystal structures. We only considered the B factors of the C$\alpha$ atom of each residue.
 
@@ -275,7 +281,7 @@ Vertical and horizonal axes represent Spearman correlations of the indicated qua
 
 \begin{figure}[tbh]
 \begin{center}
-       \includegraphics[width=6.5in]{cor_entropy_PC_screen.pdf}
+       \includegraphics[width=6.5in]{PC_screen_entropy.pdf}
 \end{center}
 \caption{\textbf{Principal Component (PC) Regression of sequence entropy given the structural variables.} {\bf (A)} Variance in entropy explained by each principal component. For most proteins, PC1 and PC3 show the strongest correlations with sequence entropy. Significant correlations ($P<0.05$) are shown as filled symbols, and insignificant correlations ($P\leq0.05$) are shown as open symbols. {\bf (B)} and {\bf (C)} Composition of the three leading components. Red arrows represent the loadings of each of the structural variables on the principal components; black dots represent the amino acid sites in the PC coordinate system. The variables RSA, iWCN, RMSF, and Var($\chi_1$) load strongly on PC1 and weakly on PC2, while B factor and design entropy load strongly on PC2 and weakly on PC1. Interestingly, B factor and design entropy also load strongly on PC3, but in opposite directions.}
 \label{fig:cor_entropy_PC_screen}
