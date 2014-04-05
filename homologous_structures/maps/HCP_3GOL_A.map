@@ -128,7 +128,7 @@ align_pos	consensus_aa	pdb_pos	pdb_aa
 127	L	127	L
 128	E	128	E
 129	D	129	D
-130	T	130	T
+130	S	130	T
 131	V	131	E
 132	T	132	T
 133	P	133	P
@@ -150,7 +150,7 @@ align_pos	consensus_aa	pdb_pos	pdb_aa
 149	P	149	P
 150	-	NA	-
 151	-	NA	-
-152	G	NA	-
+152	-	NA	-
 153	G	150	G
 154	R	151	R
 155	K	152	K
@@ -508,7 +508,7 @@ align_pos	consensus_aa	pdb_pos	pdb_aa
 507	V	504	V
 508	R	505	R
 509	A	506	A
-510	K	507	K
+510	S	507	K
 511	L	508	L
 512	L	509	L
 513	S	510	S
