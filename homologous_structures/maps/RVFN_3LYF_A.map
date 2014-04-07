@@ -2,7 +2,7 @@ align_pos	consensus_aa	pdb_pos	pdb_aa
 1	-	NA	-
 2	-	NA	-
 3	-	NA	-
-4	-	1	M
+4	M	1	M
 5	D	2	D
 6	N	3	N
 7	Y	4	Y
@@ -82,7 +82,7 @@ align_pos	consensus_aa	pdb_pos	pdb_aa
 81	M	74	M
 82	S	75	S
 83	E	76	K
-84	S	77	E
+84	K	77	E
 85	G	78	G
 86	A	79	K
 87	A	80	A
