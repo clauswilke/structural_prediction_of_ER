@@ -1,0 +1,10 @@
+HP 1RD8 AB HP_cutoff_blast_hits contains 63 entries with identity >= 43.43 and alignmentlength >= 493 
+DPH 2JLY A DPH_cutoff_blast_hits contains first 31 entries from all_blast_hits.csv with identity >= 49.43 and alignmentlength >= 437
+WNP 2FP7 B WNP_cutoff_blast_hits contains first 21 entries from all_blast_hits.csv with identity >= 54.67 and alignmentlength >= 147
+JEH 2Z83 A JEH_cutoff_blast_hits contains first 31 entries from all_blast_hits.csv with identity >= 47.49 and alignmentlength >= 433
+HCP 3GOL A HCP_cutoff_blast_hits contains first 302 entries from all_blast_hits.csv with identity >= 73.18 and alignmentlength >= 531
+RVFN 3LYF A RVFN_cutoff_blast_hits contains first 101 entries from all_blast_hits.csv with identity >= 37.04 and alignmentlength >= 230. EXCEPT structures 4H6F_A, 4H6F_G, 4H6F_M, 4H6G_A, 4H6G_G, and 4H6G_M. These structures are a string of Uracils.
+CCN 4AQF A CCN_cutoff_blast_hits contains first 7 entries from all_blast_hits.csv with identity >= 95.36 and alignmentlength >= 474
+MRBD 4GHA A MRBD_cutoff_blast_hits contains first 63 entries from all_blast_hits.csv with identity >= 42.62 and alignmentlength >= 122
+IN 4IRY A IN_cutoff_blast_hits contains first 69 entries from all_blast_hits.csv with identity >= 33.06 and alignmentlength >= 455
+
