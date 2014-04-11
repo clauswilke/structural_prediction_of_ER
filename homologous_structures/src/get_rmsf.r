@@ -17,7 +17,7 @@ wts <- wts_tbl$weight
 ##realign the pdbs to get xyz coordinates of C alphas
 setwd("../raw_pdbs/split_chain/")
 aln <- pdbaln(as.character(wts_tbl$taxon))
-setwd("../src/")
+setwd("../../src/")
 
 gaps.xyz <- gap.inspect(aln$xyz)
 

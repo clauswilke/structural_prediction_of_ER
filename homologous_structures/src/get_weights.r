@@ -21,7 +21,7 @@ BM.calculate.weights <- function( phylo ) # invokes branch manager to calculate 
 	result
 }
 
-tree <- read.tree(paste("../trees/",args[1],"/RAxML_bestTree.",args[1],sep=""))
+tree <- read.tree(paste("../trees/RAxML_bestTree.",args[1],sep=""))
 
 weights <- BM.calculate.weights(tree)
 

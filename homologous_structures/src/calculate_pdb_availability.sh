@@ -22,7 +22,7 @@ if [ ! -d "../blast_hits" ]; then
 fi
 
 ##find all blasthits for a given pdb
-Rscript find_relevant_seqs.r $PDB_ID $PDB_CHAIN ${PDB_VIRUS_NAME}_all_blast_hits.csv
+#Rscript find_relevant_seqs.r $PDB_ID $PDB_CHAIN ${PDB_VIRUS_NAME}_all_blast_hits.csv
  
 ##Get all homologous pdb structures for a pdb from all blasthits and align them
 if [ ! -d "../alignments" ]; then
@@ -36,17 +36,20 @@ fi
 ##Filter out sequences from ${PDB_VIRUS_NAME}_all_blast_hits.csv. This part was done manually using guidelines of <alignmentlength> >= 90% and <identity> >= 35%. Use ../pdb_availability/cutoffs.txt for exact cuttoff guidelines for each pdb structure.
 
 ##Download all necessary pdb files from ${PDB_VIRUS_NAME}_cutoff_blast_hits.csv, align them, and output a fasta file in ../alignments/$PDB_VIRUS_NAME/$PDB_VIRUS_NAME_all_relevant_seq.fa.
-Rscript align_all_relevant_seqs.r $PDB_VIRUS_NAME ${PDB_VIRUS_NAME}_cutoff_blast_hits.csv
+#Rscript align_all_relevant_seqs.r $PDB_VIRUS_NAME ${PDB_VIRUS_NAME}_cutoff_blast_hits.csv
 
 ##Find unique homologous pdb structures from all blasthits alignment
 #all unique
-Rscript find_unique_seqs.r $PDB_ID $PDB_CHAIN $PDB_VIRUS_NAME ${PDB_VIRUS_NAME}_all_relevant_seq.fa all
+#Rscript find_unique_seqs.r $PDB_ID $PDB_CHAIN $PDB_VIRUS_NAME ${PDB_VIRUS_NAME}_all_relevant_seq.fa all
 
 #unique at 10%
-Rscript find_unique_seqs.r $PDB_ID $PDB_CHAIN $PDB_VIRUS_NAME ${PDB_VIRUS_NAME}_all_relevant_seq.fa 10
+#Rscript find_unique_seqs.r $PDB_ID $PDB_CHAIN $PDB_VIRUS_NAME ${PDB_VIRUS_NAME}_all_relevant_seq.fa 10
 
 #unique at 5%
-Rscript find_unique_seqs.r $PDB_ID $PDB_CHAIN $PDB_VIRUS_NAME ${PDB_VIRUS_NAME}_all_relevant_seq.fa 5
+#Rscript find_unique_seqs.r $PDB_ID $PDB_CHAIN $PDB_VIRUS_NAME ${PDB_VIRUS_NAME}_all_relevant_seq.fa 5
 
 #unique at 2%
-Rscript find_unique_seqs.r $PDB_ID $PDB_CHAIN $PDB_VIRUS_NAME ${PDB_VIRUS_NAME}_all_relevant_seq.fa 2
+#Rscript find_unique_seqs.r $PDB_ID $PDB_CHAIN $PDB_VIRUS_NAME ${PDB_VIRUS_NAME}_all_relevant_seq.fa 2
+
+##Calculate pdb availability
+Rscript get_pdb_availability.r $PDB_ID $PDB_CHAIN $PDB_VIRUS_NAME
