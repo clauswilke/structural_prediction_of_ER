@@ -1,0 +1,2 @@
+virus	pdb_id	all_available_seqs_blast	cutoff_seqs_blast	all_unique_seqs	seqs_with_10%_diff	seqs_with_5%_diff	seqs_with_2%_diff
+IN	4IRY	79	69	15	2	4	4

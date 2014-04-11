@@ -1,0 +1,10 @@
+virus	pdb_id	all_available_seqs_blast	cutoff_seqs_blast	all_unique_seqs	seqs_with_10%_diff	seqs_with_5%_diff	seqs_with_2%_diff
+HP	1RD8	544	63	17	7	9	10
+WNP	2FP7	74	21	16	6	7	10
+DPH	2JLY	160	31	13	7	7	7
+JEH	2Z83	128	31	12	7	7	7
+HCP	3GOL	332	302	33	4	5	10
+RVFN	3LYF	148	95	9	5	5	5
+CCN	4AQF	21	7	4	2	2	3
+MRBD	4GHA	73	63	9	3	3	5
+IN	4IRY	79	69	15	2	4	4

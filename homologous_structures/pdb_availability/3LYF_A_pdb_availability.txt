@@ -1,0 +1,2 @@
+virus	pdb_id	all_available_seqs_blast	cutoff_seqs_blast	all_unique_seqs	seqs_with_10%_diff	seqs_with_5%_diff	seqs_with_2%_diff
+RVFN	3LYF	148	95	9	5	5	5
