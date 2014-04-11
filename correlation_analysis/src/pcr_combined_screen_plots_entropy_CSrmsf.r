@@ -9,7 +9,7 @@ out_path = 'C:/Users/Amir/Documents/GitHub/structural_prediction_of_ER/correlati
 
 # Replace NAs with mean values in data:
 
-data = rbind(data_1RD8_AB, data_2FP7_B, data_2JLY_A, data_2Z83_A, data_3GOL_A) #, data_3LYF_A, data_4AQF_B, data_4GHA_A, data_4IRY_A) #, data_3GSZ_A, data_3I5K_A) #, data_2JLY_A_temp_50, data_2JLY_A_temp_100, data_2JLY_A_temp_200, data_2JLY_A_temp_450)
+data = rbind(data_1RD8_AB, data_2FP7_B, data_2JLY_A, data_2Z83_A, data_3GOL_A, data_3LYF_A) #, data_4AQF_B, data_4GHA_A, data_4IRY_A) #, data_3GSZ_A, data_3I5K_A) #, data_2JLY_A_temp_50, data_2JLY_A_temp_100, data_2JLY_A_temp_200, data_2JLY_A_temp_450)
 
 pca_data = data[,names(data) %in% c('protein','entropy','desent','rsa_avg_md','rmsf_avg_md','chi1_var_md','wcn_avg_md','bfca', 'rmsfHS')] 
 pca_data$chi1_var_md[is.na(pca_data$chi1_var_md)] = mean(na.omit(pca_data$chi1_var_md))
@@ -98,9 +98,9 @@ write.csv( result, out_path, row.names=F )
 index = names(result) %in% c('rsq.PC1', 'rsq.PC2', 'rsq.PC3', 'rsq.PC4', 'rsq.PC5', 'rsq.PC6', 'rsq.PC7') # columns we want to plot
 index.p = names(result) %in% c('p.PC1', 'p.PC2', 'p.PC3', 'p.PC4', 'p.PC5', 'p.PC6', 'p.PC7') # columns that store significance
 
-colors = c('red', 'blue', 'green', 'purple', 'orange3') #, 'darkgreen', 'black', 'gray', 'cyan2') #, 'darkred', 'darkgreen', 'bisque2')
-proteins = c('1RD8_AB', '2FP7_B', '2JLY_A', '2Z83_A', '3GOL_A') #, '3LYF_A', '4AQF_B', '4GHA_A', '4IRY_A') #, '3GSZ_A', '3I5K_A', '2JLY_A_temp_50', '2JLY_A_temp_100', '2JLY_A_temp_200', '2JLY_A_temp_450')
-labels = c('1RD8', '2FP7', '2JLY', '2Z83', '3GOL') #, '3LYF', '4AQF', '4GHA', '4IRY') #, '3GSZ_A', '3I5K_A', '2JLY_A_temp_50', '2JLY_A_temp_100', '2JLY_A_temp_200', '2JLY_A_temp_450')
+colors = c('red', 'blue', 'green', 'purple', 'orange3', 'black') #, 'darkgreen', 'black', 'gray', 'cyan2') #, 'darkred', 'darkgreen', 'bisque2')
+proteins = c('1RD8_AB', '2FP7_B', '2JLY_A', '2Z83_A', '3GOL_A', '3LYF_A') #, '4AQF_B', '4GHA_A', '4IRY_A') #, '3GSZ_A', '3I5K_A', '2JLY_A_temp_50', '2JLY_A_temp_100', '2JLY_A_temp_200', '2JLY_A_temp_450')
+labels = c('1RD8', '2FP7', '2JLY', '2Z83', '3GOL', '3LYF') #, '4AQF', '4GHA', '4IRY') #, '3GSZ_A', '3I5K_A', '2JLY_A_temp_50', '2JLY_A_temp_100', '2JLY_A_temp_200', '2JLY_A_temp_450')
 
 pdf( "correlation_analysis/figures/PC_screen_entropy_CSrmsf.pdf", width=9.3, height=9.2, useDingbats=FALSE )
 
@@ -152,7 +152,7 @@ screen(1)
 	}
 	
 	legend( 1.0, -0.03, labels[1:3], pch=19, col=colors[1:3], bty='n', cex=0.9)
-	legend( 1.7, -0.03, labels[4:5], pch=19, col=colors[4:5], bty='n', cex=0.9)
+	legend( 1.7, -0.03, labels[4:6], pch=19, col=colors[4:6], bty='n', cex=0.9)
 
 split.screen(c(1, 2), 2)    # split bottom half in two
 
@@ -165,10 +165,10 @@ screen(3)
            ylabs = c('designed entropy','RSA','MD RMSF','VAR(chi1)','iWCN','B factor','CS RMSF'),
            xlab="PC 1",
            ylab="PC 2",
-           #xlim=c(-.09,.03),
-           #ylim=c(-.07,.07)
+           xlim=c(-.17,.07),
+           ylim=c(-.13,.12)
            )
-	mtext('B', side = 3, at=-50, font=2, cex=1.2)
+	mtext('B', side = 3, at=-60, font=2, cex=1.2)
 screen(4)
 	par( mai=c(0.65, 0.65, 0.65, 0.65), mgp=c(2, 0.5, 0), tck=-0.03 )
 	biplot(pca,
@@ -177,10 +177,11 @@ screen(4)
            ylabs = c('designed entropy','RSA','MD RMSF','VAR(chi1)','iWCN','B factor','CS RMSF'),
            xlab="PC 2",
            ylab="PC 3",
-           xlim=c(-.11,.23),
-		   #ylim=c(-.07,.07)
+           xlim=c(-.11,.14),
+		   ylim=c(-.08,.11)
 		   )
-	mtext('C', side = 3, at=-55, font=2, cex=1.2)
+	#mtext('C', side = 3, at=-55, font=2, cex=1.2)
+	mtext('C', side = 3, at=-58, font=2, cex=1.2)
 
 close.screen(all = TRUE)
 

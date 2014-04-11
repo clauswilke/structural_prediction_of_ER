@@ -94,29 +94,31 @@ cn13_2JLY_A = read.table('molecular_dynamics/Amber/postproc/cn13/summaries/2JLY_
 wcn_2JLY_A = read.table('molecular_dynamics/Amber/postproc/wcn/summaries/2JLY_A_sum.wcn',header=T)
 desent_2JLY_A = read.table('protein_design/entropies/2JLY_A_0.6.desent',header=T)
 bfca_2JLY_A = read.table('bfactors/2JLY_A_CA.bfactor',header=T,comment.char="")
+rmsfHS_2JLY_A = read.table('homologous_structures/rmsf/2JLY_A_HS.rmsf',header=T,comment.char="")
 omega_DPH = read.table('evolutionary_rates/siterates_REL/dengue_ns3.txt', header=F, col.names = c("res_num", "omega"))
 omega_2JLY_A = omega_DPH$omega[!is.na(map_2JLY_A$pdb_pos)]; omega_2JLY_A = as.data.frame(omega_2JLY_A)
-# For CS RMSF, take the alignments from 2Z83, map 2JLY_A to JEHN alignemnt:
-mapped_RMSFHS_2Z83_A = c(); counter = 1
-for ( i in 1:nrow(map_2Z83_A) )
-{
-	if ( is.na(map_2Z83_A$pdb_pos[i]) )
-	{
-		#cat( "i: ", as.character(i), "\n" )
-		mapped_RMSFHS_2Z83_A[i] = NA
-	}
-	else
-	{
-		#print (counter)
-		mapped_RMSFHS_2Z83_A[i] = rmsfHS_2Z83_A$rmsf[counter]
-		counter = counter + 1
-	}
-}
-mapped_RMSFHS_2Z83_A = cbind(map_2Z83_A,mapped_RMSFHS_2Z83_A)
-map_JEHN_2JLY_A = read.table('molecular_dynamics/map/JEHN_2JLY_A.map',header=T)
-csdata_2JLY_A = data.frame( aln_pos_2JLY_A = map_JEHN_2JLY_A$align_pos,  pdb_pos_2JLY_A = map_JEHN_2JLY_A$pdb_pos)
-csdata_2JLY_A = cbind(csdata_2JLY_A,mapped_RMSFHS_2Z83_A)
-rmsfHS_2JLY_A = csdata_2JLY_A$mapped_RMSFHS_2Z83_A[ !is.na(csdata_2JLY_A$pdb_pos_2JLY_A) ]
+### UPDATE (APRIL 9, 2014): THIS PART OF THE CODE IS NOT NEEDED ANYMORE, SINCE DARIA HAS CALCULATED AND MAPPED ALL RMSF VALUES FOR 2JLY_A
+### For CS RMSF, take the alignments from 2Z83, map 2JLY_A to JEHN alignemnt:
+### mapped_RMSFHS_2Z83_A = c(); counter = 1
+### for ( i in 1:nrow(map_2Z83_A) )
+### {
+### 	if ( is.na(map_2Z83_A$pdb_pos[i]) )
+### 	{
+### 		#cat( "i: ", as.character(i), "\n" )
+### 		mapped_RMSFHS_2Z83_A[i] = NA
+### 	}
+### 	else
+### 	{
+### 		#print (counter)
+### 		mapped_RMSFHS_2Z83_A[i] = rmsfHS_2Z83_A$rmsf[counter]
+### 		counter = counter + 1
+### 	}
+### }
+### mapped_RMSFHS_2Z83_A = cbind(map_2Z83_A,mapped_RMSFHS_2Z83_A)
+### map_JEHN_2JLY_A = read.table('molecular_dynamics/map/JEHN_2JLY_A.map',header=T)
+### csdata_2JLY_A = data.frame( aln_pos_2JLY_A = map_JEHN_2JLY_A$align_pos,  pdb_pos_2JLY_A = map_JEHN_2JLY_A$pdb_pos)
+### csdata_2JLY_A = cbind(csdata_2JLY_A,mapped_RMSFHS_2Z83_A)
+### rmsfHS_2JLY_A = csdata_2JLY_A$mapped_RMSFHS_2Z83_A[ !is.na(csdata_2JLY_A$pdb_pos_2JLY_A) ]
 
 data_2JLY_A = data.frame(protein="2JLY_A", res_num=dihedral_2JLY_A$res_Num, res_name=dihedral_2JLY_A$res_name,
                        omega=omega_2JLY_A$omega, entropy=entropy_2JLY_A$entropy_2JLY_A, desent=desent_2JLY_A$entropy,
@@ -125,7 +127,7 @@ data_2JLY_A = data.frame(protein="2JLY_A", res_num=dihedral_2JLY_A$res_Num, res_
                        phi_var_md=dihedral_2JLY_A$var_phi, psi_var_md=dihedral_2JLY_A$var_psi, chi1_var_md=dihedral_2JLY_A$var_chi1,
                        cn13_cr=cn13_2JLY_A$CRYSTAL_CN, cn13_avg_md=cn13_2JLY_A$MEAN_CN, cn13_var_md=cn13_2JLY_A$VAR_CN,
                        wcn_cr=wcn_2JLY_A$CRYSTAL_WCN, wcn_avg_md=wcn_2JLY_A$MEAN_WCN, wcn_var_md=wcn_2JLY_A$VAR_WCN,
-					   bfca=bfca_2JLY_A$bfactor, rmsfHS=rmsfHS_2JLY_A)
+					   bfca=bfca_2JLY_A$bfactor, rmsfHS=rmsfHS_2JLY_A$rmsf)
 write.csv( data_2JLY_A, "correlation_analysis/combined_data/data_2JLY_A.csv", row.names=F )
 
 
@@ -164,6 +166,7 @@ cn13_3LYF_A = read.table('molecular_dynamics/Amber/postproc/cn13/summaries/3LYF_
 wcn_3LYF_A = read.table('molecular_dynamics/Amber/postproc/wcn/summaries/3LYF_A_sum.wcn',header=T)
 desent_3LYF_A = read.table('protein_design/entropies/3LYF_A_0.6.desent',header=T)
 bfca_3LYF_A = read.table('bfactors/3LYF_A_CA.bfactor',header=T,comment.char="")
+rmsfHS_3LYF_A = read.table('homologous_structures/rmsf/3LYF_A_HS.rmsf',header=T,comment.char="")
 omega_RVFVNP = read.table('evolutionary_rates/siterates_REL/riftvalley.txt', header=F, col.names = c("res_num", "omega"))
 omega_3LYF_A = omega_RVFVNP$omega[!is.na(map_3LYF_A$pdb_pos)]; omega_3LYF_A = as.data.frame(omega_3LYF_A)
 
@@ -174,7 +177,7 @@ data_3LYF_A = data.frame(protein="3LYF_A", res_num=dihedral_3LYF_A$res_Num, res_
                        phi_var_md=dihedral_3LYF_A$var_phi, psi_var_md=dihedral_3LYF_A$var_psi, chi1_var_md=dihedral_3LYF_A$var_chi1,
                        cn13_cr=cn13_3LYF_A$CRYSTAL_CN, cn13_avg_md=cn13_3LYF_A$MEAN_CN, cn13_var_md=cn13_3LYF_A$VAR_CN,
                        wcn_cr=wcn_3LYF_A$CRYSTAL_WCN, wcn_avg_md=wcn_3LYF_A$MEAN_WCN, wcn_var_md=wcn_3LYF_A$VAR_WCN,
-					   bfca=bfca_3LYF_A$bfactor, rmsfHS=NA)
+					   bfca=bfca_3LYF_A$bfactor, rmsfHS=rmsfHS_3LYF_A$rmsf)
 write.csv( data_3LYF_A, "correlation_analysis/combined_data/data_3LYF_A.csv", row.names=F )
 
 					   
