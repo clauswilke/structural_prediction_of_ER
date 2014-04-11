@@ -177,11 +177,11 @@ screen(4)
            ylabs = c('designed entropy','RSA','MD RMSF','VAR(chi1)','iWCN','B factor','CS RMSF'),
            xlab="PC 2",
            ylab="PC 3",
-           xlim=c(-.11,.14),
-		   ylim=c(-.08,.11)
+           xlim=c(-.11,.13),
+		   ylim=c(-.08,.07)
 		   )
 	#mtext('C', side = 3, at=-55, font=2, cex=1.2)
-	mtext('C', side = 3, at=-58, font=2, cex=1.2)
+	mtext('C', side = 3, at=-80, font=2, cex=1.2)
 
 close.screen(all = TRUE)
 
