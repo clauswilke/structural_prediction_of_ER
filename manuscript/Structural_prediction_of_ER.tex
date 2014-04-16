@@ -1,10 +1,15 @@
-\documentclass[12pt]{article}
+\documentclass[smallextended]{svjour3}
 
 \usepackage{graphicx,amsmath,amssymb,amsfonts}
 \usepackage[margin=1in]{geometry}
 \usepackage{hyperref}
 \usepackage{natbib}
 \usepackage{color}
+
+\renewcommand{\bottomfraction}{1.}
+\renewcommand{\topfraction}{1.}
+\renewcommand{\textfraction}{0}
+\renewcommand{\floatpagefraction}{1.}
 
 \graphicspath{{../correlation_analysis/figures/}}
 
@@ -14,15 +19,21 @@
 \protected@write \@auxout {}{\string \newlabel {#1}{{#2}{\thepage}{}{}{}}}}
 \makeatother
 
+
+\journalname{Preprint}
+
 \begin{document}
 
-
 \title{Predicting evolutionary site variability from structure in viral proteins: buriedness, flexibility, and design}
-\author{Amir Shahmoradi,$^{1,2}$ Dariya K. Sydykova,$^{2}$ Stephanie J. Spielman,$^{2}$ \\
-Eleisha L. Jackson,$^{2}$ Eric T. Dawson,$^{2}$ Austin G. Meyer,$^{2}$ Claus O. Wilke$^{2}$}
+\titlerunning{Predicting evolutionary site variability from structure}
 
-\date{\small $^1$ Department of Physics, The University of Texas at Austin, TX, 78712 \\
-$^2$ Department of Integrative Biology, Center for Computational Biology and Bioinformatics, and Institute for Cellular and Molecular Biology, The University of Texas at Austin, TX, 78712 \\ }
+\author{Amir Shahmoradi \and Dariya K. Sydykova \and \\ Stephanie J. Spielman \and Eleisha L. Jackson \and \\ Eric T. Dawson \and Austin G. Meyer \and Claus O. Wilke}
+
+\institute{Amir Shahmoradi \at Department of Physics, The University of Texas at Austin, TX, 78712. \\
+\and
+Amir Shahmoradi \and Dariya K. Sydykova \and Stephanie J. Spielman \and Eleisha L. Jackson \and Eric T. Dawson \and Austin G. Meyer \and Claus O. Wilke \at Department of Integrative Biology, Center for Computational Biology and Bioinformatics, and Institute for Cellular and Molecular Biology, The University of Texas at Austin, TX, 78712. \email{wilke@austin.utexas.edu} }
+
+\date{}
 
 \maketitle
 
@@ -45,7 +56,7 @@ Here, we provide a comprehensive analysis of the extent to which numerous differ
 
 \section*{Materials and Methods}
 
-\section*{Sequence data, alignments, and evolutionary rates}
+\subsection*{Sequence data, alignments, and evolutionary rates}
 
 All viral sequences except influenza sequences were retrieved from \url{http://hfv.lanl.gov/components/sequence/HCV/search/searchi.html}.
 The sequences were truncated to the desired genomic region but not in any other way restricted. Influenza sequences were downloaded from \url{http://www.fludb.org/brc/home.spg?decorator=influenza}. We only considered human influenza A, H1N1, excluding H1N1 sequences derived from the 2009 Swine Flu outbreak. We only used sequences from after 1998 but did not place any geographic restrictions.
@@ -116,12 +127,13 @@ All details of simulations, input$/$output files and scripts for subsequent anal
 
 Our goal in this work is to determine which structural properties best predict amino-acid variability at individual sites in proteins. To this end, we selected 9 viral proteins for which we had both high-quality crystal structures and abundant sequences to assess evolutionary variability (Table~\ref{tab:pdb_names}). We quantified evolutionary variability in two ways, by calculating entropies for each alignment column (sequence entropy) and by calculating the evolutionary-rate ratio $\omega=dN/dS$ (see Methods for details). Throughout this paper, we primarily report results obtained for sequence entropy. Results for $\omega$ are largely comparable, with some specific caveats detailed below.
 
-As predictors of evolutionary variability, we considered two broad classes of structural properties, residue buriedness and residue flexibility. Measures of buriedness quantify the extent to which a residue is protected from solvent. A commonly used measure of buriedness is solvent-accessible surface area (ASA) or its normalized variant relative solvent accessibility (RSA). Here we considered RSA, since it can be compared among residues of different sizes. We also considered contact number (CN) and weighted contact number (WCN). Both of these quantities assess the number of other residues a focal residue contacts. CN simply counts the number of contacts within a sphere of a given radius around the $\alpha$-carbon of the focal residue. WCN weights contacts by the distance between the two residues. Note that residue buriedness decreases as RSA increases, but it increases with increasing CN or WCN. To avoid this difference in directionality, in most analyses we replaced CN and WCN with their inverse, $\text{iCN}=1/\text{CN}$ and $\text{iWCN}=1/\text{WCN}$. Because nearly all analyses we carried out were non-parametric and only depended on the rank order of the variables, this substitution only changed the sign of correlations but not the magnitude.
+As predictors of evolutionary variability, we considered two broad classes of structural properties, residue buriedness and residue flexibility, and we also considered the variability seen in computationally designed protein variants. Measures of buriedness quantify the extent to which a residue is protected from solvent. A commonly used measure of buriedness is solvent-accessible surface area (ASA) or its normalized variant relative solvent accessibility (RSA). Here we considered RSA, since it can be compared among residues of different sizes. We also considered contact number (CN) and weighted contact number (WCN). Both of these quantities assess the number of other residues a focal residue contacts. CN simply counts the number of contacts within a sphere of a given radius around the $\alpha$-carbon of the focal residue. WCN weights contacts by the distance between the two residues. Note that residue buriedness decreases as RSA increases, but it increases with increasing CN or WCN. To avoid this difference in directionality, in most analyses we replaced CN and WCN with their inverse, $\text{iCN}=1/\text{CN}$ and $\text{iWCN}=1/\text{WCN}$. Because nearly all analyses we carried out were non-parametric and only depended on the rank order of the variables, this substitution only changed the sign of correlations but not the magnitude.
 
 Measures of flexibility assess the extent to which a residue fluctuates in space as a protein undergoes thermodynamic fluctuations in solution. There are different ways to quantify these fluctuations. First, we can measure the root mean-square deviation of the C$\alpha$ atom over time. This quantity is commonly called RMSF. Second, we can consider B factors, which measure the spatial localization of individual atoms in a protein crystal. Third, we can measure the variability in side-chain or backbone dihedral angles, such as Var($\chi_1$), Var($\phi$), or Var($\psi$). Here, we considered all these measures of structural variability.
 
 To calculate measures of flexibility, we generated molecular-dynamics (MD) trajectories for all crystal structures in Table~\ref{tab:pdb_names}. In all cases, we equilibrated the structure and then simulated 15ns of chemical time (see Methods). We recorded snapshots of the simulated structure every 10ps. From these snapshots, for each residue we calculated RMSF as well as the variability in dihedral and side-chain angles. We also calculated time-averaged values of the three measures of buriedness RSA, CN, and WCN. We refer to these time-averaged values as MD RSA, MD CN, and MD WCN, respectively.
 
+To assess variability in designed proteins, we used the Rosetta protein-design platform to generate 100 designed variants of each protein structure listed in Table~\ref{tab:pdb_names}. We then calculated the sequence entropy at each position in alignments of the designed variants. We refer to the resulting quantity as the \emph{designed entropy}. We had previously shown that designed entropy captures some but not all of the variation observed in natural alignments \citep{Jacksonetal2013}.
 
 \subsection*{Structural buriedness vs.\ structural flexibility as predictors of evolutionary variation}
 
@@ -146,7 +158,7 @@ In the previous subsections, we have used sequence entropy as a measure of amino
 
 To consider an alternative quantity of sequence variability that doesn't suffer from either of these drawbacks, we calculated the evolutionary-rate ratio $\omega=dN/dS$ for all proteins at all sites, and repeated all analyses with $\omega$ instead of entropy. We found that all results generally carried over, but the correlations tended to be somewhat weaker. Figure~\ref{fig:cor_entropy_omega} plots, for each protein, the correlation between $\omega$ and the various structural quantities versus the correlation between entropy and the same structural quantities. We see that all data points generally fall below the $x=y$ line, and are shifted downwards by approximately 0.1. Thus, correlations of structural quantities with $\omega$ are, on average, approximately 0.1 smaller than correlations of the same quantities with entropy.
 
-Besides the measures of buriedness and measures of structural flexibility discussed in the previous subsections, we present in  Figure~\ref{fig:cor_entropy_omega} one additional structural quantity, \emph{designed entropy}. Designed entropy is obtained by using computational protein design to generate artificial alignments of designed sequences, and then measuring sequence entropy in these artificial alignments. We had previously shown that designed entropy captures some of the variation observed in natural alignments \citep{Jacksonetal2013}. Here we found that designed entropy performed about as well as the measures of structural flexibility but worse than the measures of buriedness.
+Besides the measures of buriedness and measures of structural flexibility, we included in  Figure~\ref{fig:cor_entropy_omega} also the designed entropy.  We found that designed entropy performed about as well as the measures of structural flexibility did on average, but worse than the measures of buriedness, in predicting either $\omega$ or sequence entropy. Designed entropy will be discussed in more detail in the next subsection.
 
 \subsection*{Multi-variate analysis of structural predictors}
 
@@ -172,7 +184,11 @@ We found that simple measures of buriedness, such as RSA and contact numbers, we
 
 Even though RSA and contact number remain the best currently known predictors of evolutionary variation, neither quantity has particularly high predictive power. One reason why predictive power may be low is that neither quantity accounts for correlated substitutions at interacting sites.  Yet such correlated substitutions happen regularly. For example, covariation among sites encodes information about residue-residue contacts and 3D structure \citep{Halabietal2009,BurgervanNimwegen2010,Marksetal2011,Jonesetal2014}, and evolutionary models that incorporate residue--residue interactions tend to perform better than models that do not \citep{Rodrigueetal2005,BordnerMittelmann2014}. An improved predictor of evolutionary variation would have to correctly predict this covariation from structure. In principle, computational protein design, which takes into consideration the atom-level details of the protein structure, should properly reproduce covariation among sites. However, a recent analysis showed that there are significant limitations to the covariation that is predicted \citep{OllikainenKortemme2013}. In addition, covariation in designed proteins is quite sensitive to the type of backbone variation modeled during design, and improved models of backbone flexibility may be required for improved prediction of covariation among sites \citep{OllikainenKortemme2013}.
 
-\bibliographystyle{MBE}  % natbib.sty
+\section*{Acknowledgments}
+
+This work was supported in part by NIH grant R01 GM088344, DTRA grant HDTRA1-12-C-0007, ARO grant W911NF-12-1-0390, and the BEACON Center for the Study of Evolution in Action (NSF Cooperative Agreement DBI-0939454). The Texas Advanced Computing Center at UT Austin provided high-performance computing resources.
+
+\bibliographystyle{spbasic}  % natbib.sty
 \bibliography{Structural_prediction_of_ER}%%%refs.bib
 
 \newpage
@@ -180,7 +196,7 @@ Even though RSA and contact number remain the best currently known predictors of
 \section*{Tables}
 
 \begin{table}[htbp]
-\caption{\textbf{PDB structures considered in this study.}\label{tab:pdb_names}}
+\caption{PDB structures considered in this study.\label{tab:pdb_names}}
 \smallskip
 
 \centerline{
@@ -205,7 +221,7 @@ Even though RSA and contact number remain the best currently known predictors of
 \end{table}
 
 \begin{table}[htbp]
-\caption{\textbf{Availability of homologous crystal structures.} Even though most viral proteins have many PDB structures available, the sequence divergence among these structures is low. To calculate RMSF from crystal structures, we here considered all proteins for which we could find at least five homologous structures at 5\% pairwise sequence divergence (highlighted in bold). \label{tab:homologs}}
+\caption{Availability of homologous crystal structures. Even though most viral proteins have many PDB structures available, the sequence divergence among these structures is low. To calculate RMSF from crystal structures, we here considered all proteins for which we could find at least five homologous structures at 5\% pairwise sequence divergence (highlighted in bold). \label{tab:homologs}}
 \smallskip
 
 \centerline{
@@ -231,7 +247,7 @@ $^\text{b}$ Unique sequences at indicated minimum pairwise sequence divergence
 \end{table}
 
 \begin{table}[htbp]
-\caption{\textbf{Correlations between quantities obtained from MD trajectories and from crystal structures.} For each quantity and each protein, we calculated the Spearman correlation $\rho$ between the values obtained from MD time averages and the values obtained from crystal structures. We then calculated the minimum, maximum, mean, and standard deviation of these correlations.\label{tab:MDcrystal_cor}}
+\caption{Correlations between quantities obtained from MD trajectories and from crystal structures. For each quantity and each protein, we calculated the Spearman correlation $\rho$ between the values obtained from MD time averages and the values obtained from crystal structures. We then calculated the minimum, maximum, mean, and standard deviation of these correlations.\label{tab:MDcrystal_cor}}
 \bigskip
 
 \centerline{
@@ -248,7 +264,7 @@ $^\text{b}$ Unique sequences at indicated minimum pairwise sequence divergence
 
 \end{table}
 
-\cleardoublepage
+\clearpage
 
 \section*{Figures}
 
@@ -257,7 +273,7 @@ $^\text{b}$ Unique sequences at indicated minimum pairwise sequence divergence
 \begin{center}
     \includegraphics[width=5in]{cor_entropy_all.pdf}
 \end{center}
-\caption{\textbf{Spearman correlation of sequence entropy with measures of buriedness and of structural variability.} Each symbol represents one correlation coefficient for one protein structure. Significant correlations ($P<0.05$) are shown as filled symbols, and insignificant correlations ($P\leq0.05$) are shown as open symbols. The quantities RSA, iWCN, Var($\chi_1$), and RMSF were obtained as time-averages over 15ns of MD simulations. B factors were obtained from crystal structures. Compared to the measures of structural variability, the buriedness measures consistently show stronger correlations with sequence entropy.}
+\caption{Spearman correlation of sequence entropy with measures of buriedness and of structural variability. Each symbol represents one correlation coefficient for one protein structure. Significant correlations ($P<0.05$) are shown as filled symbols, and insignificant correlations ($P\leq0.05$) are shown as open symbols. The quantities RSA, iWCN, Var($\chi_1$), and RMSF were obtained as time-averages over 15ns of MD simulations. B factors were obtained from crystal structures. Compared to the measures of structural variability, the buriedness measures consistently show stronger correlations with sequence entropy.}
 \label{fig:cor_entropy_all}
 \end{figure}
 
@@ -266,7 +282,7 @@ $^\text{b}$ Unique sequences at indicated minimum pairwise sequence divergence
 \begin{center}
     \includegraphics[width=5in]{cor_entropy_SF.pdf}
 \end{center}
-\caption{\textbf{Spearman correlation of sequence entropy with measures of structural variability.} Each symbol represents one correlation coefficient for one protein structure. Significant correlations ($P<0.05$) are shown as filled symbols, and insignificant correlations ($P\leq0.05$) are shown as open symbols. The quantities Var($\psi$), Var($\phi$), Var($\chi_1$), and MD RMSF were obtained as time-averages over 15ns of MD simulations. B factors were obtained from crystal structures. CS RMSF values were obtained from alignments of homologous crystal structures. Almost all structural measures of variability correlate weakly but significantly with sequence entropy.}
+\caption{Spearman correlation of sequence entropy with measures of structural variability. Each symbol represents one correlation coefficient for one protein structure. Significant correlations ($P<0.05$) are shown as filled symbols, and insignificant correlations ($P\leq0.05$) are shown as open symbols. The quantities Var($\psi$), Var($\phi$), Var($\chi_1$), and MD RMSF were obtained as time-averages over 15ns of MD simulations. B factors were obtained from crystal structures. CS RMSF values were obtained from alignments of homologous crystal structures. Almost all structural measures of variability correlate weakly but significantly with sequence entropy.}
 \label{fig:cor_entropy_SF}
 \end{figure}
 
@@ -274,7 +290,7 @@ $^\text{b}$ Unique sequences at indicated minimum pairwise sequence divergence
 \begin{center}
     \includegraphics[width=6.5in]{cor_cr_md.pdf}
 \end{center}
-\caption{\textbf{Spearman correlations of sequence entropy with MD-derived and crystal-structure derived structural measures.}
+\caption{Spearman correlations of sequence entropy with MD-derived and crystal-structure derived structural measures.
 The vertical axes in all plots represent the Spearman correlation of sequence entropy with one structural variable obtained from $15ns$ of Molecular Dynamics (MD) simulations. The horizontal axes represent the Spearman's rank correlation coefficient of sequence entropy with the same structural variable as in the vertical axes but measured from protein crystal structures. Each dot represents one correlation coefficient for one protein structure. The quantities iCN, iWCN, and RSA have nearly identical predictive power for sequence entropy regardless of whether they are derived from MD simulations or from crystal structures. By contrast, RMSF from MD simulations leads to very different correlations than RMSF from crystal structures does.
 }
 \label{fig:cor_cr_md}
@@ -284,7 +300,7 @@ The vertical axes in all plots represent the Spearman correlation of sequence en
 \begin{center}
     \includegraphics[width=6.5in]{cor_entropy_bfca_rmsf.pdf}
 \end{center}
-\caption{\textbf{Spearman correlations of sequence entropy with measures of structural variability.}
+\caption{Spearman correlations of sequence entropy with measures of structural variability.
 Vertical and horizonal axes represent Spearman correlations of the indicated quantities. Each dot represents one correlation coefficient for one protein structure. MD RMSF, crystal-structure RMSF, and B factors all explain different amounts of variance in sequence entropy for different proteins.}
 \label{fig:cor_entropy_bfca_rmsf}
 \end{figure}
@@ -293,7 +309,7 @@ Vertical and horizonal axes represent Spearman correlations of the indicated qua
 \begin{center}
     \includegraphics[width=4in]{cor_entropy_omega.pdf}
 \end{center}
-\caption{\textbf{Spearman correlations of structural quantities with sequence entropy and with the evolutionary rate ratio $\omega$.} All structural quantities generally predict as much as or more variation in sequence entropy than in $\omega$.}
+\caption{Spearman correlations of structural quantities with sequence entropy and with the evolutionary rate ratio $\omega$. All structural quantities generally predict as much as or more variation in sequence entropy than in $\omega$.}
 \label{fig:cor_entropy_omega}
 \end{figure}
 
@@ -301,30 +317,30 @@ Vertical and horizonal axes represent Spearman correlations of the indicated qua
 \begin{center}
        \includegraphics[width=6.5in]{PC_screen_entropy.pdf}
 \end{center}
-\caption{\textbf{Principal Component (PC) Regression of sequence entropy against the structural variables.} {\bf (A)} Variance in entropy explained by each principal component. For most proteins, PC1 and PC3 show the strongest correlations with sequence entropy. Significant correlations ($P<0.05$) are shown as filled symbols, and insignificant correlations ($P\leq0.05$) are shown as open symbols. {\bf (B)} and {\bf (C)} Composition of the three leading components. Red arrows represent the loadings of each of the structural variables on the principal components; black dots represent the amino acid sites in the PC coordinate system. The variables RSA, iWCN, MD RMSF, and Var($\chi_1$) load strongly on PC1 and weakly on PC2, while B factor and designed entropy load strongly on PC2 and weakly on PC1. Interestingly, B factor and designed entropy also load strongly on PC3, but in opposite directions.}
+\caption{Principal Component (PC) Regression of sequence entropy against the structural variables. {\bf (A)} Variance in entropy explained by each principal component. For most proteins, PC1 and PC3 show the strongest correlations with sequence entropy. Significant correlations ($P<0.05$) are shown as filled symbols, and insignificant correlations ($P\leq0.05$) are shown as open symbols. {\bf (B)} and {\bf (C)} Composition of the three leading components. Red arrows represent the loadings of each of the structural variables on the principal components; black dots represent the amino acid sites in the PC coordinate system. The variables RSA, iWCN, MD RMSF, and Var($\chi_1$) load strongly on PC1 and weakly on PC2, while B factor and designed entropy load strongly on PC2 and weakly on PC1. Interestingly, B factor and designed entropy also load strongly on PC3, but in opposite directions.}
 \label{fig:cor_entropy_PC_screen}
 \end{figure}
 
 
-\cleardoublepage
+\clearpage
 
 \newpage
 \section*{Supplementary Figures}
 
 \centerline{\includegraphics[width=6.5in]{PC_screen_entropy_CSrmsf.pdf}}
-\noindent Figure S1: \textbf{Principal Component (PC) Regression of sequence entropy against the structural variables, including CS RMSF.} {\bf (A)} Variance in entropy explained by each principal component. For most proteins, PC1 and either PC2 or PC3 show the strongest correlations with sequence entropy. Significant correlations ($P<0.05$) are shown as filled symbols, and insignificant correlations ($P\leq0.05$) are shown as open symbols. {\bf (B)} and {\bf (C)} Composition of the three leading components. Red arrows represent the loadings of each of the structural variables on the principal components; black dots represent the amino acid sites in the PC coordinate system.
+\noindent \textbf{Fig. S1} Principal Component (PC) Regression of sequence entropy against the structural variables, including CS RMSF. {\bf (A)} Variance in entropy explained by each principal component. For most proteins, PC1 and either PC2 or PC3 show the strongest correlations with sequence entropy. Significant correlations ($P<0.05$) are shown as filled symbols, and insignificant correlations ($P\leq0.05$) are shown as open symbols. {\bf (B)} and {\bf (C)} Composition of the three leading components. Red arrows represent the loadings of each of the structural variables on the principal components; black dots represent the amino acid sites in the PC coordinate system.
 \customlabel{fig:cor_entropy_PC_screen_CSrmsf}{S1}
 
 
-\bigskip
+\newpage
 \centerline{\includegraphics[width=6.5in]{PC_screen_omega.pdf}}
-\noindent Figure S2: \textbf{Principal Component (PC) Regression of $\omega$ against the structural variables.} {\bf (A)} Variance in $\omega$ explained by each principal component. For most proteins, PC1 and PC3 show the strongest correlations with $\omega$. Significant correlations ($P<0.05$) are shown as filled symbols, and insignificant correlations ($P\leq0.05$) are shown as open symbols. {\bf (B)} and {\bf (C)} Composition of the three leading components. Red arrows represent the loadings of each of the structural variables on the principal components; black dots represent the amino acid sites in the PC coordinate system. Note that parts B and C are identical to those shown in Figure~\ref{fig:cor_entropy_PC_screen}.
+\noindent \textbf{Fig. S2} Principal Component (PC) Regression of $\omega$ against the structural variables. {\bf (A)} Variance in $\omega$ explained by each principal component. For most proteins, PC1 and PC3 show the strongest correlations with $\omega$. Significant correlations ($P<0.05$) are shown as filled symbols, and insignificant correlations ($P\leq0.05$) are shown as open symbols. {\bf (B)} and {\bf (C)} Composition of the three leading components. Red arrows represent the loadings of each of the structural variables on the principal components; black dots represent the amino acid sites in the PC coordinate system. Note that parts B and C are identical to those shown in Figure~\ref{fig:cor_entropy_PC_screen}.
 \customlabel{fig:cor_omega_PC_screen}{S2}
 
 
-\bigskip
+\newpage
 \centerline{\includegraphics[width=6.5in]{PC_screen_omega_CSrmsf.pdf}}
-\noindent Figure S3: \textbf{Principal Component (PC) Regression of $\omega$ against the structural variables, including CS RMSF.} {\bf (A)} Variance in $\omega$ explained by each principal component. For most proteins, PC1 and either PC2 or PC3 show the strongest correlations with $\omega$. Significant correlations ($P<0.05$) are shown as filled symbols, and insignificant correlations ($P\leq0.05$) are shown as open symbols. {\bf (B)} and {\bf (C)} Composition of the three leading components. Red arrows represent the loadings of each of the structural variables on the principal components; black dots represent the amino acid sites in the PC coordinate system. Note that parts B and C are identical to those shown in Figure~\ref{fig:cor_entropy_PC_screen_CSrmsf}.
+\noindent \textbf{Fig. S3} Principal Component (PC) Regression of $\omega$ against the structural variables, including CS RMSF. {\bf (A)} Variance in $\omega$ explained by each principal component. For most proteins, PC1 and either PC2 or PC3 show the strongest correlations with $\omega$. Significant correlations ($P<0.05$) are shown as filled symbols, and insignificant correlations ($P\leq0.05$) are shown as open symbols. {\bf (B)} and {\bf (C)} Composition of the three leading components. Red arrows represent the loadings of each of the structural variables on the principal components; black dots represent the amino acid sites in the PC coordinate system. Note that parts B and C are identical to those shown in Figure~\ref{fig:cor_entropy_PC_screen_CSrmsf}.
 \customlabel{fig:cor_omega_PC_screen_CSrmsf}{S3}
 
 
