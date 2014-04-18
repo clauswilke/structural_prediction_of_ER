@@ -29,5 +29,3 @@ Amir Shahmoradi, Wilke Lab., University of Texas Austin, 4:43 PM Friday July 25,
 	- Crimean Congo Hemorrhagic Fever Nucleocapsid (CCHFN) --> 4AQF_B.pdb (474 residues) (Stephanie's corresponding fasta file: aln_aa_crimean_congo.Nucleoprotein.fasta)
 	- Marburg RNA Binding Domain (MRNABD) --> 4GHA_A.pdb (122 residues) (Stephanie's corresponding fasta file: aln_aa_marburg.vp35.fasta)
 	- Influenza Nucleoprotein (INP) --> 4IRY_A.pdb (404 residues) (Stephanie's corresponding fasta file: aln_aa_H1N1_NP.fasta)
-	
-	ATTN: no alignment available for Rift Valley Fever Virus NucleoProtein.
