@@ -166,8 +166,9 @@ screen(3)
            xlab="PC 1",
            ylab="PC 2",
            xlim=c(-.17,.07),
-           ylim=c(-.13,.12)
-           )
+           ylim=c(-.13,.12),
+           col=c('grey','red')
+		   )
 	mtext('B', side = 3, at=-60, font=2, cex=1.2)
 screen(4)
 	par( mai=c(0.65, 0.65, 0.65, 0.65), mgp=c(2, 0.5, 0), tck=-0.03 )
@@ -178,7 +179,8 @@ screen(4)
            xlab="PC 2",
            ylab="PC 3",
            xlim=c(-.11,.13),
-		   ylim=c(-.08,.07)
+		   ylim=c(-.08,.07),
+		   col=c('grey','red')
 		   )
 	#mtext('C', side = 3, at=-55, font=2, cex=1.2)
 	mtext('C', side = 3, at=-80, font=2, cex=1.2)
