@@ -60,7 +60,7 @@ split.screen(c(1,2))
 
 screen(1)
 	par( mai=c(0.65, 0.65, 0.4, 0.2), mgp=c(2, 0.5, 0), tck=-0.03 )
-	plot(0,xaxt='n',yaxt='n',bty='n',pch='',xlab="entropy - B factor (Crystal Structure)",ylab="entropy - RMSF (MD simulation)", xlim=c(-.1,.4),ylim=c(-.1,.4))
+	plot(0,xaxt='n',yaxt='n',bty='n',pch='',xlab="entropy - B factor",ylab="entropy - MD RMSF", xlim=c(-.1,.4),ylim=c(-.1,.4))
 	axis( 1,  # x axis
 		at=c(-.1,0,.1,.2,.3,.4),
 		c("","0.0","","0.2","","0.4"))
@@ -73,7 +73,7 @@ screen(1)
 
 screen(2)
 	par( mai=c(0.65, 0.65, 0.4, 0.2), mgp=c(2, 0.5, 0), tck=-0.03 )
-	plot(0,xaxt='n',yaxt='n',bty='n',pch='',xlab="entropy - B factor (Crystal Structure)",ylab="entropy - RMSF (Homologous Structures)", xlim=c(-.1,.4),ylim=c(-.1,.4))
+	plot(0,xaxt='n',yaxt='n',bty='n',pch='',xlab="entropy - B factor",ylab="entropy - CS RMSF", xlim=c(-.1,.4),ylim=c(-.1,.4))
 	axis( 1,  # x axis
 		at=c(-.1,0,.1,.2,.3,.4),
 		c("","0.0","","0.2","","0.4"))
