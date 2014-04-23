@@ -79,8 +79,8 @@ axis( 2,  # y axis
 	  c("-0.4","","-0.2","","0.0","","0.2","","0.4"))
 axis( 1,
       at=c(1, 2, 3, 4, 5, 6),
-      padj=c(0,0,0,0,0,0),
-      c("MD RSA", "MD iWCN", expression(paste("MD Var(", chi[1],")")), "MD RMSF", "B factor", "\n\ndesigned\nentropy")) #,  "CS rmsf"))
+      padj=c(0,0,0.2,0,0,1.5),
+      c("MD RSA", "MD iWCN", expression(paste("MD Var(", chi[1],")")), "MD RMSF", "B factor", "designed\nentropy")) #,  "CS rmsf"))
 
 
 for( i in 1:nrow(result) )
