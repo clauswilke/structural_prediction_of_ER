@@ -80,7 +80,7 @@ axis( 2,  # y axis
 axis( 1,
       at=c(1, 2, 3, 4, 5, 6),
       padj=c(0,0,0.2,0,0,1.5),
-      c("MD RSA", "MD iWCN", expression(paste("MD Var(", chi[1],")")), "MD RMSF", "B factor", "designed\nentropy")) #,  "CS rmsf"))
+      c("MD RSA", "MD iWCN", expression(paste("MD Var(", chi[1],")")), "MD RMSF", "B factor", "designed\n entropy")) #,  "CS rmsf"))
 
 
 for( i in 1:nrow(result) )
