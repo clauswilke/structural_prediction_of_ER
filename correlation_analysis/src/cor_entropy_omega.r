@@ -135,7 +135,7 @@ write.csv( result, "correlation_analysis/cor_tables/cor_entropy_omega.csv", row.
 #                               "p.omega_rsa_avg_md", "p.omega_wcn_avg_md", "p.omega_chi1_var_md", "p.omega_rmsf_avg_md", "p.omega_bfca") # columns that store significance
 
 colors = c('red', 'blue', 'green', 'bisque2', 'bisque3', 'black', 'gray', 'darkgreen') #, 'cyan2') # , 'darkred')
-variables = c('MD RSA', 'MD iWCN', expression(paste("MD Var(", chi[1], ")")), 'MD RMSF', 'CS RMSF', 'B factor', 'Designed Entropy')
+variables = c('MD RSA', 'MD iWCN', expression(paste("MD Var(", chi[1], ")")), 'MD RMSF', 'CS RMSF', 'B factor', 'designed entropy')
 #labels = c('1RD8', '2FP7', '2JLY', '2Z83', '3GOL', '3LYF', '4AQF', '4GHA', '4IRY')
 
 pdf( "correlation_analysis/figures/cor_entropy_omega.pdf", width=4.5, height=4, useDingbats=FALSE )

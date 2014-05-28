@@ -3,6 +3,7 @@
 # Amir Shahmoradi, Saturday 5:58 PM, March 22 2014, Wilke Lab, ICMB, UT Austin
 
 # source("input_data.r")
+source("C:/Users/Amir/Documents/GitHub/structural_prediction_of_ER/correlation_analysis/src/mybiplot.r")
 
 out_path = 'C:/Users/Amir/Documents/GitHub/structural_prediction_of_ER/correlation_analysis/pcr_combined/pcr_combined_cors_entropy.csv'
 
@@ -150,26 +151,28 @@ split.screen(c(1, 2), 2)    # split bottom half in two
 screen(3)
 	par( mai=c(0.65, 0.65, 0.4, 0.2), mgp=c(2, 0.5, 0), tck=-0.03 )
 	par( mai=c(0.65, 0.65, 0.65, 0.65), mgp=c(2, 0.5, 0), tck=-0.03 )
-	biplot(pca,
+	mybiplot(pca,
 	       choices = c(1,2),
 	       xlabs=rep('.',nrow(pca_data)),
-           ylabs = c('designed entropy','RSA','RMSF','VAR(chi1)','iWCN','B factor'),
+           ylabs = c('designed entropy','RSA','MD RMSF','VAR(chi1)','iWCN','B factor'),
            xlab="PC 1",
            ylab="PC 2",
            xlim=c(-.09,.03),
-           ylim=c(-.07,.07)
-           )
+           ylim=c(-.07,.07),
+		   col=c('grey','red')
+		   )
 	mtext('B', side = 3, at=-80, font=2, cex=1.2)
 screen(4)
 	par( mai=c(0.65, 0.65, 0.65, 0.65), mgp=c(2, 0.5, 0), tck=-0.03 )
-	biplot(pca,
+	mybiplot(pca,
 	       choices = c(2,3),
 	       xlabs=rep('.',nrow(pca_data)),
-           ylabs = c('designed entropy','RSA','RMSF','VAR(chi1)','iWCN','B factor'),
+           ylabs = c('designed entropy','RSA','MD RMSF','VAR(chi1)','iWCN','B factor'),
            xlab="PC 2",
            ylab="PC 3",
            xlim=c(-.08,.10),
-		   ylim=c(-.07,.07)
+		   ylim=c(-.07,.07),
+		   col=c('grey','red')
 		   )
 	mtext('C', side = 3, at=-80, font=2, cex=1.2)
 
