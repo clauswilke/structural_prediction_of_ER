@@ -1,22 +1,26 @@
-Amir Shahmoradi, Wednesday 10:13 PM, Jan 28 2014, WilkeLab, ICMB, University of Texas Austin
+Written by Dariya Sydykova, 4/10/14.
 
-This directory contains primarily the works of Daria Sydkova on homologous structures, such as common-residue rmsf among homologous structures in a protein family. All works of Daria are collected under directory '#Daria'. At present, due to the lack of a sufficient number of pdb crystal structures in the same protein families with high sequence similarity, Daria has considered only four protein families, for which there are also MD simulations available for one of the family's representative structures (1RD8_AB, 2FP7_B, 2Z83_A, 3GOL_A).
+RMSF calculations for pdb homologous structures. 
 
-Other directories:
+Contents of directories:
 	
-	alignments:
-		contains the structural alignments done by Daria (or someone else?) that I arranged and renamed and restored in this separate directory.
-		
-	maps:
-		contains mapping between the amino acids (AAs) of the homologous structures and the AAs of the representative structure for which MD simulations are available.
-		
-	rmsf:
-		contains the rmsf values from structural alignments, corresponding to the existing residues in the representative structures.
-		The naming convention '*_HS.rmsf' here means rmsf values from Homologous Structures, mapped to the representative structure. Here * indicates the name of the representative structure.
-		First column of data in these files 'res_num' is the residue number in the representative structure.
-		Second column of data in these files 'res_name' is the residue name in the representative structure.
-		Third column of data in these files 'rmsf' is the site-specific rmsf value measured using homologous structures.
+rmsf/
+	Contains the RMSF calculations for pdb structures with 5 or more sequences at 5% difference of aligned amino acids. RMSFs were calculated by src/get_rmsf.r using sequences in alignments/. The naming convention '*_HS.rmsf' here means RMSF values from Homologous Structures, mapped to the representative structure. Here * indicates the name of the representative structure.
+	First column of data in these files 'res_num' is the residue number in the representative structure.
+	Second column of data in these files 'res_name' is the residue name in the representative structure.
+	Third column of data in these files 'rmsf' is the site-specific rmsf value measured using homologous 
 
-	src:
-		should ideally contain the source codes that were used to generate these data. However, at the moment only Daria can help on how these data were generated.
+alignments/
+	Contains alignments of homologous pdb structures. Each folder in this directory contains:
+	- *_all_relevan_seq.fa contains aligned sequences from blast_hits/cutoff_blast_hits/*_cutoff_blast_hits.csv
+	- *_all_unique_seq.fa contains all unique sequences from *_all_relevan_seq.fa
+	- *_10%_unique_seq.fa contains sequences with 10% difference in aligned amino acids from *_all_relevan_seq.fa
+	- *_5%_unique_seq.fa contains sequences with 5% difference in aligned amino acids from *_all_relevan_seq.fa
+	- *_2%_unique_seq.fa contains sequences with 2% difference in aligned amino acids from *_all_relevan_seq.fa
+	Here * represents abbreviation of the viral protein name (ex: Hepatitis C Protease - HCP).
 
+blast_hits/
+	Contains BLAST output for all viral sequences in the table format. all_blast_hits contains raw tables that are reported by BLAST when a pdb sequence is blasted against the Protein Data Bank. cutoff_blast_hits contains altered all_blast_hits tables  with cutoffs imposed based on the identity and alignment length values. Detailed description of the cutoff imposed is contained in cutoff_blast_hits/cutoffs.txt manually for each pdb structure. 
+	
+pdb_availablity/
+	Contains text files that track the number of structures present for BLAST outputs and assorted alignments. This folder also contains all_pdb_availability.txt that captures available structures for all the viral proteins analyzed. 
