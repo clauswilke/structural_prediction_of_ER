@@ -150,7 +150,7 @@ split.screen(c(1, 2), 2)    # split bottom half in two
 screen(3)
 	par( mai=c(0.65, 0.65, 0.4, 0.2), mgp=c(2, 0.5, 0), tck=-0.03 )
 	par( mai=c(0.65, 0.65, 0.65, 0.65), mgp=c(2, 0.5, 0), tck=-0.03 )
-	biplot(pca,
+	mybiplot(pca,
 	       choices = c(1,2),
 	       xlabs=rep('.',nrow(pca_data)),
            ylabs = c('designed entropy','RSA','MD RMSF','VAR(chi1)','iWCN','B factor'),
@@ -163,7 +163,7 @@ screen(3)
 	mtext('B', side = 3, at=-80, font=2, cex=1.2)
 screen(4)
 	par( mai=c(0.65, 0.65, 0.65, 0.65), mgp=c(2, 0.5, 0), tck=-0.03 )
-	biplot(pca,
+	mybiplot(pca,
 	       choices = c(2,3),
 	       xlabs=rep('.',nrow(pca_data)),
            ylabs = c('designed entropy','RSA','MD RMSF','VAR(chi1)','iWCN','B factor'),
